@@ -11,17 +11,17 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg:       #080808;
-      --bg2:      #0e0e0e;
-      --card:     #111111;
+      --bg:       #050d1a;
+      --bg2:      #071224;
+      --card:     #0b192e;
       --acc:      #00bc7d;
       --acc-rgb:  0,188,125;
-      --text:     #ededed;
-      --muted:    #666;
-      --sub:      #a0a0a0;
+      --text:     #e8edf5;
+      --muted:    #4a6080;
+      --sub:      #8da0b8;
       --border:   rgba(255,255,255,0.07);
-      --r:        14px;
-      --r-sm:     8px;
+      --r:        16px;
+      --r-sm:     10px;
       --ease:     cubic-bezier(.4,0,.2,1);
       --f:        'Plus Jakarta Sans', system-ui, sans-serif;
     }
@@ -124,8 +124,9 @@
       display: flex; flex-direction: column; justify-content: center;
       padding: 150px 0 90px;
       background:
-        radial-gradient(ellipse 55% 60% at 72% 44%, rgba(var(--acc-rgb),.055) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 40% at 10% 80%, rgba(var(--acc-rgb),.025) 0%, transparent 70%);
+        radial-gradient(ellipse 55% 60% at 72% 44%, rgba(var(--acc-rgb),.07) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 15% 85%, rgba(30,80,180,.18) 0%, transparent 65%),
+        radial-gradient(ellipse 70% 40% at 50% 0%, rgba(10,40,100,.25) 0%, transparent 70%);
     }
 
     .hero-eye {
@@ -161,16 +162,23 @@
 
     .prob-grid {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 2px; background: var(--border);
-      border: 1px solid var(--border); border-radius: var(--r); overflow: hidden;
+      gap: 14px;
     }
     .prob-card {
-      background: var(--card); padding: 40px;
-      transition: background .25s var(--ease);
-      position: relative;
+      background: linear-gradient(135deg, #0d1e38 0%, #091628 100%);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--r); padding: 36px;
+      transition: border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
+      position: relative; overflow: hidden;
     }
-    .prob-card:hover { background: #161616; }
-    .prob-card:hover .picon { background: rgba(var(--acc-rgb),.13); color: var(--acc); }
+    .prob-card::before {
+      content: ''; position: absolute; inset: 0; border-radius: var(--r);
+      background: linear-gradient(135deg, rgba(var(--acc-rgb),.04) 0%, transparent 60%);
+      opacity: 0; transition: opacity .3s var(--ease);
+    }
+    .prob-card:hover { border-color: rgba(var(--acc-rgb),.25); transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,.35), 0 0 0 1px rgba(var(--acc-rgb),.08); }
+    .prob-card:hover::before { opacity: 1; }
+    .prob-card:hover .picon { background: rgba(var(--acc-rgb),.15); color: var(--acc); }
 
     .pnum { font-size: .66rem; font-weight: 700; letter-spacing: .14em; color: var(--muted); text-transform: uppercase; margin-bottom: 18px; }
     .picon {
@@ -203,8 +211,10 @@
 
     .sol-visual { position: sticky; top: 100px; }
     .sol-box {
-      background: var(--card); border: 1px solid var(--border);
+      background: linear-gradient(145deg, #0d1e38 0%, #091628 100%);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: var(--r); padding: 36px; position: relative; overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
     }
     .sol-box::before {
       content: ''; position: absolute; top: -60%; right: -40%;
@@ -233,21 +243,28 @@
 
     .ben-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 2px; background: var(--border);
-      border: 1px solid var(--border); border-radius: var(--r); overflow: hidden;
-      margin-top: 56px;
+      gap: 14px; margin-top: 56px;
     }
     .ben-card {
-      background: var(--card); padding: 34px;
-      transition: background .25s var(--ease);
+      background: linear-gradient(145deg, #0d1e38 0%, #091628 100%);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--r); padding: 32px;
+      transition: border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
       position: relative; overflow: hidden;
     }
-    .ben-card::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-      background: var(--acc); transform: scaleX(0); transition: transform .3s var(--ease);
+    .ben-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(var(--acc-rgb),.5), transparent);
+      transform: scaleX(0); transition: transform .35s var(--ease);
     }
-    .ben-card:hover { background: #161616; }
-    .ben-card:hover::after { transform: scaleX(1); }
+    .ben-card::after {
+      content: ''; position: absolute; inset: 0; border-radius: var(--r);
+      background: radial-gradient(circle at 0% 0%, rgba(var(--acc-rgb),.06) 0%, transparent 60%);
+      opacity: 0; transition: opacity .3s var(--ease);
+    }
+    .ben-card:hover { border-color: rgba(var(--acc-rgb),.22); transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,.35); }
+    .ben-card:hover::before { transform: scaleX(1); }
+    .ben-card:hover::after { opacity: 1; }
 
     .ben-icon { font-size: 1.4rem; margin-bottom: 18px; display: block; }
     .ben-card h3 { font-size: .98rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: 9px; }
@@ -261,10 +278,11 @@
 
     .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
     .proj-card {
-      background: var(--card); border: 1px solid var(--border); border-radius: var(--r);
-      overflow: hidden; transition: border-color .25s var(--ease), transform .28s var(--ease), box-shadow .28s var(--ease);
+      background: linear-gradient(145deg, #0d1e38 0%, #091628 100%);
+      border: 1px solid rgba(255,255,255,0.07); border-radius: var(--r);
+      overflow: hidden; transition: border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
     }
-    .proj-card:hover { border-color: rgba(var(--acc-rgb),.22); transform: translateY(-5px); box-shadow: 0 22px 64px rgba(0,0,0,.45); }
+    .proj-card:hover { border-color: rgba(var(--acc-rgb),.28); transform: translateY(-5px); box-shadow: 0 24px 64px rgba(0,0,0,.45), 0 0 0 1px rgba(var(--acc-rgb),.08); }
 
     .proj-thumb {
       width: 100%; aspect-ratio: 16/9; background: var(--bg2);
@@ -347,8 +365,10 @@
     .contact-val { font-size: .88rem; font-weight: 600; margin-top: 1px; }
 
     .form-box {
-      background: var(--card); border: 1px solid var(--border);
+      background: linear-gradient(145deg, #0d1e38 0%, #091628 100%);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: var(--r); padding: 44px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
     }
     .form-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .fg { margin-bottom: 16px; }
@@ -357,7 +377,7 @@
       letter-spacing: .09em; text-transform: uppercase; color: var(--muted); margin-bottom: 7px;
     }
     input, select, textarea {
-      width: 100%; background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      width: 100%; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,0.09);
       border-radius: var(--r-sm); color: var(--text); font-family: var(--f);
       font-size: .88rem; padding: 12px 15px; outline: none;
       transition: border-color .2s, background .2s;

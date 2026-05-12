@@ -270,48 +270,6 @@
     .ben-card h3 { font-size: .98rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: 9px; }
     .ben-card p  { font-size: .83rem; color: var(--sub); line-height: 1.72; }
 
-    /* ════════════════ PROJEKTE ════════════════ */
-    #projekte { padding: 120px 0; }
-
-    .proj-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; gap: 40px; flex-wrap: wrap; }
-    .proj-head-note { max-width: 300px; font-size: .85rem; color: var(--muted); line-height: 1.65; }
-
-    .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-    .proj-card {
-      background: linear-gradient(145deg, #0d1e38 0%, #091628 100%);
-      border: 1px solid rgba(255,255,255,0.07); border-radius: var(--r);
-      overflow: hidden; transition: border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
-    }
-    .proj-card:hover { border-color: rgba(var(--acc-rgb),.28); transform: translateY(-5px); box-shadow: 0 24px 64px rgba(0,0,0,.45), 0 0 0 1px rgba(var(--acc-rgb),.08); }
-
-    .proj-thumb {
-      width: 100%; aspect-ratio: 16/9; background: var(--bg2);
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .proj-thumb-inner { display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: .25; }
-    .proj-thumb-inner svg { width: 36px; height: 36px; }
-    .proj-thumb-inner span { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
-
-    .proj-info { padding: 26px; }
-    .proj-tag {
-      display: inline-block;
-      background: rgba(var(--acc-rgb),.09); color: var(--acc);
-      font-size: .7rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase;
-      padding: 4px 10px; border-radius: 4px; margin-bottom: 10px;
-    }
-    .proj-info h3 { font-size: 1.05rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: 7px; }
-    .proj-info p  { font-size: .83rem; color: var(--sub); line-height: 1.65; }
-
-    .proj-hint {
-      margin-top: 20px;
-      background: rgba(var(--acc-rgb),.04); border: 1px dashed rgba(var(--acc-rgb),.18);
-      border-radius: var(--r); padding: 22px 26px;
-      display: flex; align-items: flex-start; gap: 14px;
-    }
-    .proj-hint p { font-size: .83rem; color: var(--muted); line-height: 1.65; }
-    .proj-hint strong { color: var(--sub); }
-
     /* ════════════════ REZENSION ════════════════ */
     #rezension { padding: 80px 0; background: var(--bg2); }
 
@@ -497,7 +455,6 @@
       <li><a href="#problem">Problem</a></li>
       <li><a href="#solution">Lösung</a></li>
       <li><a href="#vorteile">Warum ich</a></li>
-      <li><a href="#projekte">Projekte</a></li>
       <li><a href="#ueber">Über mich</a></li>
     </ul>
     <a href="#kontakt" class="nav-cta">Erstgespräch anfragen →</a>
@@ -689,51 +646,6 @@
           <h3>Faire Preise</h3>
           <p>Kein Agentur-Aufschlag. Du bekommst Profi-Qualität zum Freelancer-Preis.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ PROJEKTE ══ -->
-  <section id="projekte">
-    <div class="wrap">
-      <div class="proj-head fu">
-        <div>
-          <div class="label">Projekte</div>
-          <h2 class="section-headline" style="font-size:clamp(1.9rem,3.8vw,3rem);font-weight:800;letter-spacing:-.035em;">Websites, die ich gebaut habe</h2>
-        </div>
-        <p class="proj-head-note">Hier sind einige Projekte aus meiner Arbeit. Jede Site ist auf Performance und Sichtbarkeit optimiert.</p>
-      </div>
-      <div class="proj-grid">
-        <div class="proj-card fu">
-          <div class="proj-thumb">
-            <div class="proj-thumb-inner">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-              <span>Projekt-Screenshot</span>
-            </div>
-          </div>
-          <div class="proj-info">
-            <div class="proj-tag">Webdesign + SEO</div>
-            <h3>Projekt Name</h3>
-            <p>Kurze Beschreibung des Projekts. Ergebnis: Rankings auf Seite 1 in 3 Monaten, organischer Traffic +85%.</p>
-          </div>
-        </div>
-        <div class="proj-card fu d1">
-          <div class="proj-thumb">
-            <div class="proj-thumb-inner">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-              <span>Projekt-Screenshot</span>
-            </div>
-          </div>
-          <div class="proj-info">
-            <div class="proj-tag">SEO-Optimierung</div>
-            <h3>Projekt Name</h3>
-            <p>Kurze Beschreibung des Projekts. Ergebnis: Conversion Rate +40%, Bounce Rate –28% nach Relaunch.</p>
-          </div>
-        </div>
-      </div>
-      <div class="proj-hint fu d1">
-        <span style="font-size:1.2rem;flex-shrink:0;">💡</span>
-        <p><strong>Tipp:</strong> Ersetze die Platzhalter durch Screenshots oder Mockups deiner echten Projekte – mit kurzem Beschrieb und messbarem Ergebnis. Das wirkt authentischer als generische Bewertungen.</p>
       </div>
     </div>
   </section>

@@ -742,16 +742,16 @@
             <div class="form-row2">
               <div class="fg">
                 <label for="fn">Name</label>
-                <input type="text" id="fn" placeholder="Max Mustermann" required>
+                <input type="text" id="fn" name="name" placeholder="Max Mustermann" required>
               </div>
               <div class="fg">
                 <label for="fe">E-Mail</label>
-                <input type="email" id="fe" placeholder="max@firma.de" required>
+                <input type="email" id="fe" name="email" placeholder="max@firma.de" required>
               </div>
             </div>
             <div class="fg">
               <label for="ft">Worum geht es?</label>
-              <select id="ft">
+              <select id="ft" name="thema">
                 <option value="">Bitte auswählen</option>
                 <option>Neue Website</option>
                 <option>Website optimieren</option>
@@ -762,7 +762,7 @@
             </div>
             <div class="fg">
               <label for="fm">Nachricht / Projektbeschreibung</label>
-              <textarea id="fm" placeholder="Erzähl mir von deinem Projekt – was hast du, was brauchst du, was willst du erreichen?" required></textarea>
+              <textarea id="fm" name="nachricht" placeholder="Erzähl mir von deinem Projekt – was hast du, was brauchst du, was willst du erreichen?" required></textarea>
             </div>
             <button type="submit" class="btn form-submit" id="fsub">
               Nachricht senden
@@ -811,17 +811,38 @@
     if (sv) barObs.observe(sv);
 
     /* ── Form submit ── */
-    function sendForm(e) {
+    async function sendForm(e) {
       e.preventDefault();
       const btn = document.getElementById('fsub');
-      btn.innerHTML = '✓ Gesendet!';
-      btn.style.cssText += 'background:#22c55e;color:#fff;cursor:default';
+      const form = document.getElementById('cf');
+
+      btn.innerHTML = 'Wird gesendet…';
       btn.disabled = true;
-      setTimeout(() => {
-        btn.innerHTML = 'Nachricht senden <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
-        btn.style.background = btn.style.color = '';
+      btn.style.opacity = '.7';
+
+      try {
+        const res = await fetch('https://formspree.io/f/mlgzvkpg', {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          btn.innerHTML = '✓ Nachricht gesendet!';
+          btn.style.cssText += 'background:#22c55e;color:#fff;opacity:1;cursor:default';
+          form.reset();
+        } else {
+          throw new Error();
+        }
+      } catch {
+        btn.innerHTML = '✗ Fehler – bitte per Mail schreiben';
+        btn.style.cssText += 'background:#ef4444;color:#fff;opacity:1';
         btn.disabled = false;
-      }, 3500);
+        setTimeout(() => {
+          btn.innerHTML = 'Nachricht senden <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+          btn.style.background = btn.style.color = btn.style.opacity = '';
+        }, 4000);
+      }
     }
   </script>
 </body>

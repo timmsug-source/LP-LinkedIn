@@ -98,16 +98,19 @@
     /* ════════════════ NAV ════════════════ */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-      padding: 22px 64px;
-      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 0;
       transition: padding .3s var(--ease), background .3s, border-color .3s;
     }
     nav.scrolled {
-      background: rgba(8,8,8,.88);
+      background: rgba(5,13,26,.88);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border);
-      padding: 14px 64px;
+      padding: 14px 0;
+    }
+    .nav-inner {
+      max-width: 1140px; margin: 0 auto; padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
     }
     .nav-logo { font-size: 1.25rem; font-weight: 800; letter-spacing: -.04em; color: var(--text); text-decoration: none; }
     .nav-logo em { color: var(--acc); font-style: normal; }
@@ -454,14 +457,16 @@
 
   <!-- ══ NAV ══ -->
   <nav id="nav">
-    <a href="#" class="nav-logo">Timm <em>Schurig</em></a>
-    <ul class="nav-links">
-      <li><a href="#problem">Problem</a></li>
-      <li><a href="#solution">Lösung</a></li>
-      <li><a href="#vorteile">Warum ich</a></li>
-      <li><a href="#ueber">Über mich</a></li>
-    </ul>
-    <a href="#kontakt" class="nav-cta">Erstgespräch anfragen →</a>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Timm <em>Schurig</em></a>
+      <ul class="nav-links">
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#solution">Lösung</a></li>
+        <li><a href="#vorteile">Warum ich</a></li>
+        <li><a href="#ueber">Über mich</a></li>
+      </ul>
+      <a href="#kontakt" class="nav-cta">Erstgespräch anfragen →</a>
+    </div>
   </nav>
 
   <!-- ══ HERO ══ -->

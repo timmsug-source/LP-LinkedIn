@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { marked } from 'marked'
+
+marked.use({ gfm: true, breaks: true })
 import { getPost, getPosts } from '@/lib/supabase'
 
 interface Props { params: Promise<{ slug: string }> }
@@ -15,9 +17,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const post = await getPost(slug)
   if (!post) return { title: 'Nicht gefunden · Timm Schurig' }
+
+  const metaTitle = post.meta_title || `${post.title} · Timm Schurig`
+  const metaDescription = post.meta_description || post.excerpt
+
   return {
-    title: `${post.title} · Timm Schurig`,
-    description: post.excerpt,
+    title: metaTitle,
+    description: metaDescription,
+    openGraph: {
+      title: metaTitle,
+      description: metaDescription,
+      ...(post.cover_image ? { images: [{ url: post.cover_image }] } : {}),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: metaTitle,
+      description: metaDescription,
+      ...(post.cover_image ? { images: [post.cover_image] } : {}),
+    },
   }
 }
 

@@ -15,6 +15,8 @@ export interface Post {
   excerpt: string
   content: string | null
   cover_image: string | null
+  meta_title: string | null
+  meta_description: string | null
   published_at: string
   created_at: string
 }
@@ -24,6 +26,8 @@ export async function getPosts(): Promise<Post[]> {
   const { data, error } = await supabase
     .from('posts')
     .select('id, title, slug, excerpt, cover_image, published_at, created_at')
+    .eq('site_id', SITE_ID)
+    .eq('status', 'published')
     .order('published_at', { ascending: false })
   if (error) {
     console.error('[Blog] getPosts error:', error.message ?? error)
@@ -36,7 +40,9 @@ export async function getPost(slug: string): Promise<Post | null> {
   const { data, error } = await supabase
     .from('posts')
     .select('*')
+    .eq('site_id', SITE_ID)
     .eq('slug', slug)
+    .eq('status', 'published')
     .single()
   if (error) {
     console.error('[Blog] getPost error:', error.message ?? error)

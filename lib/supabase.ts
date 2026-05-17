@@ -17,6 +17,7 @@ export interface Post {
   cover_image: string | null
   meta_title: string | null
   meta_description: string | null
+  related_posts: string[] | null
   published_at: string
   created_at: string
 }

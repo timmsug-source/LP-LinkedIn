@@ -12,7 +12,7 @@ const defaults: FooterData = {
     { label: 'Blog', href: '/blog' },
     { label: 'Impressum', href: '/impressum' },
     { label: 'Datenschutz', href: '/datenschutz' },
-    { label: 'LinkedIn', href: 'https://linkedin.com', external: true },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/timm-schurig/', external: true },
   ],
 }
 

@@ -47,7 +47,16 @@ export default async function BlogPost({ params }: Props) {
   const [post, allPosts] = await Promise.all([getPost(slug), getPosts()])
   if (!post) notFound()
 
-  const related = allPosts.filter((p) => p.slug !== slug).slice(0, 3)
+  // Use manually selected related posts if set, otherwise fall back to 3 most recent
+  let related: typeof allPosts = []
+  if (post.related_posts && post.related_posts.length > 0) {
+    related = post.related_posts
+      .map(id => allPosts.find(p => p.id === id))
+      .filter((p): p is NonNullable<typeof p> => !!p)
+  } else {
+    related = allPosts.filter((p) => p.slug !== slug).slice(0, 3)
+  }
+
   const html = marked(post.content ?? '')
 
   return (
@@ -123,7 +132,7 @@ export default async function BlogPost({ params }: Props) {
         <div className="foot-links">
           <Link href="/impressum">Impressum</Link>
           <Link href="/datenschutz">Datenschutz</Link>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/timm-schurig/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
       </footer>
     </>

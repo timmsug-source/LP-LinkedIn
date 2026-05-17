@@ -14,7 +14,7 @@ const defaults: AboutData = {
     'Ich beschäftige mich seit 5 Jahren mit SEO und seit 3 Jahren mit Webdesign – nicht als Hobby, sondern als Handwerk, das ich täglich verfeinere. Mir ist wichtig, die Zusammenhänge wirklich zu verstehen, nicht nur Checklisten abzuarbeiten.',
     'Auf LinkedIn teile ich regelmäßig, was ich lerne und was in meinen Projekten funktioniert.',
   ],
-  linkedin_url: 'https://linkedin.com',
+  linkedin_url: 'https://www.linkedin.com/in/timm-schurig/',
   skills: ['On-Page SEO', 'Technical SEO', 'Keyword Research', 'Webdesign', 'WordPress', 'Core Web Vitals', 'Google Analytics', 'Search Console'],
 }
 

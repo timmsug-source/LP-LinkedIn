@@ -1,21 +1,36 @@
 'use client'
 import { useEffect, useRef } from 'react'
 
-const steps = [
-  { n: '01', title: 'Analyse & Strategie', text: 'Ich analysiere deine Situation, Konkurrenz und Zielkunden und entwickle einen konkreten Aktionsplan.' },
-  { n: '02', title: 'Website-Entwicklung', text: 'Performance-optimierte, mobilfreundliche Website – designed für Vertrauen und Conversions.' },
-  { n: '03', title: 'On-Page SEO', text: 'Technisches SEO, Keyword-Optimierung und Content-Struktur für nachhaltige Top-Rankings.' },
-  { n: '04', title: 'Tracking & Reporting', text: 'Du siehst jederzeit, was dein Investment bringt – transparent und verständlich.' },
-]
+interface Step { n: string; title: string; text: string }
+interface Bar { label: string; w: number; pct: string }
+interface SolutionData {
+  title?: string
+  intro?: string
+  steps?: Step[]
+  bars?: Bar[]
+}
 
-const bars = [
-  { label: 'Google Sichtbarkeit', w: 87, pct: '87%' },
-  { label: 'Page Speed Score',    w: 94, pct: '94'  },
-  { label: 'Conversion Rate',     w: 72, pct: '+72%' },
-  { label: 'Core Web Vitals',     w: 91, pct: '91'  },
-]
+const defaults: SolutionData = {
+  title: 'Website + SEO als ein gemeinsames System',
+  intro: 'Ich kombiniere technisch sauberes Webdesign mit durchdachter SEO-Strategie – damit deine Website nicht nur schön aussieht, sondern auch gefunden wird und konvertiert.',
+  steps: [
+    { n: '01', title: 'Analyse & Strategie', text: 'Ich analysiere deine Situation, Konkurrenz und Zielkunden und entwickle einen konkreten Aktionsplan.' },
+    { n: '02', title: 'Website-Entwicklung', text: 'Performance-optimierte, mobilfreundliche Website – designed für Vertrauen und Conversions.' },
+    { n: '03', title: 'On-Page SEO', text: 'Technisches SEO, Keyword-Optimierung und Content-Struktur für nachhaltige Top-Rankings.' },
+    { n: '04', title: 'Tracking & Reporting', text: 'Du siehst jederzeit, was dein Investment bringt – transparent und verständlich.' },
+  ],
+  bars: [
+    { label: 'Google Sichtbarkeit', w: 87, pct: '87%' },
+    { label: 'Page Speed Score', w: 94, pct: '94' },
+    { label: 'Conversion Rate', w: 72, pct: '+72%' },
+    { label: 'Core Web Vitals', w: 91, pct: '91' },
+  ],
+}
 
-export default function Solution() {
+export default function Solution({ data }: { data?: Record<string, unknown> }) {
+  const d: SolutionData = { ...defaults, ...(data as SolutionData) }
+  const steps = (d.steps as Step[]) ?? defaults.steps!
+  const bars = (d.bars as Bar[]) ?? defaults.bars!
   const visRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -40,8 +55,8 @@ export default function Solution() {
           <div>
             <div className="sec-head fu">
               <div className="label">Die Lösung</div>
-              <h2>Website + SEO als ein gemeinsames System</h2>
-              <p className="sec-intro">Ich kombiniere technisch sauberes Webdesign mit durchdachter SEO-Strategie – damit deine Website nicht nur schön aussieht, sondern auch gefunden wird und konvertiert.</p>
+              <h2>{d.title}</h2>
+              <p className="sec-intro">{d.intro}</p>
             </div>
             <div className="steps">
               {steps.map((s, i) => (

@@ -1,15 +1,8 @@
 import { createClient } from '@supabase/supabase-js'
 
-// CMS client (pages, SEO, nav, hero, etc.)
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
-
-// Blog client (posts)
-export const blogSupabase = createClient(
-  process.env.NEXT_PUBLIC_BLOG_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_BLOG_SUPABASE_KEY!
 )
 
 export const SITE_ID = process.env.NEXT_PUBLIC_SITE_ID!
@@ -26,9 +19,9 @@ export interface Post {
   created_at: string
 }
 
-// ── Blog queries (new Supabase project) ───────────────────
+// ── Blog queries ──────────────────────────────────────────
 export async function getPosts(): Promise<Post[]> {
-  const { data, error } = await blogSupabase
+  const { data, error } = await supabase
     .from('posts')
     .select('id, title, slug, excerpt, cover_image, published_at, created_at')
     .order('published_at', { ascending: false })
@@ -40,7 +33,7 @@ export async function getPosts(): Promise<Post[]> {
 }
 
 export async function getPost(slug: string): Promise<Post | null> {
-  const { data, error } = await blogSupabase
+  const { data, error } = await supabase
     .from('posts')
     .select('*')
     .eq('slug', slug)
@@ -52,7 +45,7 @@ export async function getPost(slug: string): Promise<Post | null> {
   return data
 }
 
-// ── CMS queries (original Supabase project) ───────────────
+// ── CMS queries ───────────────────────────────────────────
 export async function getSection(slug: string) {
   const { data } = await supabase
     .from('pages')

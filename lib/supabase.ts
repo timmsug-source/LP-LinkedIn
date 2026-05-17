@@ -1,13 +1,20 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+// CMS client (pages, SEO, nav, hero, etc.)
+export const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
 
-export const supabase = createClient(supabaseUrl, supabaseKey)
+// Blog client (posts)
+export const blogSupabase = createClient(
+  process.env.NEXT_PUBLIC_BLOG_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_BLOG_SUPABASE_KEY!
+)
 
 export const SITE_ID = process.env.NEXT_PUBLIC_SITE_ID!
 
-// Blog types
+// ── Blog types ────────────────────────────────────────────
 export interface Post {
   id: string
   title: string
@@ -19,26 +26,33 @@ export interface Post {
   created_at: string
 }
 
-// Blog queries
+// ── Blog queries (new Supabase project) ───────────────────
 export async function getPosts(): Promise<Post[]> {
-  const { data, error } = await supabase
+  const { data, error } = await blogSupabase
     .from('posts')
     .select('id, title, slug, excerpt, cover_image, published_at, created_at')
     .order('published_at', { ascending: false })
-  if (error) { console.error(error); return [] }
+  if (error) {
+    console.error('[Blog] getPosts error:', error.message ?? error)
+    return []
+  }
   return (data ?? []) as Post[]
 }
 
 export async function getPost(slug: string): Promise<Post | null> {
-  const { data, error } = await supabase
+  const { data, error } = await blogSupabase
     .from('posts')
     .select('*')
     .eq('slug', slug)
     .single()
-  if (error) { console.error(error); return null }
+  if (error) {
+    console.error('[Blog] getPost error:', error.message ?? error)
+    return null
+  }
   return data
 }
 
+// ── CMS queries (original Supabase project) ───────────────
 export async function getSection(slug: string) {
   const { data } = await supabase
     .from('pages')

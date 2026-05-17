@@ -44,9 +44,10 @@ function formatDate(iso: string) {
 
 export default async function BlogPost({ params }: Props) {
   const { slug } = await params
-  const post = await getPost(slug)
+  const [post, allPosts] = await Promise.all([getPost(slug), getPosts()])
   if (!post) notFound()
 
+  const related = allPosts.filter((p) => p.slug !== slug).slice(0, 3)
   const html = marked(post.content ?? '')
 
   return (
@@ -82,12 +83,40 @@ export default async function BlogPost({ params }: Props) {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
             Alle Beiträge
           </Link>
-          <a href="#kontakt" className="btn">
+          <a href="/#kontakt" className="btn">
             Projekt anfragen
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </article>
+
+      {related.length > 0 && (
+        <section className="related-section">
+          <div className="wrap">
+            <div className="related-head">
+              <div className="label">Weitere Ratgeber</div>
+            </div>
+            <div className="related-grid">
+              {related.map((p) => (
+                <Link key={p.id} href={`/blog/${p.slug}`} className="blog-card">
+                  {p.cover_image && (
+                    <div className="blog-card-img" style={{ backgroundImage: `url(${p.cover_image})` }} />
+                  )}
+                  <div className="blog-card-body">
+                    <time className="blog-date">{formatDate(p.published_at)}</time>
+                    <h2 className="blog-card-title">{p.title}</h2>
+                    <p className="blog-card-excerpt">{p.excerpt}</p>
+                    <span className="blog-card-cta">
+                      Weiterlesen
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <footer>
         <p className="foot-copy">© 2026 Timm Schurig · SEO & Webdesign Freelancer · Langenfeld</p>

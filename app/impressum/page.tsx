@@ -1,20 +1,16 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-export const metadata: Metadata = { title: 'Impressum · Timm Schurig' }
+export const metadata: Metadata = {
+  title: 'Impressum',
+  description: 'Impressum von Timm Schurig – SEO & Webdesign Freelancer aus Langenfeld (Rheinland). Angaben gemäß § 5 TMG.',
+  alternates: { canonical: 'https://www.timmschurig.com/impressum' },
+  robots: { index: false, follow: false },
+}
 
 export default function Impressum() {
   return (
     <>
-      <nav className="scrolled">
-        <div className="nav-inner">
-          <Link href="/" className="nav-logo">Timm <em>Schurig</em></Link>
-          <Link href="/" className="nav-back">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-            Zurück
-          </Link>
-        </div>
-      </nav>
       <div className="page">
         <div className="page-label">Rechtliches</div>
         <h1>Impressum</h1>

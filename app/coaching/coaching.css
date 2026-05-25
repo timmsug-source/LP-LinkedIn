@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Space+Grotesk:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind utilities;
+
+/* ── Scoped Tailwind baseline for .coaching-root ─────────────────────────────
+   Tailwind preflight is disabled globally (preflight:false in tailwind.config)
+   to avoid touching the main site. We re-apply only what the coaching page
+   needs inside .coaching-root.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* 1. Tailwind v3 requires these CSS vars on * for filter / transform / shadow
+      utilities to work. Without them, var(--tw-blur) etc. resolve to invalid,
+      making the entire filter / transform property silently fail.             */
+.coaching-root *,
+.coaching-root *::before,
+.coaching-root *::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: currentColor;
+  /* transform */
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  /* filters */
+  --tw-blur: ;
+  --tw-brightness: ;
+  --tw-contrast: ;
+  --tw-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-invert: ;
+  --tw-saturate: ;
+  --tw-sepia: ;
+  --tw-drop-shadow: ;
+  /* backdrop-filters */
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
+  /* rings / shadows */
+  --tw-ring-inset: ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  /* gradients */
+  --tw-gradient-from-position: ;
+  --tw-gradient-via-position: ;
+  --tw-gradient-to-position: ;
+}
+
+/* 2. Neutralise global heading overrides from globals.css */
+.coaching-root h1,
+.coaching-root h2,
+.coaching-root h3,
+.coaching-root h4,
+.coaching-root h5,
+.coaching-root h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  margin: 0;
+}
+
+/* 3. Neutralise global paragraph / link / list overrides */
+.coaching-root p  { margin: 0; font-size: inherit; line-height: inherit; color: inherit; }
+.coaching-root a  { color: inherit; text-decoration: none; }
+.coaching-root ul,
+.coaching-root ol { list-style: none; margin: 0; padding: 0; }
+.coaching-root li { margin: 0; padding: 0; }
+.coaching-root img { display: block; max-width: 100%; }
+/* Use :where() so specificity = (0,0,1) — lower than any Tailwind utility (0,1,0).
+   This ensures bg-gold-500 / bg-zinc-900 etc. always override this base reset. */
+:where(.coaching-root) button { cursor: pointer; background-color: transparent; background-image: none; font: inherit; padding: 0; }
+.coaching-root svg { display: inline-block; vertical-align: middle; }
+
+/* 4. Neutralise global .label class and .sec-head that bleed from globals.css */
+.coaching-root .label { all: unset; }
+.coaching-root .label::before { display: none !important; }
+
+/* 5. Neutralise global section z-index that can clip coaching layers */
+.coaching-root section { z-index: auto; }
+
+/* 6. Root canvas: black bg + correct font stack */
+.coaching-root {
+  background: #0b0b0b;
+  color: #e4e4e7;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 7. Ensure Tailwind font-family utilities use the correct loaded fonts.
+      The Tailwind config maps these but we double-enforce with higher
+      specificity so globals.css body font-family can't bleed through. */
+.coaching-root .font-display { font-family: 'Space Grotesk', sans-serif !important; }
+.coaching-root .font-mono    { font-family: 'JetBrains Mono', ui-monospace, monospace !important; }
+.coaching-root .font-sans    { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif !important; }
+
+/* 8. CRITICAL: Neutralise globals.css .block class (used for blog content blocks)
+      which collides with Tailwind's .block utility (display: block).
+      globals.css defines .block { background: ...; padding: 36px; margin-bottom: 16px; }
+      which destroys every element using Tailwind's `block` class. */
+.coaching-root .block {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+}
+/* Also neutralise child overrides from .block h2, .block p, etc. */
+.coaching-root .block h2,
+.coaching-root .block p,
+.coaching-root .block ul,
+.coaching-root .block li,
+.coaching-root .block a,
+.coaching-root .block strong {
+  all: revert;
+  color: inherit;
+  font-size: inherit;
+}

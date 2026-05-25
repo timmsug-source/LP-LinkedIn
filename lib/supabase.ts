@@ -18,6 +18,12 @@ export interface Post {
   meta_title: string | null
   meta_description: string | null
   related_posts: string[] | null
+  cta_enabled: boolean
+  cta_position: number
+  cta_headline: string | null
+  cta_text: string | null
+  cta_button_text: string | null
+  cta_button_href: string | null
   published_at: string
   created_at: string
 }

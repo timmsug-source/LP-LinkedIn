@@ -3,8 +3,17 @@ import Link from 'next/link'
 import { getPosts, Post } from '@/lib/supabase'
 
 export const metadata: Metadata = {
-  title: 'Blog · Timm Schurig',
-  description: 'SEO-Tipps, Webdesign-Insights und ehrliche Einblicke aus der Praxis eines Freelancers.',
+  title: 'Blog',
+  description: 'SEO-Tipps, Webdesign-Insights und ehrliche Einblicke aus der Praxis eines Freelancers. Praxisnahes Wissen für mehr Sichtbarkeit im Netz.',
+  alternates: { canonical: 'https://www.timmschurig.com/blog' },
+  openGraph: {
+    type: 'website',
+    url: 'https://www.timmschurig.com/blog',
+    title: 'Blog · Timm Schurig',
+    description: 'SEO-Tipps, Webdesign-Insights und ehrliche Einblicke aus der Praxis eines Freelancers.',
+    locale: 'de_DE',
+    siteName: 'Timm Schurig – SEO & Webdesign',
+  },
 }
 
 function formatDate(iso: string) {
@@ -16,16 +25,6 @@ export default async function BlogPage() {
 
   return (
     <>
-      <nav className="scrolled">
-        <div className="nav-inner">
-          <Link href="/" className="nav-logo">Timm <em>Schurig</em></Link>
-          <Link href="/" className="nav-back">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-            Zurück
-          </Link>
-        </div>
-      </nav>
-
       <div className="blog-hero">
         <div className="wrap">
           <div className="page-label">Blog</div>
@@ -42,12 +41,15 @@ export default async function BlogPage() {
         ) : (
           <div className="blog-grid">
             {posts.map((post: Post) => (
-              <Link key={post.id} href={`/blog/${post.slug}`} className="blog-card">
+              <Link key={post.id} href={`/blog/${post.slug}`} className="blog-card" aria-label={post.title}>
                 {post.cover_image && (
-                  <div className="blog-card-img" style={{ backgroundImage: `url(${post.cover_image})` }} />
+                  <div className="blog-card-img">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={post.cover_image} alt={post.title} width={640} height={360} loading="lazy" />
+                  </div>
                 )}
                 <div className="blog-card-body">
-                  <time className="blog-date">{formatDate(post.published_at)}</time>
+                  <time className="blog-date" dateTime={post.published_at}>{formatDate(post.published_at)}</time>
                   <h2 className="blog-card-title">{post.title}</h2>
                   <p className="blog-card-excerpt">{post.excerpt}</p>
                   <span className="blog-card-cta">

@@ -63,7 +63,7 @@ export default function Solution({ data }: { data?: Record<string, unknown> }) {
                 <div key={s.n} className={`step fu${i > 0 ? ` d${i}` : ''}`}>
                   <div className="step-n">{s.n}</div>
                   <div>
-                    <div className="step-title">{s.title}</div>
+                    <h3 className="step-title">{s.title}</h3>
                     <div className="step-txt">{s.text}</div>
                   </div>
                 </div>

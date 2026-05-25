@@ -1,20 +1,16 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-export const metadata: Metadata = { title: 'Datenschutz · Timm Schurig' }
+export const metadata: Metadata = {
+  title: 'Datenschutzerklärung',
+  description: 'Datenschutzerklärung von Timm Schurig – Informationen zur Erhebung, Verarbeitung und Nutzung personenbezogener Daten auf timmschurig.com.',
+  alternates: { canonical: 'https://www.timmschurig.com/datenschutz' },
+  robots: { index: false, follow: false },
+}
 
 export default function Datenschutz() {
   return (
     <>
-      <nav className="scrolled">
-        <div className="nav-inner">
-          <Link href="/" className="nav-logo">Timm <em>Schurig</em></Link>
-          <Link href="/" className="nav-back">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-            Zurück
-          </Link>
-        </div>
-      </nav>
       <div className="page">
         <div className="page-label">Rechtliches</div>
         <h1>Datenschutzerklärung</h1>
@@ -30,9 +26,9 @@ export default function Datenschutz() {
         </div>
 
         <div className="block">
-          <h2>3. Kontaktformular</h2>
-          <p>Wenn Sie das Kontaktformular auf dieser Website nutzen, werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse, Nachricht) zur Bearbeitung Ihrer Anfrage erhoben und gespeichert. Die Übermittlung erfolgt über den Dienst <strong>Formspree</strong> (Formspree, Inc., USA). Ihre Daten werden ausschließlich zur Beantwortung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben, außer an Formspree als technischen Dienstleister.</p>
-          <p>Weitere Informationen zum Datenschutz bei Formspree finden Sie unter: <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener noreferrer">formspree.io/legal/privacy-policy</a></p>
+          <h2>3. Kontaktaufnahme via WhatsApp</h2>
+          <p>Wenn Sie über den WhatsApp-Link auf dieser Website Kontakt aufnehmen, werden Sie zur App <strong>WhatsApp</strong> (Meta Platforms Ireland Limited, 4 Grand Canal Square, Grand Canal Harbour, Dublin 2, Irland) weitergeleitet. Die Verarbeitung Ihrer Nachrichten und personenbezogenen Daten unterliegt den Datenschutzbestimmungen von WhatsApp/Meta. Ihre Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet.</p>
+          <p>Weitere Informationen zum Datenschutz bei WhatsApp finden Sie unter: <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">whatsapp.com/legal/privacy-policy</a></p>
         </div>
 
         <div className="block">

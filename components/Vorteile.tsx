@@ -32,7 +32,7 @@ export default function Vorteile({ data }: { data?: Record<string, unknown> }) {
         </div>
         <div className="ben-grid">
           {cards.map((b, i) => (
-            <div key={b.title} className={`ben-card fu${i % 3 !== 0 ? ` d${i % 3}` : ''}`}>
+            <div key={b.title} className={`ben-card${i === 0 ? ' ben-card--lg' : ''} fu${i % 3 !== 0 ? ` d${i % 3}` : ''}`}>
               <span className="ben-icon">{b.icon}</span>
               <h3>{b.title}</h3>
               <p>{b.text}</p>

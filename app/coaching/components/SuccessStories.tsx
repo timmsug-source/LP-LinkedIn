@@ -47,9 +47,9 @@ export default function SuccessStories() {
   }
 
   return (
-    <section className="py-24 px-4 bg-zinc-950/20 relative" id="success">
+    <section className="py-16 sm:py-24 px-4 bg-zinc-950/20 relative" id="success">
       <div className="absolute bottom-10 left-10 w-80 h-80 bg-gold-500/5 rounded-full blur-[100px] pointer-events-none" />
-      <div className="max-w-7xl mx-auto relative z-10 space-y-16">
+      <div className="max-w-7xl mx-auto relative z-10 space-y-10 sm:space-y-16">
         <div className="text-center max-w-2xl mx-auto space-y-4">
           <span className="text-xs font-mono text-gold-500 uppercase tracking-widest block font-bold">Nachgewiesene Resultate</span>
           <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Interviews, die für sich sprechen.</h2>
@@ -89,15 +89,15 @@ export default function SuccessStories() {
                   </div>
                 </div>
 
-                <div className="lg:col-span-6 p-8 sm:p-12 flex flex-col justify-between text-left relative">
+                <div className="lg:col-span-6 p-5 sm:p-8 lg:p-12 flex flex-col justify-between text-left relative">
                   <Quote className="w-16 h-16 text-gold-500/5 absolute top-8 right-12 pointer-events-none" />
                   <div className="space-y-6 relative z-10">
-                    <div className="flex flex-wrap items-center justify-between gap-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-4">
                       <div className="flex items-center gap-2 bg-gold-500/10 border border-gold-500/25 px-3 py-1.5 rounded-lg">{story.metricIcon}<span className="text-xs font-mono text-gold-400 font-bold uppercase tracking-wider">Resultat: {story.stats.primary}</span></div>
                       <span className="text-xs font-mono text-gray-500 uppercase tracking-widest font-semibold">Verlauf: {story.stats.secondary}</span>
                     </div>
                     <div className="space-y-2">
-                      <p className="text-white font-sans text-base sm:text-lg leading-relaxed italic font-light">{story.feedback}</p>
+                      <p className="text-white font-sans text-sm sm:text-base lg:text-lg leading-relaxed italic font-light">{story.feedback}</p>
                       <span className="flex items-center gap-1.5 text-xs font-sans text-gold-500 mt-1 font-semibold"><CheckCircle2 className="w-3.5 h-3.5" />Erfolgreich zertifiziert im ML-System</span>
                     </div>
                   </div>

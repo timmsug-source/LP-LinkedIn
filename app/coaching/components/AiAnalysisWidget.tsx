@@ -64,7 +64,7 @@ export default function AiAnalysisWidget({ id = 'bestform-analyser' }: { id?: st
   }
 
   return (
-    <section id={id} className="py-24 px-4 bg-zinc-950 relative scroll-mt-12">
+    <section id={id} className="py-16 sm:py-24 px-4 bg-zinc-950 relative scroll-mt-12">
       <div className="absolute top-10 right-10 w-96 h-96 bg-gold-500/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="max-w-4xl mx-auto relative z-10">
         {step !== 'result' && step !== 'loading' && (
@@ -97,10 +97,10 @@ export default function AiAnalysisWidget({ id = 'bestform-analyser' }: { id?: st
                   </div>
                   <div className="pt-2">
                     <label className="block text-xs font-mono text-gray-400 uppercase tracking-widest mb-3 font-semibold">Körperfettanteil (Schätzung)</label>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div className="grid grid-cols-2 gap-2 sm:gap-3">
                       {[{ value: 'low', label: 'Schlank (< 15%)', desc: 'Sichtbare Bauchmuskeln' }, { value: 'moderate', label: 'Normal (15-22%)', desc: 'Leichte Kurven am Bauch' }, { value: 'high', label: 'Erhöht (23-28%)', desc: 'Bauchansatz vorhanden' }, { value: 'very_high', label: 'Deutlich erhöht (> 28%)', desc: 'Ausgeprägtes Übergewicht' }].map(item => (
-                        <button key={item.value} type="button" onClick={() => setFormData({ ...formData, bodyFatPct: item.value as any })} className={`p-4 rounded-xl border text-left cursor-pointer transition-all ${formData.bodyFatPct === item.value ? 'border-gold-500 bg-gold-950/20 text-white' : 'border-zinc-800 bg-zinc-950/60 text-gray-300 hover:border-zinc-700 hover:text-white'}`}>
-                          <span className="block text-xs sm:text-sm font-semibold">{item.label}</span><span className="block text-[10px] text-gray-500 mt-1">{item.desc}</span>
+                        <button key={item.value} type="button" onClick={() => setFormData({ ...formData, bodyFatPct: item.value as any })} className={`p-3 sm:p-4 rounded-xl border text-left cursor-pointer transition-all ${formData.bodyFatPct === item.value ? 'border-gold-500 bg-gold-950/20 text-white' : 'border-zinc-800 bg-zinc-950/60 text-gray-300 hover:border-zinc-700 hover:text-white'}`}>
+                          <span className="block text-[11px] sm:text-sm font-semibold leading-snug">{item.label}</span><span className="block text-[10px] text-gray-500 mt-1">{item.desc}</span>
                         </button>
                       ))}
                     </div>

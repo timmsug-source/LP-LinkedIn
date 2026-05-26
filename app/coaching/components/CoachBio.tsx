@@ -4,7 +4,7 @@ import { ShieldCheck, Award } from 'lucide-react'
 
 export default function CoachBio() {
   return (
-    <section className="py-24 px-4 bg-zinc-950 relative" id="coach">
+    <section className="py-16 sm:py-24 px-4 bg-zinc-950 relative" id="coach">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
@@ -19,7 +19,7 @@ export default function CoachBio() {
               src="https://images.unsplash.com/photo-1548690312-e3b507d8c110?q=80&w=600&auto=format&fit=crop"
               alt="Marc Lindner - Executive Performance Coach"
               referrerPolicy="no-referrer"
-              className="w-full h-[450px] object-cover rounded-xl filter grayscale contrast-125 brightness-90 hover:grayscale-0 transition-all duration-500"
+              className="w-full h-[300px] sm:h-[450px] object-cover rounded-xl filter grayscale contrast-125 brightness-90 hover:grayscale-0 transition-all duration-500"
             />
             <div className="absolute bottom-6 left-6 right-6 bg-zinc-950/90 backdrop-blur-md p-4 rounded-lg border border-gold-500/20">
               <span className="text-xs font-mono text-gold-500 uppercase tracking-widest block font-bold">Philosophie</span>

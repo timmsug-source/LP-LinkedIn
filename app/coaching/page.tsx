@@ -74,8 +74,8 @@ export default function CoachingPage() {
         <CoachBio />
 
         {/* FAQ */}
-        <section className="py-24 px-4 bg-zinc-950/40 relative" id="faq">
-          <div className="max-w-4xl mx-auto space-y-12">
+        <section className="py-16 sm:py-24 px-4 bg-zinc-950/40 relative" id="faq">
+          <div className="max-w-4xl mx-auto space-y-8 sm:space-y-12">
             <div className="text-center space-y-3">
               <span className="text-xs font-mono text-gold-500 uppercase tracking-widest block font-bold">Häufig gestellte Fragen</span>
               <h2 className="font-display text-3xl font-extrabold text-white tracking-tight">FAQ — Klarheit für Entscheider</h2>

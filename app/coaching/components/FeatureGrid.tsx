@@ -25,9 +25,9 @@ export default function FeatureGrid() {
   ]
 
   return (
-    <section id="system" className="py-24 px-4 bg-zinc-950/40 relative">
+    <section id="system" className="py-16 sm:py-24 px-4 bg-zinc-950/40 relative">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-gold-500/5 blur-[100px] pointer-events-none" />
-      <div className="max-w-7xl mx-auto relative z-10 space-y-16">
+      <div className="max-w-7xl mx-auto relative z-10 space-y-10 sm:space-y-16">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <span className="text-xs font-mono text-gold-500 uppercase tracking-widest block font-bold">Die ML-Coaching Methode</span>
           <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
@@ -46,7 +46,7 @@ export default function FeatureGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-100px' }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="bg-zinc-900/60 hover:bg-zinc-900 border border-zinc-800 hover:border-gold-500/30 transition-all duration-300 p-8 rounded-xl flex flex-col justify-between group cursor-default"
+              className="bg-zinc-900/60 hover:bg-zinc-900 border border-zinc-800 hover:border-gold-500/30 transition-all duration-300 p-6 sm:p-8 rounded-xl flex flex-col justify-between group cursor-default"
             >
               <div className="space-y-6">
                 <div className="bg-gold-500/10 w-12 h-12 rounded-lg flex items-center justify-center border border-gold-500/20 group-hover:bg-gold-500/20 group-hover:border-gold-500/40 transition-all duration-300">

@@ -71,15 +71,15 @@ export default function HeroSection({ onStartAnalysis }: HeroSectionProps) {
           >
             <button
               onClick={onStartAnalysis}
-              className="relative group overflow-hidden bg-gold-500 hover:bg-gold-600 text-[#0b0b0b] font-display font-bold py-3.5 sm:py-4 px-8 rounded-lg transition-all duration-300 hover:scale-[1.02] shadow-[0_4px_20px_rgba(229,160,52,0.3)] min-w-[200px] text-center cursor-pointer"
+              className="relative group overflow-hidden bg-gold-500 hover:bg-gold-600 text-[#0b0b0b] font-display font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-300 hover:scale-[1.02] shadow-[0_4px_20px_rgba(229,160,52,0.3)] text-sm sm:text-base text-center cursor-pointer"
             >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                Jetzt Bestform analysieren
+              <span className="relative z-10 flex items-center justify-center gap-2 whitespace-nowrap">
+                Jetzt analysieren
                 <motion.span animate={{ x: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 1.5 }} className="inline-block">→</motion.span>
               </span>
               <div className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white/10 transition-transform duration-300" />
             </button>
-            <a href="#system" className="bg-zinc-900 border border-zinc-700/80 hover:border-gold-500/50 text-white font-display font-semibold py-4 px-8 rounded-lg transition-all duration-300 text-center">
+            <a href="#system" className="bg-zinc-900 border border-zinc-700/80 hover:border-gold-500/50 text-white font-display font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-300 text-sm sm:text-base text-center whitespace-nowrap">
               Das ML-System entdecken
             </a>
           </motion.div>
@@ -108,20 +108,20 @@ export default function HeroSection({ onStartAnalysis }: HeroSectionProps) {
               src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1200&auto=format&fit=crop"
               alt="High-end private training facility"
               referrerPolicy="no-referrer"
-              className="w-full h-[260px] sm:h-[420px] object-cover rounded-xl grayscale group-hover:grayscale-0 transition-all duration-700"
+              className="w-full h-[300px] sm:h-[420px] object-cover rounded-xl grayscale group-hover:grayscale-0 transition-all duration-700"
             />
-            <div className="absolute top-6 right-6 bg-zinc-900/95 backdrop-blur-md px-4 py-3 rounded-lg border border-gold-500/30 flex items-center gap-3">
-              <div className="bg-gold-500/20 p-2 rounded-full">
-                <Flame className="w-5 h-5 text-gold-500" />
+            <div className="absolute top-3 right-3 sm:top-6 sm:right-6 bg-zinc-900/95 backdrop-blur-md px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gold-500/30 flex items-center gap-2 sm:gap-3">
+              <div className="bg-gold-500/20 p-1.5 sm:p-2 rounded-full">
+                <Flame className="w-4 h-4 sm:w-5 sm:h-5 text-gold-500" />
               </div>
               <div>
-                <span className="font-mono text-[10px] text-gray-400 block uppercase tracking-wider">Erfolgsquote</span>
-                <span className="font-display font-bold text-white text-lg">98.4%</span>
+                <span className="font-mono text-[9px] sm:text-[10px] text-gray-400 block uppercase tracking-wider">Erfolgsquote</span>
+                <span className="font-display font-bold text-white text-base sm:text-lg">98.4%</span>
               </div>
             </div>
-            <div className="absolute bottom-6 left-6 right-6 bg-zinc-900/95 backdrop-blur-md p-5 rounded-lg border border-zinc-800">
-              <span className="text-xs font-mono text-gold-500 uppercase tracking-widest block mb-1">Das Ziel</span>
-              <p className="text-sm font-sans text-gray-200 font-medium">
+            <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 bg-zinc-900/95 backdrop-blur-md px-3 py-2.5 sm:p-5 rounded-lg border border-zinc-800">
+              <span className="text-[10px] sm:text-xs font-mono text-gold-500 uppercase tracking-widest block mb-0.5 sm:mb-1">Das Ziel</span>
+              <p className="text-xs sm:text-sm font-sans text-gray-200 font-medium line-clamp-2 sm:line-clamp-none">
                 &ldquo;Körperfett verlieren, Muskeln definieren und die maximale Energiekurve zurückgewinnen – unkompliziert koordiniert über Ihr Smartphone.&rdquo;
               </p>
             </div>

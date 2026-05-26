@@ -30,8 +30,16 @@ export default function CoachingPage() {
       {/* Navigation */}
       <header className="sticky top-0 z-50 bg-[#0b0b0b]/80 backdrop-blur-md border-b border-zinc-900 px-4 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => scrollTo('top')}>
-            <span className="bg-gradient-to-r from-gold-500 to-amber-400 text-black font-display font-extrabold px-3 py-1 rounded text-sm tracking-wider">ML</span>
+          <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollTo('top')}>
+            <div className="relative shrink-0">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/coach-portrait.jpg"
+                alt="Marc Lindner"
+                className="w-10 h-10 rounded-full object-cover object-top border-2 border-gold-500/60 shadow-[0_0_12px_rgba(229,160,52,0.25)]"
+              />
+              <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 rounded-full border-2 border-[#0b0b0b]" />
+            </div>
             <div className="text-left">
               <span className="font-display font-black text-white text-base tracking-tight block leading-none">MARC LINDNER</span>
               <span className="text-[9px] font-mono text-gold-500 uppercase tracking-widest block mt-0.5 leading-none font-bold">Performance Coaching</span>
@@ -104,8 +112,9 @@ export default function CoachingPage() {
       <footer className="border-t border-zinc-900 bg-zinc-950 py-16 px-4 text-xs font-sans text-gray-500">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10">
           <div className="md:col-span-5 space-y-4">
-            <div className="flex items-center gap-2">
-              <span className="bg-gold-500 text-black font-display font-black px-2 py-0.5 rounded text-xs">ML</span>
+            <div className="flex items-center gap-2.5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/coach-portrait.jpg" alt="Marc Lindner" className="w-8 h-8 rounded-full object-cover object-top border border-gold-500/50" />
               <span className="font-display font-bold text-white text-sm">Marc Lindner Coaching</span>
             </div>
             <p className="text-gray-500 leading-relaxed font-light text-[11px] max-w-sm">Premium Performance- und Fitnessbetreuung für vielbeschäftigte Unternehmer. Datenbasierte Trainingsreize, alltagstaugliche Ernährung und maximale Zeiteffizienz.</p>

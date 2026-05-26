@@ -105,10 +105,9 @@ export default function HeroSection({ onStartAnalysis }: HeroSectionProps) {
           <div className="relative group rounded-2xl overflow-hidden shadow-2xl border border-zinc-800 bg-zinc-950/60 p-1">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1200&auto=format&fit=crop"
-              alt="High-end private training facility"
-              referrerPolicy="no-referrer"
-              className="w-full h-[300px] sm:h-[420px] object-cover rounded-xl grayscale group-hover:grayscale-0 transition-all duration-700"
+              src="/coach-portrait.jpg"
+              alt="Marc Lindner – Executive Performance Coach"
+              className="w-full h-[300px] sm:h-[420px] object-cover object-top rounded-xl grayscale group-hover:grayscale-0 transition-all duration-700"
             />
             <div className="absolute top-3 right-3 sm:top-6 sm:right-6 bg-zinc-900/95 backdrop-blur-md px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gold-500/30 flex items-center gap-2 sm:gap-3">
               <div className="bg-gold-500/20 p-1.5 sm:p-2 rounded-full">

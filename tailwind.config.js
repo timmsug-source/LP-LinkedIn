@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './app/coaching/**/*.{ts,tsx}',
+    './app/beispiel/coaching/**/*.{ts,tsx}',
     './components/coaching/**/*.{ts,tsx}',
   ],
   theme: {

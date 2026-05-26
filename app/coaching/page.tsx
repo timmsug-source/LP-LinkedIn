@@ -25,7 +25,7 @@ export default function CoachingPage() {
   }
 
   return (
-    <div className="coaching-root bg-[#0b0b0b] min-h-screen text-gray-200 antialiased relative">
+    <div className="coaching-root bg-[#0b0b0b] min-h-screen text-gray-200 antialiased relative overflow-x-hidden">
 
       {/* Navigation */}
       <header className="sticky top-0 z-50 bg-[#0b0b0b]/80 backdrop-blur-md border-b border-zinc-900 px-4 py-4">

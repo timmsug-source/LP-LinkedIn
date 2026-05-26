@@ -16,6 +16,7 @@ export default function CoachingLayout({ children }: { children: React.ReactNode
         .mobile-backdrop { display: none !important; }
         .noise-overlay { display: none !important; }
         #page-wrapper { padding-top: 0 !important; overflow: visible !important; }
+        html, body { overflow-x: hidden !important; }
       `}</style>
       {children}
     </>

@@ -216,14 +216,14 @@ export const PRACTITIONERS = [
     role: "Heilpraktiker & Praxisinhaber",
     specialties: ["Augenakupunktur (AMD)", "Dunkelfeld-Blutdiagnostik", "Frequenztherapie", "Ausleitungstherapien"],
     bio: "Seit über 25 Jahren widme ich mich mit Leidenschaft der naturheilkundlichen Ganzheitsdiagnostik und biologischen Augenbehandlung. Nach intensiver Ausbildung bei führenden Akupunkteuren habe ich mich auf die sanfte, ganzheitliche Begleitung bei Netzhaut- und Makuladefekten spezialisiert. Mein Ziel ist es, verbleibende Sehkraft nachhaltig zu stabilisieren und den Menschen als Ganzes im Blick zu behalten.",
-    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=600&auto=format&fit=crop"
+    image: "/Heike_Klaus.jpg"
   },
   {
     name: "Sabine Brenscheidt",
     role: "Heilpraktikerin & Therapeutin",
     specialties: ["Klinische Hypnosetherapie", "Wirbelsäulentherapie nach Dorn-Breuss", "Zen-Shiatsu", "Achtsamkeit & Stressmanagement"],
     bio: "Mein Anliegen ist die Verbindung von tiefgehender körperlicher Entspannung und mentaler Befreiung. In meiner Arbeit als Heilpraktikerin bringe ich Körper und Geist über feinfühlige Shiatsu-Berührungen, sanfte Wirbelkorrekturen nach Dorn und ursachenorientierte, heilsame Hypnosetherapie in Einklang. Ich begleite dich achtsam durch stressbedingte Lebensphasen hin zu neuer Lebensfreude.",
-    image: "https://images.unsplash.com/photo-1594824813573-246434e33963?q=80&w=600&auto=format&fit=crop"
+    image: "/Heike_Klaus.jpg"
   }
 ];
 

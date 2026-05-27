@@ -115,17 +115,17 @@ export default function Hero({ onScheduleCall, onNavigateToTherapy }: HeroProps)
                 <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm p-4 rounded-xl border border-brand-sage-pale shadow-md">
                   <div className="flex items-center space-x-3">
                     <div className="flex -space-x-2">
-                      <img 
-                        src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=100&auto=format&fit=crop" 
-                        alt="Michael Brenscheidt" 
-                        className="w-8 h-8 rounded-full border border-white"
-                        referrerPolicy="no-referrer"
+                      <img
+                        src="/Heike_Klaus.jpg"
+                        alt="Michael Brenscheidt"
+                        className="w-8 h-8 rounded-full border border-white object-cover"
+                        style={{ objectPosition: '35% top' }}
                       />
-                      <img 
-                        src="https://images.unsplash.com/photo-1594824813573-246434e33963?q=80&w=100&auto=format&fit=crop" 
-                        alt="Sabine Brenscheidt" 
-                        className="w-8 h-8 rounded-full border border-white"
-                        referrerPolicy="no-referrer"
+                      <img
+                        src="/Heike_Klaus.jpg"
+                        alt="Sabine Brenscheidt"
+                        className="w-8 h-8 rounded-full border border-white object-cover"
+                        style={{ objectPosition: '65% top' }}
                       />
                     </div>
                     <div>

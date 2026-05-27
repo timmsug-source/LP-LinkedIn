@@ -148,10 +148,9 @@ export default function NaturheilpraxisPage() {
                     <div className="lg:col-span-5">
                       <div className="relative rounded-2xl overflow-hidden shadow-md border border-brand-sage-pale">
                         <img
-                          src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=600&auto=format&fit=crop"
-                          alt="Heilpraktiker-Gespräch"
-                          className="w-full h-auto object-cover"
-                          referrerPolicy="no-referrer"
+                          src="/Heike_Klaus.jpg"
+                          alt="Michael & Sabine Brenscheidt – Naturheilpraxis"
+                          className="w-full h-auto object-cover object-top"
                         />
                       </div>
                     </div>

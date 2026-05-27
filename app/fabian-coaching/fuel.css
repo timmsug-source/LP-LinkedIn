@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+/* ─── SCOPED RESETS (must come BEFORE @tailwind utilities) ─────────────────── */
+/* Using :where() keeps specificity at (0,0,0) so Tailwind utilities always win */
+
+/* Initialize --tw-* custom properties so filter/transform utilities work */
+:where(.fuel-root) *,
+:where(.fuel-root) *::before,
+:where(.fuel-root) *::after {
+  box-sizing: border-box;
+  --tw-blur: ;
+  --tw-brightness: ;
+  --tw-contrast: ;
+  --tw-drop-shadow: ;
+  --tw-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-invert: ;
+  --tw-saturate: ;
+  --tw-sepia: ;
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-text-opacity: 1;
+  --tw-bg-opacity: 1;
+  --tw-border-opacity: 1;
+}
+
+/* Undo globals.css heading overrides inside fuel-root */
+:where(.fuel-root) h1,
+:where(.fuel-root) h2,
+:where(.fuel-root) h3,
+:where(.fuel-root) h4,
+:where(.fuel-root) h5,
+:where(.fuel-root) h6 {
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+}
+
+:where(.fuel-root) button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+:where(.fuel-root) a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:where(.fuel-root) img {
+  display: block;
+  max-width: 100%;
+}
+
+:where(.fuel-root) table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* ─── TAILWIND UTILITIES ────────────────────────────────────────────────────── */
+@tailwind utilities;
+
+/* ─── POST-UTILITY OVERRIDES ────────────────────────────────────────────────── */
+
+/* Font override: inside .fuel-root, font-sans = Plus Jakarta Sans */
+.fuel-root .font-sans,
+.fuel-root [class*="font-sans"] {
+  font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif !important;
+}
+
+.fuel-root .font-serif {
+  font-family: "Playfair Display", Georgia, serif !important;
+}
+
+/* Base font for the entire fuel-root */
+.fuel-root {
+  font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Fix .block collision: Tailwind .block = display:block (not the blog card style) */
+.fuel-root .block {
+  display: block !important;
+  background: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  /* NOTE: do NOT add color: inherit here — it would override text-* color utilities */
+}
+
+/* Custom scrollbar for fuel page */
+.fuel-root ::-webkit-scrollbar {
+  width: 8px;
+}
+.fuel-root ::-webkit-scrollbar-track {
+  background: #0b0f19;
+}
+.fuel-root ::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+.fuel-root ::-webkit-scrollbar-thumb:hover {
+  background: #2e3e56;
+}
+
+/* Animate ping for hero badge pulse */
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+.fuel-root .animate-ping {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite !important;
+}

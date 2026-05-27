@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* ─── SCOPED RESETS (must come BEFORE @tailwind utilities) ─────────────────── */
+:where(.fuel-hell-root) *,
+:where(.fuel-hell-root) *::before,
+:where(.fuel-hell-root) *::after {
+  box-sizing: border-box;
+  --tw-blur: ;
+  --tw-brightness: ;
+  --tw-contrast: ;
+  --tw-drop-shadow: ;
+  --tw-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-invert: ;
+  --tw-saturate: ;
+  --tw-sepia: ;
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-text-opacity: 1;
+  --tw-bg-opacity: 1;
+  --tw-border-opacity: 1;
+}
+
+/* Undo globals.css heading overrides inside fuel-hell-root */
+:where(.fuel-hell-root) h1,
+:where(.fuel-hell-root) h2,
+:where(.fuel-hell-root) h3,
+:where(.fuel-hell-root) h4,
+:where(.fuel-hell-root) h5,
+:where(.fuel-hell-root) h6 {
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+}
+
+:where(.fuel-hell-root) button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+:where(.fuel-hell-root) a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:where(.fuel-hell-root) img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ─── TAILWIND UTILITIES ────────────────────────────────────────────────────── */
+@tailwind utilities;
+
+/* ─── POST-UTILITY OVERRIDES ────────────────────────────────────────────────── */
+
+/* Font overrides scoped to fuel-hell-root */
+.fuel-hell-root {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.fuel-hell-root .font-sans,
+.fuel-hell-root [class*="font-sans"] {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif !important;
+}
+
+/* font-display = Plus Jakarta Sans in this design */
+.fuel-hell-root .font-display,
+.fuel-hell-root [class*="font-display"] {
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif !important;
+}
+
+/* JetBrains Mono for font-mono */
+.fuel-hell-root .font-mono,
+.fuel-hell-root [class*="font-mono"] {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace !important;
+}
+
+/* Fix .block collision: global .block has border/padding/bg from main site */
+.fuel-hell-root .block {
+  display: block !important;
+  background: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  /* NOTE: do NOT add color: inherit here — it would override text-* color utilities */
+}
+
+/* Custom scrollbar */
+.fuel-hell-root ::-webkit-scrollbar { width: 8px; height: 8px; }
+.fuel-hell-root ::-webkit-scrollbar-track { background: #f5f5f4; }
+.fuel-hell-root ::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 4px; }
+.fuel-hell-root ::-webkit-scrollbar-thumb:hover { background: #a8a29e; }
+
+/* Animate-ping keyframes */
+@keyframes fuel-hell-ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+.fuel-hell-root .animate-ping {
+  animation: fuel-hell-ping 1s cubic-bezier(0, 0, 0.2, 1) infinite !important;
+}
+
+/* Pulse animation */
+@keyframes fuel-hell-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.fuel-hell-root .animate-pulse {
+  animation: fuel-hell-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
+}

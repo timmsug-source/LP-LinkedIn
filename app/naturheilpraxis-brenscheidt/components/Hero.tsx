@@ -117,19 +117,19 @@ export default function Hero({ onScheduleCall, onNavigateToTherapy }: HeroProps)
                     <div className="flex -space-x-2">
                       <img
                         src="/Heike_Klaus.jpg"
-                        alt="Michael Brenscheidt"
+                        alt="Klaus Brenscheidt"
                         className="w-8 h-8 rounded-full border border-white object-cover"
                         style={{ objectPosition: '35% top' }}
                       />
                       <img
                         src="/Heike_Klaus.jpg"
-                        alt="Sabine Brenscheidt"
+                        alt="Heike Brenscheidt"
                         className="w-8 h-8 rounded-full border border-white object-cover"
                         style={{ objectPosition: '65% top' }}
                       />
                     </div>
                     <div>
-                      <span className="block text-xs font-bold text-brand-sage font-serif">Michael &amp; Sabine Brenscheidt</span>
+                      <span className="block text-xs font-bold text-brand-sage font-serif">Klaus &amp; Heike Brenscheidt</span>
                       <span className="block text-[10px] text-gray-500">Über 25 Jahre Praxiserfahrung</span>
                     </div>
                   </div>

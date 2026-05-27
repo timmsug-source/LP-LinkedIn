@@ -146,7 +146,7 @@ export default function Footer({ setCurrentPage, onOpenBooking }: FooterProps) {
             <strong>Wichtiger rechtlicher Hinweis:</strong> Die in unserer Praxis angebotenen Therapieverfahren (wie Augenakupunktur nach Boel, Dunkelfeld-Untersuchung, Shiatsu oder Dorn-Breuss-Therapie) sind Heilmethoden der komplementären Naturheilkunde. Sie sind von der Schulmedizin wissenschaftlich nicht oder nur teilweise anerkannt, da klinische Nachweise nach schulmedizinischen Maßstäben ausstehen. Alle Angaben beruhen auf überlieferten Erfahrungen und Heilerfolgen unserer jahrelangen Praxis.
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-2 text-gray-400">
-            <button onClick={() => alert("Impressum:\nNaturheilpraxis Michael & Sabine Brenscheidt\nWitzhelden / Leichlingen\nTel: 02174 / 748200\nE-Mail: info@naturheilpraxis-brenscheidt.de")} className="hover:text-brand-terracotta transition-colors cursor-pointer text-xs">
+            <button onClick={() => alert("Impressum:\nNaturheilpraxis Klaus & Heike Brenscheidt\nWitzhelden / Leichlingen\nTel: 02174 / 748200\nE-Mail: info@naturheilpraxis-brenscheidt.de")} className="hover:text-brand-terracotta transition-colors cursor-pointer text-xs">
               Impressum
             </button>
             <span>&bull;</span>

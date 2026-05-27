@@ -212,14 +212,14 @@ export const THERAPIES: Therapy[] = [
 
 export const PRACTITIONERS = [
   {
-    name: "Michael Brenscheidt",
+    name: "Klaus Brenscheidt",
     role: "Heilpraktiker & Praxisinhaber",
     specialties: ["Augenakupunktur (AMD)", "Dunkelfeld-Blutdiagnostik", "Frequenztherapie", "Ausleitungstherapien"],
     bio: "Seit über 25 Jahren widme ich mich mit Leidenschaft der naturheilkundlichen Ganzheitsdiagnostik und biologischen Augenbehandlung. Nach intensiver Ausbildung bei führenden Akupunkteuren habe ich mich auf die sanfte, ganzheitliche Begleitung bei Netzhaut- und Makuladefekten spezialisiert. Mein Ziel ist es, verbleibende Sehkraft nachhaltig zu stabilisieren und den Menschen als Ganzes im Blick zu behalten.",
     image: "/Heike_Klaus.jpg"
   },
   {
-    name: "Sabine Brenscheidt",
+    name: "Heike Brenscheidt",
     role: "Heilpraktikerin & Therapeutin",
     specialties: ["Klinische Hypnosetherapie", "Wirbelsäulentherapie nach Dorn-Breuss", "Zen-Shiatsu", "Achtsamkeit & Stressmanagement"],
     bio: "Mein Anliegen ist die Verbindung von tiefgehender körperlicher Entspannung und mentaler Befreiung. In meiner Arbeit als Heilpraktikerin bringe ich Körper und Geist über feinfühlige Shiatsu-Berührungen, sanfte Wirbelkorrekturen nach Dorn und ursachenorientierte, heilsame Hypnosetherapie in Einklang. Ich begleite dich achtsam durch stressbedingte Lebensphasen hin zu neuer Lebensfreude.",
@@ -232,14 +232,14 @@ export const TESTIMONIALS: Testimonial[] = [
     id: "1",
     name: "Helga S. (72, Leichlingen)",
     condition: "Feuchte Makuladegeneration (AMD)",
-    text: "Nachdem mir in der Augenklinik gesagt wurde, man könne bei meiner feuchten AMD nur noch Spritzen setzen und abwarten, bin ich auf Michael Brenscheidt gestoßen. Durch seine Augenakupunktur und Nahrungsergänzung wurde mein Lesesehen stabiler, und das verschwommene Graue im Zentrum ist merklich zurückgegangen. Ich bin unendlich dankbar!",
+    text: "Nachdem mir in der Augenklinik gesagt wurde, man könne bei meiner feuchten AMD nur noch Spritzen setzen und abwarten, bin ich auf Klaus Brenscheidt gestoßen. Durch seine Augenakupunktur und Nahrungsergänzung wurde mein Lesesehen stabiler, und das verschwommene Graue im Zentrum ist merklich zurückgegangen. Ich bin unendlich dankbar!",
     rating: 5
   },
   {
     id: "2",
     name: "Thomas M. (48, Solingen)",
     condition: "Burnout & Schlafstörungen",
-    text: "Ich kam völlig erschöpft durch beruflichen Dauerstress in die Praxis. Sabine Brenscheidt hat mich mit einer Mischung aus sanften Shiatsu-Behandlungen und Hypnosetherapie begleitet. Nach nur vier Sitzungen schlafe ich wieder durch, spüre meine Grenzen besser und habe endlich wieder freie, entspannte Energie.",
+    text: "Ich kam völlig erschöpft durch beruflichen Dauerstress in die Praxis. Heike Brenscheidt hat mich mit einer Mischung aus sanften Shiatsu-Behandlungen und Hypnosetherapie begleitet. Nach nur vier Sitzungen schlafe ich wieder durch, spüre meine Grenzen besser und habe endlich wieder freie, entspannte Energie.",
     rating: 5
   },
   {

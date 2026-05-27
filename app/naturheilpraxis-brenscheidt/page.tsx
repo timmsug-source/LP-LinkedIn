@@ -111,7 +111,7 @@ export default function NaturheilpraxisPage() {
                       &ldquo;Deine Gesundheit in besten Händen. Wir nehmen uns die Zeit, die dein Körper für eine nachhaltige Regeneration braucht.&rdquo;
                     </h3>
                     <p className="text-xs uppercase tracking-widest font-mono text-brand-terracotta font-bold">
-                      &mdash; Inhaber Michael &amp; Sabine Brenscheidt
+                      &mdash; Inhaber Klaus &amp; Heike Brenscheidt
                     </p>
                   </div>
                 </section>
@@ -149,7 +149,7 @@ export default function NaturheilpraxisPage() {
                       <div className="relative rounded-2xl overflow-hidden shadow-md border border-brand-sage-pale">
                         <img
                           src="/Heike_Klaus.jpg"
-                          alt="Michael & Sabine Brenscheidt – Naturheilpraxis"
+                          alt="Klaus & Heike Brenscheidt – Naturheilpraxis"
                           className="w-full h-auto object-cover object-top"
                         />
                       </div>
@@ -160,7 +160,7 @@ export default function NaturheilpraxisPage() {
                         Achtsame Begleitung liegt uns am Herzen
                       </h3>
                       <p className="text-sm text-brand-charcoal/80 leading-relaxed font-sans">
-                        In unserer Praxis in Leichlingen/Witzhelden legen wir größten Wert auf eine ruhige, entspannte Atmosphäre ohne Zeitdruck. Michael Brenscheidt ist vor allem für die tiefgehende Augentherapie und Blutdiagnostik zuständig, während Sabine Brenscheidt Menschen mit körper- und seelentherapeutischen Methoden wie Hypnose und Shiatsu stärkt.
+                        In unserer Praxis in Leichlingen/Witzhelden legen wir größten Wert auf eine ruhige, entspannte Atmosphäre ohne Zeitdruck. Klaus Brenscheidt ist vor allem für die tiefgehende Augentherapie und Blutdiagnostik zuständig, während Heike Brenscheidt Menschen mit körper- und seelentherapeutischen Methoden wie Hypnose und Shiatsu stärkt.
                       </p>
                       <button
                         onClick={() => { setCurrentPage('ueber-uns'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}

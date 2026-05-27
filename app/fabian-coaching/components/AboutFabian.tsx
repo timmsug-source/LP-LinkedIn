@@ -109,11 +109,9 @@ export default function AboutFabian({ onOpenConsultation }: AboutFabianProps) {
             <div className="relative rounded-2xl overflow-hidden border-2 border-slate-950/10 shadow-xl bg-slate-300"
               style={{ aspectRatio: '3/4' }}>
               <img
-                src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=800"
+                src="/Bilder Website Coaching Kopie.png"
                 alt="Fabian Schönle - F.U.E.L. Gründer"
                 className="w-full h-full object-cover group-hover:scale-[1.02] transition-all duration-500"
-                style={{ filter: 'grayscale(20%)' }}
-                referrerPolicy="no-referrer"
               />
             </div>
           </div>

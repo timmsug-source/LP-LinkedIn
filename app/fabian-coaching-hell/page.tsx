@@ -139,9 +139,8 @@ export default function FabianCoachingHellPage() {
             <div className="relative mx-auto max-w-sm md:max-w-md">
               <div className="rounded-3xl border-4 p-2.5 shadow-2xl relative overflow-hidden" style={{ borderColor: 'rgba(245,158,11,0.1)', background: 'rgba(255,255,255,0.7)' }}>
                 <img
-                  src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&q=80&w=600&h=600"
+                  src="/Bilder Website Coaching Kopie.png"
                   alt="Fabian Schönle - Coach"
-                  referrerPolicy="no-referrer"
                   className="w-full h-auto object-cover rounded-2xl aspect-square hover:scale-105 transition-transform duration-500"
                 />
               </div>
@@ -285,9 +284,8 @@ export default function FabianCoachingHellPage() {
           <div className="lg:col-span-6 relative">
             <div className="rounded-3xl overflow-hidden shadow-xl border border-stone-200/80 bg-white p-3">
               <img
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=800&h=600"
-                alt="Fabian Schönle Lab Check"
-                referrerPolicy="no-referrer"
+                src="/Bilder Website Coaching Kopie.png"
+                alt="Fabian Schönle"
                 className="w-full h-auto object-cover rounded-2xl shadow-sm mb-3"
                 style={{ aspectRatio: '4/3' }}
               />

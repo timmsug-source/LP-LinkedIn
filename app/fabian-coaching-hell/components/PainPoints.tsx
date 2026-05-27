@@ -129,15 +129,15 @@ export default function PainPoints() {
                         <h4 className="font-display font-black text-stone-900 text-xl leading-none">{item.title}</h4>
                       </div>
                     </div>
-                    <div className="p-4 bg-rose-50/60 rounded-xl border border-rose-100 flex gap-3.5 items-start">
-                      <div className="p-1 px-1.5 bg-rose-100 text-rose-700 font-bold font-mono text-[10px] rounded-sm mt-0.5">MYTHOS</div>
+                    <div className="p-4 bg-rose-50/60 rounded-xl border border-rose-100 flex flex-col sm:flex-row gap-2 sm:gap-3.5 sm:items-start">
+                      <div className="p-1 px-1.5 bg-rose-100 text-rose-700 font-bold font-mono text-[10px] rounded-sm self-start sm:mt-0.5 shrink-0">MYTHOS</div>
                       <div className="space-y-1">
                         <h5 className="font-display font-bold text-rose-950 text-xs">Der weit verbreitete Trugschluss:</h5>
                         <p className="text-stone-600 text-xs leading-relaxed">{item.problemText}</p>
                       </div>
                     </div>
-                    <div className="p-4 bg-emerald-50/60 rounded-xl border border-emerald-100 flex gap-3.5 items-start">
-                      <div className="p-1 px-1.5 bg-emerald-100 text-emerald-700 font-bold font-mono text-[10px] rounded-sm mt-0.5">F.U.E.L.</div>
+                    <div className="p-4 bg-emerald-50/60 rounded-xl border border-emerald-100 flex flex-col sm:flex-row gap-2 sm:gap-3.5 sm:items-start">
+                      <div className="p-1 px-1.5 bg-emerald-100 text-emerald-700 font-bold font-mono text-[10px] rounded-sm self-start sm:mt-0.5 shrink-0">F.U.E.L.</div>
                       <div className="space-y-1">
                         <h5 className="font-display font-bold text-emerald-800 text-xs">Die intelligente Alltagslösung:</h5>
                         <p className="text-stone-700 text-xs leading-relaxed">{item.solutionText}</p>

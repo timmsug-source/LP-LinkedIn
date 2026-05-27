@@ -27,7 +27,17 @@ export default function Header({ currentPage, setCurrentPage, onOpenBooking }: H
   const [mobileMenuOpen, setMobileMenuOpen]       = useState(false);
   const [therapyDropOpen, setTherapyDropOpen]     = useState(false); // desktop hover
   const [mobileTherapyOpen, setMobileTherapyOpen] = useState(false); // mobile accordion
-  const dropRef = useRef<HTMLDivElement>(null);
+  const dropRef    = useRef<HTMLDivElement>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openDrop  = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setTherapyDropOpen(true);
+  };
+  const closeDrop = () => {
+    // 200 ms grace period so a click on a menu item can land before the panel disappears
+    closeTimer.current = setTimeout(() => setTherapyDropOpen(false), 200);
+  };
 
   // Close desktop dropdown when clicking outside
   useEffect(() => {
@@ -37,7 +47,10 @@ export default function Header({ currentPage, setCurrentPage, onOpenBooking }: H
       }
     };
     document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
+    return () => {
+      document.removeEventListener("mousedown", handler);
+      if (closeTimer.current) clearTimeout(closeTimer.current);
+    };
   }, []);
 
   const handleNavClick = (id: string) => {
@@ -95,11 +108,11 @@ export default function Header({ currentPage, setCurrentPage, onOpenBooking }: H
             <div
               ref={dropRef}
               className="relative"
-              onMouseEnter={() => setTherapyDropOpen(true)}
-              onMouseLeave={() => setTherapyDropOpen(false)}
+              onMouseEnter={openDrop}
+              onMouseLeave={closeDrop}
             >
               <button
-                onClick={() => setTherapyDropOpen((v) => !v)}
+                onClick={() => { if (closeTimer.current) clearTimeout(closeTimer.current); setTherapyDropOpen((v) => !v); }}
                 className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${
                   isTherapyActive
                     ? "text-brand-sage bg-brand-sage-pale font-semibold"

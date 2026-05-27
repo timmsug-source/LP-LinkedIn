@@ -48,9 +48,9 @@ export default function Hero({ onScheduleCall, onNavigateToTherapy }: HeroProps)
                   <div className="w-8 h-8 rounded-full bg-brand-sage-pale/50 flex items-center justify-center shrink-0">
                     <Heart className="w-4 h-4 text-brand-sage" />
                   </div>
-                  <div>
-                    <span className="block text-xs font-bold text-brand-sage">{item.label}</span>
-                    <span className="block text-[11px] text-gray-500">{item.desc}</span>
+                  <div className="flex flex-col gap-0.5">
+                    <p className="text-xs font-bold text-brand-sage leading-tight m-0">{item.label}</p>
+                    <p className="text-[11px] text-gray-500 leading-tight m-0">{item.desc}</p>
                   </div>
                 </div>
               ))}

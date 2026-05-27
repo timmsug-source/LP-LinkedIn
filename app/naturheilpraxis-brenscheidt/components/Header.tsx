@@ -73,10 +73,11 @@ export default function Header({ currentPage, setCurrentPage, onOpenBooking }: H
             className="flex items-center space-x-3 cursor-pointer group"
           >
             <div className="w-10 h-10 rounded-full bg-brand-sage flex items-center justify-center text-brand-beige shadow-sm transition-transform group-hover:scale-105">
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 11c0 1.2 1 2 2 2" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 21s-3-3-3-6a3 3 0 016 0c0 3-3 6-3 6z" />
+              {/* Pflanze mit zwei Blättern – Naturheilkunde Symbol */}
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 22v-8" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 14C12 9 8 5 3 5c0 5.5 3.5 9 9 9z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 14c0-5 4-9 9-9c0 5.5-3.5 9-9 9z" />
               </svg>
             </div>
             <div>

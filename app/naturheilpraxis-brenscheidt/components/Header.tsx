@@ -80,13 +80,13 @@ export default function Header({ currentPage, setCurrentPage, onOpenBooking }: H
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 14c0-5 4-9 9-9c0 5.5-3.5 9-9 9z" />
               </svg>
             </div>
-            <div>
-              <span className="font-serif text-xl font-semibold tracking-tight block text-brand-sage">
+            <div className="flex flex-col gap-0.5">
+              <p className="font-serif text-xl font-semibold tracking-tight text-brand-sage leading-tight m-0">
                 Naturheilpraxis Brenscheidt
-              </span>
-              <span className="text-[10px] uppercase tracking-widest text-brand-sage-light font-mono block">
+              </p>
+              <p className="text-[10px] uppercase tracking-widest text-brand-sage-light font-mono leading-tight m-0">
                 Leichlingen &bull; Witzhelden
-              </span>
+              </p>
             </div>
           </div>
 

@@ -128,9 +128,9 @@ export default function Hero({ onScheduleCall, onNavigateToTherapy }: HeroProps)
                         style={{ objectPosition: '65% top' }}
                       />
                     </div>
-                    <div>
-                      <span className="block text-xs font-bold text-brand-sage font-serif">Klaus &amp; Heike Brenscheidt</span>
-                      <span className="block text-[10px] text-gray-500">Über 25 Jahre Praxiserfahrung</span>
+                    <div className="flex flex-col gap-0.5">
+                      <p className="text-xs font-bold text-brand-sage font-serif leading-tight m-0">Klaus &amp; Heike Brenscheidt</p>
+                      <p className="text-[10px] text-gray-500 leading-tight m-0">Über 25 Jahre Praxiserfahrung</p>
                     </div>
                   </div>
                 </div>

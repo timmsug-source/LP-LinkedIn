@@ -158,7 +158,7 @@ export default function TherapyDetail({ therapy, onOpenBooking }: TherapyDetailP
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {therapy.methods.map((method, idx) => (
               <div key={idx} className="bg-white p-6 rounded-xl border border-brand-sage-pale shadow-sm hover:border-brand-sage transition-all">
-                <span className="text-xs font-bold text-brand-terracotta tracking-widest font-mono block mb-2">0{idx + 1}</span>
+                <p className="text-xs font-bold text-brand-terracotta tracking-widest font-mono leading-tight m-0 mb-2">0{idx + 1}</p>
                 <h4 className="font-serif text-base font-bold text-brand-sage mb-2">{method}</h4>
                 <p className="text-xs text-brand-charcoal/70 leading-relaxed">
                   Präzise auf dich und deine Diagnose abgestimmte Integrativbehandlung zur Stärkung der körpereigenen Regulationskraft.

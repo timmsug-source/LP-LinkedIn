@@ -43,9 +43,9 @@ export default function ContactView() {
                   id="direct-phone-call"
                 >
                   <Phone className="w-5 h-5 text-brand-terracotta shrink-0" />
-                  <div>
-                    <span className="block text-[10px] uppercase tracking-wider text-brand-sage-pale">Telefonnummer</span>
-                    <span className="block text-base font-bold group-hover:text-brand-terracotta transition-colors">02174 / 748200</span>
+                  <div className="flex flex-col gap-0.5">
+                    <p className="text-[10px] uppercase tracking-wider text-brand-sage-pale leading-tight m-0">Telefonnummer</p>
+                    <p className="text-base font-bold group-hover:text-brand-terracotta transition-colors leading-tight m-0">02174 / 748200</p>
                   </div>
                 </a>
 
@@ -55,9 +55,9 @@ export default function ContactView() {
                   id="direct-email-send"
                 >
                   <Mail className="w-5 h-5 text-brand-terracotta shrink-0" />
-                  <div>
-                    <span className="block text-[10px] uppercase tracking-wider text-brand-sage-pale">E-Mail-Adresse</span>
-                    <span className="block text-sm font-semibold truncate group-hover:text-brand-terracotta transition-colors">info@naturheilpraxis-brenscheidt.de</span>
+                  <div className="flex flex-col gap-0.5">
+                    <p className="text-[10px] uppercase tracking-wider text-brand-sage-pale leading-tight m-0">E-Mail-Adresse</p>
+                    <p className="text-sm font-semibold truncate group-hover:text-brand-terracotta transition-colors leading-tight m-0">info@naturheilpraxis-brenscheidt.de</p>
                   </div>
                 </a>
               </div>
@@ -79,7 +79,7 @@ export default function ContactView() {
                   <div className="flex items-start gap-2.5">
                     <Car className="w-4 h-4 text-brand-sage shrink-0 mt-0.5" />
                     <div>
-                      <span className="block font-bold text-xs text-brand-sage">Mit dem PKW:</span>
+                      <p className="font-bold text-xs text-brand-sage leading-tight m-0">Mit dem PKW:</p>
                       <p className="text-xs text-gray-500">
                         Kostenfreie Patientenparkplätze befinden sich direkt im Ortskern vor der Praxis oder an der nahen evangelischen Kirche (nur 1 Gehminute entfernt).
                       </p>
@@ -89,7 +89,7 @@ export default function ContactView() {
                   <div className="flex items-start gap-2.5">
                     <Bus className="w-4 h-4 text-brand-sage shrink-0 mt-0.5" />
                     <div>
-                      <span className="block font-bold text-xs text-brand-sage">Mit dem Bus:</span>
+                      <p className="font-bold text-xs text-brand-sage leading-tight m-0">Mit dem Bus:</p>
                       <p className="text-xs text-gray-500">
                         Die Haltestelle &ldquo;Witzhelden Busbahnhof&rdquo; liegt ca. 150m Fußweg entfernt. Busverbindungen bestehen nach Leichlingen Bahnhof, Solingen und Leverkusen-Opladen.
                       </p>
@@ -102,7 +102,7 @@ export default function ContactView() {
               <div className="bg-brand-cream border border-brand-sage-pale/60 p-4 rounded-xl flex items-start gap-3">
                 <ShieldCheck className="w-5 h-5 text-green-700 shrink-0 mt-0.5" />
                 <div>
-                  <span className="block text-xs font-bold text-green-800">Barrierefreier Zugang</span>
+                  <p className="text-xs font-bold text-green-800 leading-tight m-0">Barrierefreier Zugang</p>
                   <p className="text-[11px] text-gray-600">
                     Unsere Räumlichkeiten sind ebenerdig und rollstuhlgerecht zugänglich, um dir deinen Besuch so sorglos wie möglich zu gestalten.
                   </p>

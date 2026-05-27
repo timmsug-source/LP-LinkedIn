@@ -4,10 +4,14 @@ module.exports = {
     './app/beispiel/coaching/**/*.{ts,tsx}',
     './app/fabian-coaching/**/*.{ts,tsx}',
     './app/fabian-coaching-hell/**/*.{ts,tsx}',
+    './app/coach-eddy/**/*.{ts,tsx}',
     './components/coaching/**/*.{ts,tsx}',
   ],
   theme: {
     extend: {
+      spacing: {
+        '4.5': '1.125rem',
+      },
       colors: {
         'brand-blue': {
           50:  '#f0f7ff',

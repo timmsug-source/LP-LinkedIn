@@ -46,21 +46,23 @@ export default function Hero({ onScrollToSection }: HeroProps) {
             </p>
           </div>
 
-          <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 justify-center w-full max-w-md px-4">
+          <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 justify-center px-4">
             <button
               onClick={() => onScrollToSection('booking')}
-              className="w-full sm:w-auto bg-[#FF5A1F] hover:bg-[#e44e15] text-stone-950 font-black text-xs uppercase tracking-widest h-14 px-8 rounded-full flex items-center justify-center gap-3 transition-all hover:scale-[1.03] active:scale-[0.98] shadow-lg shadow-orange-950/40"
+              className="bg-[#FF5A1F] hover:bg-[#e44e15] text-stone-950 font-black text-sm uppercase tracking-wide whitespace-nowrap h-14 px-8 rounded-full flex items-center justify-center gap-3 transition-all hover:scale-[1.03] active:scale-[0.98] shadow-lg shadow-orange-950/40"
+              style={{ fontFamily: "'Outfit', sans-serif" }}
             >
-              <Calendar className="w-4 h-4" />
+              <Calendar className="w-4 h-4 flex-shrink-0" />
               <span>Gratis Erstgespräch Sichern</span>
             </button>
 
             <button
               onClick={() => onScrollToSection('profile')}
-              className="w-full sm:w-auto bg-stone-900/90 hover:bg-stone-800 text-white font-black text-xs uppercase tracking-widest h-14 px-8 rounded-full flex items-center justify-center gap-2 border border-stone-800 hover:border-stone-700 transition-all"
+              className="bg-stone-900/90 hover:bg-stone-800 text-white font-black text-sm uppercase tracking-wide whitespace-nowrap h-14 px-8 rounded-full flex items-center justify-center gap-2 border border-stone-700 hover:border-stone-600 transition-all"
+              style={{ fontFamily: "'Outfit', sans-serif" }}
             >
               <span>Wer ist Coach Eddy?</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 flex-shrink-0" />
             </button>
           </div>
 

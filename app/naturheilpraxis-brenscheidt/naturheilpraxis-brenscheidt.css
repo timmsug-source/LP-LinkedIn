@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+/* ─── SCOPED RESETS ──────────────────────────────────────────────────────────── */
+:where(.nb-root) *,
+:where(.nb-root) *::before,
+:where(.nb-root) *::after {
+  box-sizing: border-box;
+  /* Tailwind preflight equivalent: border-style must be solid */
+  border-width: 0;
+  border-style: solid;
+  /* Tailwind CSS custom properties */
+  --tw-blur: ;
+  --tw-brightness: ;
+  --tw-contrast: ;
+  --tw-drop-shadow: ;
+  --tw-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-invert: ;
+  --tw-saturate: ;
+  --tw-sepia: ;
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-text-opacity: 1;
+  --tw-bg-opacity: 1;
+  --tw-border-opacity: 1;
+  --tw-gradient-from-position: ;
+  --tw-gradient-via-position: ;
+  --tw-gradient-to-position: ;
+}
+
+:where(.nb-root) {
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  color: #252b28;
+  background-color: #fdfbf7;
+}
+
+:where(.nb-root) h1,
+:where(.nb-root) h2,
+:where(.nb-root) h3,
+:where(.nb-root) h4,
+:where(.nb-root) h5,
+:where(.nb-root) h6 {
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+:where(.nb-root) button {
+  background: none;
+  border-width: 0;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+:where(.nb-root) a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:where(.nb-root) img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ─── FIX: global .block collision ───────────────────────────────────────────── */
+.nb-root .block {
+  background-image: none;
+  border-radius: 0;
+  border-width: 0;
+}
+
+/* ─── TAILWIND UTILITIES ──────────────────────────────────────────────────────── */
+@tailwind utilities;
+
+/* ─── FONT OVERRIDES (must come AFTER @tailwind utilities to win the cascade) ── */
+:where(.nb-root) .font-sans {
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+.nb-root .font-serif {
+  font-family: 'Playfair Display', ui-serif, Georgia, serif !important;
+}
+
+:where(.nb-root) .font-mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}

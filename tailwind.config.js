@@ -5,6 +5,7 @@ module.exports = {
     './app/fabian-coaching/**/*.{ts,tsx}',
     './app/fabian-coaching-hell/**/*.{ts,tsx}',
     './app/coach-eddy/**/*.{ts,tsx}',
+    './app/naturheilpraxis-brenscheidt/**/*.{ts,tsx}',
     './components/coaching/**/*.{ts,tsx}',
   ],
   theme: {
@@ -13,6 +14,15 @@ module.exports = {
         '4.5': '1.125rem',
       },
       colors: {
+        /* ── Naturheilpraxis Brenscheidt brand palette ── */
+        'brand-beige':    '#fdfbf7',
+        'brand-cream':    '#faf5eb',
+        'brand-sage':     '#384d41',
+        'brand-sage-light': '#5f7468',
+        'brand-sage-pale':  '#e6ede9',
+        'brand-terracotta': '#c57b64',
+        'brand-charcoal':   '#252b28',
+        /* ── existing ── */
         'brand-blue': {
           50:  '#f0f7ff',
           100: '#e0f0fe',

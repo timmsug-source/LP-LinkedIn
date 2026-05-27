@@ -5,6 +5,11 @@
 :where(.coach-eddy-root) *::before,
 :where(.coach-eddy-root) *::after {
   box-sizing: border-box;
+  /* ─── Tailwind preflight equivalent: border-style must be solid so that
+     .border (sets border-width: 1px) actually renders a visible border.
+     Without this, border-style stays 'none' and borders are invisible. ── */
+  border-width: 0;
+  border-style: solid;
   --tw-blur: ;
   --tw-brightness: ;
   --tw-contrast: ;
@@ -55,7 +60,7 @@
 
 :where(.coach-eddy-root) button {
   background: none;
-  border: none;
+  border-width: 0;  /* keep border-style: solid from * reset so .border class works */
   padding: 0;
   cursor: pointer;
   font: inherit;
@@ -157,7 +162,7 @@
 .coach-eddy-root .block {
   background-image: none;
   border-radius: 0;
-  border: none;
+  border-width: 0;  /* neutralize global .block border: 1px solid rgba(255,255,255,0.07) */
 }
 
 /* ─── TAILWIND UTILITIES (must come AFTER scoped resets) ──────────────────────── */

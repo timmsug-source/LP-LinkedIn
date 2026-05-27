@@ -156,7 +156,7 @@ export default function SuccessStories() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-items-center">
             {/* Screenshot 1: Yasmin */}
-            <div className="w-full max-w-xs flex flex-col items-center gap-3">
+            <div className="w-full max-w-sm flex flex-col items-center gap-3">
               <div className="w-full rounded-lg overflow-hidden border border-stone-800/60 shadow-md">
                 <img
                   src="/IMG_2229-300x537.png"
@@ -171,7 +171,7 @@ export default function SuccessStories() {
             </div>
 
             {/* Screenshot 2: Zufriedener Kunde */}
-            <div className="w-full max-w-xs flex flex-col items-center gap-3">
+            <div className="w-full max-w-sm flex flex-col items-center gap-3">
               <div className="w-full rounded-lg overflow-hidden border border-stone-800/60 shadow-md">
                 <img
                   src="/IMG_2234-300x537.png"

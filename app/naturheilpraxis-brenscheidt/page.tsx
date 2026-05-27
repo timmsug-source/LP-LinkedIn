@@ -36,7 +36,7 @@ export default function NaturheilpraxisPage() {
   const activeTherapy = THERAPIES.find((t) => t.id === currentPage);
 
   return (
-    <div className="nb-root min-h-screen bg-brand-beige text-brand-charcoal flex flex-col justify-between font-sans select-none antialiased">
+    <div className="nb-root min-h-screen bg-brand-beige text-brand-charcoal flex flex-col justify-between font-sans select-none antialiased pt-9">
 
       <Header
         currentPage={currentPage}

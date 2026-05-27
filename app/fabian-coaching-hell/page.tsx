@@ -199,8 +199,8 @@ export default function FabianCoachingHellPage() {
               Dauerhafter Schlafmangel, ein schleichend wachsender Bauchumfang und chronischer Alltagsstress belasten nicht nur deine tägliche Performance – sie sind der Nährboden für Herz-Kreislauf-Erkrankungen, Typ-2-Diabetes und einen drastischen Testosteronabfall unter Männern.
             </p>
           </div>
-          <div className="p-5 rounded-2xl border border-stone-700 max-w-xl mx-auto text-left flex gap-4 items-start" style={{ background: 'rgba(30,41,59,0.8)' }}>
-            <span className="text-amber-500 font-mono text-sm font-bold pt-0.5">Hinweis:</span>
+          <div className="p-5 rounded-2xl border border-stone-700 max-w-xl mx-auto text-left flex flex-col sm:flex-row gap-2 sm:gap-4 sm:items-start" style={{ background: 'rgba(30,41,59,0.8)' }}>
+            <span className="text-amber-500 font-mono text-sm font-bold sm:pt-0.5 shrink-0">Hinweis:</span>
             <p className="text-xs text-stone-300 leading-relaxed">
               Du bezahlst deinen Erfolg aktuell mit deiner Gesundheit und der kostbaren Zeit mit deiner Familie. Es braucht keine heroischen Qualen – es braucht wissenschaftliche Genauigkeit im biochemischen System.
             </p>

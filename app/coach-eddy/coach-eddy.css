@@ -147,3 +147,6 @@
   background-color: #FF5A1F;
   color: #0c0a09;
 }
+
+/* ─── TAILWIND UTILITIES (must come AFTER scoped resets) ──────────────────────── */
+@tailwind utilities;

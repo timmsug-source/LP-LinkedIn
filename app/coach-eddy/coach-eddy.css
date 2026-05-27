@@ -37,6 +37,9 @@
   --tw-text-opacity: 1;
   --tw-bg-opacity: 1;
   --tw-border-opacity: 1;
+  --tw-gradient-from-position: ;
+  --tw-gradient-via-position: ;
+  --tw-gradient-to-position: ;
 }
 
 :where(.coach-eddy-root) h1,

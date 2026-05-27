@@ -151,5 +151,14 @@
   color: #0c0a09;
 }
 
+/* ─── FIX: global app CSS defines .block as a card component (blue gradient)
+   which collides with Tailwind's .block display utility. Neutralize inside
+   this page scope so background-image/border-radius don't bleed in. ──────────── */
+.coach-eddy-root .block {
+  background-image: none;
+  border-radius: 0;
+  border: none;
+}
+
 /* ─── TAILWIND UTILITIES (must come AFTER scoped resets) ──────────────────────── */
 @tailwind utilities;

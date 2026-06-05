@@ -55,36 +55,35 @@ export const AboutUs = () => {
           </div>
         </div>
 
-        {/* Corporate Value Statement card with image background */}
-        <div className="lg:col-span-5 rounded-xl text-white relative overflow-hidden flex flex-col justify-between h-full border border-slate-800 shadow-xl group min-h-[460px]">
-          <img
-            src="/1517486085172.jpeg"
-            alt="M. Bresemann – Geschäftsführer MBR GmbH"
-            className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-          />
-          {/* Gradient: transparent at top (face visible), dark at bottom (text readable) */}
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-transparent z-0" />
+        {/* Corporate Value Statement card – Foto oben, Text unten */}
+        <div className="lg:col-span-5 rounded-xl overflow-hidden border border-slate-200 shadow-xl group flex flex-col">
+          {/* Foto – kein Overlay, kein Schatten */}
+          <div className="overflow-hidden">
+            <img
+              src="/1517486085172.jpeg"
+              alt="M. Bresemann – Geschäftsführer MBR GmbH"
+              className="w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              style={{ maxHeight: '340px' }}
+            />
+          </div>
 
-          <div className="relative p-8 flex flex-col justify-between h-full z-10">
-            <div>
-              <span className="font-mono text-[10px] text-blue-400 font-bold uppercase tracking-widest bg-blue-950/50 border border-blue-900/40 px-2 py-0.5 rounded">
-                Inhabergeführt & Unabhängig
-              </span>
-            </div>
-            <div>
-              <h3 className="font-display text-lg font-bold leading-relaxed text-slate-100">
-                „Im Mittelstand entscheidet die Planbarkeit. Ein Bauteilfehler bedeutet im schlimmsten Fall Bandstillstand. Deshalb auditieren wir lückenlos."
-              </h3>
-              <div className="mt-6 pt-5 border-t border-slate-800/80 flex items-center gap-4">
-                <img
-                  src="/1517486085172.jpeg"
-                  alt="M. Bresemann"
-                  className="h-11 w-11 shrink-0 rounded-full object-cover object-top border-2 border-slate-600"
-                />
-                <div>
-                  <div className="font-display font-bold text-sm text-white">M. Bresemann</div>
-                  <p className="text-xs text-slate-300">Geschäftsführer, MBR GmbH</p>
-                </div>
+          {/* Text darunter */}
+          <div className="bg-slate-950 p-8 flex flex-col gap-5 flex-1">
+            <span className="font-mono text-[10px] text-blue-400 font-bold uppercase tracking-widest bg-blue-950/50 border border-blue-900/40 px-2 py-0.5 rounded self-start">
+              Inhabergeführt & Unabhängig
+            </span>
+            <h3 className="font-display text-lg font-bold leading-relaxed text-slate-100">
+              „Im Mittelstand entscheidet die Planbarkeit. Ein Bauteilfehler bedeutet im schlimmsten Fall Bandstillstand. Deshalb auditieren wir lückenlos."
+            </h3>
+            <div className="pt-4 border-t border-slate-800 flex items-center gap-4">
+              <img
+                src="/1517486085172.jpeg"
+                alt="M. Bresemann"
+                className="h-10 w-10 shrink-0 rounded-full object-cover object-top border-2 border-slate-700"
+              />
+              <div>
+                <p className="font-display font-bold text-sm text-white">M. Bresemann</p>
+                <p className="text-xs text-slate-400">Geschäftsführer, MBR GmbH</p>
               </div>
             </div>
           </div>

@@ -6,6 +6,7 @@ module.exports = {
     './app/fabian-coaching-hell/**/*.{ts,tsx}',
     './app/coach-eddy/**/*.{ts,tsx}',
     './app/naturheilpraxis-brenscheidt/**/*.{ts,tsx}',
+    './app/michael-mbr/**/*.{ts,tsx}',
     './components/coaching/**/*.{ts,tsx}',
   ],
   theme: {

@@ -57,12 +57,10 @@ export const AboutUs = () => {
 
         {/* Corporate Value Statement card with image background */}
         <div className="lg:col-span-5 rounded-xl text-white relative overflow-hidden flex flex-col justify-between h-full border border-slate-800 shadow-xl group min-h-[380px]">
-          {/* Background Image requested by user: photo-1517486085172-04c9facb2f4f */}
-          <img 
-            src="https://images.unsplash.com/photo-1517486085172-04c9facb2f4f?auto=format&fit=crop&w=1000&q=80" 
-            alt="M. Bresemann - MBR GmbH" 
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-            referrerPolicy="no-referrer"
+          <img
+            src="/1517486085172.jpeg"
+            alt="M. Bresemann – Geschäftsführer MBR GmbH"
+            className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
           />
           {/* Enhanced Dark Overlay for excellent text readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-900/60 z-0" />

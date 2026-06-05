@@ -135,9 +135,11 @@ export default function MBRPage() {
                           Direktkontakt Geschäftsführung
                         </div>
                         <div className="flex items-center gap-5">
-                          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-slate-900 border-2 border-slate-200 text-white font-display font-extrabold text-xl">
-                            MB
-                          </div>
+                          <img
+                            src="/1517486085172.jpeg"
+                            alt="M. Bresemann – Geschäftsführer MBR GmbH"
+                            className="h-16 w-16 rounded-full object-cover object-top border-2 border-slate-200 shrink-0"
+                          />
                           <div>
                             <h3 className="font-display text-lg font-bold text-slate-950">M. Bresemann</h3>
                             <p className="font-mono text-[11px] text-blue-700 font-bold uppercase tracking-wider">Geschäftsführer / Managing Director</p>

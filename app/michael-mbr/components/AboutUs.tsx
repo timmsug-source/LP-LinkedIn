@@ -57,13 +57,12 @@ export const AboutUs = () => {
 
         {/* Corporate Value Statement card – Foto oben, Text unten */}
         <div className="lg:col-span-5 rounded-xl overflow-hidden border border-slate-200 shadow-xl group flex flex-col">
-          {/* Foto – kein Overlay, kein Schatten */}
+          {/* Foto – vollständig, kein Cropping, kein Overlay */}
           <div className="overflow-hidden">
             <img
               src="/1517486085172.jpeg"
               alt="M. Bresemann – Geschäftsführer MBR GmbH"
-              className="w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-              style={{ maxHeight: '340px' }}
+              className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
             />
           </div>
 

@@ -16,7 +16,7 @@ export const AboutUs = () => {
     {
       icon: <Truck className="h-6 w-6 text-blue-700" />,
       title: 'Flexible Lieferformen nach Maß',
-      description: 'Sie wählen den Bearbeitungsgrad: MBR liefert Rohguss, vorbearbeitete Komponenten oder montagefertige Präzisionsbauteile. Durch integrierte Logistiklösungen lagern wir Bestände bedarfsgerecht ab und liefern „Just-in-Time“.'
+      description: 'Sie wählen den Bearbeitungsgrad: MBR liefert Rohguss, vorbearbeitete Komponenten oder montagefertige Präzisionsbauteile. Durch integrierte Logistiklösungen lagern wir Bestände bedarfsgerecht ab und liefern „Just-in-Time".'
     }
   ];
 
@@ -56,31 +56,35 @@ export const AboutUs = () => {
         </div>
 
         {/* Corporate Value Statement card with image background */}
-        <div className="lg:col-span-5 rounded-xl text-white relative overflow-hidden flex flex-col justify-between h-full border border-slate-800 shadow-xl group min-h-[380px]">
+        <div className="lg:col-span-5 rounded-xl text-white relative overflow-hidden flex flex-col justify-between h-full border border-slate-800 shadow-xl group min-h-[460px]">
           <img
             src="/1517486085172.jpeg"
             alt="M. Bresemann – Geschäftsführer MBR GmbH"
             className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
           />
-          {/* Enhanced Dark Overlay for excellent text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-900/60 z-0" />
-          
+          {/* Gradient: transparent at top (face visible), dark at bottom (text readable) */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-transparent z-0" />
+
           <div className="relative p-8 flex flex-col justify-between h-full z-10">
             <div>
               <span className="font-mono text-[10px] text-blue-400 font-bold uppercase tracking-widest bg-blue-950/50 border border-blue-900/40 px-2 py-0.5 rounded">
                 Inhabergeführt & Unabhängig
               </span>
-              <h3 className="mt-6 font-display text-lg font-bold leading-relaxed text-slate-100">
-                „Im Mittelstand entscheidet die Planbarkeit. Ein Bauteilfehler bedeutet im schlimmsten Fall Bandstillstand. Deshalb auditieren wir lückenlos.“
-              </h3>
             </div>
-            <div className="mt-8 pt-6 border-t border-slate-800/80 flex items-center gap-4">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white font-display font-black text-sm">
-                MB
-              </div>
-              <div>
-                <div className="font-display font-bold text-sm text-white">M. Bresemann</div>
-                <p className="text-xs text-slate-300">Geschäftsführer, MBR GmbH</p>
+            <div>
+              <h3 className="font-display text-lg font-bold leading-relaxed text-slate-100">
+                „Im Mittelstand entscheidet die Planbarkeit. Ein Bauteilfehler bedeutet im schlimmsten Fall Bandstillstand. Deshalb auditieren wir lückenlos."
+              </h3>
+              <div className="mt-6 pt-5 border-t border-slate-800/80 flex items-center gap-4">
+                <img
+                  src="/1517486085172.jpeg"
+                  alt="M. Bresemann"
+                  className="h-11 w-11 shrink-0 rounded-full object-cover object-top border-2 border-slate-600"
+                />
+                <div>
+                  <div className="font-display font-bold text-sm text-white">M. Bresemann</div>
+                  <p className="text-xs text-slate-300">Geschäftsführer, MBR GmbH</p>
+                </div>
               </div>
             </div>
           </div>

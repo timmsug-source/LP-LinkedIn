@@ -10,8 +10,8 @@ export default function Hero({ data: _ }: { data?: Record<string, unknown> }) {
           SEO · Webdesign · GEO · Freelancer aus Langenfeld, NRW
         </div>
         <h1 className="hero-h1">
-          Schluss mit Websites, die gefunden werden –<br />
-          aber <span className="hl">keine Anfragen bringen.</span>
+          Präsent auf Google. Gefunden von KI.<br />
+          <span className="hl">Gebucht von deinen Kunden.</span>
         </h1>
         <p className="hero-sub">
           Ich baue für Selbstständige, Coaches und Handwerker in NRW Websites, die bei Google

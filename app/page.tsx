@@ -5,7 +5,6 @@ import Hypothese from '@/components/Hypothese'
 import Leistungen from '@/components/Leistungen'
 import About from '@/components/About'
 import Rezension from '@/components/Rezension'
-import Projekte from '@/components/Projekte'
 import Prozess from '@/components/Prozess'
 import Tools from '@/components/Tools'
 import FAQ from '@/components/FAQ'
@@ -25,7 +24,6 @@ export default async function Home() {
       <Leistungen />
       <About data={sections.about} />
       <Rezension data={sections.rezension} />
-      <Projekte />
       <Prozess />
       <Tools />
       <FAQ />

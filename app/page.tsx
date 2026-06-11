@@ -2,12 +2,14 @@ import { getAllSections } from '@/lib/supabase'
 import Hero from '@/components/Hero'
 import Problem from '@/components/Problem'
 import Hypothese from '@/components/Hypothese'
-import Solution from '@/components/Solution'
-import SEOSection from '@/components/SEOSection'
-import WebdesignSection from '@/components/WebdesignSection'
-import Rezension from '@/components/Rezension'
+import Leistungen from '@/components/Leistungen'
 import About from '@/components/About'
-import Kontakt from '@/components/Kontakt'
+import Rezension from '@/components/Rezension'
+import Projekte from '@/components/Projekte'
+import Prozess from '@/components/Prozess'
+import Tools from '@/components/Tools'
+import FAQ from '@/components/FAQ'
+import CTAWhatsApp from '@/components/CTAWhatsApp'
 import Footer from '@/components/Footer'
 
 export const revalidate = 60
@@ -20,12 +22,14 @@ export default async function Home() {
       <Hero data={sections.hero} />
       <Problem data={sections.problem} />
       <Hypothese />
-      <Solution data={sections.solution} />
-      <SEOSection />
-      <WebdesignSection />
-      <Rezension data={sections.rezension} />
+      <Leistungen />
       <About data={sections.about} />
-      <Kontakt data={sections.kontakt} />
+      <Rezension data={sections.rezension} />
+      <Projekte />
+      <Prozess />
+      <Tools />
+      <FAQ />
+      <CTAWhatsApp />
       <Footer data={sections.footer} />
     </>
   )

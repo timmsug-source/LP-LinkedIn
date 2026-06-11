@@ -1,53 +1,39 @@
-interface HypCard { title: string; text: string }
-interface HypotheseData {
-  title?: string
-  intro?: string
-  cards?: HypCard[]
-}
-
-const defaults: HypotheseData = {
-  title: 'Was sich ändert, wenn deine Website und SEO als ein System arbeiten',
-  intro: 'Unterschiedliche Ziele — und ein Muster: Wer SEO und Webdesign zusammendenkt, gewinnt.',
-  cards: [
-    {
-      title: 'Du weißt exakt, welcher Kanal welche Anfrage bringt',
-      text: 'Kein Raten mehr. Kein Hoffen auf den nächsten Report. Du siehst in Echtzeit, was dein stärkster Hebel ist — und was du ignorieren kannst. Entscheidungen auf Basis von Fakten, nicht von Meinungen.',
-    },
-    {
-      title: 'SEO und Website verstärken sich gegenseitig — automatisch',
-      text: 'Was deine Besucher bei Google suchen, verbessert deine Seiten. Was deine Seiten zeigen, stärkt dein Ranking. Kein Kanal existiert für sich allein — alles arbeitet zusammen.',
-    },
-    {
-      title: 'Dein Marketing wird jeden Monat besser — ohne Mehraufwand',
-      text: 'Weil das System aus jedem Ergebnis lernt. Aus deinen Daten. Aus 5+ Jahren Erfahrung. Was andere erst herausfinden müssen, weißt du ab Tag 1.',
-    },
-  ],
-}
-
-export default function Hypothese({ data }: { data?: Record<string, unknown> }) {
-  const d: HypotheseData = { ...defaults, ...(data as HypotheseData) }
-  const cards = (d.cards as HypCard[]) ?? defaults.cards!
-
+export default function Hypothese({ data: _ }: { data?: Record<string, unknown> }) {
   return (
     <section id="hypothese">
       <div className="wrap">
         <div className="hyp-head fu">
-          <div className="label">Dein Vorteil</div>
-          <h2>{d.title}</h2>
-          <p className="hyp-intro">{d.intro}</p>
+          <div className="label">Warum das so ist</div>
+          <h2>Das Problem ist nicht dein Angebot.<br />Es ist deine Sichtbarkeit.</h2>
+          <p className="hyp-intro">
+            Die meisten Websites sind gebaut, um schön auszusehen – nicht um gefunden zu werden.
+            Gleichzeitig verändert sich Suche gerade radikal: 30–40 % der Suchanfragen enden heute
+            ohne Klick, weil KI direkt antwortet. Wer nur für Google optimiert, verliert die Hälfte
+            des Traffics der Zukunft.
+          </p>
         </div>
         <div className="hyp-grid">
-          {cards.map((c, i) => (
-            <div key={i} className={`hyp-card fu${i > 0 ? ` d${i}` : ''}`}>
-              <div className="hyp-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-              </div>
-              <h3>{c.title}</h3>
-              <p>{c.text}</p>
+          <div className="hyp-card fu">
+            <div className="hyp-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
-          ))}
+            <h3>Google-Sichtbarkeit allein reicht nicht mehr</h3>
+            <p>ChatGPT, Perplexity und Google AI Overviews beantworten Fragen direkt. Wer nicht auch in diesen Quellen vorkommt, verliert Anfragen – ohne es zu merken.</p>
+          </div>
+          <div className="hyp-card fu d1">
+            <div className="hyp-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3>Design und SEO müssen ein System sein</h3>
+            <p>Eine schöne Website ohne SEO bringt keine Anfragen. SEO ohne gutes Design konvertiert nicht. Beides aus einer Hand zu haben ist der entscheidende Vorteil.</p>
+          </div>
+          <div className="hyp-card fu d2">
+            <div className="hyp-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3>Freelancer schlägt Agentur für KMUs</h3>
+            <p>Bei Agenturen landest du beim Junior-Account-Manager. Bei mir redest du direkt mit der Person, die deine Website baut, optimiert und wachsen lässt.</p>
+          </div>
         </div>
       </div>
     </section>

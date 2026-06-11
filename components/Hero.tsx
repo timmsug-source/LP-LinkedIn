@@ -1,59 +1,42 @@
-interface HeroData {
-  title?: string
-  eyebrow?: string
-  subtitle?: string
-  cta_primary?: string
-  cta_secondary?: string
-  trust?: string[]
-}
+const WA_NUMBER = '4915229515030'
+const WA_TEXT = encodeURIComponent('Hallo Timm, ich interessiere mich für deine Leistungen und würde gerne mehr erfahren.')
 
-const defaults: HeroData = {
-  title: 'Du rankst, wo deine Kunden suchen.',
-  eyebrow: 'SEO · Webdesign · Freelancer aus Langenfeld',
-  subtitle: 'Ein System aus Website und SEO, das planbar neue Anfragen bringt – ohne Agentur-Overhead, ohne Ratespiele. Direkt, messbar, skalierbar.',
-  cta_primary: 'Kostenloses Erstgespräch anfragen',
-  cta_secondary: 'Wie ich arbeite ↓',
-  trust: ['Erste Ergebnisse nach wenigen Wochen', '5+ Jahre SEO-Erfahrung', 'Direkte Kommunikation – kein Umweg'],
-}
-
-export default function Hero({ data }: { data?: Record<string, unknown> }) {
-  const d: HeroData = { ...defaults, ...(data as HeroData) }
-  const trust = (d.trust as string[]) ?? defaults.trust!
-  const titleParts = (d.title ?? '').split('rankst')
-
+export default function Hero({ data: _ }: { data?: Record<string, unknown> }) {
   return (
     <section id="hero">
       <div className="wrap">
         <div className="hero-badge">
           <span className="hero-badge-dot" />
-          {d.eyebrow}
+          SEO · Webdesign · GEO · Freelancer aus Langenfeld, NRW
         </div>
         <h1 className="hero-h1">
-          {titleParts.length > 1 ? (
-            <>Du <span className="hl">rankst</span>{titleParts[1]}</>
-          ) : (
-            d.title
-          )}
+          Schluss mit Websites, die gefunden werden –<br />
+          aber <span className="hl">keine Anfragen bringen.</span>
         </h1>
-        <p className="hero-sub">{d.subtitle}</p>
+        <p className="hero-sub">
+          Ich baue für Selbstständige, Coaches und Handwerker in NRW Websites, die bei Google
+          <em style={{ color: 'var(--acc)', fontStyle: 'normal', fontWeight: 700 }}> UND </em>
+          in KI-Suchen wie ChatGPT &amp; Perplexity sichtbar sind. Nicht irgendwann. Messbar.
+        </p>
         <div className="hero-ctas">
-          <a href="/#kontakt" className="btn">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-            {d.cta_primary}
+          <a
+            href={`https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`}
+            target="_blank" rel="noopener noreferrer"
+            className="btn btn-wa"
+          >
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Jetzt auf WhatsApp anfragen
           </a>
-          <a href="/#seo" className="btn-ghost">{d.cta_secondary}</a>
+          <a href="/#projekte" className="btn-ghost">Projekte ansehen ↓</a>
         </div>
         <div className="hero-trust">
           <div className="hero-trust-stars">
-            ★★★★★ <span>5,0</span>
+            ★★★★★ <span>5,0 · 15+ Bewertungen</span>
           </div>
           <div className="hero-trust-sep" />
-          {trust.map((t) => (
-            <div key={t} className="hero-trust-item">
-              <span className="hero-trust-check">✓</span>
-              {t}
-            </div>
-          ))}
+          <div className="hero-trust-item"><span className="hero-trust-check">✓</span>12+ Kundenprojekte · NRW</div>
+          <div className="hero-trust-item"><span className="hero-trust-check">✓</span>SEO + GEO aus einer Hand</div>
+          <div className="hero-trust-item"><span className="hero-trust-check">✓</span>Kein Agentur-Overhead</div>
         </div>
       </div>
     </section>

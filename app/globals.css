@@ -877,14 +877,20 @@ footer {
   max-width: 860px; margin: 0 auto;
 }
 .tool-pill {
-  display: flex; align-items: center; gap: 10px;
+  display: flex; align-items: center; gap: 12px;
   background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.09);
-  border-radius: 12px; padding: 12px 20px;
-  transition: border-color .25s, transform .25s;
+  border-radius: 14px; padding: 14px 18px;
+  transition: border-color .25s, transform .25s, background .25s;
 }
-.tool-pill:hover { border-color: rgba(var(--acc-rgb),.35); transform: translateY(-2px); }
-.tool-name { font-size: .9rem; font-weight: 700; color: var(--text); }
-.tool-desc { font-size: .76rem; color: var(--muted); }
+.tool-pill:hover { border-color: rgba(var(--acc-rgb),.35); transform: translateY(-3px); background: rgba(255,255,255,.08); }
+.tool-logo {
+  width: 36px; height: 36px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.tool-logo svg { width: 36px; height: 36px; }
+.tool-info { display: flex; flex-direction: column; gap: 2px; }
+.tool-name { font-size: .88rem; font-weight: 700; color: var(--text); }
+.tool-desc { font-size: .72rem; color: var(--muted); }
 
 /* FAQ */
 #faq { padding: 120px 0; background: #f8f9fb; }

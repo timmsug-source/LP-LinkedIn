@@ -14,14 +14,16 @@ export default function Problem({ data: _ }: { data?: Record<string, unknown> })
           <h2>Das Problem, das dich jeden Monat Kunden kostet</h2>
           <p className="sec-intro">Nicht Budget. Nicht Engagement. Die meisten Websites haben einfach das falsche Fundament.</p>
         </div>
-        <div className="prob-grid">
-          {cards.map((p, i) => (
-            <div key={i} className={`prob-card fu${i > 0 ? ` d${i}` : ''}`}>
-              <div className="picon">!</div>
-              <h3>{p.title}</h3>
-              <p>{p.text}</p>
-            </div>
-          ))}
+        <div className="prob-wrapper fu d1">
+          <div className="prob-grid">
+            {cards.map((p, i) => (
+              <div key={i} className="prob-card">
+                <div className="picon">!</div>
+                <h3>{p.title}</h3>
+                <p>{p.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
         <p className="prob-footer fu d3">
           Das ist kein Budget-Problem. <strong>Deiner Website fehlt ein System.</strong> Und genau das baue ich für dich.

@@ -241,11 +241,7 @@ body > nav.scrolled .nav-inner {
   line-height: 1.06;
 }
 .hero-h1 .hl { color: var(--acc); position: relative; display: inline-block; }
-.hero-h1 .hl::after {
-  content: '';
-  position: absolute; bottom: -4px; left: 0; right: 0; height: 3px;
-  background: var(--acc); border-radius: 2px; opacity: .4;
-}
+.hero-h1 .hl::after { display: none; }
 .hero-sub {
   font-size: 1.05rem; color: var(--sub); max-width: 560px; line-height: 1.78; margin-bottom: 44px;
 }

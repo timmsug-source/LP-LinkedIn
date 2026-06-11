@@ -14,7 +14,7 @@ export default function Hero({ data: _ }: { data?: Record<string, unknown> }) {
           <span className="hl">Gebucht von deinen Kunden.</span>
         </h1>
         <p className="hero-sub">
-          Ich baue für Selbstständige, Coaches und Handwerker in NRW Websites, die bei Google
+          Ich baue für Selbstständige und Unternehmer Websites, die bei Google
           <em style={{ color: 'var(--acc)', fontStyle: 'normal', fontWeight: 700 }}> UND </em>
           in KI-Suchen wie ChatGPT &amp; Perplexity sichtbar sind. Nicht irgendwann. Messbar.
         </p>

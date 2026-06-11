@@ -1,18 +1,19 @@
-interface ProblemCard { num: string; icon: string; title: string; text: string }
+interface ProblemCard { icon: string; title: string; text: string }
 interface ProblemData {
   title?: string
   intro?: string
+  footer?: string
   cards?: ProblemCard[]
 }
 
 const defaults: ProblemData = {
-  title: 'Warum die meisten Websites unsichtbar bleiben',
-  intro: 'Eine schöne Website allein reicht nicht. Ohne Strategie verschwindet sie auf Seite 3 von Google – und deine Konkurrenz gewinnt die Kunden, die eigentlich deine sein sollten.',
+  title: 'Diese drei Fehler kosten Unternehmen tausende Euro — jeden Monat',
+  intro: 'Budget investiert. Agentur beauftragt. Und am Ende weißt du immer noch nicht, was davon wirklich Kunden bringt.',
+  footer: 'Das ist kein Budget-Problem. Deiner Website fehlt ein System, das lernt. Und genau so ein System gibt es.',
   cards: [
-    { num: '01', icon: '🔍', title: 'Keine Sichtbarkeit bei Google', text: 'Deine Website existiert, aber niemand findet sie. Ohne SEO verlierst du täglich potenzielle Kunden an besser platzierte Wettbewerber.' },
-    { num: '02', icon: '📉', title: 'Website überzeugt nicht', text: 'Besucher kommen – und gehen wieder. Schlechtes Design, langsame Ladezeiten und kein klarer Call-to-Action kosten dich Aufträge.' },
-    { num: '03', icon: '🏢', title: 'Agenturen: teuer & träge', text: 'Große Agenturen geben dein Projekt an Junior-Mitarbeiter weiter, liefern spät und kommunizieren schlecht. Du zahlst für Overhead, nicht für Ergebnisse.' },
-    { num: '04', icon: '📊', title: 'Kein messbarer ROI', text: 'Du investierst in Maßnahmen, weißt aber nie ob sie wirken. Ohne Tracking und klare KPIs verbrennst du Budget ohne Plan.' },
+    { icon: '!', title: 'Du investierst in Marketing — aber kannst nicht messen, was es bringt', text: 'Reports sehen professionell aus. Aber sagen sie dir, welcher Kanal deine letzten 10 Anfragen gebracht hat? Wenn nicht, fährst du blind. Und wer blind fährt, verbrennt Geld.' },
+    { icon: '!', title: 'Deine Kanäle arbeiten gegeneinander statt füreinander', text: 'SEO hier, Ads da, Social dort. Nichts ist vernetzt, niemand hat den Überblick. Du investierst dreimal — und bekommst weniger raus, als ein einziger vernetzter Kanal liefern würde.' },
+    { icon: '!', title: 'Jeden Monat fängst du bei null an', text: 'Was letzten Monat funktioniert hat, fließt nicht in diesen Monat ein. Keine Kampagne wird besser, kein Kanal lernt vom anderen. Du investierst weiter — aber dein Marketing baut nicht auf.' },
   ],
 }
 
@@ -23,21 +24,26 @@ export default function Problem({ data }: { data?: Record<string, unknown> }) {
   return (
     <section id="problem">
       <div className="wrap">
-        <div className="sec-head fu">
-          <div className="label">Das Problem</div>
+        <div className="prob-head fu">
+          <div className="label" style={{ color: '#c084fc' }}>
+            <span style={{ background: '#c084fc' }} />
+            Das Problem
+          </div>
           <h2>{d.title}</h2>
           <p className="sec-intro">{d.intro}</p>
         </div>
         <div className="prob-grid">
           {cards.map((p, i) => (
-            <div key={p.num} className={`prob-card fu${i > 0 ? ` d${i}` : ''}`}>
-              <div className="pnum">{p.num}</div>
+            <div key={i} className={`prob-card fu${i > 0 ? ` d${i}` : ''}`}>
               <div className="picon">{p.icon}</div>
               <h3>{p.title}</h3>
               <p>{p.text}</p>
             </div>
           ))}
         </div>
+        {d.footer && (
+          <p className="prob-footer fu d2" dangerouslySetInnerHTML={{ __html: d.footer }} />
+        )}
       </div>
     </section>
   )

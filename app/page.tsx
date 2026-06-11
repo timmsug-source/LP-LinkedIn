@@ -1,6 +1,7 @@
 import { getAllSections } from '@/lib/supabase'
 import Hero from '@/components/Hero'
 import Problem from '@/components/Problem'
+import Hypothese from '@/components/Hypothese'
 import Solution from '@/components/Solution'
 import SEOSection from '@/components/SEOSection'
 import WebdesignSection from '@/components/WebdesignSection'
@@ -18,6 +19,7 @@ export default async function Home() {
     <>
       <Hero data={sections.hero} />
       <Problem data={sections.problem} />
+      <Hypothese />
       <Solution data={sections.solution} />
       <SEOSection />
       <WebdesignSection />

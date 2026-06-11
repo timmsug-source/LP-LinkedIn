@@ -1,30 +1,25 @@
-interface Stat { value: string; label: string }
 interface HeroData {
   title?: string
   eyebrow?: string
   subtitle?: string
   cta_primary?: string
   cta_secondary?: string
-  stats?: Stat[]
+  trust?: string[]
 }
 
 const defaults: HeroData = {
-  title: 'Mehr Kunden. Durch Sichtbarkeit, die wirklich wirkt.',
+  title: 'Du rankst, wo deine Kunden suchen.',
   eyebrow: 'SEO · Webdesign · Freelancer aus Langenfeld',
-  subtitle: 'Ich baue Websites, die gefunden werden – und die Besucher in Kunden verwandeln. Kein Agentur-Overhead. Direkte Kommunikation. Messbarer Erfolg.',
-  cta_primary: 'Kostenloses Erstgespräch',
+  subtitle: 'Ein System aus Website und SEO, das planbar neue Anfragen bringt – ohne Agentur-Overhead, ohne Ratespiele. Direkt, messbar, skalierbar.',
+  cta_primary: 'Kostenloses Erstgespräch anfragen',
   cta_secondary: 'Wie ich arbeite ↓',
-  stats: [
-    { value: '5+', label: 'Jahre SEO' },
-    { value: '3+', label: 'Jahre Webdesign' },
-    { value: '100%', label: 'Remote & flexibel' },
-  ],
+  trust: ['Erste Ergebnisse nach wenigen Wochen', '5+ Jahre SEO-Erfahrung', 'Direkte Kommunikation – kein Umweg'],
 }
 
 export default function Hero({ data }: { data?: Record<string, unknown> }) {
   const d: HeroData = { ...defaults, ...(data as HeroData) }
-  const stats = (d.stats as Stat[]) ?? defaults.stats!
-  const titleParts = (d.title ?? '').split('Sichtbarkeit')
+  const trust = (d.trust as string[]) ?? defaults.trust!
+  const titleParts = (d.title ?? '').split('rankst')
 
   return (
     <section id="hero">
@@ -35,7 +30,7 @@ export default function Hero({ data }: { data?: Record<string, unknown> }) {
         </div>
         <h1 className="hero-h1">
           {titleParts.length > 1 ? (
-            <>{titleParts[0]}<span className="hl">Sichtbarkeit</span>{titleParts[1]}</>
+            <>Du <span className="hl">rankst</span>{titleParts[1]}</>
           ) : (
             d.title
           )}
@@ -43,16 +38,20 @@ export default function Hero({ data }: { data?: Record<string, unknown> }) {
         <p className="hero-sub">{d.subtitle}</p>
         <div className="hero-ctas">
           <a href="/#kontakt" className="btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
             {d.cta_primary}
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="/#seo" className="btn-ghost">{d.cta_secondary}</a>
         </div>
-        <div className="hero-stats">
-          {stats.map((s) => (
-            <div key={s.label} className="stat">
-              <div className="stat-val">{s.value}</div>
-              <div className="stat-lbl">{s.label}</div>
+        <div className="hero-trust">
+          <div className="hero-trust-stars">
+            ★★★★★ <span>5,0</span>
+          </div>
+          <div className="hero-trust-sep" />
+          {trust.map((t) => (
+            <div key={t} className="hero-trust-item">
+              <span className="hero-trust-check">✓</span>
+              {t}
             </div>
           ))}
         </div>

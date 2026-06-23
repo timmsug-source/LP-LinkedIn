@@ -36,15 +36,11 @@ export default function Hypothese({ data: _ }: { data?: Record<string, unknown> 
           </div>
         </div>
 
-        <div className="vsl-wrapper fu d2">
-          <iframe
-            src="/vsl.html"
-            className="vsl-frame"
-            allowFullScreen
-            allow="autoplay; fullscreen"
-            loading="lazy"
-            scrolling="no"
-          />
+        <div className="vsl vsl-desktop fu d2">
+          <iframe src="/vsl.html" allowFullScreen allow="autoplay; fullscreen" loading="lazy" title="VSL" />
+        </div>
+        <div className="vsl vsl-mobile fu d2">
+          <iframe src="/vsl-mobile.html" allowFullScreen allow="autoplay; fullscreen" loading="lazy" title="VSL Mobil" />
         </div>
       </div>
     </section>

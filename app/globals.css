@@ -18,10 +18,48 @@
 html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
-  background: var(--bg);
+  background: #f8f9fb;
   color: var(--text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+/* BOXED DARK SECTIONS – dunkle Sektionen als Karten auf weißem Hintergrund */
+.hero-problem-block,
+#leistungen,
+#ueber,
+.rz-section,
+#tools,
+.cta-wa-section {
+  margin: 8px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .hero-problem-block,
+  #leistungen,
+  #ueber,
+  .rz-section,
+  #tools,
+  .cta-wa-section {
+    margin: 24px;
+    border-radius: 28px;
+  }
+}
+
+/* Hero + Problem als eine verbundene Karte – Hintergrund wie Problem */
+.hero-problem-block {
+  background: #0a0415;
+  margin-top: 24px;
+}
+
+#hero {
+  background:
+    radial-gradient(ellipse 55% 45% at 20% 60%, rgba(var(--acc-rgb),.13) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 55% at 80% 40%, rgba(40,20,120,.35) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 50% at 50% 110%, rgba(var(--acc-rgb),.08) 0%, transparent 60%),
+    #0a0415;
 }
 
 /* overflow-x: clip verhindert horizontal scroll OHNE scroll container zu erzeugen.
@@ -82,17 +120,22 @@ section { position: relative; z-index: 1; }
 /* NAV – Selektor absichtlich auf body > nav beschränkt, damit kein anderes <nav> im Content getroffen wird */
 body > nav {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0; left: 8px; right: 8px;
   z-index: 1000;
-  padding: 16px 0;
+  padding: 12px 0;
   background: transparent;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   transition: padding .3s var(--ease);
 }
-body > nav.scrolled { padding: 10px 0; }
+body > nav.scrolled { padding: 8px 0; }
+
+@media (min-width: 768px) {
+  body > nav { left: 24px; right: 24px; padding: 28px 0; }
+  body > nav.scrolled { padding: 14px 0; }
+}
 .nav-inner {
-  max-width: 1140px; margin: 0 auto; padding: 0 28px;
+  max-width: 1140px; margin: 0; padding: 0 28px; width: 100%;
   display: flex; align-items: center; justify-content: space-between;
   background: rgba(5,13,26,.88);
   backdrop-filter: blur(20px);
@@ -100,6 +143,7 @@ body > nav.scrolled { padding: 10px 0; }
   border: 1px solid rgba(255,255,255,.1);
   border-radius: 14px;
   padding: 10px 20px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.04), 0 8px 32px rgba(0,0,0,.35), 0 0 24px rgba(0,188,125,.06);
   transition: background .3s var(--ease), box-shadow .3s var(--ease);
 }
 body > nav.scrolled .nav-inner {
@@ -201,19 +245,10 @@ body > nav.scrolled .nav-inner {
   display: flex; flex-direction: column; justify-content: center;
   padding: 140px 0 100px;
   position: relative; overflow: hidden;
-  background: var(--bg);
+  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(60,20,120,.3) 0%, transparent 70%), #0a0415;
   text-align: center;
 }
-/* Glow blobs */
-#hero::after {
-  content: '';
-  position: absolute; inset: 0; z-index: 0; pointer-events: none;
-  background:
-    radial-gradient(ellipse 55% 45% at 20% 60%, rgba(var(--acc-rgb),.13) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 55% at 80% 40%, rgba(40,20,120,.35) 0%, transparent 65%),
-    radial-gradient(ellipse 70% 50% at 50% 110%, rgba(var(--acc-rgb),.08) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 50% -10%, rgba(20,10,80,.4) 0%, transparent 70%);
-}
+#hero::after { display: none; }
 #hero > .wrap { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
 
 /* Hero badge pill */
@@ -1256,7 +1291,7 @@ footer {
 
 @media (max-width: 960px) {
   .wrap { padding: 0 24px; }
-  .nav-inner { padding: 8px 16px; margin: 0 16px; border-radius: 12px; }
+  .nav-inner { padding: 8px 16px; margin: 0; border-radius: 12px; }
   body > nav { padding: 10px 0; }
   body > nav.scrolled { padding: 8px 0; }
   .nav-links, .nav-cta { display: none; }

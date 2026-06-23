@@ -18,8 +18,10 @@ export default async function Home() {
 
   return (
     <>
-      <Hero data={sections.hero} />
-      <Problem data={sections.problem} />
+      <div className="hero-problem-block">
+        <Hero data={sections.hero} />
+        <Problem data={sections.problem} />
+      </div>
       <Hypothese />
       <Leistungen />
       <About data={sections.about} />

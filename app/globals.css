@@ -18,37 +18,29 @@
 html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
-  background: #01060f;
+  background: #01060e;
   color: var(--text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
-/* BOXED LAYOUT – dunkle Sections als gerundete Box */
-#hero,
-#problem,
-#leistungen,
-#ueber,
-.rz-section,
-#tools,
-.cta-wa-section {
+/* PAGE BOX – gesamter Inhalt in einem gerundeten Container */
+.page-bg {
+  min-height: 100vh;
+  background: #01060e;
+}
+
+.page-box {
+  margin: 12px;
   border-radius: 28px;
-  margin-left: 20px;
-  margin-right: 20px;
   overflow: hidden;
+  background: var(--bg);
 }
 
 @media (min-width: 960px) {
-  #hero,
-  #problem,
-  #leistungen,
-  #ueber,
-  .rz-section,
-  #tools,
-  .cta-wa-section {
-    border-radius: 32px;
-    margin-left: 32px;
-    margin-right: 32px;
+  .page-box {
+    margin: 16px;
+    border-radius: 36px;
   }
 }
 
@@ -110,13 +102,17 @@ section { position: relative; z-index: 1; }
 /* NAV – Selektor absichtlich auf body > nav beschränkt, damit kein anderes <nav> im Content getroffen wird */
 body > nav {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0; left: 12px; right: 12px;
   z-index: 1000;
   padding: 16px 0;
   background: transparent;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   transition: padding .3s var(--ease);
+}
+
+@media (min-width: 960px) {
+  body > nav { left: 16px; right: 16px; }
 }
 body > nav.scrolled { padding: 10px 0; }
 .nav-inner {

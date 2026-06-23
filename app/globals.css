@@ -18,38 +18,10 @@
 html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
-  background: #01060f;
+  background: var(--bg);
   color: var(--text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-}
-
-/* BOXED LAYOUT – dunkle Sections als gerundete Box */
-#hero,
-#problem,
-#leistungen,
-#ueber,
-.rz-section,
-#tools,
-.cta-wa-section {
-  border-radius: 28px;
-  margin-left: 20px;
-  margin-right: 20px;
-  overflow: hidden;
-}
-
-@media (min-width: 960px) {
-  #hero,
-  #problem,
-  #leistungen,
-  #ueber,
-  .rz-section,
-  #tools,
-  .cta-wa-section {
-    border-radius: 32px;
-    margin-left: 32px;
-    margin-right: 32px;
-  }
 }
 
 /* overflow-x: clip verhindert horizontal scroll OHNE scroll container zu erzeugen.

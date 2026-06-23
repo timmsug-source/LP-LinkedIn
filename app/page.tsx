@@ -24,8 +24,8 @@ export default async function Home() {
       </div>
       <Hypothese />
       <Leistungen />
-      <About data={sections.about} />
       <Rezension data={sections.rezension} />
+      <About data={sections.about} />
       <Prozess />
       <Tools />
       <FAQ />

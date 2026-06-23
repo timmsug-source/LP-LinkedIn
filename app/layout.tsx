@@ -85,14 +85,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}
         />
         <Nav data={navData} />
-        <div className="page-bg">
-          <div className="page-box">
-            <div className="noise-overlay" aria-hidden="true" />
-            <main id="page-wrapper">
-              <AnimationProvider>{children}</AnimationProvider>
-            </main>
-          </div>
-        </div>
+        <div className="noise-overlay" aria-hidden="true" />
+        <main id="page-wrapper">
+          <AnimationProvider>{children}</AnimationProvider>
+        </main>
       </body>
     </html>
   )

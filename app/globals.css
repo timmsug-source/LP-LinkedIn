@@ -135,7 +135,7 @@ body > nav.scrolled { padding: 8px 0; }
   body > nav.scrolled { padding: 14px 0; }
 }
 .nav-inner {
-  max-width: 1140px; margin: 0; padding: 0 28px; width: 100%;
+  max-width: 1140px; margin: 0 auto; padding: 0 28px;
   display: flex; align-items: center; justify-content: space-between;
   background: rgba(5,13,26,.88);
   backdrop-filter: blur(20px);

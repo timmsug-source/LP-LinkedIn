@@ -35,6 +35,17 @@ export default function Hypothese({ data: _ }: { data?: Record<string, unknown> 
             <p>Bei Agenturen landest du beim Junior-Account-Manager. Bei mir redest du direkt mit der Person, die deine Website baut, optimiert und wachsen lässt.</p>
           </div>
         </div>
+
+        <div className="vsl-wrapper fu d2">
+          <iframe
+            src="/vsl.html"
+            className="vsl-frame"
+            allowFullScreen
+            allow="autoplay; fullscreen"
+            loading="lazy"
+            scrolling="no"
+          />
+        </div>
       </div>
     </section>
   )

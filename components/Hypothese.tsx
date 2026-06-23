@@ -1,3 +1,37 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
+
+function LazyIframe({ src, title, className }: { src: string; title: string; className?: string }) {
+  const ref = useRef<HTMLIFrameElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.src = src
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '200px' }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [src])
+
+  return (
+    <iframe
+      ref={ref}
+      allowFullScreen
+      allow="autoplay; fullscreen"
+      title={title}
+      className={className}
+    />
+  )
+}
+
 export default function Hypothese({ data: _ }: { data?: Record<string, unknown> }) {
   return (
     <section id="hypothese">
@@ -37,10 +71,10 @@ export default function Hypothese({ data: _ }: { data?: Record<string, unknown> 
         </div>
 
         <div className="vsl vsl-desktop fu d2">
-          <iframe src="/vsl.html" allowFullScreen allow="autoplay; fullscreen" loading="lazy" title="VSL" />
+          <LazyIframe src="/vsl.html" title="VSL" />
         </div>
         <div className="vsl vsl-mobile fu d2">
-          <iframe src="/vsl-mobile.html" allowFullScreen allow="autoplay; fullscreen" loading="lazy" title="VSL Mobil" />
+          <LazyIframe src="/vsl-mobile.html" title="VSL Mobil" />
         </div>
       </div>
     </section>

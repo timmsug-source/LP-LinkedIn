@@ -1,7 +1,11 @@
 import GraphicFrame from './GraphicFrame'
 
 const WA_NUMBER = '4915229515030'
-const WA_TEXT_CONTACT = encodeURIComponent('Hallo Timm, ich habe deine Leistungen gelesen und würde gerne kurz sprechen.')
+const WA_TEXTS: Record<string, string> = {
+  Webdesign: encodeURIComponent('Hallo Timm, ich interessiere mich für eine neue Website und würde gerne kurz sprechen.'),
+  SEO: encodeURIComponent('Hallo Timm, ich interessiere mich für SEO und würde gerne kurz sprechen.'),
+  GEO: encodeURIComponent('Hallo Timm, ich interessiere mich für GEO und würde gerne kurz sprechen.'),
+}
 
 const pricingCards = [
   {
@@ -208,7 +212,7 @@ export default function Leistungen() {
                     {j < c.sections.length - 1 && <hr className="prs-divider" />}
                   </div>
                 ))}
-                <a href={`https://wa.me/${WA_NUMBER}?text=${WA_TEXT_CONTACT}`} target="_blank" rel="noopener noreferrer" className="prs-cta">
+                <a href={`https://wa.me/${WA_NUMBER}?text=${WA_TEXTS[c.tag] ?? WA_TEXTS['Webdesign']}`} target="_blank" rel="noopener noreferrer" className="prs-cta">
                   Jetzt anfragen →
                 </a>
               </div>

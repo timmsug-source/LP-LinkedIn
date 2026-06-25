@@ -46,7 +46,7 @@ const pricingCards = [
           'Kontinuierliche Content- & On-Page-Optimierung',
           'Keyword-Tracking & Wettbewerbsanalyse',
         ],
-        price: 'Ab 299 €',
+        price: 'Ab 199 €',
         period: '/ Monat',
       },
     ],

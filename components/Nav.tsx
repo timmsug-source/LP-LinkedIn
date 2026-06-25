@@ -17,7 +17,6 @@ const defaults: NavData = {
   logo: 'Timm Schurig',
   links: [
     { label: 'Leistungen', href: '/#leistungen' },
-    { label: 'Projekte', href: '/#projekte' },
     { label: 'Über mich', href: '/#ueber' },
     { label: 'Blog', href: '/blog' },
   ],

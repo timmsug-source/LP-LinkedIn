@@ -38,6 +38,7 @@ body {
 @media (min-width: 768px) {
   .hero-problem-block,
   #leistungen,
+  #preise,
   #ueber,
   #tools,
   .cta-wa-section {
@@ -925,6 +926,97 @@ footer {
 }
 .lst-cta-actions .btn-ghost:hover { color: #fff; }
 
+/* ── PREISE (inside #leistungen) ── */
+.lst-preise {
+  margin-top: 96px;
+  padding-top: 80px;
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+.lst-preise-head { text-align: center; max-width: 720px; margin: 0 auto 56px; }
+.lst-preise-head h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); margin-bottom: 16px; }
+
+.lst-preise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .lst-preise-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+}
+
+.prs-card {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 20px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transition: border-color .25s, box-shadow .25s;
+}
+.prs-card:hover {
+  border-color: rgba(var(--acc-rgb),.3);
+  box-shadow: 0 0 32px rgba(var(--acc-rgb),.07);
+}
+
+.prs-card-header {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+}
+.prs-emoji { font-size: 1.3rem; line-height: 1; }
+.prs-tag {
+  font-size: .72rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--acc);
+}
+.prs-tagline {
+  font-size: .88rem; color: var(--sub); line-height: 1.7; margin-bottom: 24px;
+}
+
+.prs-section { display: flex; flex-direction: column; gap: 12px; }
+.prs-section-label {
+  font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted);
+}
+.prs-features {
+  list-style: none; display: flex; flex-direction: column; gap: 9px;
+}
+.prs-features li {
+  display: flex; align-items: flex-start; gap: 9px;
+  font-size: .85rem; color: rgba(255,255,255,.75); line-height: 1.5;
+}
+.prs-check {
+  width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(var(--acc-rgb),.12); border: 1px solid rgba(var(--acc-rgb),.25);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: .55rem; color: var(--acc); margin-top: 2px;
+}
+.prs-price {
+  display: flex; align-items: baseline; gap: 6px; margin-top: 4px;
+}
+.prs-amount {
+  font-size: 1.4rem; font-weight: 800; letter-spacing: -.03em; color: #fff;
+}
+.prs-period {
+  font-size: .78rem; color: var(--muted); font-weight: 500;
+}
+.prs-divider {
+  border: none; border-top: 1px solid rgba(255,255,255,.07);
+  margin: 20px 0;
+}
+.prs-cta {
+  display: block; margin-top: 24px;
+  background: var(--acc); color: #fff;
+  font-size: .88rem; font-weight: 700; letter-spacing: .02em;
+  text-align: center; text-decoration: none;
+  padding: 14px 20px; border-radius: 12px;
+  transition: opacity .2s, transform .2s;
+}
+.prs-cta:hover { opacity: .9; transform: translateY(-1px); }
+
+@media (max-width: 900px) {
+  .prs-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+}
+
 /* PROJEKTE */
 #projekte {
   padding: 120px 0;
@@ -1152,7 +1244,14 @@ footer {
 }
 
 /* LEGAL PAGES */
-.page { max-width: 760px; margin: 0 auto; padding: 140px 40px 100px; }
+.page {
+  max-width: 760px; margin: 0 auto; padding: 140px 40px 100px;
+  --text: #0f172a;
+  --sub: #475569;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  color: #0f172a;
+}
 .page-label {
   display: inline-flex; align-items: center; gap: 9px;
   font-size: .72rem; font-weight: 700; letter-spacing: .13em;
@@ -1187,9 +1286,12 @@ footer {
   background:
     radial-gradient(ellipse 50% 70% at 80% 30%, rgba(var(--acc-rgb),.06) 0%, transparent 65%),
     radial-gradient(ellipse 60% 50% at 20% 80%, rgba(30,80,180,.12) 0%, transparent 65%);
+  --text: #0f172a;
+  --sub: #475569;
+  color: #0f172a;
 }
-.blog-hero-title { font-size: clamp(2.4rem, 5vw, 3.8rem); margin-bottom: 16px; }
-.blog-hero-sub { font-size: 1rem; color: var(--sub); max-width: 520px; line-height: 1.75; }
+.blog-hero-title { font-size: clamp(2.4rem, 5vw, 3.8rem); margin-bottom: 16px; color: #0f172a; }
+.blog-hero-sub { font-size: 1rem; color: #475569; max-width: 520px; line-height: 1.75; }
 .blog-wrap { padding: 60px 40px 100px; }
 .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .blog-card {
@@ -1222,7 +1324,14 @@ footer {
 .blog-empty { text-align: center; padding: 80px 0; color: var(--sub); font-size: .95rem; }
 
 /* BLOG POST */
-.post-wrap { max-width: 900px; margin: 0 auto; padding: 120px 40px 100px; }
+.post-wrap {
+  max-width: 900px; margin: 0 auto; padding: 120px 40px 100px;
+  --text: #0f172a;
+  --sub: #475569;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  color: #0f172a;
+}
 .post-header { margin-bottom: 40px; }
 .post-breadcrumb { margin-bottom: 20px; }
 .post-breadcrumb a { font-size: .8rem; color: var(--sub); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: color .2s; }
@@ -1237,8 +1346,8 @@ footer {
   background-size: cover; background-position: center;
   margin-bottom: 48px; border: 1px solid rgba(255,255,255,.06);
 }
-.post-content { color: #b8c8d8; line-height: 1.85; font-size: .95rem; }
-.post-content h1,.post-content h2,.post-content h3 { color: var(--text); margin: 40px 0 14px; letter-spacing: -.03em; }
+.post-content { color: #334155; line-height: 1.85; font-size: .95rem; }
+.post-content h1,.post-content h2,.post-content h3 { color: #0f172a; margin: 40px 0 14px; letter-spacing: -.03em; }
 .post-content h2 { font-size: 1.5rem; }
 .post-content h3 { font-size: 1.15rem; }
 .post-content p { margin-bottom: 20px; }
@@ -1246,7 +1355,7 @@ footer {
 .post-content a:hover { text-decoration: underline; }
 .post-content strong { color: var(--text); font-weight: 600; }
 .post-content ul, .post-content ol { padding-left: 22px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
-.post-content li { color: #b8c8d8; }
+.post-content li { color: #334155; }
 .post-content blockquote {
   border-left: 3px solid var(--acc); margin: 28px 0;
   padding: 14px 20px;

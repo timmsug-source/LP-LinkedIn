@@ -4,7 +4,7 @@ import { useState } from 'react'
 const faqs = [
   {
     q: 'Was kostet eine Website bei dir?',
-    a: 'Eine einfache, professionelle Website startet bei 1.200 €. Komplexere Projekte mit SEO-Integration, mehreren Seiten und individuellem Design liegen zwischen 2.000–4.500 €. Ich gebe dir im Erstgespräch ein transparentes Angebot – ohne versteckte Kosten.',
+    a: 'Eine einfache, professionelle Website startet ab 1.499 €. Komplexere Projekte mit SEO-Integration, mehreren Seiten und individuellem Design liegen zwischen 2.000–4.500 €. Ich gebe dir im Erstgespräch ein transparentes Angebot – ohne versteckte Kosten.',
   },
   {
     q: 'Wie lange dauert ein Projekt?',

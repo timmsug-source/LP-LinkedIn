@@ -70,14 +70,6 @@ const leistungen = [
     ],
   },
   {
-    title: 'Linkbuilding & Off-Page',
-    items: [
-      'Linkprofil-Analyse & Toxic Link Disavow',
-      'Outreach-basiertes Linkbuilding in relevanten Nischen',
-      'Digitale PR & Content-basierter Linkaufbau',
-    ],
-  },
-  {
     title: 'Reporting & Monitoring',
     items: [
       'Monatliches Keyword-Ranking-Tracking',

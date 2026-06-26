@@ -1795,7 +1795,7 @@ footer {
 
 /* Hero (dunkel) */
 .sf-hero {
-  padding: 140px 0 36px;
+  padding: 140px 0 56px;
   background:
     radial-gradient(ellipse 70% 50% at 50% 10%, rgba(60,20,120,.30) 0%, transparent 60%),
     radial-gradient(ellipse 50% 40% at 80% 60%, rgba(0,188,125,.10) 0%, transparent 65%),
@@ -1805,6 +1805,7 @@ footer {
 .sf-hero-inner h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin: 16px 0 24px; }
 .sf-hero-sub { font-size: 1.1rem; color: var(--sub); line-height: 1.7; margin-bottom: 16px; }
 .sf-hero-support { font-size: .95rem; color: var(--muted); margin-bottom: 36px; }
+.sf-hero .hero-trust { margin-top: 48px; }
 
 /* Wann (hell) */
 .sf-wann { padding: 80px 0; }

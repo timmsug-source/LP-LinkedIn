@@ -91,25 +91,25 @@ const leistungen = [
 
 const pricing = [
   {
-    tag: 'SEO-Audit',
-    type: 'Einmalig',
-    price: 'Ab 799 €',
-    period: '',
-    desc: 'Technisches Audit, Keyword-Analyse, priorisierter Maßnahmen-Report. Inkl. Handover-Dokumentation.',
+    tag: 'Stundensatz',
+    type: 'Flexibel',
+    price: 'Ab 85 €',
+    period: '/ Stunde',
+    desc: 'Für Ad-hoc-Aufgaben, Beratung oder kleinere Maßnahmen ohne festes Projektvolumen.',
   },
   {
-    tag: 'Projektarbeit',
+    tag: 'Tagessatz',
+    type: 'Tageweise',
+    price: 'Ab 650 €',
+    period: '/ Tag',
+    desc: 'Für intensive Projekttage, Workshops oder Vor-Ort-Einsätze beim Kunden.',
+  },
+  {
+    tag: 'Projektpauschale',
     type: 'Projektbasiert',
     price: 'Auf Anfrage',
     period: '',
-    desc: 'On-Page, Content-SEO, Linkbuilding, GEO-Pilotierung – Scope und Preis nach Briefing.',
-  },
-  {
-    tag: 'Laufende Zusammenarbeit',
-    type: 'Monatlich',
-    price: 'Ab 299 €',
-    period: '/ Monat',
-    desc: 'Monitoring, Reporting, laufende Optimierung. Anpassbar an eure internen Prozesse.',
+    desc: 'Für definierte Deliverables wie ein SEO-Audit, Keyword-Strategie oder GEO-Pilotierung – Scope und Preis nach Briefing.',
   },
 ]
 

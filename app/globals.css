@@ -1795,7 +1795,7 @@ footer {
 
 /* Hero (dunkel) */
 .sf-hero {
-  padding: 140px 0 80px;
+  padding: 140px 0 36px;
   background:
     radial-gradient(ellipse 70% 50% at 50% 10%, rgba(60,20,120,.30) 0%, transparent 60%),
     radial-gradient(ellipse 50% 40% at 80% 60%, rgba(0,188,125,.10) 0%, transparent 65%),

@@ -1760,6 +1760,9 @@ footer {
    SEO FREELANCER UNTERSEITE — /seo-freelancer
    ===================================================== */
 
+/* Page wrapper – dunkler Hintergrund für die gesamte Seite */
+.sf-page { background: var(--bg); min-height: 100vh; }
+
 /* Hero */
 .sf-hero {
   padding: 140px 0 80px;

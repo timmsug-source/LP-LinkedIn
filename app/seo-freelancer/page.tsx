@@ -124,7 +124,7 @@ const pricing = [
 
 export default function SeoFreelancer() {
   return (
-    <>
+    <div className="sf-page">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
@@ -144,7 +144,7 @@ export default function SeoFreelancer() {
               Kein Agentur-Overhead. Kein Praktikant, der deinen Content schreibt. Nur ein Spezialist,
               der weiß, was er tut – und der direkt mit dir arbeitet.
             </p>
-            <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="btn-primary fu d2">
+            <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="btn fu d2">
               Jetzt unverbindlich anfragen →
             </a>
           </div>
@@ -389,7 +389,7 @@ export default function SeoFreelancer() {
               darüber, wo du gerade stehst – und was ich für dich tun kann.
             </p>
             <p className="sf-cta-reply">Ich antworte in der Regel innerhalb von 24 Stunden.</p>
-            <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="btn-primary">
+            <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="btn">
               Jetzt unverbindlich anfragen →
             </a>
             <div className="sf-cta-links">
@@ -401,6 +401,6 @@ export default function SeoFreelancer() {
       </section>
 
       <Footer />
-    </>
+    </div>
   )
 }

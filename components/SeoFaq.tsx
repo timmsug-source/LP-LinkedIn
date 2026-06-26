@@ -3,32 +3,36 @@ import { useState } from 'react'
 
 const faqs = [
   {
-    q: 'Was kostet ein SEO-Freelancer im Vergleich zu einer Agentur?',
-    a: 'Ein SEO-Freelancer ist in den meisten Fällen günstiger als eine Agentur – und du bekommst direkte Kommunikation mit dem Experten, der die Arbeit macht. Keine Weitergabe an Junior-Mitarbeiter, kein Overhead für Account-Manager. Bei mir startet ein SEO-Audit ab 799 €.',
+    q: 'Wie schnell kannst du in ein laufendes Projekt einsteigen?',
+    a: 'In der Regel innerhalb von einer Woche nach Briefing. Ich brauche Zugang zu Google Search Console, Ahrefs (oder eurem Tool-Stack) und eine kurze Einführung in den Status quo. Den Rest erarbeite ich selbst.',
   },
   {
-    q: 'Wie lange dauert es, bis SEO-Maßnahmen Wirkung zeigen?',
-    a: 'Ehrliche Antwort: meistens 3 bis 6 Monate für erste spürbare Ergebnisse, 6 bis 12 Monate für nachhaltige Rankings. SEO ist kein Sprint – aber der Aufbau zahlt sich langfristig aus, weil organischer Traffic keine laufenden Anzeigenkosten hat.',
+    q: 'Arbeitest du mit NDA?',
+    a: 'Ja, standardmäßig. Ich unterzeichne euren NDA oder stelle auf Wunsch eine eigene Vertraulichkeitsvereinbarung bereit.',
   },
   {
-    q: 'Arbeitest du auch mit Agenturen als Weißlabel-Partner?',
-    a: 'Ja. Ich arbeite regelmäßig mit Agenturen zusammen, die SEO-Kapazität zukaufen oder spezifisches SEO-Know-how für ein Projekt brauchen. Diskretion ist selbstverständlich.',
+    q: 'Welche Tools nutzt du – und kannst du mit unserem Stack arbeiten?',
+    a: 'Mein Standard-Stack: Ahrefs, Screaming Frog, Google Search Console, AnswerThePublic. Ich kann mich an euren Stack anpassen – ob Semrush, Sistrix oder andere Tools. Kurze Einführung vorausgesetzt.',
   },
   {
-    q: 'Welche Tools nutzt du?',
-    a: 'Mein Standard-Stack: Ahrefs für Keyword-Recherche und Backlink-Analyse, Screaming Frog für technische Audits, Google Search Console und Analytics für Tracking, AnswerThePublic für Suchintentions-Analyse. Für GEO kommen spezialisierte Tools zur KI-Sichtbarkeit dazu.',
+    q: 'Wie sieht dein Reporting aus – passt du dich unserem Format an?',
+    a: 'Ja. Ich liefere Reports im Format, das ihr braucht – ob euer eigenes Template, ein Looker Studio Dashboard oder ein strukturiertes Dokument. Kein Zwang zum Timm-Schurig-Template.',
+  },
+  {
+    q: 'Kannst du auch GEO übernehmen, wenn wir das intern noch nicht aufgebaut haben?',
+    a: 'Ja. GEO ist aktuell noch wenig standardisiert – ich gehöre zu den wenigen Freelancern in Deutschland, die das aktiv pilotieren. Ich kann euch eine GEO-Strategie entwickeln, die erste Umsetzung übernehmen und euer Team dabei einführen.',
+  },
+  {
+    q: 'Wie viele parallele Projekte betreust du gleichzeitig?',
+    a: 'Ich bin bewusst selektiv, damit ich für jeden Kunden wirklich verfügbar bin. Aktuelle Kapazität und Timelines bespreche ich transparent im Erstgespräch.',
+  },
+  {
+    q: 'Hast du Erfahrung mit Enterprise-SEO oder großen Seiten mit hunderttausenden URLs?',
+    a: 'Ja. Technisches SEO auf großen Seiten – Crawl-Budget-Management, Indexierungssteuerung, JavaScript-Rendering – ist ein Schwerpunkt meiner Arbeit. Referenzen auf Anfrage.',
   },
   {
     q: 'Was unterscheidet dich von anderen SEO-Freelancern?',
-    a: 'Drei Dinge: Erstens, ich kombiniere SEO mit GEO – ich sorge nicht nur für Sichtbarkeit bei Google, sondern auch in KI-generierten Antworten. Zweitens, ich baue Websites selbst (Next.js, TypeScript, Vercel) – ich verstehe technisches SEO nicht nur theoretisch. Drittens, ich erkläre dir, was ich tue – und warum.',
-  },
-  {
-    q: 'Kann ich auch nur ein einmaliges Audit beauftragen, ohne laufende Zusammenarbeit?',
-    a: 'Absolut. Viele Kunden starten mit einem einmaligen Audit und entscheiden danach, ob sie die Umsetzung selbst übernehmen oder mich weiter einbinden. Kein Zwang zur Dauerbindung.',
-  },
-  {
-    q: 'Bist du auch für kleinere Unternehmen oder Selbstständige geeignet?',
-    a: 'Für reine SEO-Leistungen spreche ich primär Unternehmen und Agenturen an. Wenn du Selbstständiger oder Coach bist und eine komplette Website mit integriertem SEO suchst, bist du auf meiner Hauptseite besser aufgehoben.',
+    a: 'Drei Dinge: Ich entwickle Websites selbst (Next.js, TypeScript) – das bedeutet, ich verstehe technisches SEO nicht nur in der Theorie, sondern in der Implementierung. Ich bin einer der wenigen, die GEO aktiv anbieten. Und ich liefere – ohne Overhead, ohne Zwischenstationen.',
   },
 ]
 

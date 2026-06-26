@@ -1760,8 +1760,38 @@ footer {
    SEO FREELANCER UNTERSEITE — /seo-freelancer
    ===================================================== */
 
-/* Page wrapper – dunkler Hintergrund für die gesamte Seite */
-.sf-page { background: var(--bg); min-height: 100vh; }
+/* Boxed dark sections – alle sf Sektionen als Karten auf weißem Hintergrund */
+.sf-hero,
+.sf-problem,
+.sf-about,
+.sf-leistungen,
+.sf-prozess,
+.sf-fuer-wen,
+.sf-lokal,
+.sf-preise,
+.sf-faq,
+.sf-cta {
+  margin: 8px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+@media (min-width: 768px) {
+  .sf-hero,
+  .sf-problem,
+  .sf-about,
+  .sf-leistungen,
+  .sf-prozess,
+  .sf-fuer-wen,
+  .sf-lokal,
+  .sf-preise,
+  .sf-faq,
+  .sf-cta {
+    margin: 24px;
+    border-radius: 28px;
+  }
+}
 
 /* Hero */
 .sf-hero {
@@ -1770,8 +1800,6 @@ footer {
     radial-gradient(ellipse 70% 50% at 50% 10%, rgba(60,20,120,.30) 0%, transparent 60%),
     radial-gradient(ellipse 50% 40% at 80% 60%, rgba(0,188,125,.10) 0%, transparent 65%),
     #0a0415;
-  margin: 24px;
-  border-radius: 28px;
 }
 .sf-hero-inner { max-width: 760px; margin: 0 auto; text-align: center; }
 .sf-hero-inner h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin: 16px 0 24px; }
@@ -1794,9 +1822,6 @@ footer {
 /* About */
 .sf-about {
   padding: 80px 0;
-  background: rgba(255,255,255,.02);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
 }
 .sf-about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
 .sf-about-text h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; margin: 12px 0 20px; }
@@ -1818,7 +1843,7 @@ footer {
 .sf-lst-card ul li { display: flex; align-items: flex-start; gap: 8px; font-size: .85rem; color: var(--muted); line-height: 1.5; }
 
 /* Prozess */
-.sf-prozess { padding: 80px 0; background: rgba(255,255,255,.02); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.sf-prozess { padding: 80px 0; }
 .sf-prozess .sf-section-head h2 { font-size: clamp(1.4rem, 3vw, 2rem); }
 .sf-prozess-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; }
 .sf-prozess-step { text-align: center; padding: 32px 24px; background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 16px; }
@@ -1841,7 +1866,7 @@ footer {
 .sf-fw-quote cite { font-size: .75rem; color: var(--acc); font-weight: 600; letter-spacing: .07em; text-transform: uppercase; }
 
 /* Lokal */
-.sf-lokal { padding: 80px 0; background: rgba(255,255,255,.02); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.sf-lokal { padding: 80px 0; }
 .sf-lokal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
 .sf-lokal-text h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; margin: 12px 0 20px; }
 .sf-lokal-text p { color: var(--sub); line-height: 1.7; margin-bottom: 14px; }
@@ -1854,7 +1879,7 @@ footer {
 .sf-preise-note { text-align: center; color: var(--muted); font-size: .8rem; margin-top: 24px; }
 
 /* FAQ */
-.sf-faq { padding: 80px 0; background: rgba(255,255,255,.02); border-top: 1px solid var(--border); }
+.sf-faq { padding: 80px 0; }
 
 /* CTA */
 .sf-cta { padding: 80px 0; }

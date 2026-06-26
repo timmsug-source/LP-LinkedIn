@@ -124,7 +124,7 @@ const pricing = [
 
 export default function SeoFreelancer() {
   return (
-    <div className="sf-page">
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
@@ -401,6 +401,6 @@ export default function SeoFreelancer() {
       </section>
 
       <Footer />
-    </div>
+    </>
   )
 }

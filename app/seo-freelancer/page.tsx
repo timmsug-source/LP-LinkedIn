@@ -147,6 +147,13 @@ export default function SeoFreelancer() {
               Jetzt anfragen →
             </a>
           </div>
+          <div className="hero-trust fu d2">
+            <div className="hero-trust-stars">★★★★★ <span>5,0 · 15+ Bewertungen</span></div>
+            <div className="hero-trust-sep" />
+            <div className="hero-trust-item"><span className="hero-trust-check">✓</span>12+ Kundenprojekte · NRW</div>
+            <div className="hero-trust-item"><span className="hero-trust-check">✓</span>SEO + GEO aus einer Hand</div>
+            <div className="hero-trust-item"><span className="hero-trust-check">✓</span>NDA möglich · Whitelabel</div>
+          </div>
         </div>
       </section>
 

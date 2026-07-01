@@ -18,6 +18,13 @@ export const metadata: Metadata = {
     title: 'SEO-Freelancer für Unternehmen & Agenturen | Timm Schurig — NRW',
     description:
       'Externer SEO-Freelancer aus Langenfeld (NRW). Technisches SEO, Content-SEO, Linkbuilding & GEO für Inhouse-Teams und Agenturen. NDA möglich.',
+    images: [{ url: `${BASE_URL}/og-image-timm-schurig.png`, width: 1200, height: 630, alt: 'Timm Schurig – SEO-Freelancer NRW' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SEO-Freelancer für Unternehmen & Agenturen | Timm Schurig — NRW',
+    description: 'Externer SEO-Freelancer aus Langenfeld (NRW). Technisches SEO, Content-SEO & GEO für Inhouse-Teams und Agenturen.',
+    images: [`${BASE_URL}/og-image-timm-schurig.png`],
   },
 }
 

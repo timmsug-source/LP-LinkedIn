@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
     'SEO & Webdesign Freelancer aus Langenfeld. Ich baue Websites, die bei Google gefunden werden – und Besucher in Kunden verwandeln. Kein Agentur-Overhead. Direkte Kommunikation.'
   const ogTitle = seoData.og_title || title
   const ogDescription = seoData.og_description || description
-  const ogImage = seoData.og_image || `${BASE_URL}/timm.png`
+  const ogImage = seoData.og_image || `${BASE_URL}/og-image-timm-schurig.png`
 
   return {
     title: {

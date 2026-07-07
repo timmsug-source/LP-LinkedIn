@@ -67,7 +67,8 @@ body {
 /* overflow-x: clip verhindert horizontal scroll OHNE scroll container zu erzeugen.
    Das ist der entscheidende Fix für iOS-Safari position:fixed bugs.
    Fallback auf hidden für sehr alte Browser (iOS < 16). */
-#page-wrapper { overflow-x: hidden; }
+#page-wrapper { overflow-x: hidden; padding-top: 52px; }
+@media (min-width: 768px) { #page-wrapper { padding-top: 60px; } }
 @supports (overflow-x: clip) {
   #page-wrapper { overflow-x: clip; }
 }
@@ -124,18 +125,15 @@ body > nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  background: rgba(5,13,26,.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: #050d1a;
   border-bottom: 1px solid rgba(255,255,255,.08);
   box-shadow: 0 2px 24px rgba(0,0,0,.3);
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  transition: background .3s var(--ease), box-shadow .3s var(--ease);
+  transition: box-shadow .3s var(--ease);
 }
 body > nav.scrolled {
-  background: rgba(5,13,26,.97);
-  box-shadow: 0 4px 32px rgba(0,0,0,.4);
+  box-shadow: 0 4px 32px rgba(0,0,0,.5);
 }
 
 .nav-inner {

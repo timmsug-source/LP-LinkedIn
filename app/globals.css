@@ -1263,6 +1263,9 @@ footer {
   background: linear-gradient(145deg, #0d1e38 0%, #091628 100%);
   border: 1px solid rgba(255,255,255,0.07);
   border-radius: var(--r); padding: 36px; margin-bottom: 16px;
+  --text: #e8edf5;
+  --sub: #8da0b8;
+  --acc: #00bc7d;
 }
 .block h2 { font-size: .75rem; font-weight: 700; letter-spacing: .1em; color: var(--acc); margin-bottom: 16px; text-transform: uppercase; }
 .block p { font-size: .92rem; color: var(--sub); line-height: 1.8; }

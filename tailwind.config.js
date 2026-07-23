@@ -1,13 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './app/beispiel/coaching/**/*.{ts,tsx}',
-    './app/fabian-coaching/**/*.{ts,tsx}',
-    './app/fabian-coaching-hell/**/*.{ts,tsx}',
-    './app/coach-eddy/**/*.{ts,tsx}',
-    './app/naturheilpraxis-brenscheidt/**/*.{ts,tsx}',
-    './app/michael-mbr/**/*.{ts,tsx}',
+    './app/(website)/beispiel/coaching/**/*.{ts,tsx}',
+    './app/(website)/fabian-coaching/**/*.{ts,tsx}',
+    './app/(website)/fabian-coaching-hell/**/*.{ts,tsx}',
+    './app/(website)/coach-eddy/**/*.{ts,tsx}',
+    './app/(website)/naturheilpraxis-brenscheidt/**/*.{ts,tsx}',
+    './app/(website)/michael-mbr/**/*.{ts,tsx}',
     './components/coaching/**/*.{ts,tsx}',
+    './app/(hub)/**/*.{ts,tsx}',
   ],
   theme: {
     extend: {

@@ -18,7 +18,7 @@ import BookingForm from './components/BookingForm';
 
 import { THERAPIES } from './data';
 
-export default function NaturheilpraxisPage() {
+export default function NaturheilpraxisClient({ blocks }: { blocks: Record<string, string> }) {
   const [currentPage, setCurrentPage] = useState<string>('start');
   const [bookingModalOpen, setBookingModalOpen] = useState<boolean>(false);
 
@@ -58,6 +58,7 @@ export default function NaturheilpraxisPage() {
               <div className="space-y-20 pb-16">
 
                 <Hero
+                  blocks={blocks}
                   onScheduleCall={handleOpenBooking}
                   onNavigateToTherapy={handleNavigateToTherapy}
                 />

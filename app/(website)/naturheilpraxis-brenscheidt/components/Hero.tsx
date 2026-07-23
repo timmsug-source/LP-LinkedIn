@@ -2,11 +2,19 @@
 import { ArrowRight, Sparkles, CheckCircle, Heart } from "lucide-react";
 
 interface HeroProps {
+  blocks?: Record<string, string>;
   onScheduleCall: () => void;
   onNavigateToTherapy: (therapyId: string) => void;
 }
 
-export default function Hero({ onScheduleCall, onNavigateToTherapy }: HeroProps) {
+export default function Hero({ blocks = {}, onScheduleCall, onNavigateToTherapy }: HeroProps) {
+  // CMS-Werte mit den bisherigen Texten als Fallback (nichts geht kaputt)
+  const badge = blocks.hero_badge || 'Praxis für ganzheitliche Naturheilkunde';
+  const title = blocks.hero_title || 'Ganzheitliche Hilfe bei Augenerkrankungen, Stress & Wirbelsäule';
+  const text = blocks.hero_text || 'In unserer Naturheilpraxis in Leichlingen / Witzhelden begleiten wir dich achtsam und individuell. Wir kombinieren jahrzehntelange Praxiserfahrung mit spezialisierten Naturheilverfahren wie der Augenakupunktur bei Makuladegeneration (AMD) und sanfter Hypnosetherapie.';
+  const ctaPrimary = blocks.hero_cta_primary || 'Erstgespräch vereinbaren';
+  const ctaSecondary = blocks.hero_cta_secondary || 'Augentherapie kennenlernen';
+
   return (
     <div className="relative overflow-hidden bg-brand-cream py-16 sm:py-24 border-b border-brand-sage-pale" id="home-hero">
       {/* Absolute decorative blurred background blobs to make it Next.js feel */}
@@ -20,15 +28,15 @@ export default function Hero({ onScheduleCall, onNavigateToTherapy }: HeroProps)
           <div className="lg:col-span-7 space-y-6 sm:space-y-8" id="hero-tagline-col">
             <div className="inline-flex items-center space-x-2 bg-brand-sage/10 text-brand-sage px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider font-mono">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Praxis für ganzheitliche Naturheilkunde</span>
+              <span>{badge}</span>
             </div>
 
             <h1 className="font-serif text-3xl sm:text-5xl lg:text-[46px] font-bold tracking-tight text-brand-sage leading-[1.15]">
-              Ganzheitliche Hilfe bei <span className="underline decoration-brand-terracotta decoration-2 underline-offset-4">Augenerkrankungen</span>, Stress &amp; Wirbelsäule
+              {title}
             </h1>
 
             <p className="text-base sm:text-lg text-brand-charcoal/80 leading-relaxed font-sans max-w-2xl">
-              In unserer Naturheilpraxis in Leichlingen / Witzhelden begleiten wir dich achtsam und individuell. Wir kombinieren jahrzehntelange Praxiserfahrung mit spezialisierten Naturheilverfahren wie der <strong>Augenakupunktur bei Makuladegeneration (AMD)</strong> und sanfter <strong>Hypnosetherapie</strong>.
+              {text}
             </p>
 
             {/* Specialties icons */}
@@ -64,7 +72,7 @@ export default function Hero({ onScheduleCall, onNavigateToTherapy }: HeroProps)
                 id="hero-schedule-btn"
               >
                 <div className="flex items-center justify-center space-x-2">
-                  <span>Erstgespräch vereinbaren</span>
+                  <span>{ctaPrimary}</span>
                   <ArrowRight className="w-4 h-4" />
                 </div>
               </button>
@@ -73,7 +81,7 @@ export default function Hero({ onScheduleCall, onNavigateToTherapy }: HeroProps)
                 className="px-6 py-3.5 border-2 border-brand-sage-light text-brand-sage hover:bg-brand-sage-pale/40 font-semibold rounded-xl text-sm transition-all duration-300 cursor-pointer"
                 id="hero-therapy-btn"
               >
-                Augentherapie kennenlernen
+                {ctaSecondary}
               </button>
             </div>
 

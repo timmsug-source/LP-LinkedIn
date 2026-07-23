@@ -255,11 +255,35 @@ function FieldRow({ block, ctrl }: { block: Block; ctrl: CtrlProps }) {
   )
 }
 
-// Visueller Editor (Fett/Kursiv) — speichert HTML. Standard für alle Textfelder.
+// Säubert HTML: nur Fett/Kursiv/Umbruch erlaubt, alle Styles/Farben/Größen raus.
+const ALLOWED_TAGS = new Set(['STRONG', 'B', 'EM', 'I', 'BR'])
+function cleanHtml(html: string): string {
+  if (typeof document === 'undefined' || !html) return html || ''
+  const tmp = document.createElement('div')
+  tmp.innerHTML = html
+  const walk = (node: Node) => {
+    Array.from(node.childNodes).forEach(child => {
+      if (child.nodeType === 1) {
+        const el = child as HTMLElement
+        walk(el)
+        if (ALLOWED_TAGS.has(el.tagName)) {
+          Array.from(el.attributes).forEach(a => el.removeAttribute(a.name))
+        } else {
+          el.replaceWith(...Array.from(el.childNodes))
+        }
+      }
+    })
+  }
+  walk(tmp)
+  return tmp.innerHTML
+}
+
+// Visueller Editor (Fett/Kursiv) — speichert bereinigtes HTML. Standard für alle Textfelder.
 function RichText({ block, ctrl }: { block: Block; ctrl: CtrlProps }) {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    if (ref.current && ref.current.innerHTML !== block.value) ref.current.innerHTML = block.value
+    const clean = cleanHtml(block.value)
+    if (ref.current && ref.current.innerHTML !== clean) ref.current.innerHTML = clean
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   const exec = (cmd: string) => { document.execCommand(cmd, false); ref.current?.focus() }
@@ -273,7 +297,12 @@ function RichText({ block, ctrl }: { block: Block; ctrl: CtrlProps }) {
         ref={ref}
         contentEditable
         suppressContentEditableWarning
-        onBlur={() => ctrl.persist(block.id, ref.current?.innerHTML ?? '')}
+        onPaste={e => {
+          e.preventDefault()
+          const text = e.clipboardData.getData('text/plain')
+          document.execCommand('insertText', false, text)
+        }}
+        onBlur={() => ctrl.persist(block.id, cleanHtml(ref.current?.innerHTML ?? ''))}
         className="px-3 py-2 text-sm text-white leading-relaxed min-h-[40px] focus:outline-none [&_strong]:font-semibold [&_b]:font-semibold [&_em]:italic [&_i]:italic"
       />
     </div>

@@ -5,7 +5,7 @@ import ImageManager from './image-manager'
 import BlogEditor from './blog-editor'
 import CommunicationTab from './communication'
 import Link from 'next/link'
-import { ExternalLink } from 'lucide-react'
+import { ExternalLink, ArrowLeft } from 'lucide-react'
 
 const TABS = ['Inhalte', 'Bilder', 'Blog', 'Kommunikation'] as const
 type Tab = typeof TABS[number]
@@ -54,10 +54,15 @@ export default function CmsShell({
   return (
     <div className="p-8 lg:p-10 max-w-4xl mx-auto">
       {/* Header */}
+      <Link
+        href="/app"
+        className="inline-flex items-center gap-1.5 text-xs font-medium text-[#8da0b8] hover:text-white bg-white/[0.03] hover:bg-white/[0.07] border border-white/[0.08] rounded-lg px-3 py-1.5 transition-colors mb-5"
+      >
+        <ArrowLeft size={13} /> Übersicht
+      </Link>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <Link href="/app" className="text-xs text-[#8da0b8] hover:text-white transition-colors">← Übersicht</Link>
-          <h1 className="text-2xl font-bold text-white tracking-tight mt-1">{site.client_name}</h1>
+          <h1 className="text-2xl font-bold text-white tracking-tight">{site.client_name}</h1>
           {site.domain && (
             <a
               href={`https://${site.domain}`}

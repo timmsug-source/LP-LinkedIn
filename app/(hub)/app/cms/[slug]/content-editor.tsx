@@ -242,47 +242,20 @@ function StatusDot({ s }: { s: 'saving' | 'saved' | undefined }) {
 }
 
 function FieldRow({ block, ctrl }: { block: Block; ctrl: CtrlProps }) {
-  const long = block.type === 'textarea' || block.value.length > 55
   return (
     <div className="flex flex-col gap-1.5">
       <div className="flex items-center gap-2">
         <label className="text-xs font-medium text-zinc-400">{block.label ?? block.key}</label>
         <StatusDot s={ctrl.state[block.id]} />
       </div>
-      {block.type === 'image' ? <ImageField block={block} ctrl={ctrl} />
-        : block.type === 'richtext' || block.type === 'html' ? <RichText block={block} ctrl={ctrl} />
-        : long ? <TextArea block={block} ctrl={ctrl} />
-        : <TextInput block={block} ctrl={ctrl} />}
+      {block.type === 'image'
+        ? <ImageField block={block} ctrl={ctrl} />
+        : <RichText block={block} ctrl={ctrl} />}
     </div>
   )
 }
 
-function TextInput({ block, ctrl }: { block: Block; ctrl: CtrlProps }) {
-  return (
-    <input
-      type="text"
-      value={block.value}
-      onChange={e => ctrl.setValue(block.id, e.target.value)}
-      onBlur={e => ctrl.persist(block.id, e.target.value)}
-      className="w-full bg-[#081426] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-[#00bc7d]/40 transition-colors"
-    />
-  )
-}
-
-function TextArea({ block, ctrl }: { block: Block; ctrl: CtrlProps }) {
-  const rows = Math.min(10, Math.max(3, Math.ceil((block.value.length || 1) / 55)))
-  return (
-    <textarea
-      value={block.value}
-      onChange={e => ctrl.setValue(block.id, e.target.value)}
-      onBlur={e => ctrl.persist(block.id, e.target.value)}
-      rows={rows}
-      className="w-full bg-[#081426] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-white leading-relaxed focus:outline-none focus:border-[#00bc7d]/40 resize-y transition-colors"
-    />
-  )
-}
-
-// Visueller Editor (Fett/Kursiv) — speichert HTML
+// Visueller Editor (Fett/Kursiv) — speichert HTML. Standard für alle Textfelder.
 function RichText({ block, ctrl }: { block: Block; ctrl: CtrlProps }) {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -291,8 +264,8 @@ function RichText({ block, ctrl }: { block: Block; ctrl: CtrlProps }) {
   }, [])
   const exec = (cmd: string) => { document.execCommand(cmd, false); ref.current?.focus() }
   return (
-    <div className="rounded-lg border border-white/[0.07] bg-zinc-900 focus-within:border-zinc-600 transition-colors">
-      <div className="flex items-center gap-0.5 border-b border-white/[0.07] px-1.5 py-1">
+    <div className="rounded-lg border border-white/[0.08] bg-[#081426] focus-within:border-[#00bc7d]/40 transition-colors">
+      <div className="flex items-center gap-0.5 border-b border-white/[0.06] px-1.5 py-1">
         <ToolBtn onClick={() => exec('bold')}><Bold size={13} /></ToolBtn>
         <ToolBtn onClick={() => exec('italic')}><Italic size={13} /></ToolBtn>
       </div>
@@ -301,7 +274,7 @@ function RichText({ block, ctrl }: { block: Block; ctrl: CtrlProps }) {
         contentEditable
         suppressContentEditableWarning
         onBlur={() => ctrl.persist(block.id, ref.current?.innerHTML ?? '')}
-        className="px-3 py-2 text-sm text-zinc-200 leading-relaxed min-h-[72px] focus:outline-none [&_strong]:font-semibold [&_b]:font-semibold"
+        className="px-3 py-2 text-sm text-white leading-relaxed min-h-[40px] focus:outline-none [&_strong]:font-semibold [&_b]:font-semibold [&_em]:italic [&_i]:italic"
       />
     </div>
   )
@@ -414,7 +387,6 @@ function HeadingCard({ parts, ctrl }: { parts: Block[]; ctrl: CtrlProps }) {
 }
 
 function PairCard({ title, body, ctrl }: { title: Block; body: Block; ctrl: CtrlProps }) {
-  const bodyRows = Math.min(8, Math.max(2, Math.ceil((body.value.length || 1) / 55)))
   return (
     <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-4 flex flex-col gap-2">
       <div className="flex items-center gap-2">
@@ -427,13 +399,7 @@ function PairCard({ title, body, ctrl }: { title: Block; body: Block; ctrl: Ctrl
         />
         <StatusDot s={ctrl.state[title.id] ?? ctrl.state[body.id]} />
       </div>
-      <textarea
-        value={body.value}
-        onChange={e => ctrl.setValue(body.id, e.target.value)}
-        onBlur={e => ctrl.persist(body.id, e.target.value)}
-        rows={bodyRows}
-        className="w-full bg-[#081426] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-zinc-200 leading-relaxed focus:outline-none focus:border-[#00bc7d]/40 resize-y"
-      />
+      <RichText block={body} ctrl={ctrl} />
     </div>
   )
 }

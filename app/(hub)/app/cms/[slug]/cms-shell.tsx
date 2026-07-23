@@ -23,6 +23,7 @@ interface Block {
   value: string
   label: string | null
   type: string
+  page: string
   module: string
   subgroup: string | null
   sort_order: number

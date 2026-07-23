@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { createClient } from '@/lib/hub/client'
 import { uploadImage } from '@/lib/hub/storage'
-import { ChevronRight, ArrowLeft, Check, Loader2, Upload, ImageIcon, Bold, Italic, LayoutGrid } from 'lucide-react'
+import { ChevronRight, ArrowLeft, Check, Loader2, Upload, ImageIcon, Bold, Italic, LayoutGrid, FileText } from 'lucide-react'
 
 interface Block {
   id: string
@@ -10,6 +10,7 @@ interface Block {
   value: string
   label: string | null
   type: string
+  page: string
   module: string
   subgroup: string | null
   sort_order: number
@@ -32,7 +33,8 @@ export default function ContentEditor({ siteId, initialBlocks }: { siteId: strin
   const [blocks, setBlocks] = useState(initialBlocks)
   const [state, setState] = useState<SaveState>({})
   const savedRef = useRef<Record<string, string>>(Object.fromEntries(initialBlocks.map(b => [b.id, b.value])))
-  const [active, setActive] = useState<string | null>(null)
+  const [activePage, setActivePage] = useState<string | null>(null)
+  const [activeModule, setActiveModule] = useState<string | null>(null)
 
   const setValue = useCallback((id: string, value: string) => {
     setBlocks(prev => prev.map(b => (b.id === id ? { ...b, value } : b)))
@@ -54,25 +56,66 @@ export default function ContentEditor({ siteId, initialBlocks }: { siteId: strin
     return <p className="text-sm text-zinc-600">Für diese Website sind noch keine editierbaren Felder hinterlegt.</p>
   }
 
-  // Module in Seiten-Reihenfolge (nach kleinstem sort_order)
-  const modules = [...new Set(blocks.map(b => b.module))]
-    .map(m => ({ name: m, min: Math.min(...blocks.filter(b => b.module === m).map(b => b.sort_order)), count: blocks.filter(b => b.module === m).length }))
-    .sort((a, b) => a.min - b.min)
+  const minSort = (list: Block[]) => Math.min(...list.map(b => b.sort_order))
 
-  // ── Kachel-Übersicht ──
-  if (active === null) {
+  // ── Ebene 0: Seite / Unterseite wählen ──
+  if (activePage === null) {
+    const pages = [...new Set(blocks.map(b => b.page))]
+      .map(name => {
+        const inPage = blocks.filter(b => b.page === name)
+        return { name, min: minSort(inPage), fields: inPage.length, modules: new Set(inPage.map(b => b.module)).size }
+      })
+      .sort((a, b) => a.min - b.min)
+
     return (
       <div>
+        <p className="text-sm text-zinc-500 mb-5">Wähle eine Seite, um ihre Inhalte zu bearbeiten.</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {pages.map(p => (
+            <button
+              key={p.name}
+              onClick={() => setActivePage(p.name)}
+              className="group text-left bg-[#081426] border border-white/[0.08] rounded-xl p-4 hover:border-[#00bc7d]/40 transition-colors flex items-center gap-3"
+            >
+              <div className="w-10 h-10 rounded-lg bg-[#00bc7d]/12 flex items-center justify-center text-[#00bc7d] shrink-0">
+                <FileText size={17} />
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="text-sm font-medium text-white">{p.name}</p>
+                <p className="text-xs text-zinc-500 mt-0.5">{p.modules} Bereiche · {p.fields} Felder</p>
+              </div>
+              <ChevronRight size={16} className="text-zinc-600 group-hover:text-[#00bc7d] transition-colors shrink-0" />
+            </button>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  const pageBlocks = blocks.filter(b => b.page === activePage)
+
+  // ── Ebene 1: Bereich / Modul wählen ──
+  if (activeModule === null) {
+    const modules = [...new Set(pageBlocks.map(b => b.module))]
+      .map(name => ({ name, min: minSort(pageBlocks.filter(b => b.module === name)), count: pageBlocks.filter(b => b.module === name).length }))
+      .sort((a, b) => a.min - b.min)
+
+    return (
+      <div>
+        <button onClick={() => setActivePage(null)} className="flex items-center gap-1.5 text-sm text-zinc-500 hover:text-white mb-4 transition-colors">
+          <ArrowLeft size={14} /> Alle Seiten
+        </button>
+        <h3 className="text-base font-semibold text-white mb-1">{activePage}</h3>
         <p className="text-sm text-zinc-500 mb-5">Wähle einen Bereich, um die Inhalte zu bearbeiten.</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {modules.map(m => (
             <button
               key={m.name}
-              onClick={() => setActive(m.name)}
+              onClick={() => setActiveModule(m.name)}
               className="group text-left bg-[#081426] border border-white/[0.08] rounded-xl p-4 hover:border-[#00bc7d]/40 transition-colors"
             >
               <div className="flex items-center justify-between mb-2">
-                <div className="w-8 h-8 rounded-lg bg-[#00bc7d]/12 flex items-center justify-center text-[#00bc7d] transition-colors">
+                <div className="w-8 h-8 rounded-lg bg-[#00bc7d]/12 flex items-center justify-center text-[#00bc7d]">
                   <LayoutGrid size={15} />
                 </div>
                 <ChevronRight size={15} className="text-zinc-600 group-hover:text-zinc-300 transition-colors" />
@@ -86,18 +129,18 @@ export default function ContentEditor({ siteId, initialBlocks }: { siteId: strin
     )
   }
 
-  // ── Modul-Detail ──
-  const fields = blocks.filter(b => b.module === active).sort((a, b) => a.sort_order - b.sort_order)
+  // ── Ebene 2: Modul-Detail ──
+  const fields = pageBlocks.filter(b => b.module === activeModule).sort((a, b) => a.sort_order - b.sort_order)
   const direct = fields.filter(b => !b.subgroup)
   const subgroups = [...new Set(fields.filter(b => b.subgroup).map(b => b.subgroup as string))]
 
   return (
     <div>
-      <button onClick={() => setActive(null)} className="flex items-center gap-1.5 text-sm text-zinc-500 hover:text-white mb-4 transition-colors">
-        <ArrowLeft size={14} /> Alle Bereiche
+      <button onClick={() => setActiveModule(null)} className="flex items-center gap-1.5 text-sm text-zinc-500 hover:text-white mb-4 transition-colors">
+        <ArrowLeft size={14} /> {activePage}
       </button>
       <div className="flex items-center justify-between mb-5">
-        <h3 className="text-base font-semibold text-white">{active}</h3>
+        <h3 className="text-base font-semibold text-white">{activeModule}</h3>
         <span className="text-xs text-zinc-500">Automatisch gespeichert</span>
       </div>
 

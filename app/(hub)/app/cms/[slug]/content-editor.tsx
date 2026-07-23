@@ -303,36 +303,69 @@ function ImageField({ block, ctrl }: { block: Block; ctrl: CtrlProps }) {
   )
 }
 
+// Überschrift als EIN Feld. Schreibt im Hintergrund weiter in die
+// Original-Teilfelder (title_1 / highlight / title_2) → externe Seite bleibt unverändert.
 function HeadingCard({ parts, ctrl }: { parts: Block[]; ctrl: CtrlProps }) {
-  const highlightKey = parts.find(p => p.key.endsWith('_highlight'))?.key
-  const preview = parts.map(p => p.value).filter(Boolean).join(' ')
+  const p1 = parts.find(p => p.key.endsWith('_1'))
+  const hl = parts.find(p => p.key.endsWith('_highlight'))
+  const p2 = parts.find(p => p.key.endsWith('_2'))
+  const hasHighlight = !!hl
+
+  const initial = hasHighlight
+    ? [p1?.value, hl?.value ? `**${hl.value}**` : null, p2?.value].filter(Boolean).join(' ')
+    : [p1?.value, p2?.value].filter(v => v).join('\n')
+
+  const [text, setText] = useState(initial)
+  const [saved, setSaved] = useState(false)
+
+  function save() {
+    if (hasHighlight) {
+      const m = text.match(/^([\s\S]*?)\*\*([\s\S]*?)\*\*([\s\S]*)$/)
+      const t1 = (m ? m[1] : text).trim()
+      const h = m ? m[2].trim() : ''
+      const t2 = m ? m[3].trim() : ''
+      if (p1) { ctrl.setValue(p1.id, t1); ctrl.persist(p1.id, t1) }
+      if (hl) { ctrl.setValue(hl.id, h); ctrl.persist(hl.id, h) }
+      if (p2) { ctrl.setValue(p2.id, t2); ctrl.persist(p2.id, t2) }
+    } else {
+      const idx = text.indexOf('\n')
+      const t1 = (idx === -1 ? text : text.slice(0, idx)).trim()
+      const t2 = idx === -1 ? '' : text.slice(idx + 1).trim()
+      if (p1) { ctrl.setValue(p1.id, t1); ctrl.persist(p1.id, t1) }
+      if (p2) { ctrl.setValue(p2.id, t2); ctrl.persist(p2.id, t2) }
+    }
+    setSaved(true)
+    setTimeout(() => setSaved(false), 1600)
+  }
+
+  const preview = () => {
+    if (hasHighlight) {
+      const m = text.match(/^([\s\S]*?)\*\*([\s\S]*?)\*\*([\s\S]*)$/)
+      if (m) return <>{m[1]}<span className="text-amber-400">{m[2]}</span>{m[3]}</>
+      return text
+    }
+    return text.split('\n').map((l, i) => <span key={i}>{l}{i < text.split('\n').length - 1 && <br />}</span>)
+  }
+
   return (
     <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-4">
-      <span className="text-xs font-semibold text-zinc-300">Überschrift</span>
-      {preview && (
-        <p className="text-sm text-white font-medium my-3 leading-snug">
-          {parts.map(p => <span key={p.id} className={p.key === highlightKey ? 'text-amber-400' : ''}>{p.value}{' '}</span>)}
-        </p>
-      )}
-      <div className="flex flex-col gap-2">
-        {parts.map(p => (
-          <div key={p.id} className="flex items-center gap-2">
-            <span className="text-[11px] text-zinc-500 w-24 shrink-0">
-              {p.key.endsWith('_highlight') ? 'Hervorgehoben' : p.key.endsWith('_1') ? 'Zeile 1' : 'Zeile 2'}
-            </span>
-            <input
-              type="text"
-              value={p.value}
-              onChange={e => ctrl.setValue(p.id, e.target.value)}
-              onBlur={e => ctrl.persist(p.id, e.target.value)}
-              className={`flex-1 bg-zinc-900 border rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none transition-colors ${
-                p.key === highlightKey ? 'border-amber-500/30 focus:border-amber-500/60' : 'border-white/[0.07] focus:border-[#00bc7d]/40'
-              }`}
-            />
-            <StatusDot s={ctrl.state[p.id]} />
-          </div>
-        ))}
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-xs font-semibold text-zinc-300">Überschrift</span>
+        {saved && <span className="text-xs text-emerald-400">Gespeichert ✓</span>}
       </div>
+      {text.trim() && <p className="text-base text-white font-semibold mb-3 leading-snug">{preview()}</p>}
+      <textarea
+        value={text}
+        onChange={e => setText(e.target.value)}
+        onBlur={save}
+        rows={2}
+        className="w-full bg-[#081426] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-white leading-relaxed focus:outline-none focus:border-[#00bc7d]/40 resize-y"
+      />
+      <p className="text-[11px] text-zinc-500 mt-1.5">
+        {hasHighlight
+          ? 'Ganze Überschrift in einem Feld. Text zwischen **…** wird gold hervorgehoben.'
+          : 'Ganze Überschrift in einem Feld. Zeilenumbruch (Enter) = neue Zeile.'}
+      </p>
     </div>
   )
 }

@@ -8,7 +8,6 @@ module.exports = {
     './app/(website)/naturheilpraxis-brenscheidt/**/*.{ts,tsx}',
     './app/(website)/michael-mbr/**/*.{ts,tsx}',
     './components/coaching/**/*.{ts,tsx}',
-    './app/(hub)/**/*.{ts,tsx}',
   ],
   theme: {
     extend: {

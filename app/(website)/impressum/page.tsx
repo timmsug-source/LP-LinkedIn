@@ -5,7 +5,8 @@ export const metadata: Metadata = {
   title: 'Impressum',
   description: 'Impressum von Timm Schurig – SEO & Webdesign Freelancer aus Langenfeld (Rheinland). Angaben gemäß § 5 TMG.',
   alternates: { canonical: 'https://www.timmschurig.com/impressum' },
-  robots: { index: false, follow: false },
+  // Bewusst indexierbar: Google nutzt die Impressumsdaten (Name, Adresse)
+  // als Bestätigung der lokalen Identität. Erbt index/follow vom Root-Layout.
 }
 
 export default function Impressum() {

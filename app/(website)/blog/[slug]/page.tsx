@@ -6,6 +6,8 @@ import { marked } from 'marked'
 marked.use({ gfm: true, breaks: true })
 import { getPost, getPosts } from '@/lib/supabase'
 import { BASE_URL, articleSchema, breadcrumbSchema } from '@/lib/jsonld'
+import { buildToc } from '@/lib/toc'
+import PostToc from './toc'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -119,7 +121,14 @@ export default async function BlogPost({ params }: Props) {
     return source.slice(0, insertAt) + ctaHtml + source.slice(insertAt)
   }
 
-  const html = buildHtmlWithCta(rawHtml)
+  // Tabellen in einen scrollbaren Rahmen packen, damit sie auf dem Handy
+  // nicht das Layout sprengen.
+  const withTables = buildHtmlWithCta(rawHtml)
+    .replaceAll('<table', '<div class="table-scroll"><table')
+    .replaceAll('</table>', '</table></div>')
+
+  // IDs an die Überschriften hängen und daraus das Inhaltsverzeichnis bauen.
+  const { html, toc } = buildToc(withTables)
 
   const ldArticle = articleSchema(post)
   const ldBreadcrumb = breadcrumbSchema([
@@ -140,70 +149,82 @@ export default async function BlogPost({ params }: Props) {
       />
 
       <article className="post-wrap" itemScope itemType="https://schema.org/Article">
-        <div className="post-header">
-          <div role="navigation" aria-label="Breadcrumb" className="post-breadcrumb">
-            <Link href="/blog">← Alle Beiträge</Link>
-          </div>
-          <time className="blog-date" dateTime={post.published_at} itemProp="datePublished">
-            {formatDate(post.published_at)}
-          </time>
-          <h1 className="post-title" itemProp="headline">{post.title}</h1>
-          {post.excerpt && <p className="post-excerpt" itemProp="description">{post.excerpt}</p>}
-          <div className="post-author" itemProp="author" itemScope itemType="https://schema.org/Person">
-            <span itemProp="name">Timm Schurig</span>
-            <span className="post-author-role">SEO & Webdesign Freelancer</span>
-          </div>
-        </div>
-
-        {post.cover_image && (
-          <div className="post-cover" style={{ backgroundImage: `url(${post.cover_image})` }} role="img" aria-label={post.title} />
-        )}
-
-        <div
-          className="post-content"
-          itemProp="articleBody"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-
-        {/* Weitere Ratgeber */}
-        {related.length > 0 && (
-          <section className="related-section related-section--inline" aria-label="Weitere Artikel">
-            <div className="related-head">
-              <h2 className="label">Weitere Ratgeber</h2>
+        {/* Kopf, Titelbild, Verzeichnis und Text liegen bewusst alle direkt im
+            Grid: am Desktop landen Kopf/Bild/Text in der rechten Spalte und das
+            Verzeichnis daneben, ohne Grid steht es in genau der Reihenfolge
+            untereinander, in der man es auf dem Handy lesen will. */}
+        <div className="post-grid">
+          <div className="post-header">
+            <div role="navigation" aria-label="Breadcrumb" className="post-breadcrumb">
+              <Link href="/blog">← Alle Beiträge</Link>
             </div>
-            <div className="related-grid">
-              {related.map((p) => (
-                <Link key={p.id} href={`/blog/${p.slug}`} className="blog-card" aria-label={p.title}>
-                  {p.cover_image && (
-                    <div className="blog-card-img">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={p.cover_image} alt={p.title} width={640} height={360} loading="lazy" />
-                    </div>
-                  )}
-                  <div className="blog-card-body">
-                    <time className="blog-date" dateTime={p.published_at}>{formatDate(p.published_at)}</time>
-                    <h2 className="blog-card-title">{p.title}</h2>
-                    <p className="blog-card-excerpt">{p.excerpt}</p>
-                    <span className="blog-card-cta">
-                      Weiterlesen
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </span>
-                  </div>
-                </Link>
-              ))}
+            <time className="blog-date" dateTime={post.published_at} itemProp="datePublished">
+              {formatDate(post.published_at)}
+            </time>
+            <h1 className="post-title" itemProp="headline">{post.title}</h1>
+            {post.excerpt && <p className="post-excerpt" itemProp="description">{post.excerpt}</p>}
+            <div className="post-author" itemProp="author" itemScope itemType="https://schema.org/Person">
+              <span itemProp="name">Timm Schurig</span>
+              <span className="post-author-role">SEO & Webdesign Freelancer</span>
             </div>
-          </section>
-        )}
+          </div>
 
-        <div className="post-footer">
-          <Link href="/blog" className="btn-ghost">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-            Alle Beiträge
-          </Link>
-          <a href="/#kontakt" className="btn">
-            Projekt anfragen
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+          {post.cover_image && (
+            <div className="post-cover" style={{ backgroundImage: `url(${post.cover_image})` }} role="img" aria-label={post.title} />
+          )}
+
+          <aside className="post-aside">
+            <PostToc items={toc} />
+          </aside>
+
+          <div className="post-main">
+            <div
+              className="post-content"
+              itemProp="articleBody"
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
+
+            {/* Weitere Ratgeber */}
+            {related.length > 0 && (
+              <section className="related-section related-section--inline" aria-label="Weitere Artikel">
+                <div className="related-head">
+                  <h2 className="label">Weitere Ratgeber</h2>
+                </div>
+                <div className="related-grid">
+                  {related.map((p) => (
+                    <Link key={p.id} href={`/blog/${p.slug}`} className="blog-card" aria-label={p.title}>
+                      {p.cover_image && (
+                        <div className="blog-card-img">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={p.cover_image} alt={p.title} width={640} height={360} loading="lazy" />
+                        </div>
+                      )}
+                      <div className="blog-card-body">
+                        <time className="blog-date" dateTime={p.published_at}>{formatDate(p.published_at)}</time>
+                        <h2 className="blog-card-title">{p.title}</h2>
+                        <p className="blog-card-excerpt">{p.excerpt}</p>
+                        <span className="blog-card-cta">
+                          Weiterlesen
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            <div className="post-footer">
+              <Link href="/blog" className="btn-ghost">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                Alle Beiträge
+              </Link>
+              <a href="/#kontakt" className="btn">
+                Projekt anfragen
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
       </article>
 

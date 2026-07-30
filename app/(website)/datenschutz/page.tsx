@@ -5,7 +5,9 @@ export const metadata: Metadata = {
   title: 'Datenschutzerklärung',
   description: 'Datenschutzerklärung von Timm Schurig – Informationen zur Erhebung, Verarbeitung und Nutzung personenbezogener Daten auf timmschurig.com.',
   alternates: { canonical: 'https://www.timmschurig.com/datenschutz' },
-  robots: { index: false, follow: false },
+  // Rein juristischer Text, kein Suchwert – daher noindex und nicht in der
+  // Sitemap. Links darf Google trotzdem folgen.
+  robots: { index: false, follow: true },
 }
 
 export default function Datenschutz() {

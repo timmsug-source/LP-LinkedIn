@@ -24,6 +24,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
       priority: 0.8,
     },
+    {
+      url: 'https://www.timmschurig.com/geo-agentur-langenfeld',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: 'https://www.timmschurig.com/seo-freelancer',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
     ...blogEntries,
     {
       url: 'https://www.timmschurig.com/impressum',
@@ -31,12 +43,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'yearly',
       priority: 0.2,
     },
-    {
-      url: 'https://www.timmschurig.com/datenschutz',
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.2,
-    },
-    // /bewerbung ist noindex und bleibt bewusst aus der Sitemap
+    // /datenschutz und /bewerbung sind noindex und bleiben bewusst aus der Sitemap
   ]
 }

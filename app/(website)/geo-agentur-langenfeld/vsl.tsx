@@ -4,25 +4,43 @@ import { useState } from 'react'
 
 /**
  * VSL-Bereich.
- * Solange kein Video hinterlegt ist, wird ein Poster mit Play-Button gezeigt.
- * Sobald das Video fertig ist: VIDEO_SRC setzen (z.B. '/vsl-geo.mp4') –
- * dann spielt es direkt inline ab.
+ *
+ * Der VSL ist aktuell keine Videodatei, sondern eine animierte HTML-Seite
+ * (neun Szenen, ca. 67 s, Endlosschleife, ohne Ton) – sie liegt als
+ * gebündelte Einzeldatei unter /geo-vsl.html.
+ *
+ * Deshalb wird sie in einem iframe eingebettet, und zwar erst nach dem Klick:
+ * Das Bündel bringt React und den Animations-Renderer mit und wiegt gut 1 MB.
+ * Vor dem Klick lädt davon nichts – der Hero bleibt so leicht wie vorher.
+ *
+ * Sobald eine echte Videodatei existiert, VIDEO_SRC setzen (z. B.
+ * '/vsl-geo.mp4'); dann läuft wieder der native Player statt des iframes.
  */
-const VIDEO_SRC = '' // ← hier später den Pfad zum fertigen VSL eintragen
+const VIDEO_SRC = ''
+const EMBED_SRC = '/geo-vsl.html'
+const LAUFZEIT = '1:07 min'
 
 export default function GeoVsl() {
   const [playing, setPlaying] = useState(false)
+  const hasMedia = Boolean(VIDEO_SRC || EMBED_SRC)
 
   return (
     <div className="geo-vsl fu d1">
       <div className="geo-vsl-frame">
         {playing && VIDEO_SRC ? (
           <video className="geo-vsl-video" src={VIDEO_SRC} controls autoPlay playsInline />
+        ) : playing && EMBED_SRC ? (
+          <iframe
+            className="geo-vsl-embed"
+            src={EMBED_SRC}
+            title="GEO erklärt – warum KI-Suchen gerade alles verändern"
+            loading="lazy"
+          />
         ) : (
           <button
             type="button"
             className="geo-vsl-poster"
-            onClick={() => VIDEO_SRC && setPlaying(true)}
+            onClick={() => hasMedia && setPlaying(true)}
             aria-label="Video abspielen"
           >
             {/* Hintergrund-Grid + Glow */}
@@ -51,8 +69,8 @@ export default function GeoVsl() {
               </svg>
             </span>
             <span className="geo-vsl-caption">
-              {VIDEO_SRC ? 'Video abspielen' : 'Video folgt in Kürze'}
-              <em>Warum KI-Suchen gerade alles verändern · 3:40 min</em>
+              {hasMedia ? 'Video abspielen' : 'Video folgt in Kürze'}
+              <em>Warum KI-Suchen gerade alles verändern · {LAUFZEIT}</em>
             </span>
           </button>
         )}

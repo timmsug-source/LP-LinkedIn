@@ -55,14 +55,14 @@ const cards: Card[] = [
   {
     icon: I.base,
     tag: 'Grundlage',
-    title: 'SEO ist das Fundament',
+    title: 'SEO → Sichtbarkeit',
     front:
       'Stell dir vor, du baust ein Haus. Bevor du loslegst, brauchst du einen Plan – und dann ein Fundament. Genau das ist SEO für GEO.',
     backTitle: 'Warum ohne SEO nichts geht',
     back: [
       'KI-Systeme greifen zu großen Teilen auf denselben Index zu wie klassische Suchmaschinen. Ist deine Seite dort nicht sauber erfasst, existiert sie für die KI nicht.',
-      'Konkret heißt das: Crawlbarkeit, Indexierung, saubere Statuscodes, keine Rendering-Blocker, vernünftige Ladezeiten (Core Web Vitals).',
-      'Erst wenn diese Basis steht, lohnt sich alles Weitere. Sonst optimierst du Inhalte, die nie jemand liest — Mensch wie Maschine.',
+      'Konkret: Crawlbarkeit, Indexierung, saubere Statuscodes, keine Rendering-Blocker, vernünftige Ladezeiten.',
+      'Erst wenn diese Basis steht, lohnt sich alles Weitere — sonst optimierst du Inhalte, die nie jemand liest.',
     ],
   },
   {
@@ -73,64 +73,81 @@ const cards: Card[] = [
       'KIs beantworten Fragen. Wenn deine Seite Fragen schon sauber beantwortet, ist sie die bequemste Quelle, die es gibt.',
     backTitle: 'Frage-Antwort als Zitier-Format',
     back: [
-      'Sprachmodelle suchen nach Textstellen, die eine Frage direkt und vollständig beantworten — idealerweise in zwei bis vier Sätzen ohne Vorgeplänkel.',
-      'Wir bauen echte FAQ-Bereiche aus den Fragen, die deine Kunden wirklich stellen, und formulieren die Antworten eigenständig verständlich: ohne „wie oben beschrieben", ohne Kontext, der fehlt.',
-      'Technisch wird das mit FAQPage-Markup ausgezeichnet, damit Maschinen Frage und Antwort eindeutig zuordnen können.',
+      'Sprachmodelle suchen Textstellen, die eine Frage direkt und vollständig beantworten — in zwei bis vier Sätzen, ohne Vorgeplänkel.',
+      'Wir bauen echte FAQ-Bereiche aus den Fragen, die deine Kunden wirklich stellen, und formulieren jede Antwort eigenständig verständlich.',
+      'FAQPage-Markup ordnet Frage und Antwort danach eindeutig zu.',
     ],
   },
   {
     icon: I.struct,
     tag: 'Technik',
-    title: 'Saubere Struktur → Zitierungen',
+    title: 'Struktur → Lesbarkeit',
     front:
       'Eine KI liest deine Seite nicht wie ein Mensch. Sie zerlegt sie. Je klarer die Struktur, desto sauberer das Ergebnis.',
     backTitle: 'Struktur, die Maschinen verstehen',
     back: [
-      'Eine logische Überschriften-Hierarchie (eine H1, darunter sinnvolle H2/H3) sagt der Maschine, welcher Absatz zu welchem Thema gehört.',
+      'Eine logische Überschriften-Hierarchie sagt der Maschine, welcher Absatz zu welchem Thema gehört.',
       'Kurze Absätze, sprechende Zwischenüberschriften und Listen erzeugen abgrenzbare Sinnabschnitte — genau die Häppchen, die ein Modell zitieren kann.',
-      'Dazu kommt die interne Verlinkung: Sie zeigt, welche Seite bei euch das Hauptthema besitzt und welche nur ergänzt. Ohne das rät die KI.',
+      'Die interne Verlinkung zeigt, welche Seite das Hauptthema besitzt und welche nur ergänzt. Ohne das rät die KI.',
     ],
   },
   {
     icon: I.expert,
     tag: 'Vertrauen',
-    title: 'Expertise → Zitierungen',
+    title: 'Expertise → Glaubwürdigkeit',
     front:
       'Keine KI zitiert gern eine anonyme Seite. Sie sucht Quellen, bei denen erkennbar ist, wer da spricht — und warum das jemand wissen sollte.',
     backTitle: 'E-E-A-T als Zitier-Kriterium',
     back: [
-      'Erfahrung, Expertise, Autorität, Vertrauenswürdigkeit: Autorenprofile, Qualifikationen, echte Fallbeispiele und ein vollständiges Impressum sind keine Deko, sondern Signale.',
-      'Inhalte, die eigene Zahlen, Beispiele oder Erfahrungswerte enthalten, werden deutlich häufiger als Quelle herangezogen als generische Texte, die überall stehen könnten.',
-      'Wir arbeiten heraus, was du wirklich besser weißt als andere — und machen genau das sichtbar und belegbar.',
+      'Autorenprofile, Qualifikationen, echte Fallbeispiele und ein vollständiges Impressum sind keine Deko, sondern Signale.',
+      'Inhalte mit eigenen Zahlen, Beispielen und Erfahrungswerten werden deutlich häufiger zitiert als generische Texte.',
+      'Wir arbeiten heraus, was du wirklich besser weißt als andere — und machen genau das belegbar.',
     ],
   },
   {
     icon: I.schema,
     tag: 'Daten',
-    title: 'Strukturierte Daten',
+    title: 'Schema → Eindeutigkeit',
     front:
       'Schema-Markup ist die Übersetzung deiner Seite in Maschinensprache. Du sagst der KI direkt, worum es geht — statt zu hoffen, dass sie richtig rät.',
     backTitle: 'Was wir konkret auszeichnen',
     back: [
-      'Organization, LocalBusiness, Person, Service, FAQPage, Article, Breadcrumb — je nach Seitentyp. Damit sind Öffnungszeiten, Standort, Leistungen und Zuständigkeiten eindeutig.',
-      'Wichtig ist Konsistenz: Was im Markup steht, muss auch sichtbar auf der Seite stehen. Widersprüche kosten Vertrauen — bei Google wie bei Sprachmodellen.',
-      'Der Effekt: Deine Daten werden nicht interpretiert, sondern gelesen. Das erhöht die Chance deutlich, bei lokalen Anfragen als konkreter Anbieter genannt zu werden.',
+      'Organization, LocalBusiness, Person, Service, FAQPage, Article — je nach Seitentyp. Standort, Leistungen und Zuständigkeiten werden eindeutig.',
+      'Wichtig ist Konsistenz: Was im Markup steht, muss sichtbar auf der Seite stehen. Widersprüche kosten Vertrauen.',
+      'Der Effekt: Deine Daten werden gelesen statt interpretiert.',
     ],
   },
   {
     icon: I.mentions,
     tag: 'Reichweite',
-    title: 'Erwähnungen außerhalb deiner Seite',
+    title: 'Erwähnungen → Fakten',
     front:
       'KIs prüfen gegen. Was nur auf deiner eigenen Website steht, ist eine Behauptung. Was an mehreren Stellen auftaucht, wird zum Fakt.',
     backTitle: 'Warum externe Quellen zählen',
     back: [
-      'Branchenverzeichnisse, Bewertungsportale, Fachbeiträge, Presse, Google Business Profile: Überall dort sollten Name, Adresse und Leistungsbeschreibung identisch sein.',
-      'Sprachmodelle gewichten Informationen höher, die sie in mehreren unabhängigen Quellen bestätigt finden. Widersprüchliche Angaben führen dazu, dass du im Zweifel gar nicht genannt wirst.',
-      'Wir bauen diese Konsistenz systematisch auf — kein Linkkauf, sondern saubere, überprüfbare Präsenz an den richtigen Stellen.',
+      'Branchenverzeichnisse, Bewertungsportale, Fachbeiträge, Google Business Profile: Überall sollten Name, Adresse und Leistung identisch sein.',
+      'Modelle gewichten höher, was mehrere unabhängige Quellen bestätigen. Widersprüche führen dazu, dass du gar nicht genannt wirst.',
+      'Wir bauen diese Konsistenz systematisch auf — kein Linkkauf, sondern überprüfbare Präsenz.',
     ],
   },
 ]
+
+/**
+ * Überschriften folgen alle dem Muster "Ursache → Wirkung". Der Pfeil bekommt
+ * eine eigene Klasse, weil sein Glyph auf der mathematischen Achse sitzt und
+ * damit optisch unter der Mitte der Versalien landet (siehe .arrow-mid).
+ */
+function FlipTitle({ text }: { text: string }) {
+  const [before, after] = text.split('→')
+  if (after === undefined) return <>{text}</>
+  return (
+    <>
+      {before}
+      <span className="arrow-mid">→</span>
+      {after}
+    </>
+  )
+}
 
 export default function GeoFlipCards() {
   const [open, setOpen] = useState<number | null>(null)
@@ -151,7 +168,7 @@ export default function GeoFlipCards() {
               <span className="geo-flip-face geo-flip-front">
                 <span className="geo-flip-icon">{c.icon}</span>
                 <span className="geo-flip-tag">{c.tag}</span>
-                <span className="geo-flip-title">{c.title}</span>
+                <span className="geo-flip-title"><FlipTitle text={c.title} /></span>
                 <span className="geo-flip-text">{c.front}</span>
                 <span className="geo-flip-hint">
                   Technischer Hintergrund

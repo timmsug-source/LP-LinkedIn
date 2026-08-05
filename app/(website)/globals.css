@@ -26,6 +26,7 @@ body {
 
 /* BOXED DARK SECTIONS – dunkle Sektionen als Karten auf weißem Hintergrund */
 .hero-problem-block,
+.blog-hero,
 #leistungen,
 #ueber,
 #tools,
@@ -37,6 +38,7 @@ body {
 
 @media (min-width: 768px) {
   .hero-problem-block,
+  .blog-hero,
   #leistungen,
   #preise,
   #ueber,
@@ -53,7 +55,6 @@ body {
     radial-gradient(ellipse 70% 40% at 50% 15%, rgba(60,20,120,.28) 0%, transparent 60%),
     radial-gradient(ellipse 60% 35% at 50% 75%, rgba(40,15,100,.2) 0%, transparent 55%),
     #0a0415;
-  margin-top: 24px;
 }
 
 #hero {
@@ -67,8 +68,16 @@ body {
 /* overflow-x: clip verhindert horizontal scroll OHNE scroll container zu erzeugen.
    Das ist der entscheidende Fix für iOS-Safari position:fixed bugs.
    Fallback auf hidden für sehr alte Browser (iOS < 16). */
-#page-wrapper { overflow-x: hidden; padding-top: 52px; }
-@media (min-width: 768px) { #page-wrapper { padding-top: 60px; } }
+/* --nav-h muss der tatsächlichen Höhe der fixierten Navigation entsprechen
+   (nav-inner: 14px Polsterung oben und unten plus Zeilenhöhe des Logos).
+   Vorher standen hier 52px/60px – also 11px zu wenig. Bei vollflächigen Heros
+   fiel das nicht auf, weil deren Innenabstand groß genug ist; sobald die erste
+   Sektion aber eine abgerundete Karte ist (GEO-Seite), schob sie sich sichtbar
+   unter die Leiste. Wird die Navigation umgebaut, muss dieser Wert mit. */
+:root { --nav-h: 63px; }
+@media (min-width: 768px) { :root { --nav-h: 71px; } }
+
+#page-wrapper { overflow-x: hidden; padding-top: var(--nav-h); }
 @supports (overflow-x: clip) {
   #page-wrapper { overflow-x: clip; }
 }
@@ -440,6 +449,172 @@ body > nav.scrolled .nav-inner {
 .hyp-icon svg { color: var(--acc); }
 .hyp-card h3 { font-size: 1rem; font-weight: 700; color: #0f172a; letter-spacing: -.02em; margin-bottom: 10px; }
 .hyp-card p { font-size: .86rem; color: #64748b; line-height: 1.75; }
+
+/* ── MINI-CASE (unter der Hypothese) ─────────────────
+   Liegt in der hellen Hypothese-Sektion und übernimmt deren Kartenstil.
+   Bewusst eine breite Karte statt drei kleiner – der Fall soll als ein
+   zusammenhängender Beleg gelesen werden. Lila (#5b21b6) ist die Sektionsfarbe,
+   Grün bleibt den Ergebnissen vorbehalten. */
+.case-card {
+  margin-top: 56px;
+  background: #fff; border: 1px solid #e2e8f0; border-radius: 24px;
+  padding: 38px 36px 32px;
+  box-shadow: 0 4px 22px rgba(15,23,42,.05);
+}
+.case-eyebrow { display: flex; align-items: center; gap: 11px; margin-bottom: 20px; }
+.case-eyebrow-icon {
+  display: grid; place-items: center; width: 34px; height: 34px;
+  border-radius: 11px; background: rgba(91,33,182,.09); color: #5b21b6;
+}
+.case-eyebrow-icon svg { width: 17px; height: 17px; }
+#hypothese .case-eyebrow .label { margin: 0; }
+
+.case-head { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+.case-head h3 { font-size: clamp(1.2rem, 2.4vw, 1.55rem); font-weight: 800; color: #0f172a; letter-spacing: -.035em; }
+.case-zeitraum {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: .76rem; font-weight: 700;
+  color: #5b21b6; background: rgba(91,33,182,.08);
+  border-radius: 999px; padding: 7px 14px;
+}
+.case-zeitraum svg { width: 14px; height: 14px; }
+.case-leistung { margin-top: 10px; font-size: .93rem; color: #64748b; line-height: 1.7; }
+
+.case-main {
+  display: grid; grid-template-columns: 1.55fr 1fr; gap: 34px; align-items: start;
+  margin-top: 26px; padding-top: 26px; border-top: 1px solid #e9eef5;
+}
+.case-main--full { grid-template-columns: 1fr; }
+
+.case-steps {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+}
+/* Senkrechte Trennlinie plus Chevron zwischen den Phasen: zeigt die Abfolge
+   Ausgangslage → Maßnahme → Ergebnis, ohne ein weiteres Wort zu kosten. */
+.case-step { position: relative; }
+.case-step + .case-step { padding-left: 28px; border-left: 1px solid #eef2f6; }
+.case-step + .case-step::before {
+  content: ''; position: absolute; left: -5px; top: 16px;
+  width: 9px; height: 9px; border-top: 1.6px solid #cbd5e1; border-right: 1.6px solid #cbd5e1;
+  transform: rotate(45deg); background: #fff;
+}
+.case-step-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.case-step-num {
+  display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(91,33,182,.08); color: #5b21b6;
+  font-size: .72rem; font-weight: 800; letter-spacing: .04em;
+}
+.case-step-icon { color: #5b21b6; display: grid; place-items: center; }
+.case-step-icon svg { width: 22px; height: 22px; }
+.case-phase {
+  display: block; font-size: .7rem; font-weight: 800; letter-spacing: .13em;
+  text-transform: uppercase; color: #5b21b6; margin-bottom: 10px;
+}
+.case-step p { font-size: .86rem; line-height: 1.75; color: #64748b; }
+
+/* Geräte-Spalte: Laptop mit überlappendem Handy, beide in CSS gebaut. Der
+   Screenshot liegt nur in den Bildschirmflächen – dadurch braucht es kein
+   vorgerendertes Mockup-Bild, das bei jedem Kundenwechsel neu entstehen müsste. */
+.case-visual { margin: 0; }
+.case-devices {
+  position: relative; aspect-ratio: 4/3;
+  border-radius: 16px; background: #f4f6fb; border: 1px solid #e9eef5;
+  padding: 22px 20px 30px;
+}
+.case-laptop {
+  position: relative; width: 100%; height: 100%;
+  border: 3px solid #1e293b; border-radius: 10px; background: #1e293b;
+}
+.case-screen { position: relative; width: 100%; height: 100%; border-radius: 6px; overflow: hidden; background: #0f172a; }
+/* Standfuß: die schmale Leiste unter dem Gehäuse macht aus dem Rechteck einen
+   erkennbaren Laptop, ohne ein zweites Element mit Perspektive zu brauchen. */
+.case-laptop-fuss {
+  position: absolute; left: 50%; bottom: -11px; transform: translateX(-50%);
+  width: 128%; max-width: none; height: 8px;
+  background: #cbd5e1; border-radius: 0 0 7px 7px;
+  box-shadow: inset 0 2px 0 #e2e8f0;
+}
+.case-phone {
+  position: absolute; right: 4%; bottom: 2%;
+  width: 27%; aspect-ratio: 9/18;
+  border: 3px solid #1e293b; border-radius: 14px; background: #1e293b;
+  box-shadow: -10px 10px 26px rgba(15,23,42,.22);
+}
+.case-screen--phone { border-radius: 10px; }
+
+/* Neutrale Bildschirm-Oberfläche ohne Namen und Logo */
+.case-mock { position: absolute; inset: 0; display: flex; flex-direction: column; background: linear-gradient(160deg, #16233c 0%, #0f172a 100%); padding: 9px 10px; gap: 12px; }
+.case-mock-nav { display: flex; align-items: center; justify-content: space-between; }
+.case-mock-logo { width: 26%; height: 5px; border-radius: 3px; background: rgba(255,255,255,.5); }
+.case-mock-links { display: flex; gap: 5px; }
+.case-mock-links span { width: 13px; height: 4px; border-radius: 2px; background: rgba(255,255,255,.22); }
+.case-mock-body { display: flex; flex-direction: column; gap: 6px; margin-top: auto; margin-bottom: 12%; }
+.case-mock-zeile { width: 62%; height: 5px; border-radius: 3px; background: rgba(255,255,255,.2); }
+.case-mock-zeile--gross { height: 9px; background: rgba(255,255,255,.72); }
+.case-mock-zeile--gross + .case-mock-zeile--gross { width: 48%; }
+.case-mock-btns { display: flex; gap: 6px; margin-top: 7px; }
+.case-mock-btn { width: 34px; height: 10px; border-radius: 5px; background: rgba(255,255,255,.85); }
+.case-mock-btn--ghost { background: none; border: 1px solid rgba(255,255,255,.35); }
+.case-mock--schmal { padding: 7px 7px; gap: 8px; }
+.case-mock--schmal .case-mock-logo { width: 46%; }
+.case-mock--schmal .case-mock-btn { width: 100%; }
+.case-mock--schmal .case-mock-btns { flex-direction: column; }
+.case-mock--schmal .case-mock-zeile { width: 84%; }
+
+.case-visual-caption {
+  display: flex; align-items: flex-start; gap: 9px;
+  margin-top: 12px; padding: 12px 15px; border-radius: 12px;
+  background: rgba(91,33,182,.05); color: #475569;
+  font-size: .82rem; line-height: 1.55;
+}
+.case-visual-caption svg { width: 15px; height: 15px; flex-shrink: 0; margin-top: 1px; color: #7c3aed; }
+
+/* Kennzahlen als eigene Karten – die farbige Kante trennt Ergebnis (grün) von
+   Geschäftszahl (gelb), damit die drei Werte nicht als eine Zahlenwand wirken. */
+.case-zahlen {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  margin-top: 30px;
+}
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+.case-zahl {
+  position: relative;
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 20px 38px 20px 18px;
+  border: 1px solid #e9eef5; border-left-width: 3px; border-radius: 14px;
+  background: #fdfefe;
+}
+.case-zahl--gruen { border-left-color: #16a34a; }
+.case-zahl--gelb { border-left-color: #eab308; }
+.case-zahl-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0; }
+.case-zahl-icon svg { width: 19px; height: 19px; }
+.case-zahl--gruen .case-zahl-icon { background: rgba(22,163,74,.10); color: #16a34a; }
+.case-zahl--gelb .case-zahl-icon { background: rgba(234,179,8,.12); color: #ca8a04; }
+.case-zahl-wert {
+  display: block; font-size: clamp(1.4rem, 2.6vw, 1.75rem); font-weight: 800;
+  letter-spacing: -.035em; line-height: 1.15; margin-bottom: 5px;
+}
+.case-zahl--gruen .case-zahl-wert { color: #16a34a; }
+.case-zahl--gelb .case-zahl-wert { color: #ca8a04; }
+.case-zahl-info {
+  position: absolute; top: 16px; right: 15px;
+  color: #cbd5e1; cursor: help; line-height: 0;
+  transition: color .2s var(--ease);
+}
+.case-zahl-info:hover { color: #94a3b8; }
+.case-zahl-info svg { width: 16px; height: 16px; }
+.case-zahl-label { display: block; font-size: .84rem; font-weight: 700; color: #0f172a; margin-bottom: 7px; }
+.case-zahl-desc { font-size: .79rem; color: #94a3b8; line-height: 1.6; }
+
+.case-note {
+  display: flex; align-items: flex-start; gap: 9px;
+  margin-top: 26px; padding-top: 20px; border-top: 1px solid #eef2f6;
+  font-size: .76rem; color: #94a3b8; line-height: 1.6;
+}
+.case-note svg { width: 15px; height: 15px; flex-shrink: 0; margin-top: 1px; }
 
 .vsl {
   position: relative;
@@ -1284,17 +1459,22 @@ footer {
 .nav-back:hover { color: var(--text); }
 
 /* BLOG */
+/* Dunkler Hero wie auf Startseite und den Landingpages – der helle Blog-Kopf
+   war der einzige Ausreißer und brach den Übergang zu den dunklen
+   Beitragskarten darunter. */
 .blog-hero {
-  padding: 140px 0 70px;
+  position: relative;
+  /* Der Innenabstand oben war auf den vollflächigen Hero ausgelegt und musste
+     die Navigation mit abdecken. Als abgesetzte Karte beginnt der Kopf ohnehin
+     unter der Leiste – 96px halten die Proportion zum unteren Rand. */
+  padding: 96px 0 84px;
   background:
-    radial-gradient(ellipse 50% 70% at 80% 30%, rgba(var(--acc-rgb),.06) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(30,80,180,.12) 0%, transparent 65%);
-  --text: #0f172a;
-  --sub: #475569;
-  color: #0f172a;
+    radial-gradient(ellipse 60% 45% at 18% 12%, rgba(var(--acc-rgb),.13) 0%, transparent 62%),
+    radial-gradient(ellipse 55% 50% at 84% 34%, rgba(60,20,120,.30) 0%, transparent 65%),
+    #0a0415;
 }
-.blog-hero-title { font-size: clamp(2.4rem, 5vw, 3.8rem); margin-bottom: 16px; color: #0f172a; }
-.blog-hero-sub { font-size: 1rem; color: #475569; max-width: 520px; line-height: 1.75; }
+.blog-hero-title { font-size: clamp(2.4rem, 5vw, 3.8rem); margin-bottom: 16px; color: var(--text); }
+.blog-hero-sub { font-size: 1rem; color: var(--sub); max-width: 520px; line-height: 1.75; }
 .blog-wrap { padding: 60px 40px 100px; }
 .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .blog-card {
@@ -1640,6 +1820,16 @@ footer {
   .hero-trust-sep { display: none; }
   .prob-grid { grid-template-columns: 1fr 1fr; }
   .hyp-grid { grid-template-columns: 1fr; }
+  /* Einspaltig: Chevron und senkrechte Trennlinie entfallen – quer zeigende
+     Pfeile ergeben in einer vertikalen Liste keinen Sinn. */
+  .case-card { padding: 28px 22px 24px; }
+  .case-main { grid-template-columns: 1fr; gap: 26px; }
+  .case-steps, .case-zahlen { grid-template-columns: 1fr; gap: 22px; }
+  .case-step + .case-step {
+    padding-left: 0; padding-top: 22px;
+    border-left: none; border-top: 1px solid #eef2f6;
+  }
+  .case-step + .case-step::before { content: none; }
   .lst-grid { grid-template-columns: 1fr; }
   .proj-card { grid-template-columns: 1fr; gap: 28px; padding: 32px 28px; }
   .prz-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
@@ -2234,6 +2424,9 @@ footer {
   background: #0b1526; box-shadow: 0 34px 90px rgba(0,0,0,.55);
 }
 .geo-vsl-video { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Die Animation rendert auf 1920×1080 und skaliert selbst – der Rahmen ist
+   ebenfalls 16:9, dadurch bleibt sie ohne Ränder und ohne Beschnitt. */
+.geo-vsl-embed { width: 100%; height: 100%; display: block; border: 0; background: #070e1c; }
 .geo-vsl-poster {
   position: absolute; inset: 0; width: 100%; height: 100%;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -2285,6 +2478,9 @@ footer {
 }
 .geo-vsl-play {
   position: relative; z-index: 3;
+  /* Flex-Kind im Poster: ohne flex:none staucht der Container den Kreis in der
+     Höhe, sobald der Platz knapp wird – aus dem Button wird dann ein Oval. */
+  flex: none;
   width: 66px; height: 66px; border-radius: 50%;
   display: grid; place-items: center;
   background: var(--acc); color: #04121e;
@@ -2329,16 +2525,21 @@ footer {
 /* ── LÖSUNG / FLIP CARDS ───────────────────────────── */
 .geo-loesung { padding: 88px 0; }
 .geo-flip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.geo-flip { perspective: 1600px; }
+.geo-flip { perspective: 1600px; display: grid; }
+/* Beide Seiten liegen in derselben Grid-Zelle statt absolut übereinander.
+   Dadurch ergibt sich die Kartenhöhe aus der längeren der beiden Seiten –
+   kein geratener min-height-Wert mehr, der auf der kurzen Vorderseite als
+   Leerraum endet. Die Zeile gleicht die Karten untereinander an. */
 .geo-flip-inner {
-  position: relative; width: 100%; min-height: 400px;
+  position: relative; width: 100%; height: 100%;
+  display: grid;
   transform-style: preserve-3d; transition: transform .68s var(--ease);
   background: none; border: none; padding: 0; cursor: pointer; text-align: left;
   font: inherit;
 }
 .geo-flip-inner.is-flipped { transform: rotateY(180deg); }
 .geo-flip-face {
-  position: absolute; inset: 0;
+  grid-area: 1 / 1;
   -webkit-backface-visibility: hidden; backface-visibility: hidden;
   border-radius: 18px; padding: 28px 26px;
   display: flex; flex-direction: column;
@@ -2357,6 +2558,10 @@ footer {
   color: #00a36c; margin-bottom: 8px;
 }
 .geo-flip-title { font-size: 1.12rem; font-weight: 800; letter-spacing: -.025em; color: var(--text); margin-bottom: 12px; line-height: 1.25; }
+/* Der Pfeil-Glyph steht auf der mathematischen Achse und sitzt damit tiefer
+   als die Mitte der Versalien – in Plus Jakarta Sans gemessene 0.114em.
+   In em, damit die Korrektur bei jeder Schriftgröße gleich bleibt. */
+.arrow-mid { display: inline-block; transform: translateY(-.114em); }
 .geo-flip-text { font-size: .89rem; line-height: 1.7; color: var(--sub); flex: 1; }
 .geo-flip-hint {
   display: inline-flex; align-items: center; gap: 7px; margin-top: 18px;
@@ -2376,6 +2581,68 @@ footer {
 .geo-flip-hint--back { color: #00bc7d; margin-top: 16px; }
 .geo-flip-hint--back svg { transition: transform .25s var(--ease); }
 .geo-flip:hover .geo-flip-hint--back svg { transform: translateX(-4px); }
+
+/* ── ABLAUF ────────────────────────────────────────── */
+/* Liegt innerhalb der Lösungs-Sektion und erbt deren helle Farbwerte. Statt
+   eines eigenen Hintergrunds trennt nur eine feine Linie die Kästchen vom
+   Ablauf – zusammengehörig, aber erkennbar ein neuer Gedanke. */
+.geo-ablauf {
+  margin-top: 64px; padding-top: 56px;
+  border-top: 1px solid var(--border);
+}
+.geo-ablauf-head { max-width: 680px; margin: 0 auto 44px; text-align: center; }
+.geo-ablauf-head h3 {
+  font-size: clamp(1.35rem, 2.6vw, 1.75rem); color: var(--text);
+  margin: 12px 0 14px; letter-spacing: -.03em;
+}
+.geo-ablauf-head p { font-size: .93rem; line-height: 1.75; color: var(--sub); }
+.geo-ablauf-steps {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px;
+}
+/* Karten wie bei den Kästchen darüber – gleiche Rundung, gleicher Rahmen,
+   gleicher Schatten. Die Reihenfolge tragen die Nummern, deshalb braucht es
+   zwischen den Karten keine Verbindungslinie mehr. */
+.geo-ablauf-step {
+  display: flex; flex-direction: column; gap: 18px;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 18px; padding: 26px 24px;
+  box-shadow: 0 3px 14px rgba(0,0,0,.06);
+  transition: border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.geo-ablauf-step:hover {
+  border-color: rgba(var(--acc-rgb),.42);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 46px rgba(0,0,0,.10);
+}
+/* flex:1 plus margin-top:auto am „Du"-Block: Dadurch liegen die Trennlinien
+   über alle vier Karten hinweg auf einer Höhe, obwohl die Texte unterschiedlich
+   lang sind. */
+.geo-ablauf-body { display: flex; flex-direction: column; flex: 1; }
+.geo-ablauf-num {
+  display: grid; place-items: center;
+  width: 46px; height: 46px; border-radius: 14px;
+  background: rgba(var(--acc-rgb),.10); border: 1px solid rgba(var(--acc-rgb),.28);
+  /* rgb(var(--acc-rgb)) statt var(--acc): --acc ist das helle Grün für dunkle
+     Flächen und hätte auf dem hellen Grund dieser Sektion zu wenig Kontrast.
+     --acc-rgb wird von .geo-light mit umgestellt und passt sich dadurch an. */
+  color: rgb(var(--acc-rgb)); font-size: .82rem; font-weight: 800; letter-spacing: .06em;
+}
+.geo-ablauf-dauer {
+  display: block; font-size: .7rem; font-weight: 800; letter-spacing: .13em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 9px;
+}
+.geo-ablauf-body h4 { font-size: 1.04rem; font-weight: 700; color: var(--text); margin-bottom: 10px; letter-spacing: -.02em; }
+.geo-ablauf-body p { font-size: .87rem; line-height: 1.7; color: var(--sub); }
+.geo-ablauf-du {
+  display: flex; gap: 9px; margin-top: auto; padding-top: 14px;
+  border-top: 1px solid var(--border); font-size: .82rem;
+  line-height: 1.6; color: var(--sub);
+}
+.geo-ablauf-du span { color: rgb(var(--acc-rgb)); font-weight: 800; flex-shrink: 0; }
+.geo-ablauf-footer {
+  margin-top: 44px; text-align: center; font-size: .88rem; color: var(--muted);
+}
 
 /* ── TRACKING / PLATTFORM ──────────────────────────── */
 .geo-tracking {
@@ -2529,8 +2796,21 @@ footer {
   .geo-flip-grid { grid-template-columns: repeat(2, 1fr); }
   .geo-platform-cols { grid-template-columns: 1fr; }
   .geo-cms { grid-template-columns: 1fr; gap: 26px; }
+  /* Einspaltig zuerst der Text, das Porträt darunter: Wer auf dem Handy in
+     diesem Abschnitt landet, soll die Aussage lesen und dann das Gesicht dazu
+     sehen – nicht erst an einem Bild vorbeiscrollen müssen. Die Reihenfolge im
+     Markup bleibt unverändert, damit am Desktop das Bild links stehen kann. */
+  /* Die Karten stapeln sich; zwei Spalten, solange die Breite dafür reicht. */
+  .geo-ablauf-steps { grid-template-columns: repeat(2, 1fr); }
+
   .geo-ueber-grid { grid-template-columns: 1fr; gap: 36px; }
-  .geo-ueber-img { max-width: 340px; margin: 0 auto; }
+  .geo-ueber-text { order: 1; }
+  .geo-ueber-img { order: 2; }
+  /* width: 100% ist hier Pflicht, nicht Kosmetik: Die automatischen
+     Seitenränder zum Zentrieren heben das Stretch-Verhalten des Grid-Items auf.
+     Ohne feste Breite fällt die Box auf ihren Inhalt zurück – und der ist leer,
+     weil das Bild mit `fill` absolut positioniert ist. Ergebnis wäre 0px breit. */
+  .geo-ueber-img { width: 100%; max-width: 340px; margin-inline: auto; }
 }
 
 @media (max-width: 640px) {
@@ -2542,11 +2822,15 @@ footer {
   .geo-rv-trust-item { border-left: none; border-top: 1px solid var(--border); }
   .geo-rv-trust-item:first-child { border-top: none; }
   .geo-flip-grid { grid-template-columns: 1fr; }
-  .geo-flip-inner { min-height: 380px; }
+  .geo-ablauf-steps { grid-template-columns: 1fr; }
   .geo-status-grid { grid-template-columns: 1fr; }
   .geo-platform-stats { grid-template-columns: repeat(2, 1fr); }
   .geo-platform-body { padding: 18px; }
-  .geo-vsl-mock { width: 88%; }
+  /* Der 16:9-Rahmen ist auf dem Handy nur rund 170px hoch. Chat-Mock,
+     Play-Button und Bildunterschrift zusammen passen da nicht hinein. Der Mock
+     ist reine Deko (aria-hidden) und entfällt deshalb zugunsten der beiden
+     Elemente, auf die es ankommt. */
+  .geo-vsl-mock { display: none; }
   .geo-vsl-prompt, .geo-vsl-answer { font-size: .78rem; padding: 11px 14px; }
   .geo-vsl-play { width: 54px; height: 54px; }
   .geo-vsl-play svg { width: 21px; height: 21px; }

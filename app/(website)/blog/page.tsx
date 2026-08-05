@@ -28,7 +28,7 @@ export default async function BlogPage() {
       <div className="blog-hero">
         <div className="wrap">
           <div className="page-label">Blog</div>
-          <h1 className="blog-hero-title">Aus der Praxis.</h1>
+          <h1 className="blog-hero-title">SEO &amp; Webdesign News</h1>
           <p className="blog-hero-sub">SEO-Tipps, Webdesign-Insights und ehrliche Einblicke aus meiner Arbeit als Freelancer.</p>
         </div>
       </div>

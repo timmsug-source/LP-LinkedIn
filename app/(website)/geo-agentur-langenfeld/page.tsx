@@ -155,6 +155,40 @@ const statusQuo = [
   },
 ]
 
+/* Der Ablauf einer Zusammenarbeit. Die Zeitangaben sind bewusst konkret –
+   „individuell nach Absprache" beantwortet die Frage nicht, die sich jeder an
+   dieser Stelle stellt: Wann passiert was, und was muss ich selbst tun? */
+const ablauf = [
+  {
+    n: '01',
+    dauer: '30 Minuten',
+    title: 'Erstgespräch',
+    desc: 'Wir schauen gemeinsam, wo du heute in ChatGPT, Perplexity und den AI Overviews auftauchst — und wo dein Wettbewerb genannt wird. Kostenlos und ohne Verpflichtung.',
+    duTust: 'Erzählst mir, was du machst und wen du erreichen willst.',
+  },
+  {
+    n: '02',
+    dauer: 'Woche 1–2',
+    title: 'Analyse & Fahrplan',
+    desc: 'Technisches Audit, Wettbewerbsvergleich und eine Liste der Themen, bei denen du überhaupt zitiert werden kannst. Du bekommst einen Fahrplan mit Reihenfolge und Aufwand.',
+    duTust: 'Öffnest mir Website, Search Console und Google-Profil.',
+  },
+  {
+    n: '03',
+    dauer: 'Woche 2–6',
+    title: 'Fundament & Umsetzung',
+    desc: 'Erst die Technik: Crawlbarkeit, Ladezeit, saubere Struktur, strukturierte Daten. Dann die Inhalte: Antworten auf die Fragen deiner Kunden, in der Form, die Sprachmodelle zitieren.',
+    duTust: 'Beantwortest Fachfragen und gibst Texte frei.',
+  },
+  {
+    n: '04',
+    dauer: 'Laufend',
+    title: 'Messen & Nachschärfen',
+    desc: 'Jeden Donnerstag Zahlen: Rankings, Zitierungen, Entwicklung. Was funktioniert, wird ausgebaut. Was nicht funktioniert, fliegt raus — statt es zwölf Monate lang schönzureden.',
+    duTust: 'Liest das Reporting und sagst mir, was ankommt.',
+  },
+]
+
 export default function GeoAgenturLangenfeld() {
   return (
     <>
@@ -277,6 +311,44 @@ export default function GeoAgenturLangenfeld() {
             </p>
           </div>
           <GeoFlipCards />
+
+          {/* Der Ablauf gehört inhaltlich an die Lösung: erst „was passiert",
+              dann „wie läuft es ab". Deshalb dieselbe Sektion und derselbe
+              helle Grund – ein Farbwechsel würde den Gedanken zerschneiden. */}
+          <div className="geo-ablauf">
+            <div className="geo-ablauf-head fu">
+              <div className="label">Der Ablauf</div>
+              <h3>Wie eine Zusammenarbeit aussieht</h3>
+              <p>
+                Kein Geheimnis, keine Blackbox. Vier Schritte, feste Zeiträume — und bei jedem
+                steht dabei, was ich mache und was ich von dir brauche.
+              </p>
+            </div>
+
+            <ol className="geo-ablauf-steps">
+              {ablauf.map((s, i) => (
+                <li key={s.n} className={`geo-ablauf-step fu d${i % 3}`}>
+                  <div className="geo-ablauf-marker" aria-hidden="true">
+                    <span className="geo-ablauf-num">{s.n}</span>
+                  </div>
+                  <div className="geo-ablauf-body">
+                    <span className="geo-ablauf-dauer">{s.dauer}</span>
+                    <h4>{s.title}</h4>
+                    <p>{s.desc}</p>
+                    <p className="geo-ablauf-du">
+                      <span>Du</span>
+                      {s.duTust}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            <p className="geo-ablauf-footer fu d2">
+              Erste Zitierungen sind meist nach 6 bis 12 Wochen sichtbar. Wer dir etwas anderes
+              verspricht, verkauft dir etwas.
+            </p>
+          </div>
         </div>
       </section>
 

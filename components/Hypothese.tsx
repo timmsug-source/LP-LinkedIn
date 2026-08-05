@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Case from './Case'
 
 function LazyIframe({ src, title, className }: { src: string; title: string; className?: string }) {
   const ref = useRef<HTMLIFrameElement>(null)
@@ -76,6 +77,15 @@ export default function Hypothese({ data: _ }: { data?: Record<string, unknown> 
         <div className="vsl vsl-mobile fu d2">
           <LazyIframe src="/vsl-mobile.html" title="VSL Mobil" />
         </div>
+
+        {/* Der Beleg zur These – bewusst am Ende der Sektion, direkt bevor es
+            mit den Leistungen ums Angebot geht.
+
+            AUSGEBLENDET, bis echte Projektzahlen vorliegen: Die Karte enthält
+            noch Platzhalter, und erfundene Ergebnisse haben auf einer Seite,
+            die mit Ehrlichkeit wirbt, nichts verloren. Zum Aktivieren die
+            nächste Zeile einkommentieren und die ⚠️-Werte in Case.tsx setzen. */}
+        {/* <Case /> */}
       </div>
     </section>
   )

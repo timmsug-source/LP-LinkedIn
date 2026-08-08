@@ -7,6 +7,7 @@ marked.use({ gfm: true, breaks: true })
 import { getPost, getPosts } from '@/lib/supabase'
 import { BASE_URL, articleSchema, breadcrumbSchema } from '@/lib/jsonld'
 import { buildToc } from '@/lib/toc'
+import { extractFaq, faqSchema } from '@/lib/faq'
 import PostToc from './toc'
 
 interface Props { params: Promise<{ slug: string }> }
@@ -137,6 +138,11 @@ export default async function BlogPost({ params }: Props) {
     { name: post.title, url: `${BASE_URL}/blog/${slug}` },
   ])
 
+  // Beiträge mit einem FAQ-Abschnitt bekommen zusätzlich FAQPage-Markup.
+  // Ab zwei Paaren – ein einzelnes ergibt als FAQ-Seite keinen Sinn.
+  const faq = extractFaq(html)
+  const ldFaq = faq.length >= 2 ? faqSchema(faq) : null
+
   return (
     <>
       <script
@@ -147,6 +153,12 @@ export default async function BlogPost({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ldBreadcrumb) }}
       />
+      {ldFaq && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ldFaq) }}
+        />
+      )}
 
       <article className="post-wrap" itemScope itemType="https://schema.org/Article">
         {/* Kopf, Titelbild, Verzeichnis und Text liegen bewusst alle direkt im

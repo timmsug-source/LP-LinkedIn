@@ -8,6 +8,7 @@ import { getPost, getPosts } from '@/lib/supabase'
 import { BASE_URL, articleSchema, breadcrumbSchema } from '@/lib/jsonld'
 import { buildToc } from '@/lib/toc'
 import { extractFaq, faqSchema } from '@/lib/faq'
+import { extractHowTo, howToSchema } from '@/lib/howto'
 import PostToc from './toc'
 
 interface Props { params: Promise<{ slug: string }> }
@@ -143,6 +144,11 @@ export default async function BlogPost({ params }: Props) {
   const faq = extractFaq(html)
   const ldFaq = faq.length >= 2 ? faqSchema(faq) : null
 
+  // Anleitung nur, wenn der Beitrag eine Liste ausdrücklich als solche markiert
+  // hat (<ol class="howto">) – siehe lib/howto.ts.
+  const howto = extractHowTo(html)
+  const ldHowTo = howto ? howToSchema(howto, `${BASE_URL}/blog/${slug}`) : null
+
   return (
     <>
       <script
@@ -157,6 +163,12 @@ export default async function BlogPost({ params }: Props) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ldFaq) }}
+        />
+      )}
+      {ldHowTo && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ldHowTo) }}
         />
       )}
 

@@ -2,6 +2,14 @@ import type { MetadataRoute } from 'next'
 import { getPosts } from '@/lib/supabase'
 
 /**
+ * Ohne diese Angabe wird die Sitemap beim Build erzeugt und bleibt es. Neue
+ * Blogbeiträge stehen dann zwar sofort auf der Seite, tauchen aber erst beim
+ * nächsten Deploy in der Sitemap auf. Einmal pro Stunde neu erzeugen reicht,
+ * um Google zeitnah auf neue Beiträge zu stoßen.
+ */
+export const revalidate = 3600
+
+/**
  * lastmod meldet den letzten inhaltlichen Stand einer Seite – nicht den
  * Zeitpunkt des Builds. Mit `new Date()` bekam jede Seite bei jedem Deploy
  * ein neues Datum, auch wenn sich an ihr nichts geändert hat. Google wertet

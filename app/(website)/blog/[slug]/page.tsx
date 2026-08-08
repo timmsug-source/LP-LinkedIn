@@ -211,10 +211,13 @@ export default async function BlogPost({ params }: Props) {
                           <img src={p.cover_image} alt={p.title} width={640} height={360} loading="lazy" />
                         </div>
                       )}
+                      {/* Bewusst ohne Anrisstext: Die Karten stehen hier in der
+                          schmalen Textspalte, drei nebeneinander. Mit Auszug
+                          werden sie zu drei hohen, kaum lesbaren Säulen –
+                          Datum und Titel reichen für die Auswahl. */}
                       <div className="blog-card-body">
                         <time className="blog-date" dateTime={p.published_at}>{formatDate(p.published_at)}</time>
                         <h2 className="blog-card-title">{p.title}</h2>
-                        <p className="blog-card-excerpt">{p.excerpt}</p>
                         <span className="blog-card-cta">
                           Weiterlesen
                           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>

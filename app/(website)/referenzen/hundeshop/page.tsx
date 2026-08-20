@@ -247,9 +247,7 @@ export default function HundeshopCaseStudy() {
               <figcaption>
                 Auswertung aus dem Shop-Backend, Dezember 2024 bis Ende Januar 2025. „Dem
                 Marketing zugeschriebener Umsatz“ fasst die Bestellungen zusammen, die das
-                System auf Marketingkanäle zurückführt – darunter die organische Suche. Die
-                im Bild sichtbare Steigerung von 779 % vergleicht mit dem Zeitraum vor dem
-                Start des Shops und ist deshalb wenig aussagekräftig.
+                System auf Marketingkanäle zurückführt – darunter die organische Suche.
               </figcaption>
             </figure>
           </div>

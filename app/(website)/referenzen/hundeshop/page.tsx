@@ -56,6 +56,21 @@ const zahlen = [
   { wert: '11,7', label: 'Ø Position', hinweis: 'über alle Suchbegriffe hinweg' },
 ]
 
+/**
+ * Umsatzansicht aus dem Shop-Backend, erste zwei Monate nach dem Livegang.
+ *
+ * Die im Screenshot sichtbaren "+779 %" stehen bewusst NICHT als Kennzahl auf
+ * der Seite: Der Vergleichszeitraum liegt vor dem Start des Shops, die
+ * Steigerung wird also gegen fast null gerechnet. Rechnerisch richtig, als
+ * Beleg aber wertlos – und angreifbar, sobald jemand nachfragt.
+ */
+const umsatz = {
+  marketing: '3.165,33 €',
+  gesamt: '4.480,51 €',
+  anteil: 'rund 71 %',
+  zeitraum: 'Dezember 2024 bis Ende Januar 2025',
+}
+
 const kiZahl = { wert: '430', label: 'Impressionen in KI-Antworten', hinweis: 'letzte 3 Monate, Search-Console-Bericht „Auf generativer KI basierende Funktion"' }
 
 const ausgangslage = [
@@ -157,10 +172,11 @@ export default function HundeshopCaseStudy() {
         <div className="wrap">
           <div className="ref-head">
             <div className="label">Ergebnis</div>
-            <h2>Zwölf Monate organische Suche</h2>
+            <h2>Was dabei herausgekommen ist</h2>
             <p>
-              Alle Werte aus der Google Search Console, Zeitraum der letzten zwölf Monate,
-              Suchtyp Web.
+              Zuerst die Sichtbarkeit: alle Werte aus der Google Search Console, Zeitraum der
+              letzten zwölf Monate, Suchtyp Web. Was daraus an Umsatz geworden ist, steht
+              darunter.
             </p>
           </div>
 
@@ -194,6 +210,49 @@ export default function HundeshopCaseStudy() {
             der Suchanfragen: Viele Nutzer suchen bereits konkret nach Produkten oder nach dem
             Shop selbst – und klicken dann auch.
           </p>
+
+          <div className="ref-umsatz">
+            <div className="ref-head ref-head--klein">
+              <div className="label">Vom Ranking zum Umsatz</div>
+              <h3>Sichtbarkeit allein war nie das Ziel</h3>
+              <p>
+                Rankings sind ein Zwischenschritt. Interessant wird es, wenn daraus
+                Bestellungen werden. Die folgenden Zahlen stammen aus den ersten beiden
+                Monaten nach dem Livegang – der Shop war zu diesem Zeitpunkt gerade erst
+                online.
+              </p>
+            </div>
+
+            <div className="ref-umsatz-grid">
+              <div className="ref-umsatz-wert ref-umsatz-wert--gross">
+                <span>{umsatz.marketing}</span>
+                <strong>dem Marketing zugeschriebener Umsatz</strong>
+                <p>{umsatz.anteil} des gesamten Shop-Umsatzes von {umsatz.gesamt}</p>
+              </div>
+              <div className="ref-umsatz-wert">
+                <span>2 Monate</span>
+                <strong>nach dem Livegang</strong>
+                <p>{umsatz.zeitraum} – aus einem Shop, den es vorher nicht gab</p>
+              </div>
+            </div>
+
+            <figure className="ref-bild">
+              <Image
+                src="/hundeshop-umsatz-marketing.png"
+                alt="Umsatzansicht aus dem Shop-Backend: 3.165,33 € dem Marketing zugeschriebener Umsatz von 4.480,51 € Gesamtumsatz, plus 779 Prozent"
+                width={968}
+                height={370}
+                sizes="(max-width: 900px) 92vw, 720px"
+              />
+              <figcaption>
+                Auswertung aus dem Shop-Backend, Dezember 2024 bis Ende Januar 2025. „Dem
+                Marketing zugeschriebener Umsatz“ fasst die Bestellungen zusammen, die das
+                System auf Marketingkanäle zurückführt – darunter die organische Suche. Die
+                im Bild sichtbare Steigerung von 779 % vergleicht mit dem Zeitraum vor dem
+                Start des Shops und ist deshalb wenig aussagekräftig.
+              </figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 

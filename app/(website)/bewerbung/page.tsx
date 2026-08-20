@@ -37,6 +37,43 @@ const tools = [
   { name: 'Supabase',        abbr: null,  color: '#3ECF8E', desc: 'Datenbank & Backend',              icon: 'supabase' },
 ]
 
+/**
+ * Nachweise – zwei selbst gebaute Projekte.
+ *
+ * ACHTUNG: Alles mit ⚠️ ist Platzhalter und muss vor dem Versenden des Links
+ * durch echte Angaben ersetzt werden. Screenshots in /public ablegen und bei
+ * `bild` eintragen; solange `bild` leer ist, zeigt die Karte eine
+ * Platzhalterfläche statt eines kaputten Bildes.
+ */
+const nachweise = [
+  {
+    typ: 'E-Commerce',
+    titel: '⚠️ Shopify-Shop aufgebaut',
+    desc: '⚠️ Shop von Grund auf aufgesetzt: Theme, Produktstruktur, Checkout und technisches SEO. Kurz beschreiben, was du übernommen hast und was der Shop verkauft.',
+    bild: '',
+    bildAlt: '⚠️ Screenshot des Shopify-Shops',
+    href: '',
+    zahlen: [
+      { wert: '⚠️ –', label: 'Produkte im Shop' },
+      { wert: '⚠️ –', label: 'Umsatz im ersten Jahr' },
+      { wert: '⚠️ –', label: 'Ladezeit / PageSpeed' },
+    ],
+  },
+  {
+    typ: 'Webdesign & SEO',
+    titel: '⚠️ Website für einen Performance Coach',
+    desc: '⚠️ Positionierung, Aufbau und Umsetzung der Website inklusive SEO-Grundlage. Kurz beschreiben, wo der Coach vorher stand und was sich geändert hat.',
+    bild: '',
+    bildAlt: '⚠️ Screenshot der Coaching-Website',
+    href: '',
+    zahlen: [
+      { wert: '⚠️ –', label: 'Position Hauptkeyword' },
+      { wert: '⚠️ –', label: 'Anfragen pro Monat' },
+      { wert: '⚠️ –', label: 'Umsetzungszeit' },
+    ],
+  },
+]
+
 export default function Bewerbung() {
   return (
     <>
@@ -71,7 +108,9 @@ export default function Bewerbung() {
       </section>
 
       {/* ── SEO EXPERTISE ── */}
-      <section className="bw-section">
+      {/* Hell/dunkel wechseln sich ab: dunkle Karte, heller Grund, dunkle
+          Karte … – dieselbe Rhythmik wie auf der Startseite. */}
+      <section className="bw-section bw-section--light">
         <div className="wrap">
           <div className="bw-section-head">
             <div className="label">SEO-Erfahrung</div>
@@ -137,11 +176,63 @@ export default function Bewerbung() {
               </ul>
             </div>
           </div>
+
+          {/* Nachweise gehören direkt an die Erfahrung: Erst was ich gemacht
+              habe, dann die Projekte, die es belegen – ohne Sektionswechsel
+              dazwischen. */}
+          <div className="bw-proof">
+            <div className="bw-proof-head">
+              <div className="label">Nachweise</div>
+              <h3>Projekte, die ich selbst gebaut habe.</h3>
+              <p>
+                Zwei Beispiele aus der Praxis – vom Aufbau bis zu den Zahlen, die dabei
+                herausgekommen sind.
+              </p>
+            </div>
+
+            <div className="bw-proof-grid">
+              {nachweise.map((n) => (
+                <article key={n.titel} className="bw-proof-card">
+                  {/* Bildfläche: neutraler Platzhalter, bis echte Screenshots
+                      vorliegen. Datei in /public legen und `bild` setzen. */}
+                  <div className="bw-proof-bild">
+                    {n.bild ? (
+                      /* eslint-disable-next-line @next/next/no-img-element */
+                      <img src={n.bild} alt={n.bildAlt} loading="lazy" />
+                    ) : (
+                      <span className="bw-proof-bild-leer">⚠️ Screenshot folgt</span>
+                    )}
+                  </div>
+
+                  <div className="bw-proof-body">
+                    <span className="bw-proof-typ">{n.typ}</span>
+                    <h4>{n.titel}</h4>
+                    <p>{n.desc}</p>
+
+                    <div className="bw-proof-zahlen">
+                      {n.zahlen.map((z) => (
+                        <div key={z.label} className="bw-proof-zahl">
+                          <span className="bw-proof-zahl-wert">{z.wert}</span>
+                          <span className="bw-proof-zahl-label">{z.label}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {n.href && (
+                      <a className="bw-proof-link" href={n.href} target="_blank" rel="noopener noreferrer">
+                        Projekt ansehen ↗
+                      </a>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ── TOOLS ── */}
-      <section className="bw-section bw-section--alt">
+      <section className="bw-section">
         <div className="wrap">
           <div className="bw-section-head">
             <div className="label">Tools & Skills</div>
@@ -181,7 +272,7 @@ export default function Bewerbung() {
       </section>
 
       {/* ── FIVERR REVIEWS ── */}
-      <section className="bw-section">
+      <section className="bw-section bw-section--light">
         <div className="wrap">
           <div className="bw-section-head">
             <div className="label">Kundenstimmen</div>

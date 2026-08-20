@@ -2937,3 +2937,189 @@ footer {
   .geo-hero-glow, .geo-vsl-typing span { animation: none; }
   .geo-flip-inner { transition: none; }
 }
+
+/* =====================================================
+   REFERENZ / CASE STUDY — /referenzen/*
+   Hell und dunkel wechseln sich ab wie auf den übrigen
+   Seiten: dunkle Abschnitte als abgesetzte Karten, helle
+   vollflächig als Grund darunter.
+   ===================================================== */
+.ref-hero,
+.ref-section,
+.ref-cta {
+  margin: 8px; border-radius: 20px; overflow: hidden;
+  background: var(--bg);
+}
+@media (min-width: 768px) {
+  .ref-hero,
+  .ref-section,
+  .ref-cta { margin: 24px; border-radius: 28px; }
+}
+
+.ref-hero {
+  position: relative; overflow: hidden;
+  padding: 92px 0 76px;
+  background:
+    radial-gradient(ellipse 60% 45% at 18% 12%, rgba(var(--acc-rgb),.13) 0%, transparent 62%),
+    radial-gradient(ellipse 55% 50% at 84% 34%, rgba(60,20,120,.30) 0%, transparent 65%),
+    #0a0415;
+}
+.ref-breadcrumb {
+  display: flex; align-items: center; gap: 9px;
+  font-size: .8rem; color: var(--muted); margin-bottom: 26px;
+}
+.ref-breadcrumb a { color: var(--sub); text-decoration: none; }
+.ref-breadcrumb a:hover { color: var(--acc); }
+.ref-title { font-size: clamp(2.1rem, 4.6vw, 3.4rem); margin: 14px 0 18px; color: var(--text); }
+.ref-sub { font-size: 1rem; line-height: 1.75; color: var(--sub); max-width: 620px; }
+.ref-meta {
+  display: flex; flex-wrap: wrap; gap: 12px 32px; margin-top: 30px;
+  padding-top: 26px; border-top: 1px solid var(--border);
+  font-size: .86rem; color: var(--sub);
+}
+.ref-meta strong { color: var(--text); font-weight: 700; }
+
+/* Helle Abschnitte: eigene Farbwerte, dazu color explizit – Überschriften ohne
+   eigene Farbregel erben sonst die helle Schrift des Elternelements. */
+.ref-section { padding: 84px 0; }
+.ref-section--light {
+  margin: 0; border-radius: 0;
+  background: #f8f9fb;
+  color: var(--text);
+  --text: #0f172a;
+  --sub: #475569;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --acc: #00a36c;
+  --acc-rgb: 0,148,100;
+}
+.ref-head { max-width: 680px; margin-bottom: 42px; }
+.ref-head h2 { font-size: clamp(1.6rem, 3.4vw, 2.3rem); color: var(--text); margin: 12px 0 14px; }
+.ref-head h3 { font-size: clamp(1.3rem, 2.6vw, 1.7rem); color: var(--text); margin: 12px 0 14px; letter-spacing: -.03em; }
+.ref-head p { font-size: .95rem; line-height: 1.78; color: var(--sub); }
+.ref-head--klein { margin-bottom: 32px; }
+
+/* Kennzahlen */
+.ref-zahlen { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.ref-zahl {
+  background: #fff; border: 1px solid var(--border); border-radius: 18px;
+  padding: 26px 22px; box-shadow: 0 3px 14px rgba(15,23,42,.05);
+}
+.ref-zahl-wert {
+  display: block; font-size: clamp(1.7rem, 3.4vw, 2.3rem); font-weight: 800;
+  letter-spacing: -.04em; color: rgb(var(--acc-rgb)); line-height: 1.1; margin-bottom: 6px;
+}
+.ref-zahl-label { display: block; font-size: .9rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.ref-zahl p { font-size: .78rem; line-height: 1.55; color: var(--muted); }
+.ref-einordnung {
+  margin-top: 28px; padding: 20px 22px; border-radius: 14px;
+  background: rgba(var(--acc-rgb),.06); border: 1px solid rgba(var(--acc-rgb),.18);
+  font-size: .89rem; line-height: 1.75; color: var(--sub);
+}
+
+/* Ausgangslage */
+.ref-liste { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.ref-liste li {
+  position: relative; padding-left: 26px;
+  font-size: .92rem; line-height: 1.75; color: var(--sub);
+}
+.ref-liste li::before {
+  content: ''; position: absolute; left: 0; top: 10px;
+  width: 8px; height: 8px; border-radius: 50%; background: rgba(var(--acc-rgb),.55);
+}
+
+/* Vorgehen */
+.ref-vorgehen { margin-top: 56px; padding-top: 48px; border-top: 1px solid var(--border); }
+.ref-schritte { list-style: none; padding: 0; margin: 0; display: grid; gap: 20px; }
+.ref-schritt {
+  display: flex; gap: 18px; align-items: flex-start;
+  background: rgba(255,255,255,.035); border: 1px solid var(--border);
+  border-radius: 16px; padding: 22px 24px;
+}
+.ref-schritt-num {
+  flex-shrink: 0; display: grid; place-items: center;
+  width: 38px; height: 38px; border-radius: 12px;
+  background: rgba(var(--acc-rgb),.12); color: var(--acc);
+  font-size: .76rem; font-weight: 800; letter-spacing: .04em;
+}
+.ref-schritt h4 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 7px; letter-spacing: -.02em; }
+.ref-schritt p { font-size: .88rem; line-height: 1.72; color: var(--sub); }
+
+/* KI-Sichtbarkeit */
+.ref-ki { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 32px; align-items: start; }
+.ref-ki-wert {
+  background: #fff; border: 1px solid var(--border); border-radius: 18px;
+  padding: 30px 26px; box-shadow: 0 3px 14px rgba(15,23,42,.05); text-align: center;
+}
+.ref-ki-wert span {
+  display: block; font-size: 3rem; font-weight: 800; letter-spacing: -.04em;
+  color: rgb(var(--acc-rgb)); line-height: 1;
+}
+.ref-ki-wert strong { display: block; margin: 12px 0 8px; font-size: .92rem; color: var(--text); }
+.ref-ki-wert p { font-size: .76rem; line-height: 1.55; color: var(--muted); }
+.ref-ki-text p { font-size: .95rem; line-height: 1.8; color: var(--sub); }
+.ref-ki-text p + p { margin-top: 16px; }
+.ref-ki-text a { color: rgb(var(--acc-rgb)); font-weight: 600; }
+
+/* Abschluss */
+.ref-cta {
+  padding: 88px 0; text-align: center;
+  background:
+    radial-gradient(ellipse 60% 60% at 50% 0%, rgba(var(--acc-rgb),.14) 0%, transparent 62%),
+    #0a0415;
+}
+.ref-cta h2 { font-size: clamp(1.7rem, 3.6vw, 2.4rem); color: var(--text); margin-bottom: 14px; }
+.ref-cta p { font-size: .98rem; line-height: 1.75; color: var(--sub); max-width: 560px; margin: 0 auto 30px; }
+.ref-cta-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+@media (max-width: 900px) {
+  .ref-zahlen { grid-template-columns: 1fr 1fr; }
+  .ref-ki { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .ref-zahlen { grid-template-columns: 1fr; }
+  .ref-hero { padding: 76px 0 60px; }
+  .ref-section { padding: 64px 0; }
+}
+
+/* Screenshots in der Case Study – Rahmen und Bildunterschrift.
+   Die Search-Console-Ansichten sind hell, deshalb bekommen sie auf dunklem
+   Grund einen hellen Rahmen statt frei zu stehen. */
+.ref-bild { margin: 34px 0 0; }
+.ref-bild img {
+  display: block; width: 100%; height: auto;
+  border-radius: 14px; border: 1px solid var(--border);
+  background: #fff;
+}
+.ref-bild figcaption {
+  margin-top: 12px; font-size: .78rem; line-height: 1.6; color: var(--muted);
+}
+
+/* Projektumfang: zwei Bereiche nebeneinander */
+.ref-umfang { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.ref-umfang-block {
+  background: rgba(255,255,255,.035); border: 1px solid var(--border);
+  border-radius: 16px; padding: 26px 24px;
+}
+.ref-umfang-block h3 {
+  font-size: 1.04rem; font-weight: 700; color: var(--text);
+  letter-spacing: -.02em; margin-bottom: 16px;
+  padding-bottom: 14px; border-bottom: 1px solid var(--border);
+}
+.ref-umfang-block ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 11px; }
+.ref-umfang-block li {
+  position: relative; padding-left: 24px;
+  font-size: .88rem; line-height: 1.68; color: var(--sub);
+}
+.ref-umfang-block li::before {
+  content: ''; position: absolute; left: 0; top: 9px;
+  width: 10px; height: 2px; border-radius: 1px; background: rgba(var(--acc-rgb),.7);
+}
+/* Was NICHT dazugehörte – grenzt die Leistung ab und wirkt dadurch glaubwürdiger */
+.ref-umfang-note {
+  margin-top: 20px; font-size: .82rem; line-height: 1.65; color: var(--muted);
+  padding-left: 14px; border-left: 2px solid var(--border);
+}
+@media (max-width: 760px) {
+  .ref-umfang { grid-template-columns: 1fr; }
+}

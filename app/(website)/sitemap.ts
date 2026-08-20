@@ -23,6 +23,7 @@ const LAST_UPDATED = {
   home: '2026-07-23',
   geo: '2026-07-30',
   seoFreelancer: '2026-07-23',
+  hundeshop: '2026-08-20',
   impressum: '2026-07-30',
 } as const
 
@@ -61,6 +62,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: LAST_UPDATED.seoFreelancer,
       changeFrequency: 'monthly',
       priority: 0.8,
+    },
+    {
+      // Referenz-Seiten ändern sich selten, belegen aber die Leistungsseiten.
+      url: 'https://www.timmschurig.com/referenzen/hundeshop',
+      lastModified: LAST_UPDATED.hundeshop,
+      changeFrequency: 'yearly',
+      priority: 0.6,
     },
     ...blogEntries,
     {

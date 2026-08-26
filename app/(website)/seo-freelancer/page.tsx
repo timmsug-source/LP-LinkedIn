@@ -7,9 +7,9 @@ import Link from 'next/link'
 const WA_HREF = `https://wa.me/4915229515030?text=${encodeURIComponent('Hallo Timm, ich suche externe SEO-Kapazität und würde gerne kurz sprechen.')}`
 
 export const metadata: Metadata = {
-  title: 'SEO-Freelancer für Unternehmen & Agenturen | Timm Schurig — NRW',
+  title: 'SEO-Freelancer aus NRW für Unternehmen & Agenturen',
   description:
-    'Externer SEO-Freelancer aus Langenfeld (NRW) — Timm Schurig. Technisches SEO, Content-SEO, Linkbuilding & GEO für Inhouse-Teams und Agenturen. NDA möglich. Jetzt anfragen.',
+    'Externer SEO-Freelancer aus Langenfeld: technisches SEO, Content-SEO und GEO für Inhouse-Teams und Agenturen. NDA möglich.',
   alternates: { canonical: `${BASE_URL}/seo-freelancer` },
   openGraph: {
     type: 'website',

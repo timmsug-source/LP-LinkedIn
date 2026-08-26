@@ -23,9 +23,12 @@ const reviews: Review[] = [
 const row1 = reviews.slice(0, 8)
 const row2 = reviews.slice(8)
 
-function ReviewCard({ r }: { r: Review }) {
+/* `doppelt` markiert die Kopie, die das Laufband endlos wirken lässt. Sie ist
+   für Screenreader und Crawler ausgeblendet – sonst zählt jede Bewertung als
+   doppelter Textblock auf der Seite. */
+function ReviewCard({ r, doppelt = false }: { r: Review; doppelt?: boolean }) {
   return (
-    <div className="rz-card">
+    <div className="rz-card" aria-hidden={doppelt || undefined} data-nosnippet={doppelt || undefined}>
       <div className="rz-card-top">
         <div className="rz-stars">★★★★★</div>
         <span className={`rz-badge rz-badge--${r.source.toLowerCase()}`}>{r.source}</span>
@@ -50,13 +53,13 @@ export default function Rezension({ data: _ }: { data?: Record<string, unknown> 
         {/* Row 1 – scrolls left */}
         <div className="rz-track">
           <div className="rz-inner rz-inner--left">
-            {[...row1, ...row1].map((r, i) => <ReviewCard key={i} r={r} />)}
+            {[...row1, ...row1].map((r, i) => <ReviewCard key={i} r={r} doppelt={i >= row1.length} />)}
           </div>
         </div>
         {/* Row 2 – scrolls right */}
         <div className="rz-track">
           <div className="rz-inner rz-inner--right">
-            {[...row2, ...row2].map((r, i) => <ReviewCard key={i} r={r} />)}
+            {[...row2, ...row2].map((r, i) => <ReviewCard key={i} r={r} doppelt={i >= row2.length} />)}
           </div>
         </div>
       </div>

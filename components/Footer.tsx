@@ -10,6 +10,9 @@ const defaults: FooterData = {
   copyright: '© 2026 Timm Schurig · SEO & Webdesign Freelancer · Langenfeld',
   links: [
     { label: 'Blog', href: '/blog' },
+    // Die Case Study war nur über die Sitemap erreichbar – ohne internen Link
+    // findet Google sie kaum und vererbt ihr keine Relevanz.
+    { label: 'Referenzen', href: '/referenzen/hundeshop' },
     { label: 'Impressum', href: '/impressum' },
     { label: 'Datenschutz', href: '/datenschutz' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/timm-schurig/', external: true },

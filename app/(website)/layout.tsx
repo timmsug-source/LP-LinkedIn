@@ -25,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = seoData.meta_title || 'Timm Schurig · SEO & Webdesign Freelancer Langenfeld'
   const description =
     seoData.meta_description ||
-    'SEO & Webdesign Freelancer aus Langenfeld. Ich baue Websites, die bei Google gefunden werden – und Besucher in Kunden verwandeln. Kein Agentur-Overhead. Direkte Kommunikation.'
+    'SEO & Webdesign Freelancer aus Langenfeld: Websites, die bei Google gefunden werden – und Besucher zu Kunden machen. Ohne Agentur-Overhead.'
   const ogTitle = seoData.og_title || title
   const ogDescription = seoData.og_description || description
   const ogImage = seoData.og_image || `${BASE_URL}/og-image-timm-schurig-zentriert.png`
@@ -33,7 +33,11 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: {
       default: title,
-      template: '%s · Timm Schurig',
+      // Kein Namenszusatz mehr: Das Template hängte an jeden Titel
+      // " · Timm Schurig" und trieb damit fast alle Titel über die Pixelgrenze
+      // der Suchergebnisse – auf zwei Seiten stand der Name dadurch doppelt.
+      // Jede Seite formuliert ihren Titel jetzt vollständig selbst.
+      template: '%s',
     },
     description,
     metadataBase: new URL(BASE_URL),

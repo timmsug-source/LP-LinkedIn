@@ -32,7 +32,7 @@ const umfang = [
   {
     bereich: 'Aufbau des Shops',
     punkte: [
-      'Shop von Grund auf neu aufgesetzt – es gab vorher nichts',
+      'Shop für Hundeartikel von Grund auf neu aufgesetzt – es gab vorher nichts',
       'Kategorie- und Seitenstruktur entlang der Suchnachfrage geschnitten',
       'Sprechende URLs und eine flache, nachvollziehbare Navigation',
       'Technische Basis: Ladezeit, mobile Darstellung, strukturierte Daten',
@@ -113,9 +113,9 @@ const vorgehen = [
 ]
 
 export const metadata: Metadata = {
-  title: 'Case Study: Onlineshop für Hundeartikel',
+  title: 'Case Study: Onlineshop für Hundeartikel bei Google sichtbar',
   description:
-    'Wie ein Onlineshop für Hundeartikel in zwölf Monaten auf 26.977 Impressionen und 4.975 Klicks aus der organischen Suche kam – inklusive Sichtbarkeit in KI-Antworten.',
+    'Onlineshop für Hundeartikel: 26.977 Impressionen und 4.975 Klicks in zwölf Monaten – so wurde der Shop bei Google und in KI-Antworten sichtbar.',
   alternates: { canonical: `${BASE_URL}/referenzen/hundeshop` },
   openGraph: {
     type: 'article',
@@ -154,9 +154,10 @@ export default function HundeshopCaseStudy() {
           <div className="label">Case Study · E-Commerce</div>
           <h1 className="ref-title">Onlineshop für Hundeartikel</h1>
           <p className="ref-sub">
-            Ein Shop, den ich aufgebaut und über die Suche sichtbar gemacht habe. Der Kunde
-            möchte nicht namentlich genannt werden – die Zahlen stammen unverändert aus der
-            Google Search Console des Projekts.
+            Ein Onlineshop für Hundeartikel, den ich aufgebaut und über die Suche sichtbar
+            gemacht habe – vom leeren Seitenbaum bis zu den ersten Bestellungen. Der Kunde
+            möchte nicht namentlich genannt werden; die Zahlen stammen unverändert aus der
+            Google Search Console und dem Shop-Backend des Projekts.
           </p>
 
           <div className="ref-meta">

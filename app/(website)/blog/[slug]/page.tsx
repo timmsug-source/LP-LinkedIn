@@ -13,7 +13,10 @@ import PostToc from './toc'
 
 interface Props { params: Promise<{ slug: string }> }
 
-export const revalidate = 0 // always fresh — CTA position changes apply instantly
+// 0 bedeutete: jeder Aufruf rendert neu und fragt die Datenbank ab. Genau
+// deshalb lagen alle Blogbeiträge im Audit bei 0,5–1 s Antwortzeit. Mit 300
+// erscheinen Änderungen an einem Beitrag nach spätestens fünf Minuten.
+export const revalidate = 300
 
 export async function generateStaticParams() {
   const posts = await getPosts()
@@ -216,7 +219,7 @@ export default async function BlogPost({ params }: Props) {
                 </div>
                 <div className="related-grid">
                   {related.map((p) => (
-                    <Link key={p.id} href={`/blog/${p.slug}`} className="blog-card" aria-label={p.title}>
+                    <article key={p.id} className="blog-card">
                       {p.cover_image && (
                         <div className="blog-card-img">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -229,13 +232,15 @@ export default async function BlogPost({ params }: Props) {
                           Datum und Titel reichen für die Auswahl. */}
                       <div className="blog-card-body">
                         <time className="blog-date" dateTime={p.published_at}>{formatDate(p.published_at)}</time>
-                        <h2 className="blog-card-title">{p.title}</h2>
-                        <span className="blog-card-cta">
+                        <h2 className="blog-card-title">
+                          <Link href={`/blog/${p.slug}`}>{p.title}</Link>
+                        </h2>
+                        <span className="blog-card-cta" aria-hidden="true">
                           Weiterlesen
                           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </span>
                       </div>
-                    </Link>
+                    </article>
                   ))}
                 </div>
               </section>
@@ -258,6 +263,7 @@ export default async function BlogPost({ params }: Props) {
       <footer>
         <p className="foot-copy">© 2026 Timm Schurig · SEO & Webdesign Freelancer · Langenfeld</p>
         <div className="foot-links">
+          <Link href="/referenzen/hundeshop">Referenzen</Link>
           <Link href="/impressum">Impressum</Link>
           <Link href="/datenschutz">Datenschutz</Link>
           <a href="https://www.linkedin.com/in/timm-schurig/" target="_blank" rel="noopener noreferrer">LinkedIn</a>

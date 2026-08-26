@@ -3143,3 +3143,28 @@ footer {
 @media (max-width: 760px) {
   .ref-umsatz-grid { grid-template-columns: 1fr; }
 }
+
+/* Blog-Karten: Der Link liegt nur auf dem Titel, damit der Linktext kurz und
+   aussagekräftig bleibt. Dieses Pseudo-Element macht trotzdem die ganze Karte
+   klickbar – ohne den Linktext aufzublähen. */
+.blog-card { position: relative; }
+.blog-card-title a { color: inherit; text-decoration: none; }
+.blog-card-title a::after { content: ''; position: absolute; inset: 0; z-index: 1; }
+.blog-card:hover .blog-card-title a { color: var(--acc); }
+.blog-card-title a:focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; border-radius: 4px; }
+
+/* Antwortabsatz am Beitragsanfang: optisch fett, aber ohne <strong>.
+   Als Strong-Tag war er über 70 Zeichen lang und wurde im Audit als
+   Überoptimierung gewertet – die Hervorhebung ist hier reine Typografie. */
+.post-content .post-lead {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+/* Einleitungstext auf der Blog-Übersicht */
+.blog-hero-text {
+  font-size: .92rem; line-height: 1.8; color: var(--sub);
+  max-width: 620px; margin-top: 16px;
+}

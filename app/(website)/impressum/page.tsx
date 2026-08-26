@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Impressum',
+  title: 'Impressum · Timm Schurig, SEO & Webdesign Langenfeld',
   description: 'Impressum von Timm Schurig – SEO & Webdesign Freelancer aus Langenfeld (Rheinland). Angaben gemäß § 5 TMG.',
   alternates: { canonical: 'https://www.timmschurig.com/impressum' },
   // Bewusst indexierbar: Google nutzt die Impressumsdaten (Name, Adresse)
@@ -14,7 +14,7 @@ export default function Impressum() {
     <>
       <div className="page">
         <div className="page-label">Rechtliches</div>
-        <h1>Impressum</h1>
+        <h1>Impressum &amp; Anbieterkennzeichnung</h1>
         <div className="block">
           <h2>Angaben gemäß § 5 TMG</h2>
           <p><strong>Timm Schurig</strong></p>

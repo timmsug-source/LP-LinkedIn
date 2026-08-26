@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Datenschutzerklärung',
+  title: 'Datenschutzerklärung · Timm Schurig',
   description: 'Datenschutzerklärung von Timm Schurig – Informationen zur Erhebung, Verarbeitung und Nutzung personenbezogener Daten auf timmschurig.com.',
   alternates: { canonical: 'https://www.timmschurig.com/datenschutz' },
   // Rein juristischer Text, kein Suchwert – daher noindex und nicht in der

@@ -14,9 +14,9 @@ const WA_HREF = `https://wa.me/4915229515030?text=${encodeURIComponent(
 )}`
 
 export const metadata: Metadata = {
-  title: 'GEO Agentur Langenfeld — In KI-Suchen sichtbar werden | Timm Schurig',
+  title: 'GEO Agentur Langenfeld: In KI-Suchen sichtbar werden',
   description:
-    'GEO Agentur aus Langenfeld: Werde in ChatGPT, Perplexity & Google AI Overviews sichtbar. Generative Engine Optimization mit SEO-Fundament, wöchentlichem Reporting und messbaren Zitierungen.',
+    'GEO Agentur aus Langenfeld: sichtbar in ChatGPT, Perplexity und Google AI Overviews – auf SEO-Fundament, mit wöchentlichem Reporting.',
   alternates: { canonical: `${BASE_URL}/geo-agentur-langenfeld` },
   openGraph: {
     type: 'website',

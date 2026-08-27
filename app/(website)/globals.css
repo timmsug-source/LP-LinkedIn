@@ -261,12 +261,10 @@ body > nav.scrolled .nav-inner {
   padding: 140px 0 60px;
   position: relative; overflow: hidden;
   background: transparent;
+  text-align: center;
 }
 #hero::after { display: none; }
-/* Zweispaltig statt zentrierter Spalte: links der Text, rechts das Porträt.
-   Die Regel steht hier (statt weiter unten), weil sie mit #hero > .wrap eine
-   höhere Spezifität hat als eine reine Klassenregel. */
-#hero > .wrap { position: relative; z-index: 1; }
+#hero > .wrap { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
 
 /* Hero badge pill */
 .hero-badge {
@@ -288,21 +286,20 @@ body > nav.scrolled .nav-inner {
 }
 
 .hero-h1 {
-  font-size: clamp(2.4rem, 4.6vw, 4.2rem);
-  max-width: 15ch; margin-bottom: 26px;
-  line-height: 1.08;
+  font-size: clamp(2.8rem, 6.2vw, 5.4rem);
+  max-width: 1080px; margin-bottom: 26px;
+  line-height: 1.06;
 }
 .hero-h1 .hl { color: var(--acc); position: relative; display: inline-block; }
 .hero-h1 .hl::after { display: none; }
 .hero-sub {
   font-size: 1.05rem; color: var(--sub); max-width: 640px; line-height: 1.78; margin-bottom: 44px;
 }
-.hero-ctas { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 44px; }
+.hero-ctas { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: center; margin-bottom: 72px; }
 
 /* Trust badges row */
 .hero-trust {
-  display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
-  width: fit-content;
+  display: flex; align-items: center; gap: 24px; flex-wrap: wrap; justify-content: center;
   padding: 16px 28px;
   background: rgba(255,255,255,.04);
   border: 1px solid rgba(255,255,255,.08);
@@ -3170,58 +3167,4 @@ footer {
 .blog-hero-text {
   font-size: .92rem; line-height: 1.8; color: var(--sub);
   max-width: 620px; margin-top: 16px;
-}
-
-/* ── HERO: Text links, Porträt rechts ───────────────────────────
-   Das Bild ist freigestellt und soll im Hintergrund aufgehen, nicht als
-   Foto darauf liegen: ein weicher Lichtschein dahinter, eine ausblendende
-   Kante nach unten und ein leicht abgesenkter Kontrast. */
-.hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, .82fr);
-  gap: 40px; align-items: center;
-}
-.hero-text { min-width: 0; }
-.hero-h1, .hero-sub { margin-left: 0; margin-right: 0; }
-
-.hero-portrait {
-  position: relative;
-  justify-self: end; align-self: end;
-  width: 100%; max-width: 700px;
-  /* Zieht das Bild optisch bis an die Unterkante des Heros und über den
-     rechten Seitenrand hinaus – #hero schneidet den Überstand ab. */
-  margin-bottom: -60px; margin-right: -40px;
-}
-.hero-portrait img {
-  position: relative; z-index: 1;
-  width: 100%; height: auto; display: block;
-  /* Unten weich auslaufen lassen, damit keine harte Schnittkante entsteht. */
-  -webkit-mask-image: linear-gradient(180deg, #000 68%, rgba(0,0,0,.55) 86%, transparent 100%);
-  mask-image: linear-gradient(180deg, #000 68%, rgba(0,0,0,.55) 86%, transparent 100%);
-  filter: saturate(.92) contrast(1.02);
-}
-/* Lichtschein hinter der Person – gibt Tiefe und bindet das Bild an den Grund. */
-.hero-portrait-glow {
-  position: absolute; z-index: 0;
-  left: 50%; top: 46%; transform: translate(-50%, -50%);
-  width: 92%; aspect-ratio: 1;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(var(--acc-rgb),.20) 0%, transparent 62%),
-    radial-gradient(circle at 60% 35%, rgba(80,40,160,.28) 0%, transparent 65%);
-  filter: blur(18px);
-  pointer-events: none;
-}
-
-@media (max-width: 1024px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 0; }
-  /* Auf schmalen Geräten steht der Text oben, das Porträt darunter und
-     kleiner – nebeneinander bliebe für beides zu wenig Breite. */
-  .hero-portrait {
-    justify-self: center; max-width: 380px;
-    margin: 24px auto -60px;
-  }
-  .hero-trust { width: auto; }
-}
-@media (max-width: 560px) {
-  .hero-portrait { max-width: 300px; margin-bottom: -40px; }
 }

@@ -1,10 +1,13 @@
+import Image from 'next/image'
+
 const WA_NUMBER = '4915229515030'
 const WA_TEXT = encodeURIComponent('Hallo Timm, ich interessiere mich für deine Leistungen und würde gerne mehr erfahren.')
 
 export default function Hero({ data: _ }: { data?: Record<string, unknown> }) {
   return (
     <section id="hero">
-      <div className="wrap">
+      <div className="wrap hero-grid">
+        <div className="hero-text">
         <div className="hero-badge">
           <span className="hero-badge-dot" />
           SEO · Webdesign · GEO · Freelancer aus Langenfeld, NRW
@@ -37,6 +40,22 @@ export default function Hero({ data: _ }: { data?: Record<string, unknown> }) {
           <div className="hero-trust-item"><span className="hero-trust-check">✓</span>12+ Kundenprojekte · NRW</div>
           <div className="hero-trust-item"><span className="hero-trust-check">✓</span>SEO + GEO aus einer Hand</div>
           <div className="hero-trust-item"><span className="hero-trust-check">✓</span>Kein Agentur-Overhead</div>
+        </div>
+        </div>
+
+        {/* Porträt rechts. Der Verlauf hinter dem Bild und die weiche Kante am
+            unteren Rand lassen es in den Hintergrund übergehen, statt es als
+            Foto auf die Fläche zu kleben. */}
+        <div className="hero-portrait" aria-hidden="true">
+          <span className="hero-portrait-glow" />
+          <Image
+            src="/TS-Herobild-frontal.webp"
+            alt=""
+            width={1402}
+            height={1122}
+            priority
+            sizes="(max-width: 1024px) 60vw, 620px"
+          />
         </div>
       </div>
     </section>

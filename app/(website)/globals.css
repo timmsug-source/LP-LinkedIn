@@ -3168,3 +3168,1123 @@ footer {
   font-size: .92rem; line-height: 1.8; color: var(--sub);
   max-width: 620px; margin-top: 16px;
 }
+
+/* ── KUNDENWEBSITES (unter dem Hero) ────────────────────────────
+   Liegt im selben dunklen Block wie Hero und Problem, deshalb kein eigener
+   Hintergrund – nur eine feine Linie als Trennung. */
+/* Ohne Trennlinie: Der Hero und die Karten gehören zusammen, die Linie
+   zerschnitt den Block optisch in zwei Hälften. */
+.kw-section { padding: 64px 0 8px; }
+.kw-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.kw-card {
+  display: flex; flex-direction: column; overflow: hidden;
+  background: rgba(255,255,255,.035);
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 18px;
+  transition: border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.kw-card:hover {
+  border-color: rgba(var(--acc-rgb),.4);
+  transform: translateY(-4px);
+  box-shadow: 0 22px 54px rgba(0,0,0,.45);
+}
+/* Kein festes Seitenverhältnis: Die Screenshots sind flacher als 16:10,
+   dadurch blieb unter dem Bild ein leerer Streifen im Rahmen stehen. */
+.kw-shot { position: relative; overflow: hidden; background: #0b1526; line-height: 0; }
+.kw-shot img {
+  width: 100%; height: auto; display: block;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.kw-body { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; padding: 10px 14px; }
+/* Technik-Kennzeichnung: kleiner Chip mit Logo, kein zweiter Blickfang. */
+.kw-tech {
+  display: inline-flex; align-items: center; gap: 7px; flex-shrink: 0;
+  padding: 5px 11px; border-radius: 100px;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+  font-size: .72rem; font-weight: 600; color: var(--sub); white-space: nowrap;
+}
+.kw-tech img { width: 15px; height: 15px; }
+
+@media (max-width: 960px) {
+  .kw-grid { grid-template-columns: 1fr 1fr; }
+  .kw-grid > :last-child { grid-column: 1 / -1; max-width: 50%; }
+}
+@media (max-width: 640px) {
+  .kw-section { padding: 56px 0 4px; }
+  .kw-grid { grid-template-columns: 1fr; }
+  .kw-grid > :last-child { grid-column: auto; max-width: none; }
+}
+
+/* =====================================================
+   TESTSEITE — /test
+   Spielwiese für ein neues Startseiten-Design. Alles, was hier unter `.v2`
+   steht, wirkt ausschließlich auf der Testseite. Die Startseite bleibt
+   unberührt, solange keine Regel außerhalb dieses Blocks geändert wird.
+   ===================================================== */
+.v2-marke {
+  position: fixed; z-index: 2000; left: 12px; bottom: 12px;
+  padding: 6px 12px; border-radius: 100px;
+  background: rgba(234,179,8,.92); color: #1c1400;
+  font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  box-shadow: 0 6px 18px rgba(0,0,0,.35);
+  pointer-events: none;
+}
+
+/* ── Ab hier die Design-Versuche ──────────────────────────────── */
+
+/* Hero über die volle Fläche: keine Ränder, keine Rundung, ein einziges
+   Dunkelblau ohne Farbverlauf. Das Dunkelblau bleibt als Grundton stehen –
+   es füllt, was das Bild bei sehr breiten oder sehr hohen Fenstern nicht
+   abdeckt, und trägt die Fläche, solange das Bild noch lädt. */
+.v2-hero {
+  position: relative;
+  margin: 0; border-radius: 0; overflow: hidden;
+  background: #050d1a;
+}
+
+/* Das Bild soll nicht die Bühne sein, sondern die Fläche nur andeuten:
+   stark heruntergeregelt, sodass das Dunkelblau darunter den Ton angibt. */
+.v2-hero-bild {
+  object-fit: cover;
+  object-position: center;
+  opacity: .28;
+}
+
+/* Ohne diesen Schleier läuft die Bildschirmwand mitten durch die Überschrift –
+   die hellen Screenshots stehen genau dort, wo links der Text sitzt. Der
+   Verlauf legt die linke Hälfte in den Grundton zurück und lässt das Bild nach
+   rechts hin frei, wo es hingehört. Unten läuft die Fläche sauber aus. */
+.v2-hero::after {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    linear-gradient(90deg, #050d1a 0%, rgba(5,13,26,.94) 32%, rgba(5,13,26,.55) 58%, rgba(5,13,26,.1) 82%, transparent 100%),
+    linear-gradient(180deg, rgba(5,13,26,.6) 0%, transparent 22%);
+}
+
+/* Text links, Porträt rechts. Das Raster füllt die Höhe des Heros, damit das
+   Bild bis zur Unterkante reichen kann und der Text daneben mittig steht. */
+.v2-hero-grid {
+  position: relative; z-index: 1;
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .68fr);
+  align-items: center;
+  gap: 40px;
+}
+/* Etwas tiefer als die optische Mitte: Über der Überschrift steht die
+   Navigation, darunter der Streifen – mittig gesetzt wirkt der Block dadurch
+   zu hoch. Bewusst per transform statt über Innenabstand: Ein Abstand würde
+   den Kasten vergrößern und ihn dadurch nur um die Hälfte verschieben. */
+.v2-hero-text { max-width: 780px; padding: 80px 0; transform: translateY(30px); }
+.v2-hero-h1 {
+  /* Bewusst etwas kleiner als auf der alten Startseite: So steht
+     „Gebucht von deinen Kunden." auf einer Zeile statt auf zweien. */
+  font-size: clamp(2.2rem, 3.7vw, 3.3rem);
+  line-height: 1.1;
+  margin-bottom: 26px;
+}
+.v2-hero-h1 .hl { color: var(--acc); }
+.v2-hero-sub {
+  font-size: 1.05rem; color: var(--sub); line-height: 1.78; max-width: 620px;
+}
+
+/* Das UND trägt die ganze Aussage – deshalb hervorgehoben, aber ohne
+   eigenes Element im Markup. */
+.v2-hero-sub strong { color: var(--acc); font-weight: 700; }
+
+/* Drei Belege unter der Subheadline, untereinander statt nebeneinander:
+   nebeneinander würden sie in der linken Spalte auf je zwei Wörter
+   zusammenschrumpfen. */
+.v2-hero-punkte {
+  list-style: none; margin: 28px 0 0; padding: 0;
+  display: flex; flex-direction: column; gap: 12px;
+  max-width: 560px;
+}
+.v2-hero-punkte li {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: .95rem; line-height: 1.55; color: rgba(255,255,255,.86);
+}
+.v2-hero-punkte svg {
+  flex: none; color: var(--acc);
+  /* Auf die Höhe der ersten Textzeile gesetzt, nicht auf die des Elements –
+     bei zweizeiligen Punkten stünde der Haken sonst in der Mitte. */
+  margin-top: .18em;
+}
+
+/* Knopf unter den Punkten. Der Hinweis daneben statt darunter: Er gehört zum
+   Knopf und soll die Zeile nicht in die Höhe ziehen. */
+.v2-hero-cta {
+  margin-top: 42px;
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+}
+.v2-hero-cta .btn { padding: 15px 28px; font-size: .92rem; }
+.v2-hero-cta-hinweis {
+  font-size: .82rem; color: rgba(255,255,255,.55);
+}
+
+/* ── Ergebnisse ─────────────────────────────────────────────────
+   Vorerst nur die Fläche. Dasselbe Dunkelblau wie im Hero, damit sich der
+   hellere Vorteils-Streifen dazwischen als eigenes Band abhebt. */
+/* ── Messen statt spekulieren ───────────────────────────────────
+   Vorerst nur die Fläche. */
+.v2-messen { background: #050d1a; min-height: 70vh; padding: 96px 0; }
+/* Gleiche Größe und Ausrichtung wie die Überschriften der übrigen Abschnitte. */
+.v2-me-h2 {
+  font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.18;
+  margin: 0; text-align: center;
+}
+
+/* ── Zahlen & Fakten ────────────────────────────────────────────
+   Große Zahl, darunter das Label, darunter die Quelle. Die Quelle ist hier
+   kein Kleingedrucktes, sondern der Grund, warum die Sektion so heißt. */
+.v2-zahlen {
+  background: #050d1a;
+  padding: 96px 0 104px;
+}
+.v2-za-kopf { max-width: 760px; margin: 0 auto 48px; text-align: center; }
+.v2-za-h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.18; margin: 0 0 14px; }
+.v2-za-h2 .hl { color: var(--acc); }
+.v2-za-sub { font-size: .98rem; line-height: 1.7; color: var(--sub); margin: 0; }
+
+/* Eine große Karte statt vier kleiner Kacheln: Ausgangssituation und Ergebnis
+   links, die Website rechts, die Zahlen als Leiste darunter. */
+/* Mehrere Fälle untereinander. */
+.v2-fall + .v2-fall { margin-top: 40px; }
+
+.v2-fall {
+  background: #0b1626;
+  border: 1px solid rgba(var(--acc-rgb), .28);
+  border-radius: 20px;
+  box-shadow:
+    0 0 26px -8px rgba(var(--acc-rgb), .3),
+    inset 0 1px 0 rgba(255,255,255,.05);
+  overflow: hidden;
+}
+.v2-fall-oben { padding: 30px 36px 26px; }
+/* Nur die beiden Blöcke und das Bild stehen im Raster – Badge und Zeitraum
+   liegen darüber und darunter. Dadurch beginnt das Bild genau auf Höhe der
+   Ausgangssituation und endet mit dem Ergebnis. */
+.v2-fall-mitte {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 40px;
+  align-items: stretch;
+}
+.v2-fall-text {
+  display: flex; flex-direction: column; gap: 10px;
+  justify-content: space-between;
+}
+
+/* Beschriften die Karte als Ganzes: Die beiden Blöcke darunter tragen eigene
+   Beschriftungen, hier steht nur, worum es geht und um welche Art Projekt. */
+.v2-fall-badges {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 18px;
+}
+.v2-fall-badge {
+  display: inline-block;
+  padding: 7px 14px;
+  border-radius: 100px;
+  background: rgba(var(--acc-rgb), .12);
+  border: 1px solid rgba(var(--acc-rgb), .4);
+  color: var(--acc);
+  font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+}
+/* Die Art des Projekts steht neutral daneben – zwei grüne Pillen
+   nebeneinander wären zwei gleich laute Aussagen. */
+.v2-fall-badge--art {
+  background: rgba(255,255,255,.05);
+  border-color: rgba(255,255,255,.15);
+  color: rgba(255,255,255,.65);
+}
+
+/* Beide Zustände stehen in einem Rahmen – aber bewusst nicht im gleichen.
+   Zwei identische Kästen zeigen zwei Zustände nebeneinander; ein gedämpftes
+   Vorher und ein hervorgehobenes Nachher zeigen den Unterschied. */
+.v2-fall-block {
+  padding: 18px 20px;
+  border-radius: 14px;
+}
+.v2-fall-block p { font-size: .92rem; line-height: 1.75; margin: 0; }
+
+.v2-fall-block--vorher {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.09);
+}
+.v2-fall-block--vorher p { color: rgba(255,255,255,.5); }
+
+.v2-fall-block--nachher {
+  background: rgba(var(--acc-rgb), .07);
+  border: 1px solid rgba(var(--acc-rgb), .35);
+  box-shadow: 0 0 22px -8px rgba(var(--acc-rgb), .45);
+}
+.v2-fall-block--nachher p { color: rgba(255,255,255,.82); }
+
+/* Der Pfeil dazwischen, auf der Höhe der Lücke. */
+.v2-fall-pfeil {
+  display: flex; justify-content: center;
+  color: rgba(var(--acc-rgb), .55);
+  margin: -2px 0;
+}
+
+/* Die beiden Zustände unterscheiden sich in der Farbe der Beschriftung –
+   grau für das Vorher, grün für das Nachher. */
+.v2-fall-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-bottom: 10px;
+  font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+}
+.v2-fall-label::before {
+  content: ''; width: 7px; height: 7px; border-radius: 50%;
+  background: rgba(255,255,255,.3);
+}
+.v2-fall-label--gut { color: var(--acc); }
+.v2-fall-label--gut::before { background: var(--acc); }
+
+.v2-fall-zeitraum {
+  font-size: .78rem; color: rgba(255,255,255,.4); margin: 18px 0 0;
+}
+
+/* Das Bild oben bündig, der Chip darunter – die Spalte selbst ist so hoch
+   wie die Blöcke daneben. */
+.v2-fall-bild { line-height: 0; display: flex; flex-direction: column; }
+.v2-fall-tech {
+  display: inline-flex; align-items: center; gap: 7px;
+  /* Ohne das zieht die Flex-Spalte den Chip auf die volle Bildbreite. */
+  align-self: flex-start;
+  margin-top: 14px;
+  padding: 6px 12px; border-radius: 100px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  font-size: .74rem; font-weight: 600; line-height: 1; color: rgba(255,255,255,.7);
+}
+.v2-fall-tech img { width: 15px; height: 15px; }
+/* Direktes Kind, nicht jedes img darunter: Der Shopify-Chip liegt ebenfalls
+   in diesem Kasten und wurde von der Regel sonst auf volle Breite gezogen. */
+.v2-fall-bild > img {
+  width: 100%; height: auto; display: block;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 18px 40px rgba(0,0,0,.45);
+}
+
+/* Die Zahlen als Leiste am Fuß der Karte, abgesetzt durch eine Linie. */
+.v2-fall-facts {
+  list-style: none; margin: 0; padding: 22px 36px 24px;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  border-top: 1px solid rgba(255,255,255,.09);
+  background: rgba(255,255,255,.02);
+}
+/* Alles, was noch Platzhalter ist: gestrichelt und gedämpft, damit es im
+   Vorbeigehen nicht als fertiger Inhalt durchgeht. */
+.v2-fall--offen { border-style: dashed; border-color: rgba(255,255,255,.18); box-shadow: none; }
+.v2-fall-leer { color: rgba(255,255,255,.35) !important; font-style: italic; }
+.v2-fall-platzhalter {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  border: 1px dashed rgba(255,255,255,.2);
+  background: rgba(255,255,255,.03);
+  color: rgba(255,255,255,.3);
+  text-align: center; padding: 20px;
+}
+.v2-fall-platzhalter svg { width: 46%; max-width: 200px; height: auto; }
+.v2-fall-platzhalter span { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.v2-fall-platzhalter small { font-size: .78rem; color: rgba(255,255,255,.3); }
+.v2-fall-facts--leer strong { color: rgba(255,255,255,.3); }
+
+.v2-fall-facts li { display: flex; flex-direction: column; gap: 4px; }
+.v2-fall-facts strong { font-size: 1.7rem; line-height: 1; color: #fff; }
+
+/* Woher die Zahlen dieses Falls stammen – pro Karte, nicht pro Abschnitt. */
+.v2-fall-quelle {
+  margin: 0;
+  padding: 14px 36px 18px;
+  font-size: .76rem; line-height: 1.6; color: rgba(255,255,255,.4);
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.v2-fall-quelle a { color: var(--acc); text-decoration: none; white-space: nowrap; }
+.v2-fall-quelle a:hover { text-decoration: underline; }
+.v2-fall-facts span { font-size: .8rem; color: rgba(255,255,255,.5); }
+
+@media (max-width: 900px) {
+  /* Nebeneinander wird der Text zu schmal – erst lesen, dann sehen. */
+  .v2-fall-oben { padding: 26px 24px 22px; }
+  .v2-fall-mitte { grid-template-columns: 1fr; gap: 28px; }
+  .v2-fall-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 22px 24px; }
+  .v2-fall-quelle { padding: 14px 24px 18px; }
+}
+@media (max-width: 480px) {
+  .v2-fall-facts strong { font-size: 1.45rem; }
+}
+
+@media (max-width: 560px) {
+  .v2-zahlen { padding: 72px 0 80px; }
+}
+
+/* ── Ablauf der Zusammenarbeit ──────────────────────────────────
+   Links das Bild, rechts die Schritte an einer senkrechten Linie, die beim
+   Scrollen mitwächst. */
+.v2-ablauf {
+  background: #050d1a;
+  padding: 96px 0 104px;
+  /* clip statt hidden – hidden wäre ein Scroll-Container, und die Linie
+     hängt ihre Animation an den nächsten Scroll-Container. */
+  overflow: clip;
+}
+.v2-ab-kopf { max-width: 720px; margin: 0 auto 56px; text-align: center; }
+.v2-ab-h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.18; margin: 0 0 14px; }
+.v2-ab-h2 .hl { color: var(--acc); }
+.v2-ab-sub { font-size: .98rem; line-height: 1.7; color: var(--sub); margin: 0; }
+
+.v2-ab-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+}
+/* Das Bild bleibt stehen, während die Schritte daran vorbeilaufen. */
+.v2-ab-bild { position: sticky; top: calc(var(--nav-h) + 48px); }
+
+.v2-ab-platzhalter {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px;
+  aspect-ratio: 4 / 3;
+  border-radius: 18px;
+  border: 1px dashed rgba(var(--acc-rgb), .4);
+  background: rgba(255,255,255,.03);
+  color: rgba(var(--acc-rgb), .75);
+  text-align: center; padding: 24px;
+}
+.v2-ab-platzhalter svg { width: 44%; max-width: 220px; height: auto; }
+.v2-ab-platzhalter span { font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.v2-ab-platzhalter small { font-size: .8rem; color: rgba(255,255,255,.45); max-width: 26ch; line-height: 1.5; }
+
+/* Die Schritte hängen an einer Linie. Die Linie selbst ist ein Pseudoelement
+   der Liste und wächst von oben nach unten mit dem Scrollen. */
+.v2-ab-schritte {
+  list-style: none; margin: 0; padding: 0 0 0 38px;
+  position: relative;
+}
+.v2-ab-schritte::before,
+.v2-ab-schritte::after {
+  content: ''; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px;
+  border-radius: 2px;
+}
+/* Die blasse Spur liegt immer da – sie zeigt, wie weit es noch geht. */
+.v2-ab-schritte::before { background: rgba(255,255,255,.1); }
+/* Darüber die grüne Linie, die mitwächst. */
+.v2-ab-schritte::after {
+  background: linear-gradient(180deg, rgba(var(--acc-rgb),.5), var(--acc));
+  transform-origin: top center;
+}
+@supports (animation-timeline: view()) {
+  .v2-ab-schritte::after {
+    transform: scaleY(0);
+    animation: v2-ab-linie linear both;
+    animation-timeline: view();
+    animation-range: entry 90% cover 78%;
+  }
+}
+@keyframes v2-ab-linie { to { transform: scaleY(1); } }
+
+.v2-ab-schritte li { position: relative; padding-bottom: 42px; }
+.v2-ab-schritte li:last-child { padding-bottom: 0; }
+
+/* Der Punkt auf der Linie. Er springt auf Grün, sobald der Schritt im Bild
+   ist – jeder Punkt hängt dabei an seiner eigenen Zeitachse. */
+.v2-ab-punkt {
+  position: absolute; left: -38px; top: 5px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: #0b1626;
+  border: 2px solid rgba(255,255,255,.2);
+}
+@supports (animation-timeline: view()) {
+  .v2-ab-punkt {
+    animation: v2-ab-punkt linear both;
+    animation-timeline: view();
+    animation-range: entry 100% cover 62%;
+  }
+}
+@keyframes v2-ab-punkt {
+  to {
+    background: var(--acc);
+    border-color: rgba(var(--acc-rgb), .35);
+    box-shadow: 0 0 0 4px rgba(var(--acc-rgb), .12);
+  }
+}
+
+.v2-ab-kopfzeile {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px;
+  margin-bottom: 8px;
+}
+.v2-ab-n {
+  font-size: .72rem; font-weight: 700; letter-spacing: .1em; color: var(--acc);
+}
+.v2-ab-schritte h3 { font-size: 1.05rem; line-height: 1.35; margin: 0; color: #fff; }
+.v2-ab-dauer {
+  font-size: .74rem; font-weight: 600;
+  padding: 4px 10px; border-radius: 100px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.6);
+}
+.v2-ab-schritte p { font-size: .9rem; line-height: 1.7; color: var(--sub); margin: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-ab-schritte::after { animation: none; transform: none; }
+  .v2-ab-punkt { animation: none; background: var(--acc); border-color: rgba(var(--acc-rgb),.35); }
+}
+
+@media (max-width: 900px) {
+  /* Nebeneinander wird beides zu schmal: erst das Bild, dann die Schritte. */
+  .v2-ab-grid { grid-template-columns: 1fr; gap: 40px; }
+  .v2-ab-bild { position: static; max-width: 480px; margin: 0 auto; }
+  .v2-ablauf { padding: 72px 0 80px; }
+}
+
+/* ── Leistungen als Bento ───────────────────────────────────────
+   Eine feine Linie nach oben, weil der Abschnitt darüber denselben Grundton
+   hat und beide sonst ineinanderlaufen würden. */
+/* Bewusst ohne Linie nach oben: Der Abschnitt darüber endet mit dem Bild,
+   eine Trennlinie hätte darunter wie ein Abschluss-Strich gewirkt. */
+.v2-leistungen {
+  background: #050d1a;
+  padding: 96px 0 104px;
+}
+.v2-le-kopf { max-width: 720px; margin: 0 auto 44px; text-align: center; }
+.v2-le-h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.18; margin: 0 0 14px; }
+.v2-le-h2 .hl { color: var(--acc); }
+.v2-le-sub { font-size: .98rem; line-height: 1.75; color: var(--sub); margin: 0; }
+
+/* Vier Spalten. Die Kacheln unterscheiden sich in der Fläche, nicht nur im
+   Inhalt – sonst wäre es eine Tabelle und kein Bento. */
+.v2-bento {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.v2-kachel {
+  display: flex; flex-direction: column;
+  padding: 26px 26px 24px;
+  background: #0b1626;
+  /* Der Rahmen leuchtet: eine grüne Kante plus ein weicher Schein nach außen.
+     Bewusst schwach – bei acht Kacheln nebeneinander summiert sich jedes
+     bisschen Leuchten zu Unruhe. */
+  border: 1px solid rgba(var(--acc-rgb), .28);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow:
+    0 0 22px -6px rgba(var(--acc-rgb), .28),
+    inset 0 1px 0 rgba(255,255,255,.05);
+  transition: transform .3s var(--ease), border-color .3s var(--ease),
+              background-color .3s var(--ease), box-shadow .3s var(--ease);
+}
+.v2-kachel:hover {
+  transform: translateY(-4px);
+  border-color: rgba(var(--acc-rgb), .65);
+  background: #0e1c31;
+  box-shadow:
+    0 0 34px -4px rgba(var(--acc-rgb), .5),
+    0 18px 40px rgba(0,0,0,.4),
+    inset 0 1px 0 rgba(255,255,255,.07);
+}
+.v2-kachel-gross { grid-column: span 2; grid-row: span 2; }
+.v2-kachel-breit { grid-column: span 2; }
+.v2-kachel-klein { grid-column: span 1; }
+
+.v2-kachel-eyebrow {
+  font-size: .7rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--acc); margin-bottom: 10px;
+}
+.v2-kachel h3 { font-size: 1.08rem; line-height: 1.35; margin: 0 0 10px; color: #fff; }
+.v2-kachel p { font-size: .88rem; line-height: 1.7; color: var(--sub); margin: 0; }
+
+/* Die beiden breiten Kacheln stellen Text und Beleg nebeneinander, die große
+   untereinander – dort ist Platz für ein großes Bild. */
+.v2-kachel-breit { flex-direction: row; align-items: center; gap: 24px; }
+.v2-kachel-breit .v2-kachel-text { flex: 1 1 52%; min-width: 0; }
+.v2-kachel-breit .v2-kachel-bild { flex: 1 1 48%; min-width: 0; }
+.v2-kachel-text { display: flex; flex-direction: column; }
+
+.v2-kachel-bild { margin: 0; line-height: 0; }
+.v2-kachel-bild img { width: 100%; height: auto; display: block; border-radius: 10px; }
+/* Die Screenshots kommen aus der Search Console und sind hell. Ein heller
+   Kasten ohne Rahmen wirkte wie ein Fehler – mit Rahmen liest man ihn als
+   das, was er ist: ein Bildschirmfoto. */
+.v2-kachel-bild-shot img {
+  border: 1px solid rgba(255,255,255,.14);
+  background: #fff;
+}
+.v2-kachel-bild-shot figcaption {
+  margin-top: 10px; font-size: .72rem; line-height: 1.5;
+  color: rgba(255,255,255,.42);
+}
+/* Die Kachel „Local SEO": Überschrift oben, darunter die ganze Grafik –
+   unbeschnitten, deshalb ohne feste Höhe. Die Kachel wird dadurch etwas
+   höher; ihre Nachbarn in der Reihe ziehen mit. */
+.v2-kachel-bild-lokal { margin-top: 16px; }
+.v2-kachel-bild-lokal img {
+  width: 100%; height: auto; display: block;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: #fff;
+}
+
+/* Zwei Ausschnitte, versetzt hintereinander. Sie dürfen über den Rand
+   hinauslaufen: Es sind Ausschnitte, keine gerahmten Dokumente. */
+.v2-kachel-bild-website {
+  /* Oben ausgerichtet und größer: Unten ausgerichtet blieb zwischen Text und
+     Ausschnitten eine leere Fläche stehen, weil die Kachel ihre Höhe von der
+     Spalte daneben bekommt und nicht vom Bild. Was unten übersteht, schneidet
+     die Kachel ab – das ist gewollt. */
+  margin: 20px -26px -24px -26px; flex: 1;
+  display: flex; align-items: flex-start;
+  padding-left: 26px;
+}
+.v2-kachel-bild-website img {
+  /* flex: none, sonst staucht das Raster die beiden Ausschnitte, bis unter
+     ihnen wieder eine leere Fläche steht. Die Breite ist so gewählt, dass der
+     Stapel bis an die Unterkante der Kachel reicht. */
+  flex: none;
+  width: 92%; height: auto;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 18px 40px rgba(0,0,0,.5);
+}
+/* Der zweite Ausschnitt liegt vorn und überlappt den ersten – dadurch wirkt
+   es wie ein Stapel und nicht wie zwei Bilder nebeneinander. */
+.v2-kachel-bild-website img:last-child {
+  margin-left: -38%;
+  margin-bottom: -18px;
+  position: relative; z-index: 1;
+}
+
+/* Die Tool-Kachel nimmt zwei Spalten: Fünf Zeilen mit Name und Einordnung
+   brauchen Breite. Die Liste selbst läuft zweispaltig, damit die Kachel nicht
+   deutlich höher wird als ihre Nachbarn. */
+.v2-kachel-tools { grid-column: span 2; }
+/* Überschrift statt Kicker: Der grüne Versalien-Kicker beschriftet, was
+   darunter kommt. Auf diesen Kacheln trägt die Zeile aber die Kachel selbst. */
+.v2-kachel-titel {
+  font-size: 1.08rem; line-height: 1.35; color: #fff;
+  margin: 0 0 4px;
+}
+
+.v2-toolliste {
+  list-style: none; margin: 4px 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px 26px;
+}
+.v2-toolliste li {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 0;
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+/* Die jeweils erste Zeile jeder Spalte braucht keine Linie nach oben. */
+.v2-toolliste li:nth-child(1),
+.v2-toolliste li:nth-child(2) { border-top: 0; }
+.v2-tool-chip {
+  flex: none;
+  width: 36px; height: 36px; display: grid; place-items: center;
+  border-radius: 9px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+}
+.v2-tool-chip img { width: 19px; height: 19px; }
+/* Ersatz, wo es kein Logo gibt: das Kürzel im selben Chip. */
+.v2-tool-chip em {
+  font-style: normal; font-size: .74rem; font-weight: 700;
+  color: rgba(255,255,255,.7); letter-spacing: .02em;
+}
+.v2-tool-text { display: flex; flex-direction: column; min-width: 0; }
+.v2-tool-text strong {
+  font-size: .86rem; font-weight: 700; color: #fff; line-height: 1.3;
+}
+.v2-tool-text span {
+  font-size: .76rem; line-height: 1.4; color: rgba(255,255,255,.5);
+}
+
+/* Reporting schließt den Block als flacher Streifen über die volle Breite. */
+.v2-kachel-streifen {
+  grid-column: 1 / -1;
+  flex-direction: row; align-items: center; gap: 22px;
+  padding: 20px 26px;
+}
+.v2-kachel-streifen .v2-kachel-eyebrow { margin: 0; flex: none; }
+
+/* Das Logo sitzt in der freien Fläche zwischen Kicker und Zahl. Das `auto`
+   an der Oberkante schiebt es nach unten, die Zahl schließt direkt an. */
+/* Der Schriftzug steckt bei Simple Icons in einem quadratischen Feld und
+   füllt davon nur ein Drittel der Höhe – quadratisch dargestellt wäre er
+   winzig. Das Sichtfeld der Datei ist deshalb eng um die Schrift gelegt
+   (viewBox), hier zählt nur noch die Höhe. */
+.v2-zahl-logo {
+  /* Die Kachel ist eine Flex-Spalte, deren Kinder standardmäßig auf volle
+     Breite gezogen werden – der Schriftzug stand dadurch mittig in einem
+     254 px breiten Kasten statt links. */
+  /* Über die Höhe begrenzt, nicht über die Breite. Mit width: 100% wuchs der
+     Schriftzug mit der Kachel mit – im zweispaltigen Raster ist die Kachel
+     doppelt so breit, das Logo wurde dort über 200 px hoch und hat die ganze
+     Reihe auseinandergezogen. So bleibt die Kartenhöhe unverändert. */
+  align-self: flex-start;
+  height: 72px; width: auto; max-width: 100%;
+  margin: auto 0 18px;
+}
+.v2-kachel-zahl strong {
+  display: block; font-size: 2.6rem; line-height: 1; color: #fff;
+  margin: 0 0 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-kachel { transition: border-color .3s, background-color .3s; }
+  .v2-kachel:hover { transform: none; }
+}
+
+@media (max-width: 1024px) {
+  /* Zwei Spalten: Die große Kachel behält ihr Gewicht, die breiten werden
+     zur vollen Zeile, die kleinen stehen zu zweit. */
+  .v2-bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .v2-kachel-gross { grid-column: 1 / -1; grid-row: auto; }
+  .v2-kachel-breit { grid-column: 1 / -1; }
+  .v2-kachel-tools { grid-column: 1 / -1; }
+}
+@media (max-width: 700px) {
+  .v2-leistungen { padding: 72px 0 80px; }
+  .v2-bento { grid-template-columns: 1fr; }
+  .v2-kachel-klein { grid-column: 1 / -1; }
+  /* Zwei Spalten Liste passen auf dem Handy nicht – die Einordnung würde
+     auf drei Zeilen umbrechen. */
+  .v2-toolliste { grid-template-columns: 1fr; gap: 0; }
+  .v2-toolliste li:nth-child(2) { border-top: 1px solid rgba(255,255,255,.07); }
+  .v2-kachel-streifen { flex-direction: column; align-items: flex-start; gap: 10px; padding: 22px 26px; }
+  /* Nebeneinander bleibt zu wenig Platz für Text und Screenshot. */
+  .v2-kachel-breit { flex-direction: column; align-items: stretch; gap: 20px; }
+  .v2-kachel-bild-website { margin-right: -26px; }
+}
+
+/* ── Über mich ──────────────────────────────────────────────────
+   Überschrift mittig, darunter zwei Karten mit dem Porträt dazwischen. Eine
+   feine Linie nach oben, weil der Abschnitt darüber denselben Grundton hat
+   und beide sonst ineinanderlaufen würden. */
+.v2-uebermich {
+  background: #050d1a;
+  border-top: 1px solid rgba(255,255,255,.07);
+  padding: 96px 0;
+  /* clip statt hidden: hidden macht die Sektion zu einem Scroll-Container.
+     Der Strich unter der Überschrift hängt seine Animation an den nächsten
+     Scroll-Container – und der hier scrollt nie, also passierte nichts.
+     clip schneidet genauso ab, ohne scrollbar zu sein. */
+  overflow: clip;
+}
+.v2-um-kopf { text-align: center; max-width: 760px; margin: 0 auto 8px; }
+.v2-um-h2 {
+  font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+  line-height: 1.18; margin: 0 0 14px;
+}
+.v2-um-h2 .hl { color: var(--acc); position: relative; display: inline-block; }
+
+/* Strich unter der zweiten Zeile. Er ist standardmäßig vollständig da –
+   erst wenn der Browser scrollgesteuerte Animationen kann, wird daraus ein
+   Strich, der sich beim Scrollen aufbaut. So sehen ihn auch Browser ohne
+   diese Technik, nur eben ohne Bewegung. */
+.v2-um-h2 .hl::after {
+  content: ''; position: absolute; z-index: -1;
+  left: 0; right: 0; bottom: -.18em; height: .08em;
+  border-radius: 100px;
+  background: linear-gradient(90deg, rgba(var(--acc-rgb),.25), var(--acc) 45%, rgba(var(--acc-rgb),.25));
+  transform-origin: left center;
+}
+@supports (animation-timeline: view()) {
+  .v2-um-h2 .hl::after {
+    transform: scaleX(0);
+    animation: v2-strich linear both;
+    /* An den Sichtbereich gekoppelt. Der Strich beginnt erst, wenn die
+       Überschrift vollständig von unten ins Bild gekommen ist, und ist fertig,
+       wenn sie im oberen Drittel steht. Vorher endete er schon, während die
+       Überschrift noch in der unteren Bildhälfte stand – man sah ihn nie
+       wachsen, sondern immer nur fertig. */
+    animation-timeline: view();
+    animation-range: entry 100% cover 72%;
+  }
+}
+@keyframes v2-strich { to { transform: scaleX(1); } }
+
+/* Ohne Bewegung: der Strich steht einfach. */
+@media (prefers-reduced-motion: reduce) {
+  .v2-um-h2 .hl::after { animation: none; transform: none; }
+}
+.v2-um-sub {
+  font-size: .96rem; line-height: 1.7; color: var(--sub); margin: 0;
+}
+
+/* Drei Spalten: Karte, Porträt, Karte. Alle drei mittig ausgerichtet – sonst
+   hängen die Spalten an der Unterkante der Bühne, während das höhere Bild
+   deren Mitte bestimmt. Die Person saß dadurch rund 60 px tiefer als die
+   Karten neben ihr. */
+.v2-um-buehne {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 430px) 1fr;
+  align-items: center;
+  margin-top: 40px;
+}
+.v2-um-bild {
+  grid-column: 2; justify-self: center;
+  /* Etwas höher als die Mitte – bewusst per transform, damit die Karten
+     daneben an Ort und Stelle bleiben. Ein Abstand würde das Raster
+     verschieben. */
+  transform: translateY(-42px);
+  position: relative; z-index: 2;
+  width: 100%;
+  line-height: 0;
+  /* Unten weich auslaufen: Der Freisteller endet mitten im Oberkörper, eine
+     harte Kante würde ihn abgeschnitten wirken lassen. */
+  -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 82%, transparent 100%);
+}
+.v2-um-bild img { position: relative; z-index: 1; width: 100%; height: auto; display: block; }
+
+/* Blauer Schein hinter der Person: hebt den Freisteller vom Grund ab, ohne
+   dass eine Kante entsteht. Als breite Ellipse statt als Kreis – ein Kreis
+   zeichnete sich trotz Weichzeichner als Scheibe ab. Liegt über den Karten,
+   aber hinter dem Porträt. Er hängt an der Bühne, nicht am Bild: Die Maske
+   des Bildes würde ihn sonst zu einem Rechteck beschneiden. */
+.v2-um-glow {
+  position: absolute; z-index: 1;
+  left: 50%; top: 46%; transform: translate(-50%, -50%);
+  width: min(760px, 62%); aspect-ratio: 1 / .78;
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(45,105,230,.32) 0%, rgba(28,68,160,.16) 40%, transparent 72%);
+  filter: blur(64px);
+  pointer-events: none;
+}
+
+.v2-um-karte {
+  position: relative; z-index: 1;
+  padding: 30px 32px 34px;
+  /* Deckend, nicht durchscheinend: Der Schein hinter der Person würde sonst
+     durch die Karten hindurchleuchten und den Text aufweichen. */
+  background: #0c1729;
+  border: 1px solid rgba(var(--acc-rgb), .45);
+  border-radius: 18px;
+  text-align: center;
+}
+/* Je Seite eine Spalte aus kleiner und großer Karte. Nur eine knappe
+   Überlappung mit dem Porträt: Vorher schoben sich die Karten weit darunter
+   und brauchten einseitig mehr Innenabstand – damit stand der Text aber
+   nicht mehr mittig in der Karte. */
+.v2-um-spalte {
+  /* Kein durchgehender Zwischenraum: Über der großen Karte soll viel Luft
+     stehen (die Pille sitzt dadurch auf Kopfhöhe), darunter nur wenig. Mit
+     einem gemeinsamen gap wäre beides gleich groß. */
+  display: flex; flex-direction: column; gap: 0;
+}
+.v2-um-links { margin-right: -18px; align-items: flex-end; }
+.v2-um-rechts { margin-left: -18px; align-items: flex-start; }
+
+/* Die kleine Karte darüber: nur so breit wie ihr Text und zur Person hin
+   ausgerichtet, damit beide den Kopf einrahmen statt eine zweite Reihe
+   gleich breiter Kästen zu bilden. */
+.v2-um-mini {
+  padding: 11px 20px;
+  margin-bottom: 92px;
+  background: #0c1729;
+  border: 1px solid rgba(var(--acc-rgb), .45);
+  /* Gleiche Rundung wie die großen Karten – als Pille wirkten sie wie ein
+     anderes Bauteil. */
+  border-radius: 18px;
+  font-size: .84rem; font-weight: 700; color: #fff; white-space: nowrap;
+}
+.v2-um-karte { width: 100%; }
+/* Die Pille unter der Karte steht genauso weit weg wie die darüber –
+   dadurch sitzt die große Karte mittig zwischen beiden. */
+.v2-um-karte + .v2-um-mini { margin: 92px 0 0; }
+/* Leichter Effekt unter dem Zeiger: etwas anheben, Rahmen und Grund eine
+   Spur kräftiger. Bewusst zurückhaltend – die Karten sind kein Knopf, sie
+   sollen nur reagieren. */
+.v2-um-karte,
+.v2-um-mini {
+  transition: transform .3s var(--ease), border-color .3s var(--ease),
+              background-color .3s var(--ease), box-shadow .3s var(--ease);
+}
+.v2-um-karte:hover,
+.v2-um-mini:hover {
+  transform: translateY(-4px);
+  border-color: rgba(var(--acc-rgb), .8);
+  background: #101d33;
+  box-shadow: 0 18px 40px rgba(0,0,0,.4), 0 0 0 1px rgba(var(--acc-rgb), .12);
+}
+/* Wer Bewegung im Betriebssystem abgestellt hat, bekommt nur den Farbwechsel. */
+@media (prefers-reduced-motion: reduce) {
+  .v2-um-karte, .v2-um-mini { transition: border-color .3s, background-color .3s; }
+  .v2-um-karte:hover, .v2-um-mini:hover { transform: none; }
+}
+
+.v2-um-karte h3 {
+  font-size: 1.02rem; line-height: 1.35; margin: 0 0 12px; color: #fff;
+}
+.v2-um-karte p {
+  font-size: .88rem; line-height: 1.7; color: var(--sub); margin: 0;
+}
+
+@media (max-width: 900px) {
+  /* Nebeneinander bleibt für drei Elemente kein Platz: Das Porträt nach oben,
+     die Karten darunter. */
+  .v2-uebermich { padding-top: 72px; }
+  .v2-um-buehne { grid-template-columns: 1fr; justify-items: center; gap: 22px; }
+  .v2-um-bild { grid-column: 1; grid-row: 1; width: min(72vw, 380px); }
+  .v2-um-links, .v2-um-rechts { margin: 0; align-items: stretch; width: 100%; }
+  .v2-um-spalte { gap: 16px; }
+  .v2-um-mini { margin-bottom: 0; }
+  .v2-um-karte + .v2-um-mini { margin-top: 0; }
+  .v2-um-mini { align-self: center; }
+
+}
+
+.v2-ergebnisse {
+  background: #050d1a;
+  /* Der Innenabstand des Karten-Rasters bringt oben schon 64 px mit – hier
+     kommt nur der Rest dazu, damit der Block nicht doppelt Luft hat. */
+  padding: 24px 0 88px;
+}
+
+/* Aufruf unter den Kundenwebsites: ein liegender Kasten über die volle
+   Breite des Karten-Rasters darüber. Text links, Knopf rechts – dadurch
+   bleibt der Block flach und wiederholt nicht die Karten-Optik. */
+.v2-cta {
+  margin-top: 24px;
+  padding: 30px 34px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 18px;
+  background: rgba(255,255,255,.035);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 32px; flex-wrap: wrap;
+}
+.v2-cta-titel {
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  line-height: 1.25; margin: 0 0 8px;
+}
+.v2-cta-text {
+  font-size: .92rem; line-height: 1.65; color: var(--sub);
+  max-width: 62ch; margin: 0;
+}
+/* Der Knopf darf nicht schrumpfen, wenn der Text lang wird. Bewusst über
+   .btn und nicht über :last-child: Die Formular-Komponente hängt hinter den
+   Knopf noch ihr <dialog>, das wäre sonst das getroffene Element. */
+.v2-cta .btn { flex: none; }
+
+@media (max-width: 700px) {
+  .v2-cta { flex-direction: column; align-items: flex-start; gap: 22px; padding: 26px 22px; }
+}
+
+/* ── Audit-Formular im Popup ────────────────────────────────────
+   Natives <dialog>: Fokusfalle, Escape und Abdunklung kommen vom Browser. */
+.v2-dialog {
+  border: none; padding: 0; background: none;
+  /* Der globale Reset in Zeile 1 setzt margin auf 0 – und nimmt dem <dialog>
+     damit genau das margin: auto, mit dem der Browser es sonst zentriert.
+     Deshalb hier ausdrücklich wieder setzen. */
+  position: fixed; inset: 0; margin: auto;
+  max-width: min(520px, calc(100vw - 32px));
+  width: 100%;
+  max-height: calc(100vh - 48px);
+  overflow: visible;
+  color: #fff;
+}
+.v2-dialog::backdrop {
+  background: rgba(3, 8, 18, .72);
+  backdrop-filter: blur(3px);
+}
+.v2-dialog-box {
+  position: relative;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding: 38px 36px 32px;
+  border-radius: 20px;
+  background: #0b1425;
+  border: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 40px 90px rgba(0,0,0,.55);
+}
+.v2-dialog-box h2 {
+  font-size: 1.5rem; line-height: 1.25; margin: 0 0 10px;
+}
+.v2-dialog-intro {
+  font-size: .92rem; line-height: 1.65; color: rgba(255,255,255,.62); margin: 0 0 24px;
+}
+.v2-dialog-zu {
+  position: absolute; top: 14px; right: 14px;
+  width: 34px; height: 34px; display: grid; place-items: center;
+  border-radius: 8px; border: none; cursor: pointer;
+  background: rgba(255,255,255,.06); color: rgba(255,255,255,.7);
+  transition: background .2s, color .2s;
+}
+.v2-dialog-zu:hover { background: rgba(255,255,255,.12); color: #fff; }
+
+.v2-form { display: flex; flex-direction: column; gap: 16px; }
+.v2-form label { display: flex; flex-direction: column; gap: 7px; }
+/* Versalien und Sperrung wie in den übrigen Formularen der Seite – die
+   globale label-Regel bringt beides mit, hier steht es nur ausdrücklich,
+   damit die Beschriftung nicht von einer Änderung dort abhängt. */
+.v2-form label > span {
+  font-size: .72rem; font-weight: 700; letter-spacing: .09em;
+  text-transform: uppercase; color: rgba(255,255,255,.72);
+  display: flex; align-items: baseline; gap: 6px; margin: 0;
+}
+/* Pflichtfeld-Stern und der Zusatz „optional" tragen dieselbe Rolle: Sie
+   sagen, ob das Feld ausgefüllt werden muss. Deshalb dasselbe Format. */
+.v2-form label em { color: var(--acc); font-style: normal; }
+.v2-form label i {
+  font-style: normal; font-weight: 400; font-size: .76rem; color: rgba(255,255,255,.4);
+}
+.v2-form input,
+.v2-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font: inherit; font-size: .92rem; color: #fff;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 9px;
+  transition: border-color .2s, background .2s;
+}
+.v2-form textarea { resize: vertical; min-height: 78px; }
+.v2-form input::placeholder,
+.v2-form textarea::placeholder { color: rgba(255,255,255,.32); }
+.v2-form input:focus,
+.v2-form textarea:focus {
+  outline: none;
+  border-color: rgba(var(--acc-rgb),.7);
+  background: rgba(255,255,255,.07);
+}
+.v2-form .btn { justify-content: center; margin-top: 6px; }
+.v2-form-hinweis {
+  font-size: .76rem; line-height: 1.55; color: rgba(255,255,255,.42); margin: 0;
+}
+
+.v2-dialog-danke { text-align: center; padding: 14px 0 4px; }
+.v2-dialog-danke p {
+  font-size: .92rem; line-height: 1.7; color: rgba(255,255,255,.65); margin: 0 0 22px;
+}
+
+@media (max-width: 520px) {
+  .v2-dialog-box { padding: 32px 22px 26px; border-radius: 16px; }
+}
+
+/* ── Vorteils-Streifen unter dem Hero ───────────────────────────
+   Das Porträt steht auf seiner Oberkante. Deshalb ist er etwas heller als
+   der Hero: Die Kante muss sichtbar sein, damit das Stehen gelesen wird. */
+.v2-streifen {
+  position: relative; z-index: 0;
+  background: #0a1730;
+  border-top: 1px solid rgba(255,255,255,.09);
+}
+.v2-streifen-liste {
+  list-style: none; margin: 0; padding: 30px 0;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px;
+}
+.v2-streifen-liste li {
+  display: flex; flex-direction: column; gap: 6px;
+  /* Trennlinien zwischen den Spalten statt Kästen: Der Streifen soll ein
+     Band bleiben und nicht in vier Karten zerfallen. */
+  padding-left: 20px;
+  border-left: 1px solid rgba(255,255,255,.1);
+}
+.v2-streifen-liste li:first-child { padding-left: 0; border-left: 0; }
+.v2-streifen-titel {
+  font-weight: 700; font-size: .95rem; color: #fff;
+}
+.v2-streifen-text {
+  font-size: .85rem; line-height: 1.6; color: rgba(255,255,255,.62);
+}
+
+@media (max-width: 900px) {
+  .v2-streifen-liste { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 28px; }
+  /* Bei zwei Spalten steht die Trennlinie nur noch links der rechten Spalte. */
+  .v2-streifen-liste li:nth-child(odd) { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 560px) {
+  .v2-streifen-liste { grid-template-columns: 1fr; gap: 20px; }
+  .v2-streifen-liste li { padding-left: 0; border-left: 0; }
+}
+
+/* Das Porträt ist ein Freisteller. Der Kasten gibt nur Höhe und rechte Kante
+   vor – das Bild darin darf breiter sein als der Kasten und nach links über
+   ihn hinauslaufen. Genau das ist der Punkt: Die Vorlage ist querformatig
+   (1402 × 1122), die Person darin hochformatig. Zwängt man sie mit cover in
+   eine schmale Rasterspalte, schneidet der Rahmen ihr die Arme ab – und zwar
+   umso mehr, je schmaler das Fenster wird. */
+.v2-hero-portrait {
+  position: relative; z-index: 0;
+  align-self: end;
+  justify-self: end;
+  width: 100%;
+  /* Nicht die volle Höhe: Die Höhe bestimmt die Größe der Person – über die
+     ganze Höhe stünde der Kopf direkt unter der Navigation. */
+  height: 86%;
+  display: flex; align-items: flex-end; justify-content: flex-end;
+  pointer-events: none;
+}
+.v2-hero-portrait img {
+  /* Die Höhe führt, die Breite folgt dem Seitenverhältnis der Vorlage.
+     Dadurch wird nichts beschnitten, egal wie schmal die Spalte wird –
+     der Überstand nach links liegt im transparenten Teil des Freistellers
+     und der Hero schneidet ihn sauber ab.
+     Bewusst ohne Maske an der Unterkante: Die Person steht auf der Oberkante
+     des Vorteils-Streifens. Ein weiches Auslaufen würde sie darüber schweben
+     lassen statt darauf stehen. */
+  height: 100%;
+  width: auto;
+  max-width: none;
+  /* Die Person endet in der Vorlage bei 87 % der Breite. Der leere Rest wird
+     nach rechts aus dem Bild geschoben, damit sie nicht mittig schwebt. */
+  margin-right: -19%;
+}
+
+/* Der Text muss über dem Überstand des Bildes liegen. */
+.v2-hero-text { position: relative; z-index: 1; }
+
+@media (max-width: 1024px) {
+  /* Nebeneinander wird es zu eng – deshalb untereinander: erst der Text,
+     darunter das Porträt. Es bleibt sichtbar und steht weiterhin auf der
+     Oberkante des Vorteils-Streifens. */
+  /* minmax(0, 1fr) statt 1fr: Eine Rasterspalte ist von sich aus mindestens
+     so breit wie ihr breitester Inhalt. Das Porträt hätte die Spalte – und
+     damit die ganze Seite – über die Bildschirmbreite hinaus gezogen, der
+     Text lief rechts aus dem Bild. */
+  .v2-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .v2-hero-portrait { min-width: 0; }
+  .v2-hero-text { max-width: 100%; padding: 56px 0 0; transform: none; }
+  .v2-hero-portrait {
+    /* Fester Rahmen statt frei laufender Breite: Er bestimmt den Ausschnitt,
+       das Bild füllt ihn. So steht die Person groß im Bild, statt als kleine
+       Figur in einer querformatigen Vorlage zu schweben. */
+    height: min(42vh, 340px);
+    width: 100%; min-width: 0; margin-right: 0; margin-top: 28px;
+  }
+  .v2-hero-portrait img {
+    height: 100%; width: 100%; margin-right: 0;
+    object-fit: cover;
+    /* Die Person sitzt in der Vorlage rechts der Mitte – 57 % legt den
+       Ausschnitt über sie statt über die leere linke Hälfte. */
+    object-position: 57% top;
+  }
+
+  /* Ohne Bild an der Seite darf der Schleier die ganze Fläche beruhigen. */
+  .v2-hero::after {
+    background:
+      linear-gradient(90deg, #050d1a 0%, rgba(5,13,26,.9) 60%, rgba(5,13,26,.75) 100%),
+      linear-gradient(180deg, rgba(5,13,26,.6) 0%, transparent 22%);
+  }
+}
+
+/* Hero und Streifen teilen sich zusammen einen Bildschirm. Der Streifen
+   bestimmt seine Höhe über seinen Inhalt, der Hero nimmt den Rest – dadurch
+   endet das Porträt immer exakt auf der Oberkante des Streifens, egal wie
+   hoch das Fenster ist. */
+.v2-buehne {
+  display: flex; flex-direction: column;
+  min-height: calc(100vh - var(--nav-h));
+}
+.v2-hero { flex: 1; display: flex; }

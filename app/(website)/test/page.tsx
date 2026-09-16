@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import AuditFormular from '@/components/AuditFormular'
 import Kundenwebsites from '@/components/Kundenwebsites'
+import KontaktFormular from '@/components/KontaktFormular'
 
 /**
  * Testseite für ein neues Startseiten-Design.
@@ -86,6 +88,25 @@ const SHORT_FACTS = [
   { wert: '4.975', label: 'Klicks' },
   { wert: '18,4 %', label: 'Klickrate' },
   { wert: '430', label: 'in KI-Antworten' },
+]
+
+/* Was sich beim Redesign von Resilient durchs Leben konkret geändert hat. */
+const REDESIGN_PUNKTE = [
+  {
+    titel: 'Navigation',
+    vorher: 'gebogene Schrift im Bild, vier Ziele ohne Reihenfolge.',
+    nachher: 'feste Navigationsleiste mit fünf Punkten, Telefon und Terminbuchung.',
+  },
+  {
+    titel: 'Inhalt',
+    vorher: 'Name, Titel und ein Slogan – keine Beschreibung der Leistungen.',
+    nachher: 'Leistungen im Titel, Einleitungstext, Qualifikation, Wartezeit und Stundensatz.',
+  },
+  {
+    titel: 'Handlung',
+    vorher: 'kein Button, Kontakt nur als kleiner Link unten im Bild.',
+    nachher: '„Erstgespräch vereinbaren" und „Leistungen ansehen" direkt im ersten Bildschirm.',
+  },
 ]
 
 /* Der Streifen unter dem Hero: warum ein Freelancer und keine Agentur. */
@@ -201,7 +222,7 @@ export default function Testseite() {
 
       {/* Über mich: Überschrift mittig, darunter zwei Karten, zwischen denen
           das Porträt steht – es liegt vor den Karten und überragt sie. */}
-      <section className="v2-uebermich">
+      <section className="v2-uebermich" id="ueber-mich">
         <div className="wrap">
           <div className="v2-um-kopf">
             <h2 className="v2-um-h2">
@@ -268,7 +289,7 @@ export default function Testseite() {
       {/* Leistungen als Bento: unterschiedlich schwere Kacheln statt eines
           Rasters aus gleich großen Kästen. Die drei Leistungen tragen, die
           vier kleinen Kacheln belegen. */}
-      <section className="v2-leistungen">
+      <section className="v2-leistungen" id="angebot">
         <div className="wrap">
           <div className="v2-le-kopf">
             <h2 className="v2-le-h2">
@@ -412,7 +433,7 @@ export default function Testseite() {
 
       {/* Ablauf: links das Bild, rechts die Schritte an einer Linie, die beim
           Scrollen mitwächst. */}
-      <section className="v2-ablauf">
+      <section className="v2-ablauf" id="ablauf">
         <div className="wrap">
           <div className="v2-ab-kopf">
             <h2 className="v2-ab-h2">
@@ -551,86 +572,248 @@ export default function Testseite() {
             </p>
           </article>
 
-          {/* ⚠️ Zweites Kundenergebnis – noch vollständig Platzhalter.
-              Texte, Zahlen und Bild fehlen; nichts davon ist erfunden, damit
-              hier keine Angabe live geht, die niemand belegen kann. */}
-          <article className="v2-fall v2-fall--offen">
-            <div className="v2-fall-oben">
-              <div className="v2-fall-badges">
-                <span className="v2-fall-badge">Kundenergebnisse</span>
-                <span className="v2-fall-badge v2-fall-badge--art">Redesign</span>
-              </div>
-
-              <div className="v2-fall-mitte">
-                <div className="v2-fall-text">
-                  <div className="v2-fall-block v2-fall-block--vorher">
-                    <span className="v2-fall-label">Ausgangssituation</span>
-                    <p className="v2-fall-leer">
-                      Platzhalter: Wie sah die Website vorher aus, und woran hat es
-                      gehakt? Zwei bis drei Sätze.
-                    </p>
-                  </div>
-
-                  <span className="v2-fall-pfeil" aria-hidden="true">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 5v14M19 12l-7 7-7-7" />
-                    </svg>
-                  </span>
-
-                  <div className="v2-fall-block v2-fall-block--nachher">
-                    <span className="v2-fall-label v2-fall-label--gut">Ergebnis</span>
-                    <p className="v2-fall-leer">
-                      Platzhalter: Was wurde gemacht und was ist dabei herausgekommen?
-                      Zahlen kommen unten in die Leiste.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="v2-fall-bild">
-                  <div className="v2-fall-platzhalter" role="img" aria-label="Platzhalter für den Screenshot der Website">
-                    <svg viewBox="0 0 200 124" fill="none" aria-hidden="true">
-                      <rect x="12" y="12" width="176" height="100" rx="7" stroke="currentColor" strokeWidth="2.5" />
-                      <path d="M12 38h176" stroke="currentColor" strokeWidth="2" />
-                      <circle cx="26" cy="25" r="3" fill="currentColor" />
-                      <circle cx="38" cy="25" r="3" fill="currentColor" />
-                      <circle cx="50" cy="25" r="3" fill="currentColor" />
-                      <rect x="28" y="54" width="62" height="8" rx="4" fill="currentColor" opacity=".45" />
-                      <rect x="28" y="70" width="90" height="6" rx="3" fill="currentColor" opacity=".25" />
-                      <rect x="28" y="82" width="74" height="6" rx="3" fill="currentColor" opacity=".25" />
-                      <rect x="130" y="54" width="46" height="42" rx="5" fill="currentColor" opacity=".18" />
-                    </svg>
-                    <span>Platzhalter</span>
-                    <small>Screenshot der Website folgt</small>
-                  </div>
-                </div>
-              </div>
-
-              <p className="v2-fall-zeitraum">Platzhalter: Zeitraum und Umfang</p>
+          {/* Zweites Kundenergebnis: Redesign. Statt Zahlen der direkte Vergleich
+              der Startseite vorher und nachher – darunter, was sich konkret
+              geändert hat. Screenshots aus dem Ordner Redesigns. */}
+          <article className="v2-fall v2-rd">
+            <div className="v2-fall-badges">
+              <span className="v2-fall-badge">Kundenergebnisse</span>
+              <span className="v2-fall-badge v2-fall-badge--art">Redesign</span>
             </div>
 
-            <ul className="v2-fall-facts v2-fall-facts--leer">
-              {['Impressionen', 'Klicks', 'Klickrate', 'in KI-Antworten'].map((label) => (
-                <li key={label}>
-                  <strong>—</strong>
-                  <span>{label}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="v2-rd-vergleich">
+              <figure className="v2-rd-panel">
+                <figcaption>
+                  <span className="v2-rd-stand">Vorher</span>
+                  <span className="v2-rd-hinweis">Alter Stand</span>
+                </figcaption>
+                <div className="v2-rd-bild">
+                  <Image
+                    src="/Redesign-Resilient-vorher.webp"
+                    alt="Alte Startseite von Resilient durchs Leben: gebogene Menüschrift auf rotem Holzbild, Kontakt nur als kleiner Link"
+                    width={1600}
+                    height={851}
+                    sizes="(max-width: 900px) 92vw, 560px"
+                  />
+                </div>
+              </figure>
 
-            <p className="v2-fall-quelle v2-fall-leer">Platzhalter: Quelle der Zahlen</p>
+              {/* Pfeil auf der Naht zwischen den Paneelen: absolut positioniert,
+                  damit er keine eigene Rasterzelle belegt. Auf dem Handy zeigt
+                  er nach unten. */}
+              <span className="v2-rd-pfeil" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+              </span>
+
+              <figure className="v2-rd-panel v2-rd-panel--nachher">
+                <figcaption>
+                  <span className="v2-rd-stand">Nachher</span>
+                  <span className="v2-rd-hinweis">Optimiert</span>
+                </figcaption>
+                <div className="v2-rd-bild">
+                  <Image
+                    src="/Redesign-Resilient-nachher.webp"
+                    alt="Neue Startseite von Resilient durchs Leben: Navigationsleiste, Leistungen im Titel und zwei Buttons im ersten Bildschirm"
+                    width={1600}
+                    height={774}
+                    sizes="(max-width: 900px) 92vw, 560px"
+                  />
+                </div>
+              </figure>
+            </div>
+
+            <div className="v2-rd-punkte">
+              {REDESIGN_PUNKTE.map((r) => (
+                <div key={r.titel} className="v2-rd-punkt">
+                  <h3>{r.titel}</h3>
+                  <p className="v2-rd-vorher">Vorher: {r.vorher}</p>
+                  <p className="v2-rd-nachher">Nachher: {r.nachher}</p>
+                </div>
+              ))}
+            </div>
           </article>
 
         </div>
       </section>
 
       {/* Messen statt spekulieren – vorerst nur die Überschrift, der Inhalt kommt später. */}
+      {/* Aufbau nach dem Vorbild jasminhuber.de/websites: links der Text, der beim
+          Scrollen stehen bleibt, rechts die Ergebnis-Karten untereinander.
+          Die Karten stammen aus Grafiken/Messbare Ergebnisse – jeweils eine
+          Desktop- und eine Mobil-Fassung. Beide unterscheiden sich nur in Größen
+          und Abständen, deshalb gibt es das Markup einmal und die Mobil-Werte per
+          Media-Query in globals.css. */}
       <section className="v2-messen">
-        <div className="wrap">
-          <h2 className="v2-me-h2">Messen statt spekulieren</h2>
+        <div className="wrap v2-ms-grid">
+          <div className="v2-ms-text">
+            <h2 className="v2-me-h2">Messen statt spekulieren</h2>
+            <p>
+              Eine Website muss nicht nur gut aussehen – sie muss etwas bringen. Deshalb
+              baue ich jede Seite so, dass sich ihr Erfolg an Anfragen, Abschlüssen und
+              Conversion messen lässt.
+            </p>
+            <p>Das verändert sich, wenn Design und Sichtbarkeit zusammenarbeiten:</p>
+            <AuditFormular label="Jetzt unverbindlich anfragen" />
+          </div>
+
+          <div className="v2-ms-karten">
+            <article className="ts-card">
+              <div className="ts-card__glow" />
+              <div className="ts-card__visual">
+                <div className="ts-legend">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16C98A" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 5-5" /><path d="M14 10h4v4" /></svg>
+                  <b>Verkaufsabschlüsse</b>
+                  <span>· letzte 12 Monate</span>
+                </div>
+                <svg className="ts-chart" viewBox="0 0 1400 380" fill="none" preserveAspectRatio="none" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="tsFill" x1="0" y1="0" x2="0" y2="380" gradientUnits="userSpaceOnUse">
+                      <stop offset="0" stopColor="#16C98A" stopOpacity=".38" />
+                      <stop offset="1" stopColor="#16C98A" stopOpacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M0 330 C 160 320, 250 296, 380 288 C 520 280, 600 238, 760 214 C 900 192, 980 132, 1130 96 C 1250 68, 1320 40, 1400 24 L1400 380 L0 380 Z" fill="url(#tsFill)" />
+                  <path className="ts-chart__line" d="M0 330 C 160 320, 250 296, 380 288 C 520 280, 600 238, 760 214 C 900 192, 980 132, 1130 96 C 1250 68, 1320 40, 1400 24" stroke="#2FD79A" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+                </svg>
+              </div>
+              <div className="ts-card__text">
+                <h3>Weniger Einwände</h3>
+                <p>Erleichtere deine Verkaufsabschlüsse, weil dein Außenauftritt unterbewusst Vertrauen erweckt und Reibungspunkte intelligent reduziert.</p>
+              </div>
+            </article>
+
+            <article className="ts-card">
+              <div className="ts-card__glow" />
+              <div className="ts-card__visual">
+                <div className="ts-stack">
+                  <div className="ts-stack__ghost" />
+                  <div className="ts-stack__ghost ts-stack__ghost--2" />
+                  <div className="ts-toast">
+                    <div className="ts-toast__icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="#16C98A" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="3" /><path d="M3.5 7.5l8.5 6 8.5-6" /></svg>
+                    </div>
+                    <div className="ts-toast__body">
+                      <div className="ts-toast__head"><b>Neue Anfragen eingegangen</b><span className="ts-pill">161</span></div>
+                      <p>Im letzten Monat sind 161 neue Anfragen über deine Website eingegangen.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="ts-card__text">
+                <h3>Mehr Anfragen</h3>
+                <p>Wecke Interesse und Neugierde bei deiner Zielgruppe. Durch gezielte Markenbotschaften in einem ansprechenden Design generieren wir nicht nur Aufmerksamkeit, sondern auch mehr Anfragen.</p>
+              </div>
+            </article>
+
+            <article className="ts-card">
+              <div className="ts-card__glow" />
+              <div className="ts-card__visual">
+                <div className="ts-bars">
+                  <div>
+                    <div className="ts-bar__row"><span className="ts-bar__label">Conversion vorher</span><span className="ts-bar__value">1.4%</span></div>
+                    <div className="ts-bar"><i style={{ width: '27%' }} /></div>
+                  </div>
+                  <div>
+                    <div className="ts-bar__row"><span className="ts-bar__label ts-bar__label--on">Conversion nachher</span><span className="ts-bar__value ts-bar__value--on">5.1 %</span></div>
+                    <div className="ts-bar"><i className="on" style={{ width: '100%' }} /></div>
+                  </div>
+                </div>
+              </div>
+              <div className="ts-card__text">
+                <h3>Höhere Conversion</h3>
+                <p>Steigere die Performance sämtlicher Marketingmaßnahmen, da unsere Designs verkaufspsychologisch optimiert sind.</p>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 
-      {/* Der Rest folgt. */}
+      {/* Kontakt – Aufbau nach dem Vorbild fabianschoenle.de/danke: Überschrift
+          mittig, links das Formular in einer Karte, rechts was man davon hat. */}
+      <section className="v2-kontakt" id="anfrage">
+        <div className="wrap">
+          <div className="v2-ko-kopf">
+            <h2 className="v2-ko-h2">
+              Sichere dir dein <span className="hl">kostenloses Erstgespräch</span>
+            </h2>
+            <p className="v2-ko-sub">
+              30 Minuten mit mir persönlich, in denen wir uns anschauen, wo deine Website
+              gerade steht – und was die nächsten sinnvollen Schritte sind.
+            </p>
+          </div>
+
+          <div className="v2-ko-grid">
+            <div className="v2-ko-karte">
+              <span className="v2-ko-icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="4.5" width="18" height="16" rx="3" /><path d="M3 9.5h18M8 3v3M16 3v3" /><path d="m9 15 2 2 4-4" />
+                </svg>
+              </span>
+              <h3 className="v2-ko-karte-titel">Kurz eintragen, ich melde mich</h3>
+              <KontaktFormular />
+            </div>
+
+            <div className="v2-ko-vorteile">
+              <ul className="v2-ko-liste">
+                <li>Du erfährst, <strong>woran es bei deiner Website gerade hakt</strong> – bei Google und in KI-Antworten.</li>
+                <li>Du bekommst <strong>die Maßnahmen mit der größten Wirkung</strong> zuerst, statt einer endlosen To-do-Liste.</li>
+                <li>Du nimmst <strong>konkrete nächste Schritte</strong> mit – auch wenn wir am Ende nicht zusammenarbeiten.</li>
+                <li>Kein Vertrag, keine Verkaufsmasche. <strong>30 Minuten, kostenlos.</strong></li>
+              </ul>
+
+              <div className="v2-ko-bewertung">
+                <span className="v2-ko-sterne" aria-hidden="true">★★★★★</span>
+                <span><strong>5,0</strong> aus 15+ Bewertungen auf Fiverr &amp; Google</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="v2-footer">
+        <div className="wrap">
+          <div className="v2-fu-oben">
+            <div className="v2-fu-marke">
+              <Link href="/" className="nav-logo">Timm <em>Schurig</em></Link>
+              <p>
+                SEO- und Webdesign-Freelancer aus Langenfeld. Websites, die bei Google und
+                in KI-Antworten gefunden werden – und Anfragen bringen.
+              </p>
+            </div>
+
+            <nav className="v2-fu-spalte" aria-label="Auf dieser Seite">
+              <span className="v2-fu-titel">Auf dieser Seite</span>
+              <a href="#angebot">Leistungen</a>
+              <a href="#ueber-mich">Über mich</a>
+              <a href="#ablauf">Ablauf</a>
+              <a href="#anfrage">Erstgespräch</a>
+            </nav>
+
+            <nav className="v2-fu-spalte" aria-label="Mehr">
+              <span className="v2-fu-titel">Mehr</span>
+              <Link href="/blog">Blog</Link>
+              <Link href="/referenzen/hundeshop">Referenzen</Link>
+              <Link href="/seo-freelancer">SEO Freelancer</Link>
+              <Link href="/geo-agentur-langenfeld">GEO-Agentur Langenfeld</Link>
+            </nav>
+
+            <div className="v2-fu-spalte">
+              <span className="v2-fu-titel">Kontakt</span>
+              <a href="https://wa.me/4915229515030" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+              <a href="https://www.linkedin.com/in/timm-schurig/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <span className="v2-fu-ort">Langenfeld, NRW</span>
+            </div>
+          </div>
+
+          <div className="v2-fu-unten">
+            <p>© 2026 Timm Schurig · SEO &amp; Webdesign Freelancer · Langenfeld</p>
+            <div className="v2-fu-recht">
+              <Link href="/impressum">Impressum</Link>
+              <Link href="/datenschutz">Datenschutz</Link>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

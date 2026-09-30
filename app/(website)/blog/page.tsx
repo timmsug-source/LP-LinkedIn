@@ -1,14 +1,25 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getPosts, Post } from '@/lib/supabase'
+import { BASE_URL } from '@/lib/jsonld'
+import BuchenKnopf from '@/components/BuchenKnopf'
+import V2Footer from '@/components/V2Footer'
 
+/**
+ * Blog-Übersicht im Design der Startseite.
+ *
+ * Die Karten verlinken auf die Beiträge unter /blog/[slug] – die bleiben
+ * vorerst im bisherigen Design. Titel und Beschreibung stammen von der
+ * früheren Übersicht, damit sich an Suchergebnissen nichts ändert.
+ */
 export const metadata: Metadata = {
   title: 'SEO & Webdesign News: Praxiswissen aus Langenfeld',
-  description: 'SEO-Tipps, Webdesign-Insights und ehrliche Einblicke aus der Praxis eines Freelancers. Praxisnahes Wissen für mehr Sichtbarkeit im Netz.',
-  alternates: { canonical: 'https://www.timmschurig.com/blog' },
+  description:
+    'SEO-Tipps, Webdesign-Insights und ehrliche Einblicke aus der Praxis eines Freelancers. Praxisnahes Wissen für mehr Sichtbarkeit im Netz.',
+  alternates: { canonical: `${BASE_URL}/blog` },
   openGraph: {
     type: 'website',
-    url: 'https://www.timmschurig.com/blog',
+    url: `${BASE_URL}/blog`,
     title: 'Blog · Timm Schurig',
     description: 'SEO-Tipps, Webdesign-Insights und ehrliche Einblicke aus der Praxis eines Freelancers.',
     locale: 'de_DE',
@@ -16,83 +27,129 @@ export const metadata: Metadata = {
   },
 }
 
-function formatDate(iso: string) {
+// Wie bei den Beiträgen: neue Artikel erscheinen nach spätestens fünf Minuten.
+export const revalidate = 300
+
+function datum(iso: string) {
   return new Date(iso).toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' })
 }
 
-export default async function BlogPage() {
+function Pfeil() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+  )
+}
+
+export default async function BlogUebersicht() {
   const posts = await getPosts()
+  const [neuster, ...weitere] = posts
 
   return (
-    <>
-      <div className="blog-hero">
-        <div className="wrap">
-          <div className="page-label">Blog</div>
-          <h1 className="blog-hero-title">SEO &amp; Webdesign News</h1>
-          <p className="blog-hero-sub">SEO-Tipps, Webdesign-Insights und ehrliche Einblicke aus meiner Arbeit als Freelancer.</p>
-          {/* Kurze Einordnung: Die Übersicht hatte im Audit nur 381 Wörter und
-              bestand fast ausschließlich aus Anrisstexten der Beiträge. */}
-          <p className="blog-hero-text">
-            Hier schreibe ich über das, was ich täglich mache: Websites bauen, sie bei Google
-            sichtbar machen und dafür sorgen, dass sie auch in KI-Antworten auftauchen. Keine
-            Trend-Listen und keine Theorie aus zweiter Hand – sondern das, was in Projekten
-            mit Handwerksbetrieben, Coaches und kleinen Onlineshops tatsächlich funktioniert
-            hat. Wo es passt, stehen die Zahlen dazu.
-          </p>
-          <p className="blog-hero-text">
-            Wenn du gerade vor einer konkreten Frage sitzt: Was SEO kostet, wie eine
-            Unternehmenswebsite aufgebaut sein sollte und ob sich der Aufwand 2026 überhaupt
-            noch lohnt, beantworten die Beiträge unten mit belegten Zahlen statt mit
-            „das kommt darauf an".
-          </p>
-        </div>
-      </div>
+    <div className="v2">
 
-      <div className="wrap blog-wrap">
-        {posts.length === 0 ? (
-          <div className="blog-empty">
-            <p>Noch keine Beiträge vorhanden. Schau bald wieder rein.</p>
-          </div>
-        ) : (
-          <div className="blog-grid">
-            {/* Nur der Titel ist der Link. Vorher umschloss der Link die ganze
-                Karte – damit bestand der Linktext aus Datum, Titel, Anrisstext
-                und "Weiterlesen" und war über 120 Zeichen lang. Klickbar bleibt
-                die ganze Karte über .blog-card-title a::after. */}
-            {posts.map((post: Post) => (
-              <article key={post.id} className="blog-card">
-                {post.cover_image && (
-                  <div className="blog-card-img">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={post.cover_image} alt={post.title} width={640} height={360} loading="lazy" />
+      <section className="v2-bl-hero">
+        <div className="wrap">
+          <h1 className="v2-bl-h1">
+            SEO &amp; Webdesign <span className="hl">News</span>
+          </h1>
+          <p className="v2-bl-sub">
+            SEO-Tipps, Webdesign-Insights und ehrliche Einblicke aus meiner Arbeit als
+            Freelancer – mit Zahlen, wo es welche gibt.
+          </p>
+          {posts.length > 0 && (
+            <span className="v2-bl-anzahl">{posts.length} Beiträge</span>
+          )}
+        </div>
+      </section>
+
+      <section className="v2-bl-liste" aria-label="Beiträge">
+        <div className="wrap">
+          {posts.length === 0 ? (
+            <p className="v2-bl-leer">Noch keine Beiträge vorhanden. Schau bald wieder rein.</p>
+          ) : (
+            <>
+              {/* Der neueste Beitrag groß: Er ist der Grund, warum jemand
+                  wiederkommt. Nur der Titel ist Link, klickbar ist über
+                  ::after trotzdem die ganze Karte – so bleibt der Linktext kurz. */}
+              <article className="v2-bl-top">
+                <div className="v2-bl-bild">
+                  {neuster.cover_image && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={neuster.cover_image} alt="" width={960} height={600} />
+                  )}
+                </div>
+                <div className="v2-bl-top-text">
+                  <div className="v2-bl-meta">
+                    <span className="v2-bl-neu">Neu</span>
+                    <time dateTime={neuster.published_at}>{datum(neuster.published_at)}</time>
                   </div>
-                )}
-                <div className="blog-card-body">
-                  <time className="blog-date" dateTime={post.published_at}>{formatDate(post.published_at)}</time>
-                  <h2 className="blog-card-title">
-                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                  <h2>
+                    <Link href={`/blog/${neuster.slug}`}>{neuster.title}</Link>
                   </h2>
-                  <p className="blog-card-excerpt">{post.excerpt}</p>
-                  <span className="blog-card-cta" aria-hidden="true">
-                    Weiterlesen
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </span>
+                  {neuster.excerpt && <p>{neuster.excerpt}</p>}
+                  <span className="v2-bl-weiter" aria-hidden="true">Weiterlesen <Pfeil /></span>
                 </div>
               </article>
-            ))}
-          </div>
-        )}
-      </div>
 
-      <footer>
-        <p className="foot-copy">© 2026 Timm Schurig · SEO & Webdesign Freelancer · Langenfeld</p>
-        <div className="foot-links">
-          <Link href="/referenzen/hundeshop">Referenzen</Link>
-          <Link href="/impressum">Impressum</Link>
-          <Link href="/datenschutz">Datenschutz</Link>
-          <a href="https://www.linkedin.com/in/timm-schurig/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              {weitere.length > 0 && (
+                <div className="v2-bl-grid">
+                  {weitere.map((post: Post) => (
+                    <article key={post.id} className="v2-bl-karte">
+                      <div className="v2-bl-bild">
+                        {post.cover_image && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={post.cover_image} alt="" width={640} height={360} loading="lazy" />
+                        )}
+                      </div>
+                      <div className="v2-bl-text">
+                        <time dateTime={post.published_at}>{datum(post.published_at)}</time>
+                        <h2>
+                          <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                        </h2>
+                        {post.excerpt && <p>{post.excerpt}</p>}
+                        <span className="v2-bl-weiter" aria-hidden="true">Weiterlesen <Pfeil /></span>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              )}
+            </>
+          )}
+
+          {/* Einordnung unten statt im Kopf: Die Übersicht bestand im Audit fast
+              nur aus Anrisstexten. Der Text bleibt für Suchmaschinen erhalten,
+              ohne den Kopf der Seite zu beschweren. */}
+          <div className="v2-bl-ueber">
+            <h2>Worum es hier geht</h2>
+            <p>
+              Hier schreibe ich über das, was ich täglich mache: Websites bauen, sie bei Google
+              sichtbar machen und dafür sorgen, dass sie auch in KI-Antworten auftauchen. Keine
+              Trend-Listen und keine Theorie aus zweiter Hand – sondern das, was in Projekten
+              mit Handwerksbetrieben, Coaches und kleinen Onlineshops tatsächlich funktioniert
+              hat. Wo es passt, stehen die Zahlen dazu.
+            </p>
+            <p>
+              Wenn du gerade vor einer konkreten Frage sitzt: Was SEO kostet, wie eine
+              Unternehmenswebsite aufgebaut sein sollte und ob sich der Aufwand 2026 überhaupt
+              noch lohnt, beantworten die Beiträge oben mit belegten Zahlen statt mit
+              „das kommt darauf an".
+            </p>
+          </div>
+
+          <div className="v2-cta v2-bl-cta">
+            <div>
+              <h2 className="v2-cta-titel">Lieber gleich wissen, wo deine Website steht?</h2>
+              <p className="v2-cta-text">
+                Statt zehn Artikel zu lesen: Ich schaue mir deine Seite an und sage dir, was
+                sich lohnt. Kostenlos und unverbindlich.
+              </p>
+            </div>
+            <BuchenKnopf />
+          </div>
         </div>
-      </footer>
-    </>
+      </section>
+
+      <V2Footer basis="/" />
+    </div>
   )
 }

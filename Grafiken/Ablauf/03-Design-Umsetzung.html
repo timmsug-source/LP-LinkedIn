@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>03-Design-Umsetzung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>*{box-sizing:border-box}body{margin:0;background:#070E1C;color:#E8EDF5;font-family:'Hanken Grotesk',system-ui,sans-serif}</style>
+</head>
+<body>
+<div style="width:600px;height:420px;border-radius:24px;border:1px solid #1E2C40;background:radial-gradient(60% 70% at 10% 100%,rgba(22,201,138,.16),transparent 70%),radial-gradient(60% 70% at 100% 100%,rgba(78,70,180,.2),transparent 70%),#0A1320;padding:28px;position:relative;overflow:hidden">
+  <div style="background:#111B2B;border:1px solid #1E2C40;border-radius:16px;overflow:hidden;box-shadow:0 24px 48px rgba(0,0,0,.45);height:300px">
+    <div style="display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid #1E2C40">
+      <span style="width:9px;height:9px;border-radius:50%;background:#2A3A52"></span><span style="width:9px;height:9px;border-radius:50%;background:#2A3A52"></span><span style="width:9px;height:9px;border-radius:50%;background:#2A3A52"></span>
+      <div style="margin-left:10px;flex:1;height:22px;border-radius:999px;background:#0C1724;font-size:11px;color:#6B7C92;display:flex;align-items:center;padding:0 12px">vorschau.deine-praxis.de</div>
+      <span style="font-size:11px;font-weight:700;color:#070E1C;background:#16C98A;padding:3px 9px;border-radius:999px">v2</span>
+    </div>
+    <div style="padding:18px 20px;display:flex;flex-direction:column;gap:12px;background:#F4F6F9;height:100%">
+      <div style="display:flex;justify-content:space-between;align-items:center"><div style="width:80px;height:12px;border-radius:3px;background:#0A1320"></div><div style="display:flex;gap:10px"><div style="width:36px;height:6px;border-radius:3px;background:#B8C4D4"></div><div style="width:36px;height:6px;border-radius:3px;background:#B8C4D4"></div><div style="width:50px;height:18px;border-radius:999px;background:#16C98A;margin-top:-6px"></div></div></div>
+      <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:16px;align-items:center;margin-top:6px">
+        <div style="display:flex;flex-direction:column;gap:8px"><div style="height:16px;width:90%;border-radius:4px;background:#0A1320"></div><div style="height:16px;width:70%;border-radius:4px;background:#0A1320"></div><div style="height:6px;width:85%;border-radius:3px;background:#B8C4D4;margin-top:4px"></div><div style="height:6px;width:60%;border-radius:3px;background:#B8C4D4"></div><div style="height:24px;width:110px;border-radius:999px;background:#16C98A;margin-top:6px;outline:2px dashed #F2B84B;outline-offset:3px"></div></div>
+        <div style="height:120px;border-radius:12px;background:linear-gradient(135deg,#B8C4D4,#90A2B8)"></div>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;left:168px;top:236px;display:flex;align-items:flex-start;gap:8px">
+    <div style="width:26px;height:26px;border-radius:50% 50% 50% 4px;background:#F2B84B;color:#070E1C;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0">Du</div>
+    <div style="background:#162234;border:1px solid #2A3A52;border-radius:12px;padding:8px 12px;font-size:12px;width:190px;box-shadow:0 14px 30px rgba(0,0,0,.5)">Button lieber „Termin buchen"?</div>
+  </div>
+  <div style="position:absolute;right:36px;top:92px;display:flex;align-items:flex-start;gap:8px">
+    <div style="width:26px;height:26px;border-radius:50% 50% 50% 4px;background:#F2B84B;color:#070E1C;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0">Du</div>
+    <div style="background:#162234;border:1px solid #2A3A52;border-radius:12px;padding:8px 12px;font-size:12px;width:150px;box-shadow:0 14px 30px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:6px"><span>Echtes Praxisfoto hier</span><span style="font-size:11px;color:#16C98A;font-weight:700">✓ Umgesetzt · Timm</span></div>
+  </div>
+  <div style="position:absolute;left:28px;right:28px;bottom:22px;display:flex;align-items:center;gap:10px">
+    <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#6B7C92"><span style="width:10px;height:10px;border-radius:50%;background:#2A3A52"></span>v1 Entwurf</div>
+    <div style="flex:1;height:2px;background:#16C98A"></div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#E8EDF5;font-weight:700"><span style="width:10px;height:10px;border-radius:50%;background:#16C98A;box-shadow:0 0 0 4px rgba(22,201,138,.2)"></span>v2 Feedback</div>
+    <div style="flex:1;height:2px;background:#1E2C40"></div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#6B7C92"><span style="width:10px;height:10px;border-radius:50%;border:1.5px solid #2A3A52"></span>v3 Final</div>
+  </div>
+</div>
+</body>
+</html>

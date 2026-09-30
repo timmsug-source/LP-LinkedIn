@@ -1,10 +1,47 @@
+import Image from 'next/image'
+
+/* Werkzeuge, die als Logo-Kacheln um das Porträt schweben. Bewusst vier
+   statt acht: Jedes steht für eines der Themen, für die er gebucht wird –
+   Webdesign, Technik, Messbarkeit, KI-Sichtbarkeit. */
+const TOOLS = [
+  { name: 'Webflow', datei: 'webflow', pos: 'tool-1' },
+  { name: 'Next.js', datei: 'nextdotjs', pos: 'tool-2' },
+  { name: 'Google Search Console', datei: 'googlesearchconsole', pos: 'tool-3' },
+  { name: 'Claude von Anthropic', datei: 'anthropic', pos: 'tool-4' },
+]
+
 const WA_NUMBER = '4915229515030'
 const WA_TEXT = encodeURIComponent('Hallo Timm, ich interessiere mich für deine Leistungen und würde gerne mehr erfahren.')
 
 export default function Hero({ data: _ }: { data?: Record<string, unknown> }) {
   return (
     <section id="hero">
-      <div className="wrap">
+      {/* Liegt bewusst außerhalb von .wrap: Das Porträt füllt die rechte
+          Hälfte über die volle Höhe des Heros, statt eine Rasterspalte zu
+          sein. #hero schneidet den Überstand ab. */}
+      <div className="hero-portrait" aria-hidden="true">
+        <span className="hero-portrait-glow" />
+        <Image
+          src="/TS-Herobild-frontal.webp"
+          alt=""
+          fill
+          priority
+          sizes="(max-width: 1024px) 100vw, 55vw"
+        />
+      </div>
+
+      {/* Steht außerhalb des Porträts, weil die Logos im Gegensatz zum Bild
+          eine Aussage tragen und deshalb vorlesbar bleiben sollen. */}
+      <ul className="hero-tools" aria-label="Werkzeuge, mit denen ich arbeite">
+        {TOOLS.map((t) => (
+          <li key={t.name} className={`hero-tool ${t.pos}`}>
+            <Image src={`/logos/${t.datei}.svg`} alt={t.name} width={30} height={30} />
+          </li>
+        ))}
+      </ul>
+
+      <div className="wrap hero-grid">
+        <div className="hero-text">
         <div className="hero-badge">
           <span className="hero-badge-dot" />
           SEO · Webdesign · GEO · Freelancer aus Langenfeld, NRW
@@ -29,16 +66,14 @@ export default function Hero({ data: _ }: { data?: Record<string, unknown> }) {
           </a>
 
         </div>
-        <div className="hero-trust">
+        <div className="hero-trust hero-rating">
           <div className="hero-trust-stars">
-            ★★★★★ <span>5,0 · 15+ Bewertungen</span>
+            ★★★★★ <span>5,0 · 15+ Bewertungen auf Fiverr &amp; Google</span>
           </div>
-          <div className="hero-trust-sep" />
-          <div className="hero-trust-item"><span className="hero-trust-check">✓</span>12+ Kundenprojekte · NRW</div>
-          <div className="hero-trust-item"><span className="hero-trust-check">✓</span>SEO + GEO aus einer Hand</div>
-          <div className="hero-trust-item"><span className="hero-trust-check">✓</span>Kein Agentur-Overhead</div>
+        </div>
         </div>
       </div>
+
     </section>
   )
 }

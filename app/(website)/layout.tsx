@@ -1,9 +1,7 @@
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
-import AnimationProvider from '@/components/AnimationProvider'
 import Nav from '@/components/Nav'
-import { getSection } from '@/lib/supabase'
 import { globalSchema, BASE_URL } from '@/lib/jsonld'
 
 const font = Plus_Jakarta_Sans({
@@ -13,73 +11,57 @@ const font = Plus_Jakarta_Sans({
   display: 'swap',
 })
 
-export const revalidate = 60
+/* Titel und Beschreibung stehen fest im Code statt im CMS der alten Seite.
+   Sie gelten für die Startseite; alle anderen Seiten setzen eigene Werte. */
+const TITLE = 'Timm Schurig · SEO & Webdesign Freelancer Langenfeld'
+const DESCRIPTION =
+  'SEO & Webdesign Freelancer aus Langenfeld: Websites, die bei Google gefunden werden – und Besucher zu Kunden machen. Ohne Agentur-Overhead.'
+const OG_IMAGE = `${BASE_URL}/og-image-timm-schurig-zentriert.png`
 
-export async function generateMetadata(): Promise<Metadata> {
-  const seo = await getSection('seo')
-  let seoData: Record<string, string> = {}
-  try {
-    seoData = JSON.parse(seo?.content || '{}')
-  } catch {}
-
-  const title = seoData.meta_title || 'Timm Schurig · SEO & Webdesign Freelancer Langenfeld'
-  const description =
-    seoData.meta_description ||
-    'SEO & Webdesign Freelancer aus Langenfeld: Websites, die bei Google gefunden werden – und Besucher zu Kunden machen. Ohne Agentur-Overhead.'
-  const ogTitle = seoData.og_title || title
-  const ogDescription = seoData.og_description || description
-  const ogImage = seoData.og_image || `${BASE_URL}/og-image-timm-schurig-zentriert.png`
-
-  return {
-    title: {
-      default: title,
-      // Kein Namenszusatz mehr: Das Template hängte an jeden Titel
-      // " · Timm Schurig" und trieb damit fast alle Titel über die Pixelgrenze
-      // der Suchergebnisse – auf zwei Seiten stand der Name dadurch doppelt.
-      // Jede Seite formuliert ihren Titel jetzt vollständig selbst.
-      template: '%s',
-    },
-    description,
-    metadataBase: new URL(BASE_URL),
-    alternates: {
-      canonical: BASE_URL,
-    },
-    openGraph: {
-      type: 'website',
-      locale: 'de_DE',
-      url: BASE_URL,
-      siteName: 'Timm Schurig – SEO & Webdesign',
-      title: ogTitle,
-      description: ogDescription,
-      images: [{ url: ogImage, width: 1200, height: 630, alt: ogTitle }],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: ogTitle,
-      description: ogDescription,
-      images: [ogImage],
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
-    },
-    icons: {
-      icon: [
-        { url: '/favicon.ico', type: 'image/x-icon' },
-        { url: '/favicon.svg', type: 'image/svg+xml' },
-        { url: '/favicon-96x96.png', type: 'image/png', sizes: '96x96' },
-      ],
-      apple: '/apple-touch-icon.png',
-    },
-  }
+export const metadata: Metadata = {
+  title: {
+    default: TITLE,
+    // Kein Namenszusatz: Das Template hängte früher an jeden Titel
+    // " · Timm Schurig" und trieb damit fast alle Titel über die Pixelgrenze
+    // der Suchergebnisse. Jede Seite formuliert ihren Titel vollständig selbst.
+    template: '%s',
+  },
+  description: DESCRIPTION,
+  metadataBase: new URL(BASE_URL),
+  alternates: {
+    canonical: BASE_URL,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'de_DE',
+    url: BASE_URL,
+    siteName: 'Timm Schurig – SEO & Webdesign',
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: TITLE }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [OG_IMAGE],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', type: 'image/x-icon' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-96x96.png', type: 'image/png', sizes: '96x96' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
 }
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const navSection = await getSection('nav')
-  let navData: Record<string, unknown> | undefined
-  try { navData = navSection?.content ? JSON.parse(navSection.content) : undefined } catch {}
-
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de-DE">
       <body className={font.variable} style={{ fontFamily: 'var(--font-jakarta), system-ui, sans-serif' }}>
@@ -88,10 +70,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}
         />
-        <Nav data={navData} />
+        <Nav />
         <div className="noise-overlay" aria-hidden="true" />
         <main id="page-wrapper">
-          <AnimationProvider>{children}</AnimationProvider>
+          {children}
         </main>
       </body>
     </html>

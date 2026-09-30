@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { getPosts } from '@/lib/supabase'
+import { BASE_URL } from '@/lib/jsonld'
 
 /**
  * Ohne diese Angabe wird die Sitemap beim Build erzeugt und bleibt es. Neue
@@ -20,10 +21,8 @@ export const revalidate = 3600
  * wurde. Blogbeiträge brauchen das nicht, die bringen ihr eigenes mit.
  */
 const LAST_UPDATED = {
-  home: '2026-07-23',
-  geo: '2026-07-30',
-  seoFreelancer: '2026-07-23',
-  hundeshop: '2026-08-20',
+  home: '2026-09-30',
+  seoFreelancerLangenfeld: '2026-09-30',
   impressum: '2026-07-30',
 } as const
 
@@ -31,7 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getPosts()
 
   const blogEntries: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `https://www.timmschurig.com/blog/${post.slug}`,
+    url: `${BASE_URL}/blog/${post.slug}`,
     lastModified: post.published_at,
     changeFrequency: 'monthly',
     priority: 0.7,
@@ -39,44 +38,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     {
-      url: 'https://www.timmschurig.com',
+      url: BASE_URL,
       lastModified: LAST_UPDATED.home,
       changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
       // Die Übersicht ist so aktuell wie ihr jüngster Beitrag.
-      url: 'https://www.timmschurig.com/blog',
+      url: `${BASE_URL}/blog`,
       lastModified: posts[0]?.published_at ?? LAST_UPDATED.home,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: 'https://www.timmschurig.com/geo-agentur-langenfeld',
-      lastModified: LAST_UPDATED.geo,
+      url: `${BASE_URL}/seo-freelancer-langenfeld`,
+      lastModified: LAST_UPDATED.seoFreelancerLangenfeld,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
-    {
-      url: 'https://www.timmschurig.com/seo-freelancer',
-      lastModified: LAST_UPDATED.seoFreelancer,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      // Referenz-Seiten ändern sich selten, belegen aber die Leistungsseiten.
-      url: 'https://www.timmschurig.com/referenzen/hundeshop',
-      lastModified: LAST_UPDATED.hundeshop,
-      changeFrequency: 'yearly',
-      priority: 0.6,
-    },
     ...blogEntries,
     {
-      url: 'https://www.timmschurig.com/impressum',
+      url: `${BASE_URL}/impressum`,
       lastModified: LAST_UPDATED.impressum,
       changeFrequency: 'yearly',
       priority: 0.2,
     },
-    // /datenschutz und /bewerbung sind noindex und bleiben bewusst aus der Sitemap
+    // /datenschutz ist noindex und bleibt bewusst aus der Sitemap
   ]
 }

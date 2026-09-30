@@ -1,0 +1,39 @@
+import { getAllSections } from '@/lib/supabase'
+import Hero from '@/components/Hero'
+import Problem from '@/components/Problem'
+import Kundenwebsites from '@/components/Kundenwebsites'
+import Hypothese from '@/components/Hypothese'
+import Leistungen from '@/components/Leistungen'
+import About from '@/components/About'
+import Rezension from '@/components/Rezension'
+import Prozess from '@/components/Prozess'
+import Tools from '@/components/Tools'
+import FAQ from '@/components/FAQ'
+import CTAWhatsApp from '@/components/CTAWhatsApp'
+import Footer from '@/components/Footer'
+
+export const revalidate = 60
+
+export default async function Home() {
+  const sections = await getAllSections()
+
+  return (
+    <>
+      <div className="hero-problem-block">
+        <Hero data={sections.hero} />
+        {/* Direkt unter dem Hero: erst zeigen, dann behaupten. */}
+        <Kundenwebsites />
+        <Problem data={sections.problem} />
+      </div>
+      <Hypothese />
+      <Leistungen />
+<Rezension data={sections.rezension} />
+      <About data={sections.about} />
+      <Prozess />
+      <Tools />
+      <FAQ />
+      <CTAWhatsApp />
+      <Footer data={sections.footer} />
+    </>
+  )
+}

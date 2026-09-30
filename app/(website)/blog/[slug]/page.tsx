@@ -91,7 +91,10 @@ export default async function BlogPost({ params }: Props) {
 
     const headline = post.cta_headline || 'Bereit für mehr Sichtbarkeit?'
     const btnText = post.cta_button_text || 'Kostenloses Erstgespräch'
-    const btnHref = post.cta_button_href || '/#kontakt'
+    /* Die Kontaktsektion heißt auf der neuen Startseite #anfrage. Ältere
+       Beiträge haben im CMS noch #kontakt hinterlegt – die werden umgebogen,
+       statt ins Leere zu springen. */
+    const btnHref = (post.cta_button_href || '/#anfrage').replace('/#kontakt', '/#anfrage')
 
     const ctaHtml = [
       '<div class="post-cta">',
@@ -251,7 +254,7 @@ export default async function BlogPost({ params }: Props) {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
                 Alle Beiträge
               </Link>
-              <a href="/#kontakt" className="btn">
+              <a href="/#anfrage" className="btn">
                 Projekt anfragen
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
@@ -263,7 +266,6 @@ export default async function BlogPost({ params }: Props) {
       <footer>
         <p className="foot-copy">© 2026 Timm Schurig · SEO & Webdesign Freelancer · Langenfeld</p>
         <div className="foot-links">
-          <Link href="/referenzen/hundeshop">Referenzen</Link>
           <Link href="/impressum">Impressum</Link>
           <Link href="/datenschutz">Datenschutz</Link>
           <a href="https://www.linkedin.com/in/timm-schurig/" target="_blank" rel="noopener noreferrer">LinkedIn</a>

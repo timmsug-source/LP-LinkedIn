@@ -57,32 +57,3 @@ export async function getPost(slug: string): Promise<Post | null> {
   }
   return data
 }
-
-// ── CMS queries ───────────────────────────────────────────
-export async function getSection(slug: string) {
-  const { data } = await supabase
-    .from('pages')
-    .select('title, content')
-    .eq('site_id', SITE_ID)
-    .eq('slug', slug)
-    .single()
-  return data
-}
-
-export async function getAllSections() {
-  const { data } = await supabase
-    .from('pages')
-    .select('slug, title, content')
-    .eq('site_id', SITE_ID)
-
-  if (!data) return {}
-
-  return data.reduce((acc, page) => {
-    try {
-      acc[page.slug] = { title: page.title, ...JSON.parse(page.content || '{}') }
-    } catch {
-      acc[page.slug] = { title: page.title, content: page.content }
-    }
-    return acc
-  }, {} as Record<string, Record<string, unknown>>)
-}

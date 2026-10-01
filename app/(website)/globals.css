@@ -354,10 +354,14 @@ footer {
 .post-author { display: flex; align-items: center; gap: 10px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); }
 .post-author span:first-child { font-size: .84rem; font-weight: 700; color: var(--text); }
 .post-author-role { font-size: .78rem; color: var(--sub); }
+/* Titelbild als <img>. height: auto, weil die Maße im Markup nur das
+   Seitenverhältnis reservieren; object-fit schneidet Bilder zu, die nicht
+   16:9 sind. Kein Rand – die Beitragsseite ist hell, der frühere helle Rand
+   stammte vom dunklen Design und zeichnete sich hier als Kante ab. */
 .post-cover {
-  width: 100%; aspect-ratio: 16/9; border-radius: var(--r);
-  background-size: cover; background-position: center;
-  margin-bottom: 48px; border: 1px solid rgba(255,255,255,.06);
+  display: block; width: 100%; height: auto; aspect-ratio: 16/9;
+  object-fit: cover; border-radius: var(--r);
+  margin-bottom: 48px;
 }
 /* ── Beitrags-Layout: Inhaltsverzeichnis links, Text rechts ──────────
    Unter 1100px klappt das Grid auf eine Spalte; das Verzeichnis steht dann

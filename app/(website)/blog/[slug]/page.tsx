@@ -205,8 +205,25 @@ export default async function BlogPost({ params }: Props) {
             </div>
           </div>
 
+          {/* Echtes <img> statt CSS-Hintergrund: Unter dem Rand des Kastens
+              wiederholte sich der Hintergrund und zeigte an den Kanten einen
+              Streifen der gegenüberliegenden Bildseite. Als Bild bekommt es
+              außerdem die Beschreibung aus dem Hub als Alt-Text und ist für
+              Suchmaschinen sichtbar. Es steht im ersten Bildschirm, deshalb
+              ohne Lazy Loading und mit hoher Priorität. */}
           {post.cover_image && (
-            <div className="post-cover" style={{ backgroundImage: `url(${post.cover_image})` }} role="img" aria-label={post.title} {...cms(feld(slug, 'cover_image'), 'feld')} />
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              className="post-cover"
+              src={post.cover_image}
+              alt={post.cover_alt || ''}
+              width={1600}
+              height={900}
+              fetchPriority="high"
+              decoding="async"
+              itemProp="image"
+              {...cms(feld(slug, 'cover_image'), 'bild')}
+            />
           )}
 
           <aside className="post-aside">

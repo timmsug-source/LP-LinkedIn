@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { getPosts, Post } from '@/lib/supabase'
+import { getBeitraege } from '@/lib/hub/blog'
 import { BASE_URL } from '@/lib/jsonld'
+import { cms } from '@/lib/hub/markierung'
 import BuchenKnopf from '@/components/BuchenKnopf'
 import V2Footer from '@/components/V2Footer'
 
 /**
- * Blog-Übersicht im Design der Startseite.
+ * Blog-Übersicht im Design der Startseite. Die Beiträge kommen aus dem
+ * Website-Hub (siehe lib/hub/blog.ts) und werden dort auch geschrieben.
  *
  * Die Karten verlinken auf die Beiträge unter /blog/[slug] – die bleiben
  * vorerst im bisherigen Design. Titel und Beschreibung stammen von der
@@ -34,6 +36,9 @@ function datum(iso: string) {
   return new Date(iso).toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' })
 }
 
+/** Id eines Beitragsfeldes für den visuellen Editor im Hub. */
+const feld = (slug: string, name: string) => `@blog/${slug}/${name}`
+
 function Pfeil() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
@@ -41,7 +46,7 @@ function Pfeil() {
 }
 
 export default async function BlogUebersicht() {
-  const posts = await getPosts()
+  const posts = await getBeitraege()
   const [neuster, ...weitere] = posts
 
   return (
@@ -81,20 +86,20 @@ export default async function BlogUebersicht() {
                 <div className="v2-bl-top-text">
                   <div className="v2-bl-meta">
                     <span className="v2-bl-neu">Neu</span>
-                    <time dateTime={neuster.published_at}>{datum(neuster.published_at)}</time>
+                    <time dateTime={neuster.published_at} {...cms(feld(neuster.slug, 'published_at'), 'feld')}>{datum(neuster.published_at)}</time>
                   </div>
                   <h2>
-                    <Link href={`/blog/${neuster.slug}`}>{neuster.title}</Link>
+                    <Link href={`/blog/${neuster.slug}`} {...cms(feld(neuster.slug, 'title'))}>{neuster.title}</Link>
                   </h2>
-                  {neuster.excerpt && <p>{neuster.excerpt}</p>}
+                  {neuster.excerpt && <p {...cms(feld(neuster.slug, 'excerpt'))}>{neuster.excerpt}</p>}
                   <span className="v2-bl-weiter" aria-hidden="true">Weiterlesen <Pfeil /></span>
                 </div>
               </article>
 
               {weitere.length > 0 && (
                 <div className="v2-bl-grid">
-                  {weitere.map((post: Post) => (
-                    <article key={post.id} className="v2-bl-karte">
+                  {weitere.map((post) => (
+                    <article key={post.slug} className="v2-bl-karte">
                       <div className="v2-bl-bild">
                         {post.cover_image && (
                           // eslint-disable-next-line @next/next/no-img-element
@@ -102,11 +107,11 @@ export default async function BlogUebersicht() {
                         )}
                       </div>
                       <div className="v2-bl-text">
-                        <time dateTime={post.published_at}>{datum(post.published_at)}</time>
+                        <time dateTime={post.published_at} {...cms(feld(post.slug, 'published_at'), 'feld')}>{datum(post.published_at)}</time>
                         <h2>
-                          <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                          <Link href={`/blog/${post.slug}`} {...cms(feld(post.slug, 'title'))}>{post.title}</Link>
                         </h2>
-                        {post.excerpt && <p>{post.excerpt}</p>}
+                        {post.excerpt && <p {...cms(feld(post.slug, 'excerpt'))}>{post.excerpt}</p>}
                         <span className="v2-bl-weiter" aria-hidden="true">Weiterlesen <Pfeil /></span>
                       </div>
                     </article>

@@ -34,7 +34,10 @@ function toText(html: string): string {
 export function extractFaq(html: string): FaqItem[] {
   const items: FaqItem[] = []
 
-  const absaetze = html.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)
+  // Bewusst `<p>` oder `<p ` – mit `<p[^>]*>` passte das Muster auch auf
+  // `<path …>` aus den Inline-SVGs (z. B. im CTA-Block) und verschluckte dann
+  // den nächsten echten Absatz samt FAQ-Paar.
+  const absaetze = html.matchAll(/<p(?:\s[^>]*)?>([\s\S]*?)<\/p>/gi)
   for (const [, inner] of absaetze) {
     const treffer = /^\s*<strong>([\s\S]*?)<\/strong>\s*(?:<br\s*\/?>)?([\s\S]*)$/i.exec(inner)
     if (!treffer) continue

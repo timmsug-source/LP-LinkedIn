@@ -4,7 +4,8 @@ import { notFound } from 'next/navigation'
 import { marked } from 'marked'
 
 marked.use({ gfm: true, breaks: true })
-import { getPost, getPosts } from '@/lib/supabase'
+import { artikelHtml, getBeitrag, getBeitraege } from '@/lib/hub/blog'
+import { cms } from '@/lib/hub/markierung'
 import { BASE_URL, articleSchema, breadcrumbSchema } from '@/lib/jsonld'
 import { buildToc } from '@/lib/toc'
 import { extractFaq, faqSchema } from '@/lib/faq'
@@ -19,17 +20,20 @@ interface Props { params: Promise<{ slug: string }> }
 export const revalidate = 300
 
 export async function generateStaticParams() {
-  const posts = await getPosts()
+  const posts = await getBeitraege()
   return posts.map((p) => ({ slug: p.slug }))
 }
 
+/** Id eines Beitragsfeldes für den visuellen Editor im Hub. */
+const feld = (slug: string, name: string) => `@blog/${slug}/${name}`
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const post = await getPost(slug)
+  const post = await getBeitrag(slug)
   if (!post) return { title: 'Nicht gefunden' }
 
-  const metaTitle = post.meta_title || post.title
-  const metaDescription = post.meta_description || post.excerpt || ''
+  const metaTitle = post.seo_title || post.title
+  const metaDescription = post.seo_description || post.excerpt || ''
   const canonicalUrl = `${BASE_URL}/blog/${slug}`
 
   return {
@@ -67,24 +71,25 @@ function formatDate(iso: string) {
 
 export default async function BlogPost({ params }: Props) {
   const { slug } = await params
-  const [post, allPosts] = await Promise.all([getPost(slug), getPosts()])
+  const [post, allPosts] = await Promise.all([getBeitrag(slug), getBeitraege()])
   if (!post) notFound()
 
+  // Im Hub ausgewählte Empfehlungen (Slugs); ohne Auswahl die neuesten anderen
   let related: typeof allPosts = []
-  if (post.related_posts && post.related_posts.length > 0) {
+  if (post.related_posts.length > 0) {
     related = post.related_posts
-      .map(id => allPosts.find(p => p.id === id))
-      .filter((p): p is NonNullable<typeof p> => !!p)
-  } else {
+      .map((s) => allPosts.find((p) => p.slug === s))
+      .filter((p): p is NonNullable<typeof p> => !!p && p.slug !== slug)
+  }
+  if (related.length === 0) {
     related = allPosts.filter((p) => p.slug !== slug).slice(0, 3)
   }
 
-  // Tiptap saves HTML directly — use it as-is.
-  // Only run marked() on legacy Markdown content (doesn't start with '<').
+  // Der Blog-Editor im Hub speichert HTML. Älterer Text in Markdown (beginnt
+  // nicht mit '<') wird weiterhin umgewandelt. Danach bleibt nur stehen, was
+  // ein Artikel braucht – siehe artikelHtml().
   const content = post.content ?? ''
-  const rawHtml = content.trimStart().startsWith('<')
-    ? content
-    : marked(content) as string
+  const rawHtml = artikelHtml(content.trimStart().startsWith('<') ? content : (marked(content) as string))
 
   function buildHtmlWithCta(source: string): string {
     if (!post?.cta_enabled) return source
@@ -138,7 +143,8 @@ export default async function BlogPost({ params }: Props) {
   // IDs an die Überschriften hängen und daraus das Inhaltsverzeichnis bauen.
   const { html, toc } = buildToc(withTables)
 
-  const ldArticle = articleSchema(post)
+  // articleSchema erwartet den Google-Text als meta_description – im Hub heißt das Feld seo_description
+  const ldArticle = articleSchema({ ...post, meta_description: post.seo_description || null })
   const ldBreadcrumb = breadcrumbSchema([
     { name: 'Startseite', url: BASE_URL },
     { name: 'Blog', url: `${BASE_URL}/blog` },
@@ -188,11 +194,11 @@ export default async function BlogPost({ params }: Props) {
             <div role="navigation" aria-label="Breadcrumb" className="post-breadcrumb">
               <Link href="/blog">← Alle Beiträge</Link>
             </div>
-            <time className="blog-date" dateTime={post.published_at} itemProp="datePublished">
+            <time className="blog-date" dateTime={post.published_at} itemProp="datePublished" {...cms(feld(slug, 'published_at'), 'feld')}>
               {formatDate(post.published_at)}
             </time>
-            <h1 className="post-title" itemProp="headline">{post.title}</h1>
-            {post.excerpt && <p className="post-excerpt" itemProp="description">{post.excerpt}</p>}
+            <h1 className="post-title" itemProp="headline" {...cms(feld(slug, 'title'))}>{post.title}</h1>
+            {post.excerpt && <p className="post-excerpt" itemProp="description" {...cms(feld(slug, 'excerpt'))}>{post.excerpt}</p>}
             <div className="post-author" itemProp="author" itemScope itemType="https://schema.org/Person">
               <span itemProp="name">Timm Schurig</span>
               <span className="post-author-role">SEO & Webdesign Freelancer</span>
@@ -200,7 +206,7 @@ export default async function BlogPost({ params }: Props) {
           </div>
 
           {post.cover_image && (
-            <div className="post-cover" style={{ backgroundImage: `url(${post.cover_image})` }} role="img" aria-label={post.title} />
+            <div className="post-cover" style={{ backgroundImage: `url(${post.cover_image})` }} role="img" aria-label={post.title} {...cms(feld(slug, 'cover_image'), 'feld')} />
           )}
 
           <aside className="post-aside">
@@ -211,6 +217,7 @@ export default async function BlogPost({ params }: Props) {
             <div
               className="post-content"
               itemProp="articleBody"
+              {...cms(feld(slug, 'content'), 'feld')}
               dangerouslySetInnerHTML={{ __html: html }}
             />
 
@@ -222,7 +229,7 @@ export default async function BlogPost({ params }: Props) {
                 </div>
                 <div className="related-grid">
                   {related.map((p) => (
-                    <article key={p.id} className="blog-card">
+                    <article key={p.slug} className="blog-card">
                       {p.cover_image && (
                         <div className="blog-card-img">
                           {/* eslint-disable-next-line @next/next/no-img-element */}

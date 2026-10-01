@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next'
-import { getPosts } from '@/lib/supabase'
+import { getBeitraege } from '@/lib/hub/blog'
 import { BASE_URL } from '@/lib/jsonld'
 
 /**
@@ -27,7 +27,7 @@ const LAST_UPDATED = {
 } as const
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const posts = await getPosts()
+  const posts = await getBeitraege()
 
   const blogEntries: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${BASE_URL}/blog/${post.slug}`,

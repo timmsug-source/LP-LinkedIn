@@ -75,6 +75,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="page-wrapper">
           {children}
         </main>
+        {/* Visueller Editor im Website-Hub: lädt die Brücke nur, wenn die Seite im
+            Rahmen des Hubs läuft (siehe CMS-VISUELL.md). Für Besucher passiert hier nichts. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "(function(){try{if(window.self===window.top)return;if(location.search.indexOf('cms-vorschau=')<0&&!sessionStorage.getItem('cms-vorschau'))return;var s=document.createElement('script');s.src='/cms-bruecke.js';s.defer=true;document.head.appendChild(s)}catch(e){}})();",
+          }}
+        />
       </body>
     </html>
   )

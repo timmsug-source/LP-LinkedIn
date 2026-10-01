@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { TocItem } from '@/lib/toc'
 
 /**
@@ -8,10 +8,27 @@ import type { TocItem } from '@/lib/toc'
  *
  * Die Sprünge selbst macht der Browser (href="#id" + scroll-behavior: smooth),
  * damit die Links auch ohne JavaScript funktionieren. Das JS markiert nur,
- * in welchem Abschnitt man sich gerade befindet.
+ * in welchem Abschnitt man sich gerade befindet – und hält den markierten
+ * Eintrag im Kasten sichtbar, weil die Liste darin scrollt.
  */
 export default function PostToc({ items }: { items: TocItem[] }) {
   const [active, setActive] = useState<string>(items[0]?.id ?? '')
+  const liste = useRef<HTMLOListElement>(null)
+
+  // Der Kasten ist niedriger als die Liste. Wandert die Markierung beim Lesen
+  // nach unten, scrollt die Liste mit. Bewusst über scrollTop statt
+  // scrollIntoView: Letzteres würde auf dem Handy, wo das Verzeichnis im
+  // Textfluss steht, die ganze Seite dorthin zurückspringen lassen.
+  useEffect(() => {
+    const box = liste.current
+    const link = box?.querySelector<HTMLElement>('a.is-active')
+    if (!box || !link) return
+    // Die Liste ist position: relative – offsetTop zählt also schon ab ihr.
+    const oben = link.offsetTop
+    const unten = oben + link.offsetHeight
+    if (oben < box.scrollTop) box.scrollTop = oben - 8
+    else if (unten > box.scrollTop + box.clientHeight) box.scrollTop = unten - box.clientHeight + 8
+  }, [active])
 
   useEffect(() => {
     const headings = items
@@ -53,7 +70,7 @@ export default function PostToc({ items }: { items: TocItem[] }) {
   return (
     <nav className="post-toc" aria-label="Inhaltsverzeichnis">
       <p className="post-toc-title">Inhaltsverzeichnis</p>
-      <ol className="post-toc-list">
+      <ol className="post-toc-list" ref={liste}>
         {items.map((item) => (
           <li key={item.id}>
             <a

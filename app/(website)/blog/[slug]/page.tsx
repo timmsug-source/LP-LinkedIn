@@ -11,6 +11,7 @@ import { buildToc } from '@/lib/toc'
 import { extractFaq, faqSchema } from '@/lib/faq'
 import { extractHowTo, howToSchema } from '@/lib/howto'
 import PostToc from './toc'
+import BuchenKnopf from '@/components/BuchenKnopf'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -228,6 +229,18 @@ export default async function BlogPost({ params }: Props) {
 
           <aside className="post-aside">
             <PostToc items={toc} />
+            {/* Bleibt mit dem Verzeichnis stehen, während man liest. Nur am
+                Desktop sichtbar – auf dem Handy stünde die Karte sonst noch vor
+                dem ersten Absatz des Artikels. */}
+            <div className="post-aside-cta">
+              <p className="post-aside-cta-label">Kostenlos &amp; unverbindlich</p>
+              <p className="post-aside-cta-titel">Wie sichtbar ist dein Unternehmen?</p>
+              <p className="post-aside-cta-text">
+                Ich prüfe deine Website und deine Sichtbarkeit bei Google und in KI-Suchen –
+                und zeige dir, was sich am meisten lohnt.
+              </p>
+              <BuchenKnopf />
+            </div>
           </aside>
 
           <div className="post-main">

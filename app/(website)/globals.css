@@ -400,15 +400,21 @@ footer {
   border-radius: var(--r);
   padding: 22px 18px;
   box-shadow: 0 1px 2px rgba(15,23,42,.04);
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  /* Die Überschrift bleibt stehen, nur die Liste darunter scrollt. */
+  display: flex; flex-direction: column; overflow: hidden;
 }
 .post-toc-title {
   font-size: .72rem; font-weight: 700; text-transform: uppercase;
   letter-spacing: .09em; color: #64748b;
   margin: 0 0 12px 12px;
 }
-.post-toc-list { list-style: none; display: flex; flex-direction: column; gap: 1px; padding: 0; margin: 0; }
+.post-toc-list {
+  list-style: none; display: flex; flex-direction: column; gap: 1px; padding: 0; margin: 0;
+  /* min-height: 0 – sonst schrumpft die Liste im Flex-Kasten nicht unter ihre
+     Inhaltshöhe und es gäbe nichts zu scrollen. position: relative, damit
+     offsetTop der Links sich auf die Liste bezieht (siehe toc.tsx). */
+  min-height: 0; overflow-y: auto; overscroll-behavior: contain; position: relative;
+}
 .post-toc-list a {
   display: block; padding: 7px 12px;
   border-left: 2px solid #e8ecf2;
@@ -424,22 +430,47 @@ footer {
 
 /* Die globale Scrollleiste ist dunkelblau/grün und passt nicht in den hellen
    Blog – im Verzeichnis und in den Tabellen daher dezent grau. */
-.post-toc,
+.post-toc-list,
 .post-content .table-scroll { scrollbar-width: thin; scrollbar-color: #d3dbe4 transparent; }
-.post-toc::-webkit-scrollbar,
+.post-toc-list::-webkit-scrollbar,
 .post-content .table-scroll::-webkit-scrollbar { width: 5px; height: 5px; }
-.post-toc::-webkit-scrollbar-track,
+.post-toc-list::-webkit-scrollbar-track,
 .post-content .table-scroll::-webkit-scrollbar-track { background: transparent; }
-.post-toc::-webkit-scrollbar-thumb,
+.post-toc-list::-webkit-scrollbar-thumb,
 .post-content .table-scroll::-webkit-scrollbar-thumb { background: #d3dbe4; border-radius: 3px; }
 
 /* Höhenbegrenzung bewusst NACH der Basis-Regel – gleiche Spezifität,
-   die spätere Regel gewinnt. */
-.post-toc { max-height: calc(100vh - 140px); }
+   die spätere Regel gewinnt. Rund die halbe Fensterhöhe: Darunter bleibt
+   Platz für die CTA-Karte, beide zusammen passen neben den Artikel. */
+.post-toc { max-height: clamp(280px, 42vh, 460px); }
 @media (max-width: 1099px) {
   /* Auf dem Handy steht das Verzeichnis im Textfluss und darf nicht
      die halbe Seite belegen. */
   .post-toc { max-height: 300px; }
+}
+
+/* CTA-Karte unter dem Verzeichnis. Dunkel wie die Startseite – auf der hellen
+   Beitragsseite ist sie damit der einzige dunkle Block neben dem Text. */
+.post-aside-cta {
+  margin-top: 16px; padding: 22px 20px 22px;
+  border-radius: var(--r);
+  background:
+    radial-gradient(90% 80% at 0% 100%, rgba(var(--acc-rgb), .16), transparent 70%),
+    #050d1a;
+  border: 1px solid rgba(var(--acc-rgb), .28);
+  display: none;
+}
+.post-aside-cta-label {
+  margin: 0 0 8px; font-size: .68rem; font-weight: 700; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--acc);
+}
+.post-aside-cta-titel { margin: 0 0 8px; font-size: 1.08rem; font-weight: 800; line-height: 1.3; color: #fff; }
+.post-aside-cta-text { margin: 0 0 16px; font-size: .86rem; line-height: 1.6; color: #a9b8cc; }
+.post-aside-cta .btn { width: 100%; justify-content: center; font-size: .84rem; padding: 12px 14px; }
+@media (min-width: 1100px) and (min-height: 660px) {
+  /* Erst ab einer Fensterhöhe, in der Verzeichnis und Karte gemeinsam
+     neben den Artikel passen – sonst würde die Karte unten abgeschnitten. */
+  .post-aside-cta { display: block; }
 }
 
 /* Sprungziele nicht unter die fixierte Navigation schieben */

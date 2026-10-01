@@ -471,9 +471,13 @@ footer {
 .post-content img { width: 100%; border-radius: var(--r-sm); margin: 8px 0; }
 .post-content hr { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
 /* Tabellen – heller Blog-Kontext.
-   Achtung: Tiptap erzeugt KEIN <thead>/<th>. Die Kopfzeile ist die erste <tr>
-   mit <td><p><strong>. Deshalb wird sie über :first-child gestylt – die
-   thead/th-Regeln bleiben für die älteren Markdown-Beiträge zusätzlich drin. */
+   Zwei Arten von Tabellen kommen vor:
+   – mit echtem <thead>/<th> (Beiträge aus Markdown bzw. fertigem HTML)
+   – ohne <thead>: Tiptap im Hub-Editor erzeugt keins, die Kopfzeile ist dort
+     die erste <tr> mit <td><p><strong>.
+   Die erste Zeile des Tabellenkörpers wird deshalb NUR dann als Kopfzeile
+   gestaltet, wenn die Tabelle kein <thead> hat. Sonst sähe die erste
+   Datenzeile wie eine zweite Kopfzeile aus. */
 .post-content table {
   width: 100%; margin: 32px 0; font-size: .88rem;
   border-collapse: separate; border-spacing: 0; table-layout: auto;
@@ -490,19 +494,23 @@ footer {
 .post-content tr:last-child th,
 .post-content tr:last-child td { border-bottom: none; }
 
-/* Kopfzeile: echtes <thead> (Markdown) ODER erste Zeile (Tiptap) */
+/* Kopfzeile: echtes <thead> ODER – nur ohne <thead> – die erste Zeile (Tiptap) */
 .post-content thead th,
 .post-content thead td,
-.post-content table > tbody > tr:first-child > td {
+.post-content table:not(:has(> thead)) > tbody > tr:first-child > td {
   background: #f5f7fa;
   color: #0f172a; font-weight: 700;
   border-bottom: 1px solid #dde4ec;
 }
-.post-content table > tbody > tr:first-child > td strong { color: #0f172a; }
+.post-content table:not(:has(> thead)) > tbody > tr:first-child > td strong { color: #0f172a; }
 
-/* Zebra + Hover nur auf den Datenzeilen */
-.post-content table > tbody > tr:nth-child(odd):not(:first-child) > td { background: #fafbfc; }
-.post-content table > tbody > tr:not(:first-child):hover > td { background: #f1f5f9; }
+/* Zebra + Hover nur auf den Datenzeilen. Mit <thead> sind das alle Zeilen des
+   Körpers, ohne <thead> alle außer der ersten. In beiden Fällen ist die erste
+   Datenzeile weiß und jede zweite leicht getönt. */
+.post-content table:has(> thead) > tbody > tr:nth-child(even) > td,
+.post-content table:not(:has(> thead)) > tbody > tr:nth-child(odd):not(:first-child) > td { background: #fafbfc; }
+.post-content table:has(> thead) > tbody > tr:hover > td,
+.post-content table:not(:has(> thead)) > tbody > tr:not(:first-child):hover > td { background: #f1f5f9; }
 
 /* Tiptap packt jede Zelle in <p> – sonst reißt der Absatzabstand die Zeile auf */
 .post-content th p,

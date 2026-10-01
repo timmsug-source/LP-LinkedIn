@@ -23,7 +23,7 @@ export const revalidate = 3600
 const LAST_UPDATED = {
   home: '2026-09-30',
   seoFreelancerLangenfeld: '2026-09-30',
-  impressum: '2026-07-30',
+  impressum: '2026-10-01',
 } as const
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

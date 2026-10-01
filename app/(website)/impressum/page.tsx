@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
+import V2Footer from '@/components/V2Footer'
 
 export const metadata: Metadata = {
   title: 'Impressum · Timm Schurig, SEO & Webdesign Langenfeld',
-  description: 'Impressum von Timm Schurig – SEO & Webdesign Freelancer aus Langenfeld (Rheinland). Angaben gemäß § 5 TMG.',
+  description: 'Impressum von Timm Schurig – SEO & Webdesign Freelancer aus Langenfeld (Rheinland). Angaben gemäß § 5 DDG.',
   alternates: { canonical: 'https://www.timmschurig.com/impressum' },
   // Bewusst indexierbar: Google nutzt die Impressumsdaten (Name, Adresse)
   // als Bestätigung der lokalen Identität. Erbt index/follow vom Root-Layout.
@@ -11,50 +11,55 @@ export const metadata: Metadata = {
 
 export default function Impressum() {
   return (
-    <>
-      <div className="page">
-        <div className="page-label">Rechtliches</div>
-        <h1>Impressum &amp; Anbieterkennzeichnung</h1>
-        <div className="block">
-          <h2>Angaben gemäß § 5 TMG</h2>
-          <p><strong>Timm Schurig</strong></p>
-          <p>Zum Galkhausener Bach 72<br />40764 Langenfeld (Rheinland)</p>
+    <div className="v2 v2-re-seite">
+      {/* Aufbau wie die Blog-Übersicht: dunkler Kopf, darunter die Angaben in
+          Karten und der Footer der Website. */}
+      <section className="v2-re-hero">
+        <div className="wrap">
+          <span className="v2-re-kicker">Rechtliches</span>
+          <h1 className="v2-re-h1">Impressum &amp; <span className="hl">Anbieterkennzeichnung</span></h1>
         </div>
-        <div className="block">
-          <h2>Kontakt</h2>
-          <p>E-Mail: <a href="mailto:mail@timmschurig.com">mail@timmschurig.com</a></p>
-          <p>Website: <a href="https://www.timmschurig.com">www.timmschurig.com</a></p>
+      </section>
+
+      <section className="v2-recht">
+        <div className="wrap">
+          <div className="v2-re-spalte">
+            <div className="v2-re-block">
+              <h2>Angaben gemäß § 5 DDG</h2>
+              <p><strong>Timm Schurig</strong></p>
+              <p>Zum Galkhausener Bach 72<br />40764 Langenfeld (Rheinland)</p>
+            </div>
+            <div className="v2-re-block">
+              <h2>Kontakt</h2>
+              <p>E-Mail: <a href="mailto:mail@timmschurig.com">mail@timmschurig.com</a></p>
+              <p>Website: <a href="https://www.timmschurig.com">www.timmschurig.com</a></p>
+            </div>
+            <div className="v2-re-block">
+              <h2>Berufsbezeichnung</h2>
+              <p><strong>SEO & Webdesign Freelancer</strong></p>
+              <p>Kleingewerbetreibender gemäß § 19 UStG – keine Umsatzsteuer-Identifikationsnummer erforderlich.</p>
+            </div>
+            <div className="v2-re-block">
+              <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+              <p><strong>Timm Schurig</strong><br />Zum Galkhausener Bach 72<br />40764 Langenfeld (Rheinland)</p>
+            </div>
+            <div className="v2-re-block">
+              <h2>Haftungsausschluss</h2>
+              <p>Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden.</p>
+              <p>Als Diensteanbieter bin ich gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>
+            </div>
+            <div className="v2-re-block">
+              <h2>Urheberrecht</h2>
+              <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung.</p>
+            </div>
+            <div className="v2-re-hinweis">
+              <p>Bei Fragen zum Impressum: <a href="mailto:mail@timmschurig.com">mail@timmschurig.com</a></p>
+            </div>
+          </div>
         </div>
-        <div className="block">
-          <h2>Berufsbezeichnung</h2>
-          <p><strong>SEO & Webdesign Freelancer</strong></p>
-          <p>Kleingewerbetreibender gemäß § 19 UStG – keine Umsatzsteuer-Identifikationsnummer erforderlich.</p>
-        </div>
-        <div className="block">
-          <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
-          <p><strong>Timm Schurig</strong><br />Zum Galkhausener Bach 72<br />40764 Langenfeld (Rheinland)</p>
-        </div>
-        <div className="block">
-          <h2>Haftungsausschluss</h2>
-          <p>Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden.</p>
-          <p>Als Diensteanbieter bin ich gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>
-        </div>
-        <div className="block">
-          <h2>Urheberrecht</h2>
-          <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung.</p>
-        </div>
-        <div className="legal-notice">
-          <p>Bei Fragen zum Impressum: <a href="mailto:mail@timmschurig.com">mail@timmschurig.com</a></p>
-        </div>
-      </div>
-      <footer>
-        <p className="foot-copy">© 2026 Timm Schurig · SEO & Webdesign Freelancer · Langenfeld</p>
-        <div className="foot-links">
-          <Link href="/impressum">Impressum</Link>
-          <Link href="/datenschutz">Datenschutz</Link>
-          <a href="https://www.linkedin.com/in/timm-schurig/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        </div>
-      </footer>
-    </>
+      </section>
+
+      <V2Footer basis="/" />
+    </div>
   )
 }

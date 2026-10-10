@@ -78,6 +78,9 @@ export default async function BlogUebersicht() {
                   ::after trotzdem die ganze Karte – so bleibt der Linktext kurz. */}
               <article className="v2-bl-top">
                 <div className="v2-bl-bild">
+                  {/* Kategorie aus dem Hub als Chip oben links – wie in der
+                      Kartenvorschau im Hub. */}
+                  {neuster.category && <span className="v2-bl-kat" {...cms(feld(neuster.slug, 'category'), 'feld')}>{neuster.category}</span>}
                   {neuster.cover_image && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={neuster.cover_image} alt="" width={960} height={600} />
@@ -101,6 +104,7 @@ export default async function BlogUebersicht() {
                   {weitere.map((post) => (
                     <article key={post.slug} className="v2-bl-karte">
                       <div className="v2-bl-bild">
+                        {post.category && <span className="v2-bl-kat" {...cms(feld(post.slug, 'category'), 'feld')}>{post.category}</span>}
                         {post.cover_image && (
                           // eslint-disable-next-line @next/next/no-img-element
                           <img src={post.cover_image} alt="" width={640} height={360} loading="lazy" />

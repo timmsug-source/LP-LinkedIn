@@ -1275,6 +1275,15 @@ footer {
   transition: transform .5s var(--ease);
 }
 .v2-bl-top:hover .v2-bl-bild img, .v2-bl-karte:hover .v2-bl-bild img { transform: scale(1.04); }
+/* Kategorie-Chip oben links im Bild. Über dem Bild (z-index), damit er beim
+   Hover-Zoom nicht mitwandert; kräftig gefüllt, weil das Bild darunter hell sein kann. */
+.v2-bl-kat {
+  position: absolute; top: 14px; left: 14px; z-index: 1;
+  padding: 5px 12px; border-radius: 100px;
+  background: var(--acc); color: #04121f;
+  font-size: .74rem; font-weight: 700; line-height: 1.2;
+  box-shadow: 0 4px 14px rgba(0,0,0,.25);
+}
 
 /* Der neueste Beitrag: Bild links, Text rechts. */
 .v2-bl-top {

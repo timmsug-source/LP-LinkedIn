@@ -11,6 +11,7 @@ import { buildToc } from '@/lib/toc'
 import { extractFaq, faqSchema } from '@/lib/faq'
 import { extractHowTo, howToSchema } from '@/lib/howto'
 import PostToc from './toc'
+import MobilCta from './mobil-cta'
 import BuchenKnopf from '@/components/BuchenKnopf'
 
 interface Props { params: Promise<{ slug: string }> }
@@ -231,7 +232,7 @@ export default async function BlogPost({ params }: Props) {
             <PostToc items={toc} />
             {/* Bleibt mit dem Verzeichnis stehen, während man liest. Nur am
                 Desktop sichtbar – auf dem Handy stünde die Karte sonst noch vor
-                dem ersten Absatz des Artikels. */}
+                dem ersten Absatz des Artikels. Dort übernimmt MobilCta. */}
             <div className="post-aside-cta">
               <p className="post-aside-cta-label">Kostenlos &amp; unverbindlich</p>
               <p className="post-aside-cta-titel">Wie sichtbar ist dein Unternehmen?</p>
@@ -299,6 +300,8 @@ export default async function BlogPost({ params }: Props) {
           </div>
         </div>
       </article>
+
+      <MobilCta />
 
       <footer>
         <p className="foot-copy">© 2026 Timm Schurig · SEO & Webdesign Freelancer · Langenfeld</p>

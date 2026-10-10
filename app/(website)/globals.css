@@ -479,6 +479,48 @@ footer {
   .post-aside-cta { display: block; }
 }
 
+/* Leiste am unteren Rand – nur dort, wo die Karte oben ausgeblendet ist
+   (Gegenstück zur Media-Query darüber). Sichtbar schaltet mobil-cta.tsx. */
+.post-mobil-cta {
+  position: fixed; left: 12px; right: 12px; z-index: 60;
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  display: flex; align-items: center; gap: 14px;
+  padding: 10px 10px 10px 16px;
+  border-radius: 16px;
+  background: #050d1a;
+  border: 1px solid rgba(var(--acc-rgb), .32);
+  box-shadow: 0 12px 32px rgba(5,13,26,.35);
+  transform: translateY(calc(100% + 24px)); visibility: hidden;
+  transition: transform .35s var(--ease), visibility 0s linear .35s;
+}
+.post-mobil-cta.is-sichtbar {
+  transform: none; visibility: visible;
+  transition: transform .35s var(--ease), visibility 0s;
+}
+.post-mobil-cta-text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.post-mobil-cta-label {
+  font-size: .62rem; font-weight: 700; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--acc);
+}
+.post-mobil-cta-titel { font-size: .86rem; font-weight: 700; line-height: 1.3; color: #fff; }
+.post-mobil-cta .btn { flex-shrink: 0; font-size: .8rem; padding: 11px 14px; white-space: nowrap; }
+@media (min-width: 1100px) and (min-height: 660px) {
+  .post-mobil-cta { display: none; }
+}
+@media (max-width: 479px) {
+  /* Auf dem Handy nur Titel + Knopf, sonst wird die Leiste dreizeilig. */
+  .post-mobil-cta-label { display: none; }
+}
+@media (max-width: 339px) {
+  /* Zu schmal für Text und Knopf nebeneinander – der Knopf reicht. */
+  .post-mobil-cta-text { display: none; }
+  .post-mobil-cta { padding: 8px; }
+  .post-mobil-cta .btn { width: 100%; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .post-mobil-cta, .post-mobil-cta.is-sichtbar { transition: none; }
+}
+
 /* Sprungziele nicht unter die fixierte Navigation schieben */
 .post-content h2,
 .post-content h3 { scroll-margin-top: 104px; }
@@ -590,7 +632,12 @@ footer {
 /* Ohne Anrisstext übernimmt der Titel das Dehnen, damit „Weiterlesen" in allen
    drei Karten auf einer Linie sitzt – auch bei unterschiedlich langen Titeln. */
 .related-section--inline .blog-card-body { padding: 22px 20px; }
-.related-section--inline .blog-card-title { flex: 1; margin-bottom: 16px; }
+.related-section--inline .blog-card-title {
+  flex: 1; margin-bottom: 16px;
+  /* Die Karten sind schmal: Lange Wörter wie „Suchmaschinenoptimierung"
+     liefen sonst über den Kartenrand hinaus. */
+  hyphens: auto; overflow-wrap: break-word;
+}
 
 /* POST CTA */
 .post-cta {

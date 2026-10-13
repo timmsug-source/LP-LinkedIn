@@ -213,19 +213,24 @@ export default async function BlogPost({ params }: Props) {
               außerdem die Beschreibung aus dem Hub als Alt-Text und ist für
               Suchmaschinen sichtbar. Es steht im ersten Bildschirm, deshalb
               ohne Lazy Loading und mit hoher Priorität. */}
+          {/* Kennzeichnung darunter: Die Titelbilder sind KI-generiert, und das
+              soll für Leser auf den ersten Blick erkennbar sein. */}
           {post.cover_image && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              className="post-cover"
-              src={post.cover_image}
-              alt={post.cover_alt || ''}
-              width={1600}
-              height={900}
-              fetchPriority="high"
-              decoding="async"
-              itemProp="image"
-              {...cms(feld(slug, 'cover_image'), 'bild')}
-            />
+            <figure className="post-cover-figur">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                className="post-cover"
+                src={post.cover_image}
+                alt={post.cover_alt || ''}
+                width={1600}
+                height={900}
+                fetchPriority="high"
+                decoding="async"
+                itemProp="image"
+                {...cms(feld(slug, 'cover_image'), 'bild')}
+              />
+              <figcaption className="post-cover-hinweis">Bild: KI-generiert</figcaption>
+            </figure>
           )}
 
           <aside className="post-aside">

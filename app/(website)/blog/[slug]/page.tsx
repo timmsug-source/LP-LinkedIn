@@ -76,7 +76,8 @@ export default async function BlogPost({ params }: Props) {
   const [post, allPosts] = await Promise.all([getBeitrag(slug), getBeitraege()])
   if (!post) notFound()
 
-  // Im Hub ausgewählte Empfehlungen (Slugs); ohne Auswahl die neuesten anderen
+  // Im Hub ausgewählte Empfehlungen (Slugs); ohne Auswahl die neuesten anderen.
+  // Höchstens zwei – mit drei wurden die Karten neben dem Inhaltsverzeichnis zu schmal.
   let related: typeof allPosts = []
   if (post.related_posts.length > 0) {
     related = post.related_posts
@@ -84,8 +85,9 @@ export default async function BlogPost({ params }: Props) {
       .filter((p): p is NonNullable<typeof p> => !!p && p.slug !== slug)
   }
   if (related.length === 0) {
-    related = allPosts.filter((p) => p.slug !== slug).slice(0, 3)
+    related = allPosts.filter((p) => p.slug !== slug)
   }
+  related = related.slice(0, 2)
 
   // Der Blog-Editor im Hub speichert HTML. Älterer Text in Markdown (beginnt
   // nicht mit '<') wird weiterhin umgewandelt. Danach bleibt nur stehen, was

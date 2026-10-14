@@ -631,9 +631,9 @@ footer {
   margin-top: 48px;
 }
 .related-head { margin-bottom: 36px; }
-.related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-/* Ohne Anrisstext übernimmt der Titel das Dehnen, damit „Weiterlesen" in allen
-   drei Karten auf einer Linie sitzt – auch bei unterschiedlich langen Titeln. */
+.related-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+/* Ohne Anrisstext übernimmt der Titel das Dehnen, damit „Weiterlesen" in
+   beiden Karten auf einer Linie sitzt – auch bei unterschiedlich langen Titeln. */
 .related-section--inline .blog-card-body { padding: 22px 20px; }
 .related-section--inline .blog-card-title {
   flex: 1; margin-bottom: 16px;
@@ -745,9 +745,6 @@ footer {
 
 }
 
-@media (max-width: 960px) {
-  .related-grid { grid-template-columns: 1fr 1fr; }
-}
 
 @media (max-width: 640px) {
 

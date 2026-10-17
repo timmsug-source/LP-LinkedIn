@@ -56,13 +56,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       authors: ['Timm Schurig'],
       images: post.cover_image
         ? [{ url: post.cover_image, width: 1200, height: 630, alt: metaTitle }]
-        : [{ url: `${BASE_URL}/timm.png`, width: 1200, height: 630, alt: metaTitle }],
+        : [{ url: `${BASE_URL}/bilder/timm/timm.png`, width: 1200, height: 630, alt: metaTitle }],
     },
     twitter: {
       card: 'summary_large_image',
       title: metaTitle,
       description: metaDescription,
-      images: [post.cover_image || `${BASE_URL}/timm.png`],
+      images: [post.cover_image || `${BASE_URL}/bilder/timm/timm.png`],
     },
   }
 }
@@ -108,7 +108,7 @@ export default async function BlogPost({ params }: Props) {
     const ctaHtml = [
       '<div class="post-cta">',
       '<div class="post-cta-img-wrap">',
-      '<img src="/timm-cta.png" alt="Timm Schurig" class="post-cta-img" loading="lazy" />',
+      '<img src="/bilder/timm/timm.png" alt="Timm Schurig" class="post-cta-img" loading="lazy" />',
       '</div>',
       '<div class="post-cta-text">',
       '<p class="post-cta-label">Kostenlos &amp; unverbindlich</p>',

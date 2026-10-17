@@ -113,18 +113,18 @@ const PASST_NICHT = [
    wird – das macht abstraktes „SEO" sofort greifbar. Später bekommt jede
    Branche eine eigene Seite, dann werden aus den Karten Links. */
 const BRANCHEN = [
-  { name: 'Handwerk', bild: '/Branche-Handwerk.webp', beispiel: '„Elektriker Langenfeld"', icon: <path d="M14.7 6.3a4 4 0 0 0 5.2 5.2l-8.4 8.4a2.5 2.5 0 0 1-3.5-3.5zM4 4l3.5 3.5M4 9h4" /> },
-  { name: 'Ärzte & Praxen', bild: '/Branche-Praxis.webp', beispiel: '„Zahnarzt in der Nähe"', icon: <path d="M12 5v14M5 12h14" /> },
-  { name: 'Anwälte & Steuerberater', bild: '/Branche-Anwalt.webp', beispiel: '„Steuerberater Monheim"', icon: <path d="M12 3v18M5 7h14M7 7l-3 6h6zM17 7l3 6h-6z" /> },
-  { name: 'Physio & Therapie', bild: '/Branche-Physio.webp', beispiel: '„Physiotherapie Hilden"', icon: <path d="M20.8 7.6a4.6 4.6 0 0 0-7.9-2.6L12 6l-.9-1a4.6 4.6 0 1 0-6.6 6.4l7.5 7.4 7.5-7.4c.9-.9 1.3-2 1.3-3.8z" /> },
-  { name: 'Fitness & Sport', bild: '/Branche-Fitness.webp', beispiel: '„Fitnessstudio Leverkusen"', icon: <path d="M4 9v6M8 6v12M16 6v12M20 9v6M8 12h8" /> },
-  { name: 'Restaurants & Cafés', bild: '/Branche-Restaurant.webp', beispiel: '„Italiener Langenfeld"', icon: <path d="M6 3v8a2 2 0 0 0 4 0V3M8 11v10M17 3c-1.5 1-2 3-2 5s.5 3 2 3v10" /> },
-  { name: 'Immobilien', bild: '/Branche-Immobilien.webp', beispiel: '„Makler Düsseldorf Süd"', icon: <path d="M4 10.5 12 4l8 6.5V20H4zM10 20v-6h4v6" /> },
-  { name: 'Auto & Werkstatt', bild: '/Branche-Autowerkstatt.webp', beispiel: '„Werkstatt in meiner Nähe"', icon: <path d="M4 16v-3l2-5h12l2 5v3M4 16h16M7 16v2M17 16v2M7.5 12.5h2M14.5 12.5h2" /> },
-  { name: 'Coaches & Berater', bild: '/Branche-Berater.webp', beispiel: '„Business Coach NRW"', icon: <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4.5 20a7.5 7.5 0 0 1 15 0" /> },
-  { name: 'Onlineshops', bild: '/Branche-Onlineshop.webp', beispiel: '„[Produkt] online kaufen"', icon: <path d="M4 7h16l-1.5 12h-13zM9 7V5.5a3 3 0 0 1 6 0V7" /> },
-  { name: 'Kosmetik & Friseur', bild: '/Branche-Friseur.webp', beispiel: '„Friseur Solingen"', icon: <path d="M7.5 9a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM7.5 20a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM9.5 7.5 20 18M9.5 16.5 20 6" /> },
-  { name: 'Bau & Garten', bild: '/Branche-Garten.webp', beispiel: '„Garten- und Landschaftsbau Köln"', icon: <path d="M12 21v-7M12 14c0-3.9 3.1-7 7-7 0 3.9-3.1 7-7 7zM12 14c0-3.3-2.7-6-6-6 0 3.3 2.7 6 6 6z" /> },
+  { name: 'Handwerk', bild: '/bilder/branchen/Branche-Handwerk.webp', beispiel: '„Elektriker Langenfeld"', icon: <path d="M14.7 6.3a4 4 0 0 0 5.2 5.2l-8.4 8.4a2.5 2.5 0 0 1-3.5-3.5zM4 4l3.5 3.5M4 9h4" /> },
+  { name: 'Ärzte & Praxen', bild: '/bilder/branchen/Branche-Praxis.webp', beispiel: '„Zahnarzt in der Nähe"', icon: <path d="M12 5v14M5 12h14" /> },
+  { name: 'Anwälte & Steuerberater', bild: '/bilder/branchen/Branche-Anwalt.webp', beispiel: '„Steuerberater Monheim"', icon: <path d="M12 3v18M5 7h14M7 7l-3 6h6zM17 7l3 6h-6z" /> },
+  { name: 'Physio & Therapie', bild: '/bilder/branchen/Branche-Physio.webp', beispiel: '„Physiotherapie Hilden"', icon: <path d="M20.8 7.6a4.6 4.6 0 0 0-7.9-2.6L12 6l-.9-1a4.6 4.6 0 1 0-6.6 6.4l7.5 7.4 7.5-7.4c.9-.9 1.3-2 1.3-3.8z" /> },
+  { name: 'Fitness & Sport', bild: '/bilder/branchen/Branche-Fitness.webp', beispiel: '„Fitnessstudio Leverkusen"', icon: <path d="M4 9v6M8 6v12M16 6v12M20 9v6M8 12h8" /> },
+  { name: 'Restaurants & Cafés', bild: '/bilder/branchen/Branche-Restaurant.webp', beispiel: '„Italiener Langenfeld"', icon: <path d="M6 3v8a2 2 0 0 0 4 0V3M8 11v10M17 3c-1.5 1-2 3-2 5s.5 3 2 3v10" /> },
+  { name: 'Immobilien', bild: '/bilder/branchen/Branche-Immobilien.webp', beispiel: '„Makler Düsseldorf Süd"', icon: <path d="M4 10.5 12 4l8 6.5V20H4zM10 20v-6h4v6" /> },
+  { name: 'Auto & Werkstatt', bild: '/bilder/branchen/Branche-Autowerkstatt.webp', beispiel: '„Werkstatt in meiner Nähe"', icon: <path d="M4 16v-3l2-5h12l2 5v3M4 16h16M7 16v2M17 16v2M7.5 12.5h2M14.5 12.5h2" /> },
+  { name: 'Coaches & Berater', bild: '/bilder/branchen/Branche-Berater.webp', beispiel: '„Business Coach NRW"', icon: <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4.5 20a7.5 7.5 0 0 1 15 0" /> },
+  { name: 'Onlineshops', bild: '/bilder/branchen/Branche-Onlineshop.webp', beispiel: '„[Produkt] online kaufen"', icon: <path d="M4 7h16l-1.5 12h-13zM9 7V5.5a3 3 0 0 1 6 0V7" /> },
+  { name: 'Kosmetik & Friseur', bild: '/bilder/branchen/Branche-Friseur.webp', beispiel: '„Friseur Solingen"', icon: <path d="M7.5 9a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM7.5 20a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM9.5 7.5 20 18M9.5 16.5 20 6" /> },
+  { name: 'Bau & Garten', bild: '/bilder/branchen/Branche-Garten.webp', beispiel: '„Garten- und Landschaftsbau Köln"', icon: <path d="M12 21v-7M12 14c0-3.9 3.1-7 7-7 0 3.9-3.1 7-7 7zM12 14c0-3.3-2.7-6-6-6 0 3.3 2.7 6 6 6z" /> },
 ]
 
 /* Der Weg von der Suche bis zur Anfrage. Vier Stufen statt einer Liste:
@@ -342,7 +342,7 @@ export default function SeoFreelancerLangenfeld() {
                   wandern sie je nach Fensterbreite über Gesicht oder Anzug. */}
               <span className="v2-sfl-bildrahmen">
               <Image
-                src="/TS-Anzug-Website.webp"
+                src="/bilder/timm/TS-Anzug-Website.webp"
                 alt=""
                 width={1086}
                 height={1448}
@@ -595,7 +595,7 @@ export default function SeoFreelancerLangenfeld() {
 
             <div className="v2-um-bild">
               <Image
-                src="/TS-Anzug-Website.webp"
+                src="/bilder/timm/TS-Anzug-Website.webp"
                 alt="Timm Schurig"
                 width={1086}
                 height={1448}
@@ -771,7 +771,7 @@ export default function SeoFreelancerLangenfeld() {
 
               <div className="v2-fall-bild">
                 <Image
-                  src="/Rezension-Hero-SHS.webp"
+                  src="/bilder/referenzen/Rezension-Hero-SHS.webp"
                   alt="Startseite des Onlineshops von SHS Spürhundesport"
                   width={1670}
                   height={912}
@@ -822,7 +822,7 @@ export default function SeoFreelancerLangenfeld() {
                 </figcaption>
                 <div className="v2-rd-bild">
                   <Image
-                    src="/Redesign-Resilient-vorher.webp"
+                    src="/bilder/referenzen/Redesign-Resilient-vorher.webp"
                     alt="Alte Startseite von Resilient durchs Leben: gebogene Menüschrift auf rotem Holzbild, Kontakt nur als kleiner Link"
                     width={1600}
                     height={851}
@@ -845,7 +845,7 @@ export default function SeoFreelancerLangenfeld() {
                 </figcaption>
                 <div className="v2-rd-bild">
                   <Image
-                    src="/Redesign-Resilient-nachher.webp"
+                    src="/bilder/referenzen/Redesign-Resilient-nachher.webp"
                     alt="Neue Startseite von Resilient durchs Leben: Navigationsleiste, Leistungen im Titel und zwei Buttons im ersten Bildschirm"
                     width={1600}
                     height={774}

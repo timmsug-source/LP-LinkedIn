@@ -11,7 +11,7 @@ export const personSchema = {
     'SEO & Webdesign Freelancer aus Langenfeld (Rheinland). 5+ Jahre Erfahrung in Suchmaschinenoptimierung und modernem Webdesign für kleine und mittelständische Unternehmen im DACH-Raum.',
   url: BASE_URL,
   email: 'mail@timmschurig.com',
-  image: `${BASE_URL}/timm.png`,
+  image: `${BASE_URL}/bilder/timm/timm.png`,
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Zum Galkhausener Bach 72',
@@ -41,7 +41,7 @@ export const localBusinessSchema = {
   name: 'Timm Schurig – SEO & Webdesign',
   url: BASE_URL,
   email: 'mail@timmschurig.com',
-  image: `${BASE_URL}/timm.png`,
+  image: `${BASE_URL}/bilder/timm/timm.png`,
   logo: `${BASE_URL}/favicon.svg`,
   founder: { '@id': `${BASE_URL}/#person` },
   employee: { '@id': `${BASE_URL}/#person` },

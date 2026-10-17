@@ -1211,7 +1211,7 @@ footer {
    schon dunkel und ruhig – anders als die Screenshots der Startseite braucht sie
    keinen deckenden Schleier, nur einen leichten links, wo der Text steht. */
 .v2-hero.v2-sfl-hero {
-  background: #050d1a url('/Hero-Hintergrund-Wachstumskurve.webp') center / cover no-repeat;
+  background: #050d1a url('/bilder/hintergruende/Hero-Hintergrund-Wachstumskurve.webp') center / cover no-repeat;
 }
 .v2-hero.v2-sfl-hero::after {
   background: linear-gradient(90deg, rgba(5,13,26,.55) 0%, rgba(5,13,26,.25) 40%, transparent 65%);
@@ -2691,3 +2691,77 @@ footer {
    nur der Buchungsknopf, kein Formular. */
 .v2-ko-buchen-text { margin: -14px 0 20px; font-size: .98rem; line-height: 1.65; color: var(--sub); }
 .v2-ko-buchen { width: 100%; justify-content: center; gap: 10px; }
+
+/* ── 404-Seite ──────────────────────────────────────────────────
+   Gleicher Grund wie die Sektionen der Seite, oben ein grüner Schimmer.
+   Die große 404 ist nur Kulisse: als Umriss, damit die Überschrift
+   darunter die eigentliche Aussage bleibt. */
+.v2-404 {
+  position: relative; overflow: hidden; padding: 96px 0 104px;
+  background:
+    radial-gradient(60% 50% at 50% 0%, rgba(var(--acc-rgb), .12), transparent 70%),
+    #050d1a;
+}
+.v2-404-kopf { max-width: 720px; margin: 0 auto; text-align: center; }
+.v2-404-zahl {
+  margin: 0 0 8px; font-size: clamp(6rem, 16vw, 11rem); font-weight: 800;
+  line-height: .9; letter-spacing: -.06em;
+  color: transparent; -webkit-text-stroke: 2px rgba(var(--acc-rgb), .55);
+}
+.v2-404-kopf .label { justify-content: center; }
+.v2-404-h1 { font-size: clamp(2rem, 4.4vw, 3.2rem); line-height: 1.1; margin: 0 0 18px; color: #fff; }
+.v2-404-h1 .hl { color: var(--acc); white-space: nowrap; }
+.v2-404-text { margin: 0 auto 32px; max-width: 520px; font-size: 1.05rem; line-height: 1.75; color: var(--sub); }
+.v2-404-knoepfe { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.btn.v2-404-zweit {
+  background: transparent; color: #fff;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.28);
+}
+.btn.v2-404-zweit:hover {
+  background: rgba(255,255,255,.08); color: #fff;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.5);
+}
+
+/* Zwei Wege als Bildkarten nebeneinander. Die Bilder werden auf ein gemeinsames Format zugeschnitten,
+   oben bündig, damit Kopfzeilen der Screenshots sichtbar bleiben. */
+.v2-404-wege {
+  list-style: none; margin: 72px auto 0; padding: 0; max-width: 760px;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px;
+}
+.v2-404-wege a {
+  display: flex; flex-direction: column; height: 100%; overflow: hidden;
+  border-radius: 20px; text-decoration: none;
+  background: #0a1424; border: 1px solid rgba(255,255,255,.08);
+  transition: border-color .25s ease, transform .25s ease;
+}
+.v2-404-wege a:hover { border-color: rgba(var(--acc-rgb), .45); transform: translateY(-3px); }
+.v2-404-weg-bild {
+  position: relative; display: block; aspect-ratio: 16 / 10; overflow: hidden;
+  background: #0c1724; border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.v2-404-weg-bild img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: top center;
+  transition: transform .4s ease;
+}
+.v2-404-wege a:hover .v2-404-weg-bild img { transform: scale(1.03); }
+.v2-404-weg-text { display: flex; flex-direction: column; gap: 8px; padding: 22px 24px 26px; }
+.v2-404-wege strong { display: flex; align-items: center; gap: 8px; font-size: 1.05rem; color: #fff; }
+.v2-404-wege strong svg { color: var(--acc); }
+.v2-404-weg-text > span { font-size: .92rem; line-height: 1.6; color: var(--sub); }
+
+@media (max-width: 900px) {
+  .v2-404 { padding: 64px 0 72px; }
+  .v2-404-wege { margin-top: 48px; gap: 14px; }
+  .v2-404-weg-text { padding: 18px 18px 22px; }
+}
+@media (max-width: 700px) {
+  .v2-404-wege { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .v2-404-knoepfe .btn { width: 100%; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .v2-404-wege a, .v2-404-weg-bild img { transition: none; }
+  .v2-404-wege a:hover, .v2-404-wege a:hover .v2-404-weg-bild img { transform: none; }
+}

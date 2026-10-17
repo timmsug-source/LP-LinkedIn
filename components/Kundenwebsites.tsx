@@ -14,13 +14,13 @@ import Image from 'next/image'
  */
 const projekte = [
   {
-    bild: '/Rezension-Hero-SHS.webp',
+    bild: '/bilder/referenzen/Rezension-Hero-SHS.webp',
     name: 'SHS Spürhundesport',
     stack: [{ name: 'Shopify', logo: 'shopify' }],
     href: '',
   },
   {
-    bild: '/Rezension-Hero-Dr.webp',
+    bild: '/bilder/referenzen/Rezension-Hero-Dr.webp',
     name: 'Resilient durchs Leben',
     stack: [
       { name: 'Next.js', logo: 'nextdotjs-weiss' },
@@ -30,7 +30,7 @@ const projekte = [
     href: '',
   },
   {
-    bild: '/Rezension-Hero-FS.webp',
+    bild: '/bilder/referenzen/Rezension-Hero-FS.webp',
     name: 'FS Performance Lab',
     stack: [
       { name: 'Next.js', logo: 'nextdotjs-weiss' },

@@ -91,7 +91,7 @@ export default function Startseite() {
         <section className="v2-hero">
           {/* Hintergrund: stark zurückgenommen, trägt nur die Fläche. */}
           <Image
-            src="/Beispiel-Websites-Hero-Hintergrund.webp"
+            src="/bilder/hintergruende/Beispiel-Websites-Hero-Hintergrund.webp"
             alt=""
             fill
             priority
@@ -136,7 +136,7 @@ export default function Startseite() {
                 dem Seitenverhältnis folgen. */}
             <div className="v2-hero-portrait" aria-hidden="true">
               <Image
-                src="/TS-Herobild-frontal.webp"
+                src="/bilder/timm/TS-Herobild-frontal.webp"
                 alt=""
                 width={1402}
                 height={1122}
@@ -223,7 +223,7 @@ export default function Startseite() {
 
             <div className="v2-um-bild">
               <Image
-                src="/TS-Anzug-Website.webp"
+                src="/bilder/timm/TS-Anzug-Website.webp"
                 alt="Timm Schurig"
                 width={1086}
                 height={1448}
@@ -279,14 +279,14 @@ export default function Startseite() {
                   geblieben ist – ohne dafür eine zweite Kachel zu brauchen. */}
               <div className="v2-kachel-bild v2-kachel-bild-website">
                 <Image
-                  src="/Rezension-Hero-Dr.webp"
+                  src="/bilder/referenzen/Rezension-Hero-Dr.webp"
                   alt="Ausschnitt der Website Resilient durchs Leben"
                   width={1670}
                   height={912}
                   sizes="(max-width: 900px) 60vw, 380px"
                 />
                 <Image
-                  src="/Rezension-Hero-FS.webp"
+                  src="/bilder/referenzen/Rezension-Hero-FS.webp"
                   alt="Ausschnitt der Website FS Performance Lab"
                   width={1670}
                   height={912}
@@ -308,7 +308,7 @@ export default function Startseite() {
                   und behauptet keine Messwerte. */}
               <div className="v2-kachel-bild v2-kachel-bild-shot">
                 <Image
-                  src="/SERP-Beispiel-deine-Branche.webp"
+                  src="/bilder/beispiele/SERP-Beispiel-deine-Branche.webp"
                   alt="Beispielhaftes Suchergebnis: eine Website auf Platz 1 für die eigene Branche"
                   width={1134}
                   height={688}
@@ -327,7 +327,7 @@ export default function Startseite() {
               </div>
               <div className="v2-kachel-bild v2-kachel-bild-shot">
                 <Image
-                  src="/KI-Suche-Beispiel-deine-Branche.webp"
+                  src="/bilder/beispiele/KI-Suche-Beispiel-deine-Branche.webp"
                   alt="Beispielhafte KI-Antwort, in der die eigene Website als Quelle genannt wird"
                   width={1130}
                   height={780}
@@ -360,7 +360,7 @@ export default function Startseite() {
               <p>Sichtbar in Google Maps und in deiner Region.</p>
               <div className="v2-kachel-bild v2-kachel-bild-lokal">
                 <Image
-                  src="/Lokal-Beispiel-deine-Branche.webp"
+                  src="/bilder/beispiele/Lokal-Beispiel-deine-Branche.webp"
                   alt="Beispielhaftes lokales Suchergebnis mit Karte und Eintrag auf Platz 1"
                   width={652}
                   height={612}
@@ -455,7 +455,7 @@ export default function Startseite() {
 
               <div className="v2-fall-bild">
                 <Image
-                  src="/Rezension-Hero-SHS.webp"
+                  src="/bilder/referenzen/Rezension-Hero-SHS.webp"
                   alt="Startseite des Onlineshops von SHS Spürhundesport"
                   width={1670}
                   height={912}
@@ -506,7 +506,7 @@ export default function Startseite() {
                 </figcaption>
                 <div className="v2-rd-bild">
                   <Image
-                    src="/Redesign-Resilient-vorher.webp"
+                    src="/bilder/referenzen/Redesign-Resilient-vorher.webp"
                     alt="Alte Startseite von Resilient durchs Leben: gebogene Menüschrift auf rotem Holzbild, Kontakt nur als kleiner Link"
                     width={1600}
                     height={851}
@@ -529,7 +529,7 @@ export default function Startseite() {
                 </figcaption>
                 <div className="v2-rd-bild">
                   <Image
-                    src="/Redesign-Resilient-nachher.webp"
+                    src="/bilder/referenzen/Redesign-Resilient-nachher.webp"
                     alt="Neue Startseite von Resilient durchs Leben: Navigationsleiste, Leistungen im Titel und zwei Buttons im ersten Bildschirm"
                     width={1600}
                     height={774}

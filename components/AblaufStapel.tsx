@@ -11,7 +11,7 @@ import Image from 'next/image'
 const ABLAUF = [
   {
     n: '01',
-    bild: '/Ablauf-01-Erstgespraech.webp',
+    bild: '/bilder/ablauf/Ablauf-01-Erstgespraech.webp',
     alt: 'Videogespräch mit Timm Schurig und Gesprächsnotizen zu Situation und Zielen',
     punkte: ['Unverbindlich, ohne Formular', 'Deine Situation und deine Ziele', 'Ob wir zusammenpassen'],
     titel: 'Kostenloses Erstgespräch',
@@ -20,7 +20,7 @@ const ABLAUF = [
   },
   {
     n: '02',
-    bild: '/Ablauf-02-Analyse-Strategie.webp',
+    bild: '/bilder/ablauf/Ablauf-02-Analyse-Strategie.webp',
     alt: 'Keyword-Recherche für Langenfeld, technisches Audit und Konzept zur Freigabe',
     punkte: ['Keyword-Recherche für deine Region', 'Wettbewerb und technisches Audit', 'Konzept mit Zeitplan und Kosten zur Freigabe'],
     titel: 'Analyse & Strategie',
@@ -29,7 +29,7 @@ const ABLAUF = [
   },
   {
     n: '03',
-    bild: '/Ablauf-03-Design-Umsetzung.webp',
+    bild: '/bilder/ablauf/Ablauf-03-Design-Umsetzung.webp',
     alt: 'Vorschau der Website mit Feedback-Kommentaren und Versionen von Entwurf bis final',
     punkte: ['Zwischenstände statt Überraschungen', 'Dein Feedback direkt an der Seite', 'Umsetzung in Runden bis zur finalen Version'],
     titel: 'Design & Umsetzung',
@@ -38,7 +38,7 @@ const ABLAUF = [
   },
   {
     n: '04',
-    bild: '/Ablauf-04-Golive-Betreuung.webp',
+    bild: '/bilder/ablauf/Ablauf-04-Golive-Betreuung.webp',
     alt: 'Live-Website mit wachsenden organischen Besuchern, Rankings und Monatsreport',
     punkte: ['Live-Gang ohne Ausfall', 'Monatlicher Report aus der Search Console', 'Technik und Updates im Blick'],
     titel: 'Go-live und Betreuung',

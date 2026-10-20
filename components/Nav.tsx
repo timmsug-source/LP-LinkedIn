@@ -12,7 +12,6 @@ const LINKS = [
   { label: 'Über mich', href: '/#ueber-mich' },
   { label: 'Ablauf', href: '/#ablauf' },
   { label: 'SEO Langenfeld', href: '/seo-freelancer-langenfeld' },
-  { label: 'GEO', href: '/geo-freelancer' },
   { label: 'Blog', href: '/blog' },
 ]
 

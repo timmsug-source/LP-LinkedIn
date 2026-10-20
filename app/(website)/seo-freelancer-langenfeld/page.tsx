@@ -341,7 +341,7 @@ export default function SeoFreelancerLangenfeld() {
               <span className="v2-sfl-bildrahmen">
               <Image
                 src="/bilder/timm/TS-Anzug-Website.webp"
-                alt=""
+                alt="Timm Schurig, SEO Freelancer aus Langenfeld"
                 width={1086}
                 height={1448}
                 priority

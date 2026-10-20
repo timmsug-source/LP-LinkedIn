@@ -209,7 +209,7 @@ export default async function BlogPost({ params }: Props) {
               {/* Dasselbe Foto wie in „Über mich“. Der runde Rahmen schneidet
                   das Gesicht aus, das Bild darin ist größer und verschoben. */}
               <span className="post-author-img">
-                <Image src="/bilder/timm/TS-Anzug-Website.webp" alt="" width={80} height={107} sizes="80px" itemProp="image" />
+                <Image src="/bilder/timm/TS-Anzug-Website.webp" alt="Timm Schurig" width={80} height={107} itemProp="image" />
               </span>
               <span className="post-author-name" itemProp="name">Timm Schurig</span>
               <span className="post-author-role">SEO & Webdesign Freelancer</span>

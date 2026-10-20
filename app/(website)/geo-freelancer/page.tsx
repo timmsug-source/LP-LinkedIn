@@ -523,7 +523,7 @@ function FreelancerOderAgentur() {
       <article className="v2-geo-duell-karte v2-geo-duell-karte--ich">
         <div className="v2-geo-duell-kopf">
           <span className="v2-geo-duell-foto">
-            <Image src="/bilder/timm/TS-Anzug-Website.webp" alt="" width={120} height={160} sizes="120px" />
+            <Image src="/bilder/timm/TS-Anzug-Website.webp" alt="Timm Schurig" width={120} height={160} />
           </span>
           <div>
             <h3>Freelancer</h3>
@@ -652,7 +652,7 @@ export default function GeoFreelancer() {
               <div className="v2-geo-person">
                 {/* Dasselbe Foto wie in „Über mich", als Gesichtsausschnitt. */}
                 <span className="v2-geo-person-bild">
-                  <Image src="/bilder/timm/TS-Anzug-Website.webp" alt="Timm Schurig" width={142} height={189} sizes="142px" priority />
+                  <Image src="/bilder/timm/TS-Anzug-Website.webp" alt="Timm Schurig" width={142} height={189} priority />
                 </span>
                 <div>
                   <strong>Timm Schurig</strong>

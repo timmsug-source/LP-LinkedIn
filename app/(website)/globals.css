@@ -358,7 +358,9 @@ footer {
 .post-title { font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.1; margin: 12px 0 18px; }
 .post-excerpt { font-size: 1.05rem; color: var(--sub); line-height: 1.75; margin-bottom: 20px; }
 .post-author { display: flex; align-items: center; gap: 10px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); }
-.post-author span:first-child { font-size: .84rem; font-weight: 700; color: var(--text); }
+.post-author-img { position: relative; width: 40px; height: 40px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: radial-gradient(circle at 50% 40%, rgba(var(--acc-rgb), .55), rgba(var(--acc-rgb), 0) 70%), var(--bg); }
+.post-author-img img { position: absolute; width: 79px; height: auto; max-width: none; left: -19px; top: -6px; }
+.post-author-name { font-size: .84rem; font-weight: 700; color: var(--text); }
 .post-author-role { font-size: .78rem; color: var(--sub); }
 /* Titelbild als <img>. height: auto, weil die Maße im Markup nur das
    Seitenverhältnis reservieren; object-fit schneidet Bilder zu, die nicht
@@ -1459,6 +1461,7 @@ footer {
   border-radius: 14px;
 }
 .v2-fall-block p { font-size: .92rem; line-height: 1.75; margin: 0; }
+.v2-fall-block a { color: var(--acc); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 
 .v2-fall-block--vorher {
   background: rgba(255,255,255,.03);
@@ -2604,6 +2607,10 @@ footer {
 }
 
 .v2-stapel-bild img { display: block; width: 100%; height: auto; }
+.v2-stapel-fazit {
+  max-width: 720px; margin: 48px auto 0; text-align: center;
+  font-size: 1rem; line-height: 1.75; color: var(--sub);
+}
 
 .v2-stapel-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
 .v2-stapel-n {
@@ -2640,6 +2647,8 @@ footer {
 .v2-faq-h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.18; margin: 0 0 14px; }
 .v2-faq-h2 .hl { color: var(--acc); }
 .v2-faq-sub { font-size: .98rem; line-height: 1.7; color: var(--sub); margin: 0; }
+.v2-faq-sub a { color: var(--acc); text-decoration: underline; text-underline-offset: 3px; }
+.v2-faq-sub a:hover { text-decoration: none; }
 
 .v2-faq-liste { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
 .v2-faq-item {
@@ -2691,6 +2700,568 @@ footer {
    nur der Buchungsknopf, kein Formular. */
 .v2-ko-buchen-text { margin: -14px 0 20px; font-size: .98rem; line-height: 1.65; color: var(--sub); }
 .v2-ko-buchen { width: 100%; justify-content: center; gap: 10px; }
+
+/* ── GEO Freelancer (/geo-freelancer) ──────────────────────────
+   Hero, Streifen, Fallstudie, Ablauf, Über mich und FAQ kommen von den
+   anderen Leistungsseiten. Hier nur die Bausteine, die es dort nicht gibt:
+   Brotkrumen, Zweitknopf, Definition, Kartenraster, Vergleichstabellen und
+   Pakete. Gleiche Tonwerte wie .v2-fw-…: dunkler Grund, feiner Rand, Grün
+   nur dort, wo etwas hervorgehoben werden soll. */
+
+/* Hero: gleicher Hintergrund und Schleier wie auf der Startseite. Die
+   Spalten sind fast gleich breit, damit die KI-Karte rechts Platz hat. */
+.v2-geo-hero .v2-hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, .82fr); gap: 72px; }
+.v2-geo-hero .v2-hero-h1 { margin-bottom: 34px; }
+/* Knöpfe als Pillen, wie im Entwurf. */
+.v2-geo-hero .v2-hero-cta .btn,
+.v2-geo-abschluss-knoepfe .btn { border-radius: 100px; }
+.v2-geo-vertrauen strong { color: #fff; }
+
+.v2-geo-hero-rechts { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 22px; }
+
+/* Beispiel-KI-Antwort: weiße Karte, im dunklen Hero der hellste Punkt. */
+.v2-geo-ki {
+  margin: 0; padding: 28px 30px 26px; border-radius: 26px;
+  background: #fff; color: #1f2937;
+  box-shadow: 0 30px 80px rgba(0,0,0,.45);
+}
+.v2-geo-ki-kopf { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.v2-geo-ki-kopf strong { font-size: .92rem; color: #0f172a; }
+.v2-geo-ki-marke {
+  padding: 4px 12px; border-radius: 100px; background: #f1f4f8;
+  font-size: .8rem; color: #64748b;
+}
+.v2-geo-ki-frage {
+  margin: 0 0 20px auto; width: fit-content; max-width: 92%;
+  padding: 14px 20px; border-radius: 18px; background: #f1f4f8;
+  font-size: .98rem; line-height: 1.5; color: #1f2937;
+}
+.v2-geo-ki-antwort p { margin: 0; font-size: .98rem; line-height: 1.75; color: #334155; }
+.v2-geo-ki-antwort p + p { margin-top: 14px; }
+.v2-geo-ki-antwort strong { color: #0f172a; }
+.v2-geo-ki-quellen {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px;
+  margin-top: 22px; font-size: .86rem; color: #64748b;
+}
+.v2-geo-ki-quelle { padding: 6px 14px; border-radius: 100px; background: #f1f4f8; color: #475569; }
+/* Die eigene Website als Quelle: grün umrandet, mit Punkt – darum geht es. */
+.v2-geo-ki-quelle--du {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(var(--acc-rgb), .1); color: #047857; font-weight: 700;
+  box-shadow: inset 0 0 0 1px rgba(var(--acc-rgb), .45);
+}
+.v2-geo-ki-quelle--du::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--acc); }
+
+/* Wer dahinter steht: dunkle Karte mit Gesichtsausschnitt. */
+.v2-geo-person {
+  display: flex; align-items: center; gap: 20px;
+  padding: 20px 22px; border-radius: 22px;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+}
+.v2-geo-person-bild {
+  position: relative; flex: none; width: 76px; height: 76px; overflow: hidden; border-radius: 16px;
+  background: radial-gradient(circle at 50% 40%, rgba(var(--acc-rgb), .5), rgba(var(--acc-rgb), 0) 70%), #0a1730;
+}
+/* Das Foto ist größer als der Rahmen und so verschoben, dass das Gesicht
+   mittig sitzt – wie beim Autorenbild im Blog. */
+.v2-geo-person-bild img { position: absolute; width: 142px; height: auto; max-width: none; left: -33px; top: -9px; }
+.v2-geo-person div strong { display: block; font-size: 1.08rem; color: #fff; }
+.v2-geo-person div span { display: block; margin-top: 4px; font-size: .95rem; color: var(--sub); }
+
+/* Zweiter Knopf neben dem Schnellcheck: gleiche Form, aber nur Rahmen –
+   zwei grüne Flächen nebeneinander nähmen dem Hauptknopf das Gewicht. */
+.btn.v2-geo-knopf-zweit {
+  background: transparent; color: #fff;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.28);
+}
+.btn.v2-geo-knopf-zweit:hover {
+  background: rgba(255,255,255,.08); color: #fff;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.5);
+}
+
+/* Vertrauensleiste unter den Knöpfen: Bewertung, Erfahrung, Stand. */
+.v2-geo-vertrauen {
+  display: flex; flex-wrap: wrap; gap: 6px 18px;
+  margin: 20px 0 0; font-size: .82rem; color: rgba(255,255,255,.6);
+}
+.v2-geo-vertrauen > span { display: inline-flex; align-items: center; gap: 6px; }
+.v2-geo-vertrauen > span + span::before {
+  content: ''; width: 4px; height: 4px; border-radius: 50%;
+  background: rgba(255,255,255,.3); margin-right: 12px;
+}
+.v2-geo-sterne { color: #f5b301; letter-spacing: .08em; }
+
+/* Sektionen der Seite. Etwas weniger Luft als bei .v2-fuerwen: Die Seite hat
+   viele kurze Abschnitte hintereinander, mit vollem Abstand zerfiele sie. */
+.v2-geo-sektion { background: #050d1a; padding: 88px 0 92px; }
+.v2-geo-kopf { max-width: 760px; margin: 0 auto 44px; text-align: center; }
+.v2-geo-h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.18; margin: 0 0 14px; }
+.v2-geo-h2 .hl { color: var(--acc); }
+.v2-geo-kopf .v2-geo-h2:last-child { margin-bottom: 0; }
+.v2-geo-sub { font-size: .98rem; line-height: 1.75; color: var(--sub); margin: 0; }
+
+/* Definition: zwei Karten nebeneinander. Links der Lexikon-Eintrag mit
+   Stichwort und der zitierfähigen Antwort, rechts 100 Punkte für
+   100 Google-Suchen, die 62 ohne Klick in Grün, daneben groß die Zahl. */
+.v2-geo-lex {
+  display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); gap: 28px;
+  max-width: 1120px; margin: 0 auto;
+}
+.v2-geo-lex-eintrag,
+.v2-geo-lex-zahl {
+  display: flex; flex-direction: column; padding: 46px 44px 44px; border-radius: 26px;
+  border: 1px solid var(--border); box-shadow: 0 24px 60px rgba(0,0,0,.3);
+}
+.v2-geo-lex-eintrag { background: linear-gradient(180deg, #111b2e 0%, #0d1628 100%); }
+.v2-geo-lex-zahl { background: linear-gradient(180deg, #0c1a28 0%, #091522 100%); }
+
+.v2-geo-lex-wort {
+  margin: 0 0 26px; padding-bottom: 26px; border-bottom: 1px solid var(--border);
+  font-size: clamp(1.7rem, 2.8vw, 2.3rem); font-weight: 800; letter-spacing: -.03em; color: #fff;
+}
+.v2-geo-lex-text { margin: 0; font-size: 1.12rem; line-height: 1.85; color: rgba(255,255,255,.85); }
+.v2-geo-lex a { color: var(--acc); text-decoration: underline; text-underline-offset: 3px; }
+
+.v2-geo-lex-zahl-kopf {
+  margin: 0 0 24px; font-size: .72rem; font-weight: 700; letter-spacing: .13em;
+  text-transform: uppercase; color: var(--acc);
+}
+.v2-geo-lex-grafik { display: flex; align-items: center; gap: 28px; margin-bottom: 30px; }
+.v2-geo-punkte { flex: 0 1 190px; display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; }
+.v2-geo-punkte span { aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,.08); }
+.v2-geo-punkte span.an { background: var(--acc); }
+.v2-geo-lex-wert { margin: 0; display: flex; flex-direction: column; font-size: 1rem; font-weight: 700; color: #fff; }
+.v2-geo-lex-wert span {
+  font-size: clamp(3.4rem, 6vw, 4.6rem); font-weight: 800; line-height: .95;
+  letter-spacing: -.05em; color: var(--acc); margin-bottom: 6px;
+}
+.v2-geo-lex-zahl-text { margin: 0; font-size: 1rem; line-height: 1.75; color: var(--sub); }
+.v2-geo-lex-zahl-text strong { color: #fff; }
+.v2-geo-lex-quelle { margin: auto 0 0; padding-top: 22px; font-size: .82rem; color: var(--sub); }
+
+/* Probleme: links die stehende Überschrift (.v2-ms-…), rechts die Karten mit
+   Grafik. Jede Karte klebt beim Scrollen oben fest, die nächste fährt darüber;
+   der Versatz pro Karte (--i) lässt die Kanten darunter sichtbar. Deckender
+   Grund, damit die untere Karte verschwindet statt durchzuscheinen. */
+.v2-geo-probleme { overflow: clip; }
+.v2-geo-probleme .v2-ms-text .v2-geo-hinweis { margin: 26px 0 0; text-align: left; }
+.v2-geo-pstapel { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 32px; }
+.v2-geo-pkarte {
+  position: sticky; top: calc(var(--nav-h) + 32px + var(--i, 0) * 18px);
+  display: flex; flex-direction: column; gap: 10px;
+  padding: 14px 14px 30px; border-radius: 26px;
+  background:
+    radial-gradient(70% 90% at 0% 100%, rgba(var(--acc-rgb), .07), transparent 70%),
+    #0a1424;
+  border: 1px solid rgba(255,255,255,.09);
+  box-shadow: 0 -18px 48px rgba(0,0,0,.45);
+}
+.v2-geo-pkarte-bild { display: block; width: 100%; height: auto; border-radius: 18px; margin-bottom: 14px; }
+.v2-geo-pkarte h3, .v2-geo-pkarte p { padding: 0 16px; }
+.v2-geo-pkarte h3 { margin: 0; font-size: 1.2rem; line-height: 1.35; letter-spacing: -.02em; color: #fff; }
+.v2-geo-pkarte p { margin: 0; font-size: .97rem; line-height: 1.7; color: var(--sub); }
+
+/* Wie beim Ablauf-Stapel: Passt eine Karte nicht mehr ganz ins Fenster,
+   stehen die Karten einfach untereinander. */
+@media (max-width: 900px), (max-height: 760px) {
+  .v2-geo-pkarte { position: static; box-shadow: 0 18px 44px rgba(0,0,0,.35); }
+}
+@media (max-width: 900px) {
+  .v2-geo-pstapel { gap: 16px; }
+  .v2-geo-pkarte { padding: 10px 10px 24px; border-radius: 20px; }
+  .v2-geo-pkarte h3, .v2-geo-pkarte p { padding: 0 10px; }
+}
+
+/* Kartenraster für Probleme, Leistungen und Zielgruppen. */
+.v2-geo-raster { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
+.v2-geo-raster--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 1040px; margin: 0 auto; }
+.v2-geo-raster--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.v2-geo-karte {
+  display: flex; flex-direction: column; gap: 12px;
+  padding: 28px 28px 30px; border-radius: 22px;
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08);
+  transition: border-color .25s ease, transform .25s ease;
+}
+.v2-geo-karte:hover { border-color: rgba(var(--acc-rgb), .4); transform: translateY(-3px); }
+.v2-geo-icon {
+  width: 42px; height: 42px; display: grid; place-items: center; flex: none;
+  border-radius: 12px; background: rgba(var(--acc-rgb), .12); color: var(--acc);
+}
+.v2-geo-icon svg { width: 21px; height: 21px; }
+.v2-geo-karte h3 { margin: 4px 0 0; font-size: 1.08rem; line-height: 1.35; letter-spacing: -.02em; color: #fff; }
+.v2-geo-karte p { margin: 0; font-size: .95rem; line-height: 1.7; color: var(--sub); }
+.v2-geo-karte a, .v2-geo-wege a, .v2-geo-hinweis a, .v2-geo-split-text a, .v2-um-karte a {
+  color: var(--acc); font-weight: 600; text-decoration: underline; text-underline-offset: 3px;
+}
+.v2-geo-karte a:hover, .v2-geo-wege a:hover, .v2-geo-hinweis a:hover,
+.v2-geo-split-text a:hover, .v2-um-karte a:hover { text-decoration: none; }
+
+/* Hinweis unter einem Block: Selbsttest, ehrliche Einschränkung, Fazit. */
+.v2-geo-hinweis {
+  max-width: 820px; margin: 32px auto 0; padding: 18px 24px; border-radius: 16px;
+  text-align: center; font-size: .98rem; line-height: 1.7; color: var(--sub);
+  background: rgba(255,255,255,.03); border: 1px dashed rgba(255,255,255,.14);
+}
+.v2-geo-hinweis strong { color: #fff; }
+
+/* Aus einer Hand: links der Text, rechts die drei Ausgangslagen – zusammen
+   in einem Rahmen mit grünem Schimmer, damit das Alleinstellungsmerkmal
+   als eigener Block aus der Seite heraussticht. */
+.v2-geo-split {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+  gap: 64px; align-items: center;
+  padding: 64px 64px; border-radius: 32px;
+  background:
+    radial-gradient(70% 90% at 0% 0%, rgba(var(--acc-rgb), .12), transparent 70%),
+    linear-gradient(180deg, rgba(var(--acc-rgb), .06) 0%, rgba(var(--acc-rgb), .02) 100%);
+  border: 1px solid rgba(var(--acc-rgb), .28);
+  box-shadow: 0 30px 70px rgba(0,0,0,.35);
+}
+.v2-geo-split-text p.label { margin: 0 0 16px; font-size: .72rem; line-height: 1.4; color: var(--acc); }
+.v2-geo-split-text .v2-geo-h2 { margin-bottom: 22px; }
+.v2-geo-split-text p { margin: 0 0 16px; font-size: 1rem; line-height: 1.75; color: var(--sub); }
+.v2-geo-tools { list-style: none; margin: 26px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.v2-geo-tools li {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: 100px;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+  font-size: .85rem; font-weight: 600; color: rgba(255,255,255,.8);
+}
+.v2-geo-wege { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.v2-geo-wege li {
+  position: relative; display: flex; flex-direction: column; gap: 6px;
+  padding: 22px 24px 22px 60px; border-radius: 18px;
+  background: #0a1424; border: 1px solid rgba(255,255,255,.08);
+}
+.v2-geo-wege li::before {
+  content: ''; position: absolute; left: 22px; top: 23px; width: 22px; height: 22px;
+  background: var(--acc);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5l5 5L20 6.5'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5l5 5L20 6.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.v2-geo-wege strong { font-size: 1.02rem; color: #fff; }
+.v2-geo-wege span { font-size: .95rem; line-height: 1.65; color: var(--sub); }
+
+/* Kleines Symbol im Kästchen, genutzt von den Ebenen „GEO baut auf SEO auf". */
+.v2-geo-spalte { display: inline-flex; align-items: center; gap: 12px; }
+.v2-geo-spalte-symbol {
+  display: grid; place-items: center; width: 34px; height: 34px; flex: none;
+  border-radius: 10px; background: rgba(255,255,255,.06); color: rgba(255,255,255,.75);
+}
+.v2-geo-spalte-symbol svg { width: 18px; height: 18px; }
+
+
+/* Für wen: Bento-Raster aus vier Karten. Zwölf Spalten, die Karten wechseln
+   zwischen sieben und fünf Spalten Breite. Die breiten Karten zeigen rechts
+   ein kleines Beispiel-Panel. */
+.v2-zg {
+  list-style: none; margin: 0 auto; padding: 0; max-width: 1180px;
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px;
+}
+.v2-zg-karte {
+  grid-column: span 5; display: flex; gap: 28px; padding: 32px;
+  border-radius: 26px; background: #0b1626; border: 1px solid rgba(255,255,255,.08);
+}
+.v2-zg-karte--breit { grid-column: span 7; }
+.v2-zg-inhalt { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; }
+.v2-zg-kopf { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+.v2-zg-icon {
+  display: grid; place-items: center; width: 46px; height: 46px; border-radius: 13px;
+  background: rgba(var(--acc-rgb), .14); color: var(--acc);
+}
+.v2-zg-icon svg { width: 22px; height: 22px; }
+.v2-zg-n { font-size: .85rem; font-weight: 800; letter-spacing: .08em; color: rgba(255,255,255,.3); }
+.v2-zg-karte h3 { margin: 0 0 12px; font-size: clamp(1.25rem, 1.9vw, 1.6rem); line-height: 1.2; letter-spacing: -.025em; color: #fff; }
+.v2-zg-inhalt > p { margin: 0 0 22px; font-size: .98rem; line-height: 1.7; color: var(--sub); }
+
+.v2-zg-chips { list-style: none; margin: auto 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.v2-zg-chips li {
+  padding: 6px 13px; border-radius: 100px; font-size: .85rem; color: rgba(255,255,255,.82);
+  border: 1px solid rgba(255,255,255,.12);
+}
+.v2-zg-link {
+  margin-top: auto; display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;
+  font-size: .98rem; font-weight: 700; color: var(--acc); text-decoration: none;
+}
+.v2-zg-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* Beispiel-Panels */
+.v2-zg-panel {
+  flex: 0 0 44%; align-self: stretch; display: flex; flex-direction: column; justify-content: center; gap: 12px;
+  padding: 24px 20px; border-radius: 20px; background: #070f1d; border: 1px solid rgba(255,255,255,.07);
+}
+.v2-zg-panel-label {
+  margin: 0 0 4px; font-size: .68rem; font-weight: 800; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.5);
+}
+.v2-zg-frage {
+  margin: 0; padding: 14px 16px; border-radius: 14px; font-size: .9rem; line-height: 1.5;
+  color: rgba(255,255,255,.88); background: #16233a;
+}
+.v2-zg-frage--zeile { margin: 0 0 24px; }
+.v2-zg-antwort {
+  margin: 0; padding: 14px 16px; border-radius: 14px; font-size: .9rem; line-height: 1.5; color: rgba(255,255,255,.88);
+  background: rgba(var(--acc-rgb), .1); border: 1px solid rgba(var(--acc-rgb), .3);
+}
+.v2-zg-antwort strong { color: var(--acc); }
+
+.v2-zg-botschaft {
+  display: flex; align-items: center; gap: 10px; margin: 0 0 18px; padding: 12px 14px;
+  border-radius: 14px; background: #070f1d; border: 1px solid rgba(255,255,255,.07);
+}
+.v2-zg-botschaft span { padding: 5px 11px; border-radius: 8px; font-size: .88rem; font-weight: 700; color: #fff; background: #16233a; }
+.v2-zg-botschaft svg { color: var(--acc); flex: none; }
+.v2-zg-botschaft strong { margin-left: auto; font-size: .88rem; color: var(--acc); white-space: nowrap; }
+
+.v2-zg-daten { margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.v2-zg-daten div {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 11px 14px; border-radius: 12px; background: #16233a;
+}
+.v2-zg-daten dt { font-size: .85rem; color: var(--sub); }
+.v2-zg-daten dd { margin: 0; font-size: .85rem; font-weight: 700; color: #fff; text-align: right; }
+.v2-zg-daten .v2-zg-daten-ergebnis { background: rgba(var(--acc-rgb), .1); border: 1px solid rgba(var(--acc-rgb), .3); }
+.v2-zg-daten-ergebnis dt { color: #fff; }
+.v2-zg-daten-ergebnis dd { color: var(--acc); }
+
+@media (max-width: 1100px) {
+  .v2-zg-karte, .v2-zg-karte--breit { grid-column: 1 / -1; }
+}
+@media (max-width: 720px) {
+  .v2-zg { gap: 14px; }
+  .v2-zg-karte { flex-direction: column; padding: 24px 20px; border-radius: 20px; }
+  .v2-zg-panel { flex-basis: auto; }
+  .v2-zg-botschaft { flex-wrap: wrap; }
+  .v2-zg-botschaft strong { margin-left: 0; width: 100%; }
+}
+
+/* Freelancer oder Agentur: zwei Karten, dazwischen „vs". Die Freelancer-
+   Karte trägt Foto, grünen Rahmen und Haken; die Agentur bleibt ruhig grau
+   mit Punkten – fair im Inhalt, klar in der Gewichtung. */
+.v2-geo-duell {
+  max-width: 1040px; margin: 0 auto;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: stretch;
+}
+.v2-geo-duell-karte {
+  display: flex; flex-direction: column; padding: 30px 30px 26px; border-radius: 24px;
+  background: #0b1626; border: 1px solid rgba(255,255,255,.08);
+}
+.v2-geo-duell-karte--ich {
+  background: linear-gradient(180deg, rgba(var(--acc-rgb), .13) 0%, rgba(var(--acc-rgb), .04) 100%), #0b1626;
+  border-color: rgba(var(--acc-rgb), .45);
+  box-shadow: 0 24px 60px rgba(0,0,0,.35), 0 0 60px rgba(var(--acc-rgb), .12);
+}
+.v2-geo-duell-kopf { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+.v2-geo-duell-kopf h3 { margin: 0; font-size: 1.35rem; letter-spacing: -.02em; color: #fff; }
+.v2-geo-duell-kopf div > span { display: block; margin-top: 2px; font-size: .85rem; color: var(--sub); }
+.v2-geo-duell-karte--ich .v2-geo-duell-kopf h3 { color: var(--acc); }
+.v2-geo-duell-foto {
+  position: relative; width: 52px; height: 52px; flex: none; border-radius: 50%; overflow: hidden;
+  background: radial-gradient(circle at 50% 40%, rgba(var(--acc-rgb), .55), rgba(var(--acc-rgb), 0) 70%), #050d1a;
+  box-shadow: 0 0 0 2px rgba(var(--acc-rgb), .5);
+}
+/* Wie beim Autorenfoto im Blog: Bild größer als der Kreis, auf das Gesicht geschoben. */
+.v2-geo-duell-foto img { position: absolute; width: 102px; height: auto; max-width: none; left: -25px; top: -8px; }
+.v2-geo-duell-foto--symbol {
+  display: grid; place-items: center; background: rgba(255,255,255,.06); box-shadow: none; color: rgba(255,255,255,.7);
+}
+.v2-geo-duell-foto--symbol svg { width: 24px; height: 24px; }
+
+.v2-geo-duell-karte dl { margin: 0; display: flex; flex-direction: column; }
+.v2-geo-duell-karte dl div { padding: 14px 0; border-top: 1px solid rgba(255,255,255,.07); }
+.v2-geo-duell-karte--ich dl div { border-top-color: rgba(var(--acc-rgb), .18); }
+.v2-geo-duell-karte dt {
+  margin-bottom: 5px; font-size: .7rem; font-weight: 800; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.45);
+}
+.v2-geo-duell-karte dd { margin: 0; display: flex; align-items: flex-start; gap: 10px; font-size: 1rem; line-height: 1.5; color: var(--sub); }
+.v2-geo-duell-karte--ich dd { color: rgba(255,255,255,.92); }
+.v2-geo-duell-karte dd svg { flex: none; width: 16px; height: 16px; margin-top: 4px; color: var(--acc); }
+.v2-geo-duell-punkt { flex: none; width: 6px; height: 6px; margin: 9px 5px 0; border-radius: 50%; background: rgba(255,255,255,.3); }
+
+.v2-geo-duell-passt {
+  margin: auto 0 0; padding: 16px 18px; border-radius: 14px;
+  font-size: .95rem; line-height: 1.5; color: var(--sub); background: rgba(255,255,255,.04);
+}
+.v2-geo-duell-passt strong {
+  display: block; margin-bottom: 4px; font-size: .7rem; font-weight: 800; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.5);
+}
+.v2-geo-duell-karte--ich .v2-geo-duell-passt { color: #fff; background: rgba(var(--acc-rgb), .12); }
+.v2-geo-duell-karte--ich .v2-geo-duell-passt strong { color: var(--acc); }
+
+.v2-geo-duell-vs {
+  align-self: center; z-index: 1; display: grid; place-items: center;
+  width: 52px; height: 52px; margin: 0 -10px; border-radius: 50%;
+  font-size: .85rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: rgba(255,255,255,.7);
+  background: #050d1a; border: 1px solid rgba(255,255,255,.14);
+}
+
+@media (max-width: 820px) {
+  .v2-geo-duell { grid-template-columns: minmax(0, 1fr); }
+  .v2-geo-duell-vs { justify-self: center; margin: -12px 0; }
+}
+@media (max-width: 680px) {
+  .v2-geo-duell-karte { padding: 22px 20px 20px; border-radius: 20px; }
+}
+
+/* GEO baut auf SEO auf: zwei Ebenen übereinander. SEO unten, breit und
+   schwer wie ein Fundament; GEO darauf, etwas schmaler und grün – so liest
+   sich die Grafik von selbst als „das eine steht auf dem anderen".
+   Die Kriterien bilden in beiden Ebenen dieselben fünf Spalten. */
+.v2-geo-schichten { max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+.v2-geo-ebene { width: 100%; border-radius: 22px; padding: 26px 28px 28px; }
+.v2-geo-ebene--geo {
+  width: calc(100% - 96px);
+  background: linear-gradient(180deg, rgba(var(--acc-rgb), .16) 0%, rgba(var(--acc-rgb), .07) 100%);
+  border: 1px solid rgba(var(--acc-rgb), .45);
+  box-shadow: 0 0 60px rgba(var(--acc-rgb), .12);
+}
+/* Das Fundament ist breiter, sein Inhalt aber genau so weit eingerückt,
+   dass die Spalten unter denen der GEO-Ebene stehen (48 px je Seite). */
+.v2-geo-ebene--seo {
+  padding-left: 76px; padding-right: 76px;
+  background: #0c1728; border: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 24px 60px rgba(0,0,0,.4), inset 0 -4px 0 rgba(255,255,255,.05);
+}
+.v2-geo-ebene-kopf { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.v2-geo-ebene-kopf h3 { margin: 0; font-size: 1.35rem; letter-spacing: -.02em; color: #fff; }
+.v2-geo-ebene-rolle {
+  margin-left: auto; padding: 5px 12px; border-radius: 100px;
+  font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(255,255,255,.6); background: rgba(255,255,255,.06);
+}
+.v2-geo-ebene--geo .v2-geo-spalte-symbol { background: rgba(var(--acc-rgb), .2); color: var(--acc); }
+.v2-geo-ebene--geo .v2-geo-ebene-kopf h3 { color: var(--acc); }
+.v2-geo-ebene--geo .v2-geo-ebene-rolle { color: var(--acc); background: rgba(var(--acc-rgb), .14); }
+
+.v2-geo-ebene-werte {
+  margin: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px;
+}
+.v2-geo-ebene-werte div { padding-top: 14px; border-top: 1px solid rgba(255,255,255,.1); }
+.v2-geo-ebene--geo .v2-geo-ebene-werte div { border-top-color: rgba(var(--acc-rgb), .3); }
+.v2-geo-ebene-werte dt {
+  margin-bottom: 6px; font-size: .7rem; font-weight: 800; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.5);
+}
+.v2-geo-ebene-werte dd { margin: 0; font-size: .92rem; line-height: 1.55; color: var(--sub); hyphens: auto; overflow-wrap: break-word; }
+.v2-geo-ebene--geo .v2-geo-ebene-werte dd { color: rgba(255,255,255,.92); }
+
+/* Die Verbindung: ein Pfeil nach oben mit „baut auf". */
+.v2-geo-verbinder {
+  position: relative; display: flex; align-items: center; gap: 8px; padding: 14px 0;
+  font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--acc);
+}
+.v2-geo-verbinder svg { width: 18px; height: 18px; }
+.v2-geo-verbinder::before, .v2-geo-verbinder::after {
+  content: ''; position: absolute; left: 50%; width: 1px; height: 10px; background: rgba(var(--acc-rgb), .45);
+}
+.v2-geo-verbinder::before { top: 0; }
+.v2-geo-verbinder::after { bottom: 0; }
+
+@media (max-width: 900px) {
+  .v2-geo-ebene--geo { width: calc(100% - 32px); }
+  .v2-geo-ebene--seo { padding-left: 28px; padding-right: 28px; }
+  .v2-geo-ebene-werte { grid-template-columns: 1fr; gap: 0; }
+  .v2-geo-ebene-werte div {
+    display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 12px 0;
+  }
+  .v2-geo-ebene-werte dt { margin: 3px 0 0; }
+}
+@media (max-width: 680px) {
+  .v2-geo-ebene, .v2-geo-ebene--seo { padding: 20px 18px 18px; border-radius: 18px; }
+  .v2-geo-ebene--geo { width: calc(100% - 20px); }
+  .v2-geo-ebene-kopf { flex-wrap: wrap; margin-bottom: 8px; }
+  .v2-geo-ebene-werte div { grid-template-columns: 1fr; gap: 2px; }
+}
+
+/* Pakete. Der kostenlose Einstieg ist hervorgehoben wie die Zusage-Karte
+   bei „Für wen" – grüner Rand, Schein, Strich an der Oberkante. */
+.v2-geo-pakete {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; align-items: stretch;
+}
+.v2-geo-paket {
+  position: relative; display: flex; flex-direction: column;
+  padding: 30px 26px 30px; border-radius: 22px;
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08);
+}
+.v2-geo-paket--start {
+  border-color: rgba(var(--acc-rgb), .45);
+  background: linear-gradient(180deg, rgba(var(--acc-rgb), .12) 0%, rgba(var(--acc-rgb), .04) 60%);
+  box-shadow: 0 24px 60px rgba(0,0,0,.35), 0 0 48px rgba(var(--acc-rgb), .12);
+}
+.v2-geo-paket--start::before {
+  content: ''; position: absolute; left: 22px; right: 22px; top: -1px; height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: linear-gradient(90deg, transparent, var(--acc), transparent);
+}
+.v2-geo-paket-marke {
+  position: absolute; top: 18px; right: 18px; padding: 4px 10px; border-radius: 100px;
+  font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  color: #050d1a; background: var(--acc);
+}
+.v2-geo-paket h3 { margin: 0 0 18px; font-size: 1.05rem; color: #fff; }
+.v2-geo-paket-preis { margin: 0; font-size: 1.9rem; font-weight: 800; letter-spacing: -.03em; color: #fff; line-height: 1.1; }
+.v2-geo-paket--start .v2-geo-paket-preis { color: var(--acc); }
+.v2-geo-paket-zusatz { margin: 6px 0 18px; font-size: .82rem; color: rgba(255,255,255,.5); }
+.v2-geo-paket-text {
+  margin: 0; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.08);
+  font-size: .92rem; line-height: 1.65; color: var(--sub);
+}
+#preise .v2-fw-fuss { margin-top: 32px; }
+
+/* Abschluss: ein zentrierter Kasten mit beiden Knöpfen. */
+.v2-geo-abschluss { background: #050d1a; padding: 32px 0 112px; }
+.v2-geo-abschluss-box {
+  position: relative; max-width: 900px; margin: 0 auto; text-align: center;
+  padding: 56px 48px 48px; border-radius: 28px;
+  border: 1px solid rgba(var(--acc-rgb), .35);
+  background:
+    radial-gradient(70% 90% at 50% 0%, rgba(var(--acc-rgb), .14), transparent 70%),
+    #0a1424;
+  box-shadow: 0 30px 80px rgba(0,0,0,.45);
+}
+.v2-geo-abschluss-box > p { max-width: 640px; margin: 0 auto; font-size: 1.02rem; line-height: 1.75; color: var(--sub); }
+.v2-geo-abschluss-knoepfe { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+.v2-geo-abschluss-knoepfe .btn { padding: 15px 28px; font-size: .92rem; }
+.v2-geo-abschluss-box .v2-geo-vertrauen { justify-content: center; margin-top: 22px; }
+
+#was-ist-geo, #geo-leistungen, #preise { scroll-margin-top: var(--nav-h); }
+
+@media (max-width: 1024px) {
+  /* Untereinander: erst Text und Knöpfe, darunter die Beispiel-Antwort. Die
+     zweispaltige Regel oben ist spezifischer als die des Startseiten-Heros
+     und muss hier ausdrücklich zurückgesetzt werden. */
+  .v2-geo-hero .v2-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .v2-geo-hero-rechts { padding-bottom: 56px; }
+  .v2-geo-raster--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .v2-geo-pakete { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .v2-geo-split { grid-template-columns: 1fr; gap: 36px; padding: 48px 40px; }
+}
+@media (max-width: 680px) {
+  .v2-geo-sektion { padding: 64px 0 72px; }
+  .v2-geo-ki { padding: 22px 20px 20px; border-radius: 20px; }
+  .v2-geo-ki-frage, .v2-geo-ki-antwort p { font-size: .92rem; }
+  .v2-geo-hero .v2-hero-cta .btn { width: 100%; justify-content: center; }
+  .v2-geo-raster--2, .v2-geo-raster--3, .v2-geo-pakete { grid-template-columns: 1fr; gap: 14px; }
+  .v2-geo-karte { padding: 22px 20px 24px; border-radius: 18px; }
+  .v2-geo-split { padding: 32px 20px; border-radius: 24px; }
+  .v2-geo-lex { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .v2-geo-lex-eintrag, .v2-geo-lex-zahl { padding: 28px 22px 26px; border-radius: 20px; }
+  .v2-geo-lex-text { font-size: 1.04rem; }
+  .v2-geo-lex-grafik { gap: 20px; }
+  .v2-geo-punkte { flex-basis: 150px; gap: 5px; }
+  .v2-geo-hinweis { padding: 16px 18px; text-align: left; }
+  .v2-geo-abschluss { padding: 16px 0 80px; }
+  .v2-geo-abschluss-box { padding: 40px 22px 32px; border-radius: 22px; }
+  .v2-geo-abschluss-knoepfe { flex-direction: column; align-items: stretch; }
+  .v2-geo-abschluss-knoepfe .btn { justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .v2-geo-karte { transition: none; }
+  .v2-geo-karte:hover { transform: none; }
+}
 
 /* ── 404-Seite ──────────────────────────────────────────────────
    Gleicher Grund wie die Sektionen der Seite, oben ein grüner Schimmer.

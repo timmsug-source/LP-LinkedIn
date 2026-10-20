@@ -4,7 +4,7 @@
  * Google Kalender. Gleiches Aussehen wie der Knopf des Audit-Formulars, damit
  * sich die Seite beim Austausch optisch nicht verändert.
  *
- * Nur der Knopf im Hero öffnet weiterhin das Audit-Formular.
+ * Alle Handlungsknöpfe der Website führen hierher, auch die im Hero.
  */
 
 export const BUCHUNG_URL = 'https://calendar.app.google/VUAH6FDkmzgWv3tcA'

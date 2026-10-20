@@ -17,7 +17,25 @@ import { useId, useRef, useState } from 'react'
 
 const WA_NUMMER = '4915229515030'
 
-export default function AuditFormular({ label = 'Kostenloses Audit anfordern' }: { label?: string }) {
+/* Titel, Einleitung und erste Zeile der Nachricht lassen sich je Seite
+   anpassen – die GEO-Seite fragt z. B. einen KI-Schnellcheck statt eines
+   Audits an. Ohne Angaben bleibt alles wie auf der Startseite. */
+const STANDARD_TITEL = 'Kostenloses Audit anfordern'
+const STANDARD_INTRO =
+  'Ich schaue mir deine Website an – Technik, Sichtbarkeit bei Google und in KI-Antworten – und schicke dir die konkreten Punkte zurück. Kostenlos und ohne Haken.'
+const STANDARD_ANLIEGEN = 'Hallo Timm, ich hätte gerne ein kostenloses Audit.'
+
+export default function AuditFormular({
+  label = STANDARD_TITEL,
+  titel = STANDARD_TITEL,
+  intro = STANDARD_INTRO,
+  anliegen = STANDARD_ANLIEGEN,
+}: {
+  label?: string
+  titel?: string
+  intro?: string
+  anliegen?: string
+}) {
   const dialog = useRef<HTMLDialogElement>(null)
   const [gesendet, setGesendet] = useState(false)
   /* Die Überschrift beschriftet den Dialog. Steht der Knopf zweimal auf der
@@ -34,7 +52,7 @@ export default function AuditFormular({ label = 'Kostenloses Audit anfordern' }:
     const f = new FormData(e.currentTarget)
     const website = String(f.get('website') || '').trim()
     const zeilen = [
-      'Hallo Timm, ich hätte gerne ein kostenloses Audit.',
+      anliegen,
       '',
       `Name: ${f.get('name')}`,
       `Kontakt: ${f.get('kontakt')}`,
@@ -89,12 +107,8 @@ export default function AuditFormular({ label = 'Kostenloses Audit anfordern' }:
             </div>
           ) : (
             <>
-              <h2 id={titelId}>Kostenloses Audit anfordern</h2>
-              <p className="v2-dialog-intro">
-                Ich schaue mir deine Website an – Technik, Sichtbarkeit bei Google und in
-                KI-Antworten – und schicke dir die konkreten Punkte zurück. Kostenlos und
-                ohne Haken.
-              </p>
+              <h2 id={titelId}>{titel}</h2>
+              <p className="v2-dialog-intro">{intro}</p>
 
               <form className="v2-form" onSubmit={absenden}>
                 {/* Nicht als Pflichtfeld: Über denselben Dialog fragen auch

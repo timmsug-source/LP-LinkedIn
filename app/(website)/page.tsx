@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import AuditFormular from '@/components/AuditFormular'
 import BuchenKnopf from '@/components/BuchenKnopf'
 import Kundenwebsites from '@/components/Kundenwebsites'
 import AblaufStapel from '@/components/AblaufStapel'
@@ -124,8 +123,8 @@ export default function Startseite() {
               </ul>
 
               <div className="v2-hero-cta">
-                <AuditFormular />
-                <span className="v2-hero-cta-hinweis">Unverbindlich · Antwort meist am selben Tag</span>
+                <BuchenKnopf />
+                <span className="v2-hero-cta-hinweis">30 Minuten · unverbindlich · direkt im Kalender</span>
               </div>
             </div>
 

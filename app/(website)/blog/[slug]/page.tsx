@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { marked } from 'marked'
@@ -12,7 +13,7 @@ import { extractFaq, faqSchema } from '@/lib/faq'
 import { extractHowTo, howToSchema } from '@/lib/howto'
 import PostToc from './toc'
 import MobilCta from './mobil-cta'
-import BuchenKnopf from '@/components/BuchenKnopf'
+import BuchenKnopf, { BUCHUNG_URL } from '@/components/BuchenKnopf'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -100,10 +101,11 @@ export default async function BlogPost({ params }: Props) {
 
     const headline = post.cta_headline || 'Bereit für mehr Sichtbarkeit?'
     const btnText = post.cta_button_text || 'Kostenloses Erstgespräch'
-    /* Die Kontaktsektion heißt auf der neuen Startseite #anfrage. Ältere
-       Beiträge haben im CMS noch #kontakt hinterlegt – die werden umgebogen,
-       statt ins Leere zu springen. */
-    const btnHref = (post.cta_button_href || '/#anfrage').replace('/#kontakt', '/#anfrage')
+    /* Alle Knöpfe führen zur Terminbuchung. Beiträge, die im CMS noch auf die
+       Kontaktsektion zeigen (#anfrage, älter #kontakt), werden umgebogen. */
+    const hubHref = post.cta_button_href || ''
+    const btnHref = !hubHref || /^\/#(anfrage|kontakt)$/.test(hubHref) ? BUCHUNG_URL : hubHref
+    const btnZiel = btnHref.startsWith('http') ? ' target="_blank" rel="noopener noreferrer"' : ''
 
     const ctaHtml = [
       '<div class="post-cta">',
@@ -114,7 +116,7 @@ export default async function BlogPost({ params }: Props) {
       '<p class="post-cta-label">Kostenlos &amp; unverbindlich</p>',
       '<p class="post-cta-headline">' + headline + '</p>',
       '</div>',
-      '<a href="' + btnHref + '" class="post-cta-btn">',
+      '<a href="' + btnHref + '"' + btnZiel + ' class="post-cta-btn">',
       '<span>' + btnText + '</span>',
       '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
       '</a>',
@@ -204,7 +206,12 @@ export default async function BlogPost({ params }: Props) {
             <h1 className="post-title" itemProp="headline" {...cms(feld(slug, 'title'))}>{post.title}</h1>
             {post.excerpt && <p className="post-excerpt" itemProp="description" {...cms(feld(slug, 'excerpt'))}>{post.excerpt}</p>}
             <div className="post-author" itemProp="author" itemScope itemType="https://schema.org/Person">
-              <span itemProp="name">Timm Schurig</span>
+              {/* Dasselbe Foto wie in „Über mich“. Der runde Rahmen schneidet
+                  das Gesicht aus, das Bild darin ist größer und verschoben. */}
+              <span className="post-author-img">
+                <Image src="/bilder/timm/TS-Anzug-Website.webp" alt="" width={80} height={107} sizes="80px" itemProp="image" />
+              </span>
+              <span className="post-author-name" itemProp="name">Timm Schurig</span>
               <span className="post-author-role">SEO & Webdesign Freelancer</span>
             </div>
           </div>
@@ -299,10 +306,7 @@ export default async function BlogPost({ params }: Props) {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
                 Alle Beiträge
               </Link>
-              <a href="/#anfrage" className="btn">
-                Projekt anfragen
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
+              <BuchenKnopf label="Erstgespräch buchen" />
             </div>
           </div>
         </div>

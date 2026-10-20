@@ -12,10 +12,11 @@ const LINKS = [
   { label: 'Über mich', href: '/#ueber-mich' },
   { label: 'Ablauf', href: '/#ablauf' },
   { label: 'SEO Langenfeld', href: '/seo-freelancer-langenfeld' },
+  { label: 'GEO', href: '/geo-freelancer' },
   { label: 'Blog', href: '/blog' },
 ]
 
-const WA_HREF = `https://wa.me/4915229515030?text=${encodeURIComponent('Hallo Timm, ich möchte kurz anfragen.')}`
+const WA_HREF = `https://wa.me/4915229515030?text=${encodeURIComponent('Hallo Timm, ich bin über deine Website auf dich gestoßen und würde gerne kurz über mein Projekt sprechen.')}`
 
 export default function Nav() {
   const pathname = usePathname()

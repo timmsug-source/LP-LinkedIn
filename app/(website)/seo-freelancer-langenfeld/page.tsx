@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { BASE_URL } from '@/lib/jsonld'
 import Link from 'next/link'
-import AuditFormular from '@/components/AuditFormular'
 import BuchenKnopf from '@/components/BuchenKnopf'
 import Kundenwebsites from '@/components/Kundenwebsites'
 import V2Footer from '@/components/V2Footer'
@@ -326,11 +325,10 @@ export default function SeoFreelancerLangenfeld() {
                 <li><Haken />Vor Ort im Rheinland, remote deutschlandweit</li>
               </ul>
 
-              {/* Gleicher Knopf wie auf der Startseite – öffnet das Audit-Popup, deshalb
-                  auch dieselbe Beschriftung wie dessen Überschrift. */}
+              {/* Gleicher Knopf wie auf der Startseite – führt zur Terminbuchung. */}
               <div className="v2-hero-cta">
-                <AuditFormular />
-                <span className="v2-hero-cta-hinweis">Unverbindlich · Antwort meist am selben Tag</span>
+                <BuchenKnopf />
+                <span className="v2-hero-cta-hinweis">30 Minuten · unverbindlich · direkt im Kalender</span>
               </div>
             </div>
 

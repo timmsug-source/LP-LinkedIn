@@ -47,12 +47,13 @@ export default function V2Footer({
           <nav className="v2-fu-spalte" aria-label="Mehr">
             <span className="v2-fu-titel">Mehr</span>
             <Link href="/seo-freelancer-langenfeld">SEO Freelancer Langenfeld</Link>
+            <Link href="/geo-freelancer">GEO Freelancer</Link>
             <Link href="/blog">Blog</Link>
           </nav>
 
           <div className="v2-fu-spalte">
             <span className="v2-fu-titel">Kontakt</span>
-            <a href="https://wa.me/4915229515030" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a href={`https://wa.me/4915229515030?text=${encodeURIComponent('Hallo Timm, ich bin über deine Website auf dich gestoßen und würde gerne kurz über mein Projekt sprechen.')}`} target="_blank" rel="noopener noreferrer">WhatsApp</a>
             <a href="https://www.linkedin.com/in/timm-schurig/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <span className="v2-fu-ort">Langenfeld, NRW</span>
           </div>

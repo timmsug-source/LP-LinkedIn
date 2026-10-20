@@ -2,13 +2,24 @@ import type React from 'react'
 import Image from 'next/image'
 
 /**
- * Ablauf als gestapelte Karten – geteilt zwischen Startseite und
- * Langenfeld-Seite. Die frühere Variante mit Linie liegt im Archiv
+ * Ablauf als gestapelte Karten – geteilt zwischen Startseite, Langenfeld-
+ * und Handwerk-Seite. Die GEO-Seite gibt eigene Schritte, Überschrift und
+ * ein Fazit mit. Die frühere Variante mit Linie liegt im Archiv
  * (archiv/components/AblaufLinie.tsx, CSS in archiv/css/).
  */
-/* Der Ablauf einer Zusammenarbeit: Titel, Dauer und Text je Schritt, dazu
+export type Schritt = {
+  n: string
+  bild: string
+  alt: string
+  punkte: string[]
+  titel: string
+  dauer: string
+  text: string
+}
+
+/* Der Ablauf eines Website-Projekts: Titel, Dauer und Text je Schritt, dazu
    Grafik und drei Stichpunkte für die Karte. */
-const ABLAUF = [
+const ABLAUF: Schritt[] = [
   {
     n: '01',
     bild: '/bilder/ablauf/Ablauf-01-Erstgespraech.webp',
@@ -53,27 +64,34 @@ function Haken() {
   )
 }
 
-export default function AblaufStapel() {
+export default function AblaufStapel({
+  schritte = ABLAUF,
+  titel = <>So läuft die <span className="hl">Zusammenarbeit</span> ab.</>,
+  sub = 'Du weißt jederzeit, wo wir stehen – und was als Nächstes passiert.',
+  fazit,
+}: {
+  schritte?: Schritt[]
+  titel?: React.ReactNode
+  sub?: string
+  /** Optionaler Satz unter dem Stapel. */
+  fazit?: string
+} = {}) {
   return (
     <>
       {/* Ablauf als gestapelte Karten: Jede Karte bleibt beim Scrollen oben
           stehen, die nächste schiebt sich darüber. Reines CSS (position: sticky),
           kein Skript. Der kleine Versatz pro Karte (--i) lässt die Kanten der
           darunterliegenden sichtbar – man sieht, dass es ein Stapel ist.
-          Grafiken aus Grafiken/Ablauf, als Bild gerendert in der Seitenschrift. */}
+          Grafiken aus Grafiken/Ablauf und Grafiken/Ablauf-GEO, als Bild gerendert in der Seitenschrift. */}
       <section className="v2-stapel" id="ablauf">
         <div className="wrap">
           <div className="v2-stapel-kopf">
-            <h2 className="v2-stapel-h2">
-              So läuft die <span className="hl">Zusammenarbeit</span> ab.
-            </h2>
-            <p className="v2-stapel-sub">
-              Du weißt jederzeit, wo wir stehen – und was als Nächstes passiert.
-            </p>
+            <h2 className="v2-stapel-h2">{titel}</h2>
+            <p className="v2-stapel-sub">{sub}</p>
           </div>
 
           <ol className="v2-stapel-liste">
-            {ABLAUF.map((s, i) => (
+            {schritte.map((s, i) => (
               <li key={s.n} className="v2-stapel-karte" style={{ '--i': i } as React.CSSProperties}>
                 <div className="v2-stapel-bild">
                   <Image src={s.bild} alt={s.alt} width={1200} height={840} sizes="(max-width: 900px) 92vw, 540px" />
@@ -95,6 +113,8 @@ export default function AblaufStapel() {
               </li>
             ))}
           </ol>
+
+          {fazit && <p className="v2-stapel-fazit">{fazit}</p>}
         </div>
       </section>
     </>

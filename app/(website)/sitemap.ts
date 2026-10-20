@@ -23,6 +23,8 @@ export const revalidate = 3600
 const LAST_UPDATED = {
   home: '2026-09-30',
   seoFreelancerLangenfeld: '2026-09-30',
+  // Gleiches Datum wie STAND in app/(website)/geo-freelancer/page.tsx
+  geoFreelancer: '2026-10-13',
   impressum: '2026-10-01',
 } as const
 
@@ -53,6 +55,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: `${BASE_URL}/seo-freelancer-langenfeld`,
       lastModified: LAST_UPDATED.seoFreelancerLangenfeld,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/geo-freelancer`,
+      lastModified: LAST_UPDATED.geoFreelancer,
       changeFrequency: 'monthly',
       priority: 0.9,
     },

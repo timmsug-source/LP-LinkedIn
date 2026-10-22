@@ -11,7 +11,6 @@ const LINKS = [
   { label: 'Leistungen', href: '/#angebot' },
   { label: 'Über mich', href: '/#ueber-mich' },
   { label: 'Ablauf', href: '/#ablauf' },
-  { label: 'SEO Langenfeld', href: '/seo-freelancer-langenfeld' },
   { label: 'Blog', href: '/blog' },
 ]
 
@@ -43,7 +42,12 @@ export default function Nav() {
       <nav className={`${scrolled ? 'scrolled' : ''} ${open ? 'nav-open' : ''}`}>
         <div className="nav-inner">
           <Link href="/" className="nav-logo" onClick={handleLinkClick}>
-            Timm <em>Schurig</em>
+            {/* Das TS-Zeichen aus Favicon und App-Icon. Dekorativ: Der Name
+                daneben ist der Linktext. Direkt eingebunden statt über
+                next/image – die Datei ist mit 180 px schon klein genug. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/apple-touch-icon.png" alt="" width={34} height={34} className="nav-logo-zeichen" />
+            <span>Timm <em>Schurig</em></span>
           </Link>
 
           {/* Desktop links */}

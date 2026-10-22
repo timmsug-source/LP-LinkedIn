@@ -3,6 +3,7 @@ import BuchenKnopf from '@/components/BuchenKnopf'
 import Kundenwebsites from '@/components/Kundenwebsites'
 import AblaufStapel from '@/components/AblaufStapel'
 import KontaktBuchung from '@/components/KontaktBuchung'
+import BlogVorschau from '@/components/BlogVorschau'
 import V2Footer from '@/components/V2Footer'
 
 /**
@@ -12,6 +13,10 @@ import V2Footer from '@/components/V2Footer'
  * Canonical – die Startseite nutzt die Standardwerte von dort. Der Wrapper
  * `.v2` bündelt die Design-Regeln (`.v2 …` in globals.css).
  */
+
+// Die Blog-Vorschau liest die neuesten Beiträge aus dem Hub – wie in der
+// Blog-Übersicht erscheinen neue Beiträge nach spätestens fünf Minuten.
+export const revalidate = 300
 
 /* Drei Belege unter der Subheadline – jeder greift einen Teil der
    Überschrift auf: Google, KI, Buchung. */
@@ -643,6 +648,10 @@ export default function Startseite() {
           </div>
         </div>
       </section>
+
+      {/* Die drei neuesten Blogbeiträge, vor dem Kontakt als letzter
+          Beleg: Hier schreibt jemand, der sich auskennt. */}
+      <BlogVorschau />
 
       <KontaktBuchung />
 

@@ -556,7 +556,7 @@ footer {
 /* PDF-Downloads im Beitrag: Der Hub erlaubt im Text keine Klassen, deshalb
    erkennt die Regel PDF-Links an ihrer Adresse und macht daraus einen Knopf. */
 .post-content a[href$=".pdf"]:not(:has(img)) {
-  display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 100px;
+  display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 6px;
   background: var(--acc); color: #03130d; font-weight: 700; text-decoration: none;
   transition: background .2s ease, transform .2s ease;
 }

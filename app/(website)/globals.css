@@ -553,6 +553,15 @@ footer {
 .post-content p { margin-bottom: 20px; }
 .post-content a { color: var(--acc); text-decoration: none; }
 .post-content a:hover { text-decoration: underline; }
+/* PDF-Downloads im Beitrag: Der Hub erlaubt im Text keine Klassen, deshalb
+   erkennt die Regel PDF-Links an ihrer Adresse und macht daraus einen Knopf. */
+.post-content a[href$=".pdf"]:not(:has(img)) {
+  display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 100px;
+  background: var(--acc); color: #03130d; font-weight: 700; text-decoration: none;
+  transition: background .2s ease, transform .2s ease;
+}
+.post-content a[href$=".pdf"]:not(:has(img))::before { content: '↓'; font-size: 1.1em; }
+.post-content a[href$=".pdf"]:not(:has(img)):hover { background: #0f172a; color: #fff; text-decoration: none; transform: translateY(-2px); }
 .post-content strong { color: var(--text); font-weight: 600; }
 .post-content ul, .post-content ol { padding-left: 22px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
 .post-content li { color: #334155; }
